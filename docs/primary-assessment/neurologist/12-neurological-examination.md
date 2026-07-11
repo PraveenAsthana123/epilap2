@@ -21,6 +21,70 @@
 | Gait | Normal |
 | Romberg | Negative |
 
+## Severity Scenario Model — Neurologist View
+
+*Caption - The same assessment answered across four epilepsy severity levels from the neurologist's point of view; each variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*
+
+### Level 1 — Mild (Well-Controlled)
+| Variable | Value |
+|---|---|
+| Mental Status | Normal |
+| Cranial Nerves | Normal |
+| Motor | Normal |
+| Sensory | Normal |
+| Reflexes | Normal |
+| Coordination | Normal |
+| Gait | Normal |
+| Romberg | Negative |
+
+### Level 2 — Moderate (Intermediate)
+| Variable | Value |
+|---|---|
+| Mental Status | Normal |
+| Cranial Nerves | Normal |
+| Motor | Normal |
+| Sensory | Normal |
+| Reflexes | Mildly brisk (right) |
+| Coordination | Normal |
+| Gait | Normal |
+| Romberg | Negative |
+
+### Level 3 — Severe (Poorly Controlled) — EP001
+| Variable | Value |
+|---|---|
+| Mental Status | Normal |
+| Cranial Nerves | Normal |
+| Motor | Normal |
+| Sensory | Normal |
+| Reflexes | Normal |
+| Coordination | Normal |
+| Gait | Normal |
+| Romberg | Negative |
+
+### Level 4 — Refractory / Status Epilepticus (Operational Emergency)
+| Variable | Value |
+|---|---|
+| Mental Status | Post-ictal confusion / obtunded |
+| Cranial Nerves | Gaze deviation |
+| Motor | Left-arm Todd's paresis |
+| Sensory | Reduced left |
+| Reflexes | Asymmetric brisk (right) |
+| Coordination | Impaired |
+| Gait | Unsteady / unable |
+| Romberg | Positive / untestable |
+
+### Severity Classification Logic
+```mermaid
+flowchart TD
+    A[Neurologist assessment] --> B{Severity markers}
+    B -->|rare, controlled| L1[Level 1 Mild]
+    B -->|moderate burden| L2[Level 2 Moderate]
+    B -->|breakthrough despite adherence| L3[Level 3 Severe]
+    B -->|seizures every ~5 min / status| L4[Level 4 Status Emergency]
+    L3 --> E[EP001]
+```
+**Reason:** The interictal exam grades fixed and post-ictal focal signs. **Why:** Focal epilepsy typically shows a normal interictal exam until status produces gross deficits. **What is happening:** The exam stays normal through L1-L3 (EP001), with only a soft reflex asymmetry at L2, then breaks down with Todd's paresis, gaze deviation, and obtundation at L4. **How it is happening:** Each domain result is coded normal/abnormal and the pattern of focal signs sets the level. **Reference:** Fisher et al. (2017).
+
 ## Data Flow and Context Diagrams
 
 ```mermaid

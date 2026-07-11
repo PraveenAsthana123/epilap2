@@ -23,6 +23,78 @@
 
 **Derived:** Trigger Burden = 4 (High)
 
+## Severity Scenario Model — Neurologist View
+
+*Caption - The same assessment answered across four epilepsy severity levels from the neurologist's point of view; each variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*
+
+### Level 1 — Mild (Well-Controlled)
+| Trigger | Present |
+|---|---|
+| Sleep Deprivation | No |
+| Stress | No |
+| Flashing Lights | No |
+| Fever | No |
+| Alcohol | No |
+| Missed Medication | No |
+| Emotional Stress | No |
+| Fasting | No |
+
+**Derived:** Trigger Burden = 0 (Low)
+
+### Level 2 — Moderate (Intermediate)
+| Trigger | Present |
+|---|---|
+| Sleep Deprivation | Yes |
+| Stress | Yes |
+| Flashing Lights | No |
+| Fever | No |
+| Alcohol | No |
+| Missed Medication | No |
+| Emotional Stress | No |
+| Fasting | No |
+
+**Derived:** Trigger Burden = 2 (Moderate)
+
+### Level 3 — Severe (Poorly Controlled) — EP001
+| Trigger | Present |
+|---|---|
+| Sleep Deprivation | Yes |
+| Stress | Yes |
+| Flashing Lights | No |
+| Fever | No |
+| Alcohol | Occasionally |
+| Missed Medication | Yes |
+| Emotional Stress | Yes |
+| Fasting | No |
+
+**Derived:** Trigger Burden = 4 (High)
+
+### Level 4 — Refractory / Status Epilepticus (Operational Emergency)
+| Trigger | Present |
+|---|---|
+| Sleep Deprivation | Yes |
+| Stress | Yes |
+| Flashing Lights | No |
+| Fever | Yes |
+| Alcohol | No |
+| Missed Medication | Yes (abrupt ASM withdrawal) |
+| Emotional Stress | Yes |
+| Fasting | Yes |
+
+**Derived:** Trigger Burden = 6 (Very High — status precipitants)
+
+### Severity Classification Logic
+```mermaid
+flowchart TD
+    A[Neurologist assessment] --> B{Severity markers}
+    B -->|rare, controlled| L1[Level 1 Mild]
+    B -->|moderate burden| L2[Level 2 Moderate]
+    B -->|breakthrough despite adherence| L3[Level 3 Severe]
+    B -->|seizures every ~5 min / status| L4[Level 4 Status Emergency]
+    L3 --> E[EP001]
+```
+**Reason:** Precipitant load grades along a severity ladder. **Why:** Trigger burden indexes modifiable risk and predicts breakthrough for EP001. **What is happening:** The count rises from zero triggers to a stack of status precipitants including ASM withdrawal and fever. **How it is happening:** The neurologist sums present triggers against burden thresholds. **Reference:** Fisher et al. (2017).
+
 ## Pipeline and Role Diagrams
 
 ```mermaid

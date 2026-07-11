@@ -20,6 +20,66 @@
 | Hospital admission | 1 |
 | Patient expectation | Better seizure control |
 
+## Severity Scenario Model — Neurologist View
+
+*Caption - The same assessment answered across four epilepsy severity levels from the neurologist's point of view; each variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*
+
+### Level 1 — Mild (Well-Controlled)
+| Question | Answer |
+|---|---|
+| Why are you here today? | Routine review, seizures well controlled |
+| Primary concern | Maintaining seizure freedom |
+| Duration of problem | 24 months |
+| Severity | 2/10 |
+| Emergency visits | 0 |
+| Hospital admission | 0 |
+| Patient expectation | Continue current control |
+
+### Level 2 — Moderate (Intermediate)
+| Question | Answer |
+|---|---|
+| Why are you here today? | Occasional breakthrough seizures |
+| Primary concern | Intermittent seizures despite treatment |
+| Duration of problem | 18 months |
+| Severity | 5/10 |
+| Emergency visits | 1 |
+| Hospital admission | 0 |
+| Patient expectation | Fewer seizures |
+
+### Level 3 — Severe (Poorly Controlled) — EP001
+| Question | Answer |
+|---|---|
+| Why are you here today? | Recurrent seizures over the last 18 months |
+| Primary concern | Increasing seizure frequency |
+| Duration of problem | 18 months |
+| Severity | 8/10 |
+| Emergency visits | 2 |
+| Hospital admission | 1 |
+| Patient expectation | Better seizure control |
+
+### Level 4 — Refractory / Status Epilepticus (Operational Emergency)
+| Question | Answer |
+|---|---|
+| Why are you here today? | Brought in with continuous seizures |
+| Primary concern | Seizures every ~5 minutes without recovery |
+| Duration of problem | 18 months, acute crisis today |
+| Severity | 10/10 |
+| Emergency visits | 5+ |
+| Hospital admission | 4 (current, ICU) |
+| Patient expectation | Emergency seizure termination |
+
+### Severity Classification Logic
+```mermaid
+flowchart TD
+    A[Neurologist assessment] --> B{Severity markers}
+    B -->|rare, controlled| L1[Level 1 Mild]
+    B -->|moderate burden| L2[Level 2 Moderate]
+    B -->|breakthrough despite adherence| L3[Level 3 Severe]
+    B -->|seizures every ~5 min / status| L4[Level 4 Status Emergency]
+    L3 --> E[EP001]
+```
+**Reason:** The chief complaint moves along a severity ladder rather than sitting at one fixed point. **Why:** Placing EP001 on the ladder sets the urgency, work-up depth, and expectation-setting for the visit. **What is happening:** Concern, severity rating, and acute utilisation all rise from mild follow-up to a status emergency. **How it is happening:** The neurologist reads the presenting pattern against level thresholds. **Reference:** Fisher et al. (2017) ILAE operational classification.
+
 ## Data Flow and Context Diagrams
 
 ```mermaid

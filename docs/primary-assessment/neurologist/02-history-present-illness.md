@@ -20,6 +20,66 @@
 | Recent infection | No |
 | Medication recently changed | Yes |
 
+## Severity Scenario Model — Neurologist View
+
+*Caption - The same assessment answered across four epilepsy severity levels from the neurologist's point of view; each variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*
+
+### Level 1 — Mild (Well-Controlled)
+| Question | Answer |
+|---|---|
+| First seizure date | 2024-01-14 |
+| Age at first seizure | 27 |
+| Initial presentation | Brief focal aware episode, no motor spread |
+| Frequency increasing | No |
+| Breakthrough seizures | No |
+| Recent infection | No |
+| Medication recently changed | No |
+
+### Level 2 — Moderate (Intermediate)
+| Question | Answer |
+|---|---|
+| First seizure date | 2024-01-14 |
+| Age at first seizure | 27 |
+| Initial presentation | Loss of awareness with brief automatisms |
+| Frequency increasing | Occasionally |
+| Breakthrough seizures | Rare |
+| Recent infection | No |
+| Medication recently changed | No |
+
+### Level 3 — Severe (Poorly Controlled) — EP001
+| Question | Answer |
+|---|---|
+| First seizure date | 2024-01-14 |
+| Age at first seizure | 27 |
+| Initial presentation | Sudden loss of awareness followed by right arm jerking |
+| Frequency increasing | Yes |
+| Breakthrough seizures | Yes |
+| Recent infection | No |
+| Medication recently changed | Yes |
+
+### Level 4 — Refractory / Status Epilepticus (Operational Emergency)
+| Question | Answer |
+|---|---|
+| First seizure date | 2024-01-14 |
+| Age at first seizure | 27 |
+| Initial presentation | Prolonged seizures evolving to convulsive status epilepticus |
+| Frequency increasing | Yes, continuous (every ~5 min without recovery) |
+| Breakthrough seizures | Yes, recurring every ~5 min |
+| Recent infection | Yes (possible precipitant) |
+| Medication recently changed | Yes (recent ASM lapse) |
+
+### Severity Classification Logic
+```mermaid
+flowchart TD
+    A[Neurologist assessment] --> B{Severity markers}
+    B -->|rare, controlled| L1[Level 1 Mild]
+    B -->|moderate burden| L2[Level 2 Moderate]
+    B -->|breakthrough despite adherence| L3[Level 3 Severe]
+    B -->|seizures every ~5 min / status| L4[Level 4 Status Emergency]
+    L3 --> E[EP001]
+```
+**Reason:** The illness course is read as a trajectory along a severity ladder, not a single snapshot. **Why:** Onset and course markers set treatment intensity and escalation for EP001. **What is happening:** Frequency, breakthrough, and precipitant fields shift from stable control to continuous status. **How it is happening:** The neurologist maps interview responses onto level thresholds. **Reference:** Fisher et al. (2017).
+
 ## Pipeline and Context Diagrams
 
 ```mermaid

@@ -20,6 +20,66 @@
 | Falls | 1 |
 | Injury Risk | Moderate |
 
+## Severity Scenario Model — Neurologist View
+
+*Caption - The same assessment answered across four epilepsy severity levels from the neurologist's point of view; each variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*
+
+### Level 1 — Mild (Well-Controlled)
+| Variable | Value |
+|---|---|
+| Driving | Permitted |
+| Employment Impact | None |
+| ADL | Independent |
+| IADL | Independent |
+| Work Productivity | Normal |
+| Falls | 0 |
+| Injury Risk | Low |
+
+### Level 2 — Moderate (Intermediate)
+| Variable | Value |
+|---|---|
+| Driving | Conditional |
+| Employment Impact | Mild |
+| ADL | Independent |
+| IADL | Independent |
+| Work Productivity | Slightly reduced |
+| Falls | 0 |
+| Injury Risk | Low-Moderate |
+
+### Level 3 — Severe (Poorly Controlled) — EP001
+| Variable | Value |
+|---|---|
+| Driving | Restricted |
+| Employment Impact | Moderate |
+| ADL | Independent |
+| IADL | Independent |
+| Work Productivity | Reduced |
+| Falls | 1 |
+| Injury Risk | Moderate |
+
+### Level 4 — Refractory / Status Epilepticus (Operational Emergency)
+| Variable | Value |
+|---|---|
+| Driving | Prohibited |
+| Employment Impact | Severe / unable to work |
+| ADL | Assisted |
+| IADL | Dependent |
+| Work Productivity | Severely impaired |
+| Falls | 4+ |
+| Injury Risk | High |
+
+### Severity Classification Logic
+```mermaid
+flowchart TD
+    A[Neurologist assessment] --> B{Severity markers}
+    B -->|rare, controlled| L1[Level 1 Mild]
+    B -->|moderate burden| L2[Level 2 Moderate]
+    B -->|breakthrough despite adherence| L3[Level 3 Severe]
+    B -->|seizures every ~5 min / status| L4[Level 4 Status Emergency]
+    L3 --> E[EP001]
+```
+**Reason:** Functional status translates seizure burden into driving, work, and safety risk. **Why:** Loss of awareness during seizures escalates real-world disability and injury exposure. **What is happening:** Function declines from unrestricted (L1) to restricted driving with one fall and moderate injury risk (L3, EP001) to prohibited driving, dependence, and recurrent falls (L4). **How it is happening:** Driving, ADL/IADL, falls, and injury-risk rows are aggregated into a functional-severity tier. **Reference:** Fisher et al. (2017).
+
 ## Data Flow and Context Diagrams
 
 ```mermaid

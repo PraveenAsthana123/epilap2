@@ -18,6 +18,58 @@
 | 4 | No technical issues anticipated. |
 | 5 | Suitable for routine EEG with hyperventilation and photic stimulation. |
 
+## Severity Scenario Model — EEG Technician View
+
+*Caption - The same acquisition assessment across four epilepsy severity levels from the EEG technician's point of view; each variable shifts with severity and recording context. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes, requiring continuous emergency EEG.*
+
+### Level 1 — Mild (Well-Controlled)
+| # | Note |
+|---|---|
+| 1 | Patient cooperative. |
+| 2 | Excellent electrode impedance. |
+| 3 | Routine outpatient study; patient well rested. |
+| 4 | No technical issues. |
+| 5 | Suitable for routine 20–30 min EEG with hyperventilation and photic stimulation. |
+
+### Level 2 — Moderate (Intermediate)
+| # | Note |
+|---|---|
+| 1 | Patient cooperative. |
+| 2 | Good electrode impedance. |
+| 3 | Sleep deprivation confirmed; repeat EEG. |
+| 4 | Minor drowsiness expected. |
+| 5 | Suitable for standard sleep-deprived EEG with activation procedures. |
+
+### Level 3 — Severe (Poorly Controlled) — EP001
+| # | Note |
+|---|---|
+| 1 | Patient cooperative. |
+| 2 | Good electrode impedance. |
+| 3 | Sleep deprivation confirmed. |
+| 4 | No technical issues anticipated. |
+| 5 | Suitable for routine EEG with hyperventilation and photic stimulation. |
+
+### Level 4 — Refractory / Status Epilepticus (Operational Emergency)
+| # | Note |
+|---|---|
+| 1 | Patient obtunded; seizures recurring about every 5 minutes. |
+| 2 | Elevated impedance from urgent bedside hookup. |
+| 3 | Continuous ICU cEEG initiated for status epilepticus. |
+| 4 | High artifact under emergency conditions; real-time monitoring and alarms active. |
+| 5 | Extended full montage; activation procedures not appropriate. |
+
+### Severity Classification Logic
+```mermaid
+flowchart TD
+    A[EEG acquisition context] --> B{Recording need}
+    B -->|routine outpatient EEG| L1[Level 1 Mild]
+    B -->|sleep-deprived / repeat EEG| L2[Level 2 Moderate]
+    B -->|prolonged / video-EEG monitoring| L3[Level 3 Severe]
+    B -->|continuous ICU cEEG for status| L4[Level 4 Status Emergency]
+    L3 --> E[EP001]
+```
+**Reason:** The technician's free-text notes shift from a clean, routine study to an emergency continuous cEEG under status. **Why:** Notes are the only eyewitness record of acquisition conditions, which degrade sharply as severity rises. **What is happening:** Cooperation, impedance, and activation notes turn from favorable at Level 1 to emergency-qualified at Level 4. **How it is happening:** The technician records the true acquisition narrative per tier so interpreters can weight signal trust. **Reference:** Fisher et al. (2017).
+
 ## Data Flow in the Pipeline
 
 ```mermaid

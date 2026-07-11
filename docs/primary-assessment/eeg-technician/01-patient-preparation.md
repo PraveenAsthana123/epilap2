@@ -21,6 +21,70 @@
 | Last Seizure Documented | Yes |
 | Pregnancy Status | N/A |
 
+## Severity Scenario Model — EEG Technician View
+
+*Caption - The same acquisition assessment across four epilepsy severity levels from the EEG technician's point of view; each variable shifts with severity and recording context. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes, requiring continuous emergency EEG.*
+
+### Level 1 — Mild (Well-Controlled)
+| Variable | Value |
+|---|---|
+| Identity Verified | Yes |
+| Consent Signed | Yes |
+| Sleep Deprived Study | No |
+| Hair Clean | Yes |
+| Metal Objects Removed | Yes |
+| Medication Recorded | Yes |
+| Last Seizure Documented | Yes (remote) |
+| Pregnancy Status | N/A |
+
+### Level 2 — Moderate (Intermediate)
+| Variable | Value |
+|---|---|
+| Identity Verified | Yes |
+| Consent Signed | Yes |
+| Sleep Deprived Study | Yes |
+| Hair Clean | Yes |
+| Metal Objects Removed | Yes |
+| Medication Recorded | Yes |
+| Last Seizure Documented | Yes |
+| Pregnancy Status | N/A |
+
+### Level 3 — Severe (Poorly Controlled) — EP001
+| Variable | Value |
+|---|---|
+| Identity Verified | Yes |
+| Consent Signed | Yes |
+| Sleep Deprived Study | Yes |
+| Hair Clean | Yes |
+| Metal Objects Removed | Yes |
+| Medication Recorded | Yes |
+| Last Seizure Documented | Yes |
+| Pregnancy Status | N/A |
+
+### Level 4 — Refractory / Status Epilepticus (Operational Emergency)
+| Variable | Value |
+|---|---|
+| Identity Verified | Yes (ICU wristband) |
+| Consent Signed | Emergency / surrogate |
+| Sleep Deprived Study | N/A (continuous cEEG) |
+| Hair Clean | No (urgent bedside) |
+| Metal Objects Removed | Partial (emergency) |
+| Medication Recorded | Yes (IV anti-seizure / anesthetic) |
+| Last Seizure Documented | Ongoing (~every 5 min) |
+| Pregnancy Status | N/A |
+
+### Severity Classification Logic
+```mermaid
+flowchart TD
+    A[EEG acquisition context] --> B{Recording need}
+    B -->|routine outpatient EEG| L1[Level 1 Mild]
+    B -->|sleep-deprived / repeat EEG| L2[Level 2 Moderate]
+    B -->|prolonged / video-EEG monitoring| L3[Level 3 Severe]
+    B -->|continuous ICU cEEG for status| L4[Level 4 Status Emergency]
+    L3 --> E[EP001]
+```
+**Reason:** Preparation rigor scales with recording context, from a quick outpatient hookup to an emergency bedside cEEG. **Why:** Higher severity compresses the prep window and forces trade-offs (surrogate consent, no scalp cleaning) that the technician must document. **What is happening:** The same checklist is captured at each level but the achievable status of each item drops as urgency rises. **How it is happening:** The technician records the real preparation state per level rather than an idealized one, so downstream readers can weight signal trust. **Reference:** Fisher et al. (2017).
+
 ## Pipeline and Process Diagrams
 
 ```mermaid

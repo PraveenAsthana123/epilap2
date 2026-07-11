@@ -18,6 +18,58 @@
 | Social Limitation | Moderate |
 | Fatigue | High |
 
+## Severity Scenario Model — Neurologist View
+
+*Caption - The same assessment answered across four epilepsy severity levels from the neurologist's point of view; each variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*
+
+### Level 1 — Mild (Well-Controlled)
+| Variable | Value |
+|---|---|
+| QOLIE-31 | 85/100 |
+| Anxiety | None |
+| Depression | None |
+| Social Limitation | None |
+| Fatigue | Low |
+
+### Level 2 — Moderate (Intermediate)
+| Variable | Value |
+|---|---|
+| QOLIE-31 | 70/100 |
+| Anxiety | Mild |
+| Depression | Minimal |
+| Social Limitation | Mild |
+| Fatigue | Moderate |
+
+### Level 3 — Severe (Poorly Controlled) — EP001
+| Variable | Value |
+|---|---|
+| QOLIE-31 | 56/100 |
+| Anxiety | Mild |
+| Depression | Mild |
+| Social Limitation | Moderate |
+| Fatigue | High |
+
+### Level 4 — Refractory / Status Epilepticus (Operational Emergency)
+| Variable | Value |
+|---|---|
+| QOLIE-31 | 32/100 |
+| Anxiety | Severe |
+| Depression | Severe |
+| Social Limitation | Severe |
+| Fatigue | Very high |
+
+### Severity Classification Logic
+```mermaid
+flowchart TD
+    A[Neurologist assessment] --> B{Severity markers}
+    B -->|rare, controlled| L1[Level 1 Mild]
+    B -->|moderate burden| L2[Level 2 Moderate]
+    B -->|breakthrough despite adherence| L3[Level 3 Severe]
+    B -->|seizures every ~5 min / status| L4[Level 4 Status Emergency]
+    L3 --> E[EP001]
+```
+**Reason:** QOLIE-31 and mood/fatigue dimensions capture patient-reported burden beyond seizure counts. **Why:** Uncontrolled epilepsy erodes mood, social participation, and energy independent of frequency. **What is happening:** Scores fall from high QoL (85, L1) to a mid composite with high fatigue (56, L3, EP001) to severe impairment across all dimensions (32, L4). **How it is happening:** The composite score and ordinal sub-ratings are aggregated into a QoL-severity tier. **Reference:** Fisher et al. (2017).
+
 ## Data Flow and Context Diagrams
 
 ```mermaid

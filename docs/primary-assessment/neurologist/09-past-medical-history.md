@@ -19,6 +19,62 @@
 | Febrile Seizures | No |
 | Developmental Delay | No |
 
+## Severity Scenario Model — Neurologist View
+
+*Caption - The same assessment answered across four epilepsy severity levels from the neurologist's point of view; each variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*
+
+### Level 1 — Mild (Well-Controlled)
+| Variable | Value |
+|---|---|
+| Head Injury | No |
+| Stroke | No |
+| Brain Tumor | No |
+| CNS Infection | No |
+| Febrile Seizures | No |
+| Developmental Delay | No |
+
+### Level 2 — Moderate (Intermediate)
+| Variable | Value |
+|---|---|
+| Head Injury | Remote mild concussion (childhood) |
+| Stroke | No |
+| Brain Tumor | No |
+| CNS Infection | No |
+| Febrile Seizures | Simple (childhood) |
+| Developmental Delay | No |
+
+### Level 3 — Severe (Poorly Controlled) — EP001
+| Variable | Value |
+|---|---|
+| Head Injury | Mild concussion (2019) |
+| Stroke | No |
+| Brain Tumor | No |
+| CNS Infection | No |
+| Febrile Seizures | No |
+| Developmental Delay | No |
+
+### Level 4 — Refractory / Status Epilepticus (Operational Emergency)
+| Variable | Value |
+|---|---|
+| Head Injury | Severe TBI with contusion |
+| Stroke | Prior ischemic stroke |
+| Brain Tumor | Low-grade glioma (resected) |
+| CNS Infection | Prior encephalitis |
+| Febrile Seizures | Complex, prolonged |
+| Developmental Delay | Yes |
+
+### Severity Classification Logic
+```mermaid
+flowchart TD
+    A[Neurologist assessment] --> B{Severity markers}
+    B -->|rare, controlled| L1[Level 1 Mild]
+    B -->|moderate burden| L2[Level 2 Moderate]
+    B -->|breakthrough despite adherence| L3[Level 3 Severe]
+    B -->|seizures every ~5 min / status| L4[Level 4 Status Emergency]
+    L3 --> E[EP001]
+```
+**Reason:** Acquired structural insults grade the epileptogenic risk carried by past medical history. **Why:** More prior CNS injury predicts a more refractory focal syndrome. **What is happening:** The history moves from clean (L1) to a single mild insult (L3, EP001) to multiple structural lesions (L4). **How it is happening:** Each risk-factor row is scored and the aggregate places the patient on the ladder. **Reference:** Fisher et al. (2017).
+
 ## Data Flow and Context Diagrams
 
 ```mermaid

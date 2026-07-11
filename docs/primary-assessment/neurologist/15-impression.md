@@ -19,6 +19,62 @@
 | Medication Adjustment | Increase Levetiracetam |
 | Follow-up | 3 months |
 
+## Severity Scenario Model — Neurologist View
+
+*Caption - The same assessment answered across four epilepsy severity levels from the neurologist's point of view; each variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*
+
+### Level 1 — Mild (Well-Controlled)
+| Variable | Value |
+|---|---|
+| Diagnosis | Well-controlled focal epilepsy |
+| Surgical Candidate | No |
+| MRI Recommended | No |
+| Repeat EEG | No |
+| Medication Adjustment | Continue current monotherapy |
+| Follow-up | 12 months |
+
+### Level 2 — Moderate (Intermediate)
+| Variable | Value |
+|---|---|
+| Diagnosis | Focal epilepsy, partially controlled |
+| Surgical Candidate | No |
+| MRI Recommended | No |
+| Repeat EEG | Optional |
+| Medication Adjustment | Optimize monotherapy dose |
+| Follow-up | 6 months |
+
+### Level 3 — Severe (Poorly Controlled) — EP001
+| Variable | Value |
+|---|---|
+| Diagnosis | Drug-responsive focal epilepsy with breakthrough seizures |
+| Surgical Candidate | No |
+| MRI Recommended | No |
+| Repeat EEG | Yes |
+| Medication Adjustment | Increase Levetiracetam |
+| Follow-up | 3 months |
+
+### Level 4 — Refractory / Status Epilepticus (Operational Emergency)
+| Variable | Value |
+|---|---|
+| Diagnosis | Drug-resistant focal epilepsy / status epilepticus |
+| Surgical Candidate | Yes (referral) |
+| MRI Recommended | Yes (3T epilepsy protocol) |
+| Repeat EEG | Yes (continuous video-EEG) |
+| Medication Adjustment | IV benzodiazepine + AED loading; add second agent |
+| Follow-up | Emergency admission (days) |
+
+### Severity Classification Logic
+```mermaid
+flowchart TD
+    A[Neurologist assessment] --> B{Severity markers}
+    B -->|rare, controlled| L1[Level 1 Mild]
+    B -->|moderate burden| L2[Level 2 Moderate]
+    B -->|breakthrough despite adherence| L3[Level 3 Severe]
+    B -->|seizures every ~5 min / status| L4[Level 4 Status Emergency]
+    L3 --> E[EP001]
+```
+**Reason:** The impression converts severity into diagnosis, workup, and management intensity. **Why:** More refractory disease demands escalating investigation, therapy, and follow-up frequency. **What is happening:** The plan escalates from routine monotherapy at 12 months (L1) to dose increase with 3-month review (L3, EP001) to emergency status management with surgical referral (L4). **How it is happening:** Diagnosis, surgical/imaging/EEG flags, medication, and follow-up interval are set to match the severity tier. **Reference:** Fisher et al. (2017).
+
 ## Pipeline and Process Diagrams
 
 *Caption - The flowchart below shows where the neurologist impression sits in the data pipeline, receiving integrated assessment inputs and emitting the decision outputs.*

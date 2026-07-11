@@ -1,8 +1,19 @@
 # Primary Assessment — Index (Epilepsy, Patient EP001)
 
 Epilepsy Primary Assessment dataset (pre-EEG), split into one MD file per assessment.
-All data in table format. Two roles: **Neurologist** (clinical/primary) and **EEG
-Technician** (acquisition/QC).
+All data in table format. **Eight roles**, each with its own question set captured from that
+role's point of view: **Neurologist**, **EEG Technician**, **Nurse**, **Neuropsychologist**,
+**Pharmacist**, **Caregiver**, **Patient**, and **Administrator**.
+
+Every assessment section also carries a **Severity Scenario Model** — the same questions
+answered across four epilepsy severity levels from that role's perspective:
+
+| Level | Name | Picture | Maps to |
+|---|---|---|---|
+| 1 | Mild | Well-controlled, rare seizures, monotherapy, no restrictions | — |
+| 2 | Moderate | ~Monthly seizures, minor impact, mild QoL reduction | — |
+| 3 | Severe | Several/month, breakthrough despite adherence, restrictions | **EP001** |
+| 4 | Refractory / Status | Seizures every ~5 min (status epilepticus) — operational emergency | — |
 
 ## Patient
 | File | Contents |
@@ -38,9 +49,82 @@ Technician** (acquisition/QC).
 | 5 | [05-artifact-risk.md](eeg-technician/05-artifact-risk.md) | Artifact Risk |
 | 6 | [06-technician-notes.md](eeg-technician/06-technician-notes.md) | Technician Notes |
 
+## Nurse Assessment (Nursing / Observation)
+| # | File | Section |
+|---|---|---|
+| 1 | [01-vital-signs-baseline.md](nurse/01-vital-signs-baseline.md) | Vital Signs & Baseline Observations |
+| 2 | [02-seizure-observation-chart.md](nurse/02-seizure-observation-chart.md) | Seizure Observation Chart |
+| 3 | [03-medication-administration.md](nurse/03-medication-administration.md) | Medication Administration & Adherence |
+| 4 | [04-injury-safety-screen.md](nurse/04-injury-safety-screen.md) | Injury & Safety Screen |
+| 5 | [05-patient-education.md](nurse/05-patient-education.md) | Patient Education & Self-Management |
+| 6 | [06-psychosocial-support-screen.md](nurse/06-psychosocial-support-screen.md) | Psychosocial & Support Screen |
+| 7 | [07-care-plan-handover.md](nurse/07-care-plan-handover.md) | Care Plan & Handover Notes |
+
+## Neuropsychologist Assessment (Cognitive)
+| # | File | Section |
+|---|---|---|
+| 1 | [01-cognitive-screening.md](neuropsychologist/01-cognitive-screening.md) | Cognitive Screening |
+| 2 | [02-memory-assessment.md](neuropsychologist/02-memory-assessment.md) | Memory Assessment |
+| 3 | [03-attention-processing-speed.md](neuropsychologist/03-attention-processing-speed.md) | Attention & Processing Speed |
+| 4 | [04-executive-function.md](neuropsychologist/04-executive-function.md) | Executive Function |
+| 5 | [05-language-naming.md](neuropsychologist/05-language-naming.md) | Language & Naming |
+| 6 | [06-mood-anxiety.md](neuropsychologist/06-mood-anxiety.md) | Mood & Anxiety |
+| 7 | [07-quality-of-life-psychosocial.md](neuropsychologist/07-quality-of-life-psychosocial.md) | Quality of Life & Psychosocial |
+| 8 | [08-neuropsychological-impression.md](neuropsychologist/08-neuropsychological-impression.md) | Neuropsychological Impression |
+
+## Pharmacist Assessment (Medication)
+| # | File | Section |
+|---|---|---|
+| 1 | [01-medication-reconciliation.md](pharmacist/01-medication-reconciliation.md) | Medication Reconciliation |
+| 2 | [02-asm-regimen-review.md](pharmacist/02-asm-regimen-review.md) | ASM Regimen Review |
+| 3 | [03-adherence-assessment.md](pharmacist/03-adherence-assessment.md) | Adherence Assessment |
+| 4 | [04-drug-interaction-screen.md](pharmacist/04-drug-interaction-screen.md) | Drug Interaction Screen |
+| 5 | [05-adverse-effect-review.md](pharmacist/05-adverse-effect-review.md) | Adverse-Effect Review |
+| 6 | [06-therapeutic-drug-monitoring.md](pharmacist/06-therapeutic-drug-monitoring.md) | Therapeutic Drug Monitoring |
+| 7 | [07-counselling-care-plan.md](pharmacist/07-counselling-care-plan.md) | Counselling & Care Plan |
+
+## Caregiver Assessment (Observer-Reported)
+| # | File | Section |
+|---|---|---|
+| 1 | [01-witnessed-seizure-description.md](caregiver/01-witnessed-seizure-description.md) | Witnessed Seizure Description |
+| 2 | [02-seizure-frequency-diary.md](caregiver/02-seizure-frequency-diary.md) | Seizure Frequency & Diary |
+| 3 | [03-nocturnal-unwitnessed-events.md](caregiver/03-nocturnal-unwitnessed-events.md) | Nocturnal / Unwitnessed Events |
+| 4 | [04-trigger-observations.md](caregiver/04-trigger-observations.md) | Trigger Observations |
+| 5 | [05-medication-support.md](caregiver/05-medication-support.md) | Medication Support at Home |
+| 6 | [06-safety-supervision.md](caregiver/06-safety-supervision.md) | Safety & Supervision |
+| 7 | [07-caregiver-burden-wellbeing.md](caregiver/07-caregiver-burden-wellbeing.md) | Caregiver Burden & Wellbeing |
+
+## Patient Self-Report (Patient-Reported Outcomes)
+| # | File | Section |
+|---|---|---|
+| 1 | [01-symptom-self-report.md](patient/01-symptom-self-report.md) | Symptom Self-Report |
+| 2 | [02-seizure-diary-self.md](patient/02-seizure-diary-self.md) | Seizure Diary (Self) |
+| 3 | [03-medication-adherence-self.md](patient/03-medication-adherence-self.md) | Medication Adherence Self-Report |
+| 4 | [04-trigger-lifestyle-self.md](patient/04-trigger-lifestyle-self.md) | Trigger & Lifestyle Self-Report |
+| 5 | [05-side-effect-self-report.md](patient/05-side-effect-self-report.md) | Side-Effect Self-Report |
+| 6 | [06-quality-of-life-qolie31.md](patient/06-quality-of-life-qolie31.md) | Quality of Life (QOLIE-31) |
+| 7 | [07-mood-anxiety-self.md](patient/07-mood-anxiety-self.md) | Mood & Anxiety Self-Report |
+| 8 | [08-goals-concerns.md](patient/08-goals-concerns.md) | Goals & Concerns |
+
+## Administrator Assessment (Administrative)
+| # | File | Section |
+|---|---|---|
+| 1 | [01-registration-demographics.md](administrator/01-registration-demographics.md) | Registration & Demographics |
+| 2 | [02-insurance-consent.md](administrator/02-insurance-consent.md) | Insurance & Consent |
+| 3 | [03-appointment-scheduling.md](administrator/03-appointment-scheduling.md) | Appointment Scheduling |
+| 4 | [04-encounter-coding.md](administrator/04-encounter-coding.md) | Encounter & Coding |
+| 5 | [05-records-data-governance.md](administrator/05-records-data-governance.md) | Records & Data Governance |
+| 6 | [06-referral-management.md](administrator/06-referral-management.md) | Referral Management |
+
 ## Derived / Roles
 | File | Contents |
 |---|---|
 | [ai-derived-features.md](ai-derived-features.md) | AI features derived before EEG |
 | [roles-neurologist.md](roles-neurologist.md) | Neurologist: assessments, concerns, tasks |
 | [roles-eeg-technician.md](roles-eeg-technician.md) | EEG Technician: assessments, concerns, tasks |
+| [roles-nurse.md](roles-nurse.md) | Nurse: assessments, concerns, tasks |
+| [roles-neuropsychologist.md](roles-neuropsychologist.md) | Neuropsychologist: assessments, concerns, tasks |
+| [roles-pharmacist.md](roles-pharmacist.md) | Pharmacist: assessments, concerns, tasks |
+| [roles-caregiver.md](roles-caregiver.md) | Caregiver: observations, concerns, tasks |
+| [roles-patient.md](roles-patient.md) | Patient: self-reports, concerns, tasks |
+| [roles-administrator.md](roles-administrator.md) | Administrator: tasks, concerns, workflow |

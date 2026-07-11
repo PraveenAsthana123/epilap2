@@ -17,6 +17,54 @@
 | Stroke | None |
 | Dementia | None |
 
+## Severity Scenario Model — Neurologist View
+
+*Caption - The same assessment answered across four epilepsy severity levels from the neurologist's point of view; each variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*
+
+### Level 1 — Mild (Well-Controlled)
+| Variable | Value |
+|---|---|
+| Family Epilepsy | None |
+| Migraine | None |
+| Stroke | None |
+| Dementia | None |
+
+### Level 2 — Moderate (Intermediate)
+| Variable | Value |
+|---|---|
+| Family Epilepsy | Distant cousin |
+| Migraine | Mother |
+| Stroke | None |
+| Dementia | None |
+
+### Level 3 — Severe (Poorly Controlled) — EP001
+| Variable | Value |
+|---|---|
+| Family Epilepsy | Maternal Uncle |
+| Migraine | Mother |
+| Stroke | None |
+| Dementia | None |
+
+### Level 4 — Refractory / Status Epilepticus (Operational Emergency)
+| Variable | Value |
+|---|---|
+| Family Epilepsy | Father and sibling (first-degree) |
+| Migraine | Mother |
+| Stroke | Grandparent |
+| Dementia | Grandparent |
+
+### Severity Classification Logic
+```mermaid
+flowchart TD
+    A[Neurologist assessment] --> B{Severity markers}
+    B -->|rare, controlled| L1[Level 1 Mild]
+    B -->|moderate burden| L2[Level 2 Moderate]
+    B -->|breakthrough despite adherence| L3[Level 3 Severe]
+    B -->|seizures every ~5 min / status| L4[Level 4 Status Emergency]
+    L3 --> E[EP001]
+```
+**Reason:** Density and proximity of affected relatives index heritable epilepsy risk. **Why:** First-degree clustering signals higher penetrance and more refractory phenotypes. **What is happening:** Family history moves from none (L1) to a second-degree uncle (L3, EP001) to first-degree plus neurovascular load (L4). **Why it is happening:** Closer relatives and multiple neurological diagnoses raise the genetic-risk weighting. **How it is happening:** Each relative row is coded by degree and diagnosis into an aggregate risk flag. **Reference:** Fisher et al. (2017).
+
 ## Data Flow in the Pipeline
 
 ```mermaid

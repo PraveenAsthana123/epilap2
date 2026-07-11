@@ -24,6 +24,82 @@
 | Witnessed | Yes |
 | Seizure Diary | Mobile App |
 
+## Severity Scenario Model — Neurologist View
+
+*Caption - The same assessment answered across four epilepsy severity levels from the neurologist's point of view; each variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*
+
+### Level 1 — Mild (Well-Controlled)
+| Variable | Value |
+|---|---|
+| Epilepsy Type | Focal Epilepsy |
+| Seizure Type | Focal Aware |
+| Frequency | <1/year |
+| Average Duration | 30 sec |
+| Longest Seizure | 60 sec |
+| Last Seizure | 2025-08-10 |
+| Cluster Seizures | No |
+| Status Epilepticus | No |
+| Nocturnal Seizures | No |
+| Witnessed | Yes |
+| Seizure Diary | Mobile App |
+
+### Level 2 — Moderate (Intermediate)
+| Variable | Value |
+|---|---|
+| Epilepsy Type | Focal Epilepsy |
+| Seizure Type | Focal Impaired Awareness |
+| Frequency | 1/month |
+| Average Duration | 60 sec |
+| Longest Seizure | 2 min |
+| Last Seizure | 2026-06-01 |
+| Cluster Seizures | No |
+| Status Epilepticus | No |
+| Nocturnal Seizures | Occasional |
+| Witnessed | Yes |
+| Seizure Diary | Mobile App |
+
+### Level 3 — Severe (Poorly Controlled) — EP001
+| Variable | Value |
+|---|---|
+| Epilepsy Type | Focal Epilepsy |
+| Seizure Type | Focal Impaired Awareness |
+| Frequency | 5/month |
+| Average Duration | 90 sec |
+| Longest Seizure | 3 min |
+| Last Seizure | 2026-06-18 |
+| Cluster Seizures | No |
+| Status Epilepticus | No |
+| Nocturnal Seizures | Yes |
+| Witnessed | Yes |
+| Seizure Diary | Mobile App |
+
+### Level 4 — Refractory / Status Epilepticus (Operational Emergency)
+| Variable | Value |
+|---|---|
+| Epilepsy Type | Focal Epilepsy |
+| Seizure Type | Focal to Bilateral Tonic-Clonic (in status) |
+| Frequency | Recurring every ~5 min (continuous) |
+| Average Duration | >5 min, ongoing |
+| Longest Seizure | >30 min (status epilepticus) |
+| Last Seizure | 2026-07-11 (ongoing) |
+| Cluster Seizures | Yes |
+| Status Epilepticus | Yes |
+| Nocturnal Seizures | Yes |
+| Witnessed | Yes |
+| Seizure Diary | Inpatient EEG telemetry |
+
+### Severity Classification Logic
+```mermaid
+flowchart TD
+    A[Neurologist assessment] --> B{Severity markers}
+    B -->|rare, controlled| L1[Level 1 Mild]
+    B -->|moderate burden| L2[Level 2 Moderate]
+    B -->|breakthrough despite adherence| L3[Level 3 Severe]
+    B -->|seizures every ~5 min / status| L4[Level 4 Status Emergency]
+    L3 --> E[EP001]
+```
+**Reason:** Seizure burden is graded along a severity ladder rather than a single count. **Why:** Frequency, duration, and status flags decide urgency and prognosis for EP001. **What is happening:** Type, frequency, and duration escalate from rare aware events to continuous status epilepticus. **How it is happening:** The neurologist grades the semiological descriptors against level thresholds. **Reference:** Fisher et al. (2017).
+
 ## Data Flow in the Pipeline
 
 ```mermaid

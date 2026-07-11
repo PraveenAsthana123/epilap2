@@ -21,6 +21,70 @@
 | Speech Difficulty | Mild |
 | Numbness | Left Hand |
 
+## Severity Scenario Model — Neurologist View
+
+*Caption - The same assessment answered across four epilepsy severity levels from the neurologist's point of view; each variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*
+
+### Level 1 — Mild (Well-Controlled)
+| Variable | Value |
+|---|---|
+| Aura Present | Yes |
+| Metallic Taste | Occasional |
+| Déjà vu | Yes |
+| Fear | No |
+| Visual Aura | No |
+| Auditory Aura | No |
+| Speech Difficulty | None |
+| Numbness | None |
+
+### Level 2 — Moderate (Intermediate)
+| Variable | Value |
+|---|---|
+| Aura Present | Yes |
+| Metallic Taste | Yes |
+| Déjà vu | Yes |
+| Fear | No |
+| Visual Aura | No |
+| Auditory Aura | No |
+| Speech Difficulty | Mild |
+| Numbness | None |
+
+### Level 3 — Severe (Poorly Controlled) — EP001
+| Variable | Value |
+|---|---|
+| Aura Present | Yes |
+| Metallic Taste | Yes |
+| Déjà vu | Yes |
+| Fear | No |
+| Visual Aura | No |
+| Auditory Aura | No |
+| Speech Difficulty | Mild |
+| Numbness | Left Hand |
+
+### Level 4 — Refractory / Status Epilepticus (Operational Emergency)
+| Variable | Value |
+|---|---|
+| Aura Present | No (no warning; lost in status) |
+| Metallic Taste | Not reportable |
+| Déjà vu | Not reportable |
+| Fear | Not reportable |
+| Visual Aura | Not reportable |
+| Auditory Aura | Not reportable |
+| Speech Difficulty | Global (unresponsive) |
+| Numbness | Not assessable |
+
+### Severity Classification Logic
+```mermaid
+flowchart TD
+    A[Neurologist assessment] --> B{Severity markers}
+    B -->|rare, controlled| L1[Level 1 Mild]
+    B -->|moderate burden| L2[Level 2 Moderate]
+    B -->|breakthrough despite adherence| L3[Level 3 Severe]
+    B -->|seizures every ~5 min / status| L4[Level 4 Status Emergency]
+    L3 --> E[EP001]
+```
+**Reason:** The warning phase itself grades along a severity ladder. **Why:** A reliable aura permits abortive action, while loss of aura in status removes that safety margin. **What is happening:** Aura reliability degrades from a protective warning to no reportable warning in status. **How it is happening:** The neurologist reads pre-ictal symptom fields against level thresholds. **Reference:** Fisher et al. (2017).
+
 ## Data Flow and Context Diagrams
 
 ```mermaid

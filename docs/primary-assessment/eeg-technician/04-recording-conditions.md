@@ -18,6 +18,58 @@
 | Hyperventilation Planned | Yes |
 | Photic Stimulation Planned | Yes |
 
+## Severity Scenario Model — EEG Technician View
+
+*Caption - The same acquisition assessment across four epilepsy severity levels from the EEG technician's point of view; each variable shifts with severity and recording context. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes, requiring continuous emergency EEG.*
+
+### Level 1 — Mild (Well-Controlled)
+| Variable | Value |
+|---|---|
+| Awake | Yes |
+| Drowsy Expected | No |
+| Sleep Expected | No |
+| Hyperventilation Planned | Yes |
+| Photic Stimulation Planned | Yes |
+
+### Level 2 — Moderate (Intermediate)
+| Variable | Value |
+|---|---|
+| Awake | Yes |
+| Drowsy Expected | Yes |
+| Sleep Expected | Yes |
+| Hyperventilation Planned | Yes |
+| Photic Stimulation Planned | Yes |
+
+### Level 3 — Severe (Poorly Controlled) — EP001
+| Variable | Value |
+|---|---|
+| Awake | Yes |
+| Drowsy Expected | Yes |
+| Sleep Expected | No |
+| Hyperventilation Planned | Yes |
+| Photic Stimulation Planned | Yes |
+
+### Level 4 — Refractory / Status Epilepticus (Operational Emergency)
+| Variable | Value |
+|---|---|
+| Awake | No (obtunded / sedated) |
+| Drowsy Expected | N/A |
+| Sleep Expected | Yes (encephalopathic / sedated) |
+| Hyperventilation Planned | No (unsafe in status) |
+| Photic Stimulation Planned | No |
+
+### Severity Classification Logic
+```mermaid
+flowchart TD
+    A[EEG acquisition context] --> B{Recording need}
+    B -->|routine outpatient EEG| L1[Level 1 Mild]
+    B -->|sleep-deprived / repeat EEG| L2[Level 2 Moderate]
+    B -->|prolonged / video-EEG monitoring| L3[Level 3 Severe]
+    B -->|continuous ICU cEEG for status| L4[Level 4 Status Emergency]
+    L3 --> E[EP001]
+```
+**Reason:** Patient state and activation planning shift from an alert cooperative outpatient to a sedated, obtunded status patient. **Why:** Provocative maneuvers like hyperventilation become unsafe and unnecessary once seizures are already recurring every few minutes. **What is happening:** Awake/activation flags flip off and the recording relies on continuous capture rather than planned provocation as severity rises. **How it is happening:** The technician records the true acquisition state per tier so yield is interpreted in context. **Reference:** Fisher et al. (2017).
+
 ## Pipeline and Process Diagrams
 
 ```mermaid

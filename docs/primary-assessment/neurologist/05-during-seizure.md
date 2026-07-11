@@ -27,6 +27,62 @@ consistent with the left-temporal focus, with no secondary generalization record
 | Limb Jerking | Right Arm |
 | Generalization | No |
 
+## Severity Scenario Model — Neurologist View
+
+*Caption - The same assessment answered across four epilepsy severity levels from the neurologist's point of view; each variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*
+
+### Level 1 — Mild (Well-Controlled)
+| Variable | Value |
+|---|---|
+| Loss of Awareness | No (aware) |
+| Tongue Biting | No |
+| Urinary Incontinence | No |
+| Eye Deviation | None |
+| Limb Jerking | None |
+| Generalization | No |
+
+### Level 2 — Moderate (Intermediate)
+| Variable | Value |
+|---|---|
+| Loss of Awareness | Yes |
+| Tongue Biting | No |
+| Urinary Incontinence | No |
+| Eye Deviation | Right |
+| Limb Jerking | Right Arm (mild) |
+| Generalization | No |
+
+### Level 3 — Severe (Poorly Controlled) — EP001
+| Variable | Value |
+|---|---|
+| Loss of Awareness | Yes |
+| Tongue Biting | Yes |
+| Urinary Incontinence | No |
+| Eye Deviation | Right |
+| Limb Jerking | Right Arm |
+| Generalization | No |
+
+### Level 4 — Refractory / Status Epilepticus (Operational Emergency)
+| Variable | Value |
+|---|---|
+| Loss of Awareness | Yes (sustained) |
+| Tongue Biting | Yes |
+| Urinary Incontinence | Yes |
+| Eye Deviation | Right |
+| Limb Jerking | Bilateral convulsive |
+| Generalization | Yes (recurring every ~5 min, no recovery) |
+
+### Severity Classification Logic
+```mermaid
+flowchart TD
+    A[Neurologist assessment] --> B{Severity markers}
+    B -->|rare, controlled| L1[Level 1 Mild]
+    B -->|moderate burden| L2[Level 2 Moderate]
+    B -->|breakthrough despite adherence| L3[Level 3 Severe]
+    B -->|seizures every ~5 min / status| L4[Level 4 Status Emergency]
+    L3 --> E[EP001]
+```
+**Reason:** Ictal signs intensify along a severity ladder. **Why:** Awareness loss, autonomic signs, and generalization set the safety and treatment response for EP001. **What is happening:** Features escalate from an aware focal event to bilateral convulsive status. **How it is happening:** The neurologist reads observed ictal variables against level thresholds. **Reference:** Fisher et al. (2017).
+
 ## Data Flow in the Pipeline
 
 ```mermaid

@@ -19,6 +19,62 @@
 | Sampling Rate Planned | 512 Hz |
 | Recording Duration | 30 min |
 
+## Severity Scenario Model — EEG Technician View
+
+*Caption - The same acquisition assessment across four epilepsy severity levels from the EEG technician's point of view; each variable shifts with severity and recording context. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes, requiring continuous emergency EEG.*
+
+### Level 1 — Mild (Well-Controlled)
+| Variable | Value |
+|---|---|
+| Electrode System | 10–20 International |
+| Number of Electrodes | 21 |
+| Electrode Cap Size | Medium |
+| Reference | Linked Ears |
+| Sampling Rate Planned | 256 Hz |
+| Recording Duration | 20–30 min |
+
+### Level 2 — Moderate (Intermediate)
+| Variable | Value |
+|---|---|
+| Electrode System | 10–20 International |
+| Number of Electrodes | 21 |
+| Electrode Cap Size | Medium |
+| Reference | Linked Ears |
+| Sampling Rate Planned | 256 Hz |
+| Recording Duration | 60 min |
+
+### Level 3 — Severe (Poorly Controlled) — EP001
+| Variable | Value |
+|---|---|
+| Electrode System | 10–20 International |
+| Number of Electrodes | 21 |
+| Electrode Cap Size | Medium |
+| Reference | Linked Ears |
+| Sampling Rate Planned | 512 Hz |
+| Recording Duration | 30 min |
+
+### Level 4 — Refractory / Status Epilepticus (Operational Emergency)
+| Variable | Value |
+|---|---|
+| Electrode System | 10–20 International (extended / full) |
+| Number of Electrodes | 25+ (extended) |
+| Electrode Cap Size | Medium |
+| Reference | Average / Linked Ears |
+| Sampling Rate Planned | 512 Hz |
+| Recording Duration | Continuous (>24 h cEEG) |
+
+### Severity Classification Logic
+```mermaid
+flowchart TD
+    A[EEG acquisition context] --> B{Recording need}
+    B -->|routine outpatient EEG| L1[Level 1 Mild]
+    B -->|sleep-deprived / repeat EEG| L2[Level 2 Moderate]
+    B -->|prolonged / video-EEG monitoring| L3[Level 3 Severe]
+    B -->|continuous ICU cEEG for status| L4[Level 4 Status Emergency]
+    L3 --> E[EP001]
+```
+**Reason:** Montage geometry, sampling rate, and duration scale from a brief outpatient study to an extended continuous ICU montage. **Why:** Status monitoring needs full coverage, high sampling, and open-ended duration to catch recurring seizures. **What is happening:** The setup parameters expand in electrode count, reference, and recording length as severity rises. **How it is happening:** The technician configures and signs off the montage appropriate to each recording tier. **Reference:** Fisher et al. (2017).
+
 ## Data Flow in the Pipeline
 
 ```mermaid

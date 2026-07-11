@@ -19,6 +19,62 @@
 | Average Impedance | 3.1 kΩ |
 | All Channels <5 kΩ | Yes |
 
+## Severity Scenario Model — EEG Technician View
+
+*Caption - The same acquisition assessment across four epilepsy severity levels from the EEG technician's point of view; each variable shifts with severity and recording context. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes, requiring continuous emergency EEG.*
+
+### Level 1 — Mild (Well-Controlled)
+| Variable | Value |
+|---|---|
+| Fp1 Impedance | 2.5 kΩ |
+| Fp2 Impedance | 2.4 kΩ |
+| F3 Impedance | 2.3 kΩ |
+| F4 Impedance | 2.5 kΩ |
+| Average Impedance | 2.4 kΩ |
+| All Channels <5 kΩ | Yes |
+
+### Level 2 — Moderate (Intermediate)
+| Variable | Value |
+|---|---|
+| Fp1 Impedance | 2.8 kΩ |
+| Fp2 Impedance | 2.7 kΩ |
+| F3 Impedance | 2.6 kΩ |
+| F4 Impedance | 2.8 kΩ |
+| Average Impedance | 2.7 kΩ |
+| All Channels <5 kΩ | Yes |
+
+### Level 3 — Severe (Poorly Controlled) — EP001
+| Variable | Value |
+|---|---|
+| Fp1 Impedance | 3.2 kΩ |
+| Fp2 Impedance | 3.1 kΩ |
+| F3 Impedance | 2.9 kΩ |
+| F4 Impedance | 3.0 kΩ |
+| Average Impedance | 3.1 kΩ |
+| All Channels <5 kΩ | Yes |
+
+### Level 4 — Refractory / Status Epilepticus (Operational Emergency)
+| Variable | Value |
+|---|---|
+| Fp1 Impedance | 6.5 kΩ |
+| Fp2 Impedance | 6.8 kΩ |
+| F3 Impedance | 5.9 kΩ |
+| F4 Impedance | 6.2 kΩ |
+| Average Impedance | 6.4 kΩ |
+| All Channels <5 kΩ | No (urgent bedside hookup) |
+
+### Severity Classification Logic
+```mermaid
+flowchart TD
+    A[EEG acquisition context] --> B{Recording need}
+    B -->|routine outpatient EEG| L1[Level 1 Mild]
+    B -->|sleep-deprived / repeat EEG| L2[Level 2 Moderate]
+    B -->|prolonged / video-EEG monitoring| L3[Level 3 Severe]
+    B -->|continuous ICU cEEG for status| L4[Level 4 Status Emergency]
+    L3 --> E[EP001]
+```
+**Reason:** Achievable impedance degrades as prep time shrinks, from an unhurried outpatient scrub to an emergency bedside hookup. **Why:** Elevated impedance in status recording is accepted because seizure capture cannot wait for the sub-5 kΩ gate. **What is happening:** Per-channel and average impedance rise with severity and the quality gate flips from pass to fail at Level 4. **How it is happening:** The technician probes and logs real impedance per tier, flagging when the clean-signal gate is not met. **Reference:** Fisher et al. (2017).
+
 ## Data Flow in the Pipeline
 
 ```mermaid

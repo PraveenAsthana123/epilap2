@@ -20,6 +20,66 @@
 | Caffeine | 4 cups/day |
 | Occupation Stress | High |
 
+## Severity Scenario Model — Neurologist View
+
+*Caption - The same assessment answered across four epilepsy severity levels from the neurologist's point of view; each variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*
+
+### Level 1 — Mild (Well-Controlled)
+| Variable | Value |
+|---|---|
+| Sleep | 7.8 hrs/day |
+| Sleep Quality | Good |
+| Smoking | No |
+| Alcohol | None |
+| Exercise | Daily |
+| Caffeine | 1 cup/day |
+| Occupation Stress | Low |
+
+### Level 2 — Moderate (Intermediate)
+| Variable | Value |
+|---|---|
+| Sleep | 6.5 hrs/day |
+| Sleep Quality | Fair |
+| Smoking | No |
+| Alcohol | Occasional |
+| Exercise | Weekly |
+| Caffeine | 2 cups/day |
+| Occupation Stress | Moderate |
+
+### Level 3 — Severe (Poorly Controlled) — EP001
+| Variable | Value |
+|---|---|
+| Sleep | 5.2 hrs/day |
+| Sleep Quality | Poor |
+| Smoking | No |
+| Alcohol | Social |
+| Exercise | Twice/week |
+| Caffeine | 4 cups/day |
+| Occupation Stress | High |
+
+### Level 4 — Refractory / Status Epilepticus (Operational Emergency)
+| Variable | Value |
+|---|---|
+| Sleep | 3.5 hrs/day |
+| Sleep Quality | Very poor / fragmented |
+| Smoking | Yes |
+| Alcohol | Heavy |
+| Exercise | None |
+| Caffeine | 6+ cups/day |
+| Occupation Stress | Severe |
+
+### Severity Classification Logic
+```mermaid
+flowchart TD
+    A[Neurologist assessment] --> B{Severity markers}
+    B -->|rare, controlled| L1[Level 1 Mild]
+    B -->|moderate burden| L2[Level 2 Moderate]
+    B -->|breakthrough despite adherence| L3[Level 3 Severe]
+    B -->|seizures every ~5 min / status| L4[Level 4 Status Emergency]
+    L3 --> E[EP001]
+```
+**Reason:** Sleep, stimulant, alcohol, and stress burden are the strongest modifiable seizure triggers. **Why:** Rising trigger load lowers seizure threshold and drives breakthrough events. **What is happening:** The profile degrades from healthy habits (L1) to short poor sleep with high caffeine and stress (L3, EP001) to severe deprivation with heavy alcohol and smoking (L4). **How it is happening:** Each lifestyle row is scored into an aggregate trigger-burden index that sets the level. **Reference:** Fisher et al. (2017).
+
 ## Data Flow and Context
 
 ```mermaid

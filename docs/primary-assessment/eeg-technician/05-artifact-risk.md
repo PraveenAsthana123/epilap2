@@ -18,6 +18,58 @@
 | Electrode Noise | None |
 | Movement Risk | Low |
 
+## Severity Scenario Model — EEG Technician View
+
+*Caption - The same acquisition assessment across four epilepsy severity levels from the EEG technician's point of view; each variable shifts with severity and recording context. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes, requiring continuous emergency EEG.*
+
+### Level 1 — Mild (Well-Controlled)
+| Variable | Value |
+|---|---|
+| Excess Eye Blink | None |
+| Muscle Artifact Risk | Low |
+| Sweating | No |
+| Electrode Noise | None |
+| Movement Risk | Low |
+
+### Level 2 — Moderate (Intermediate)
+| Variable | Value |
+|---|---|
+| Excess Eye Blink | Mild |
+| Muscle Artifact Risk | Low |
+| Sweating | No |
+| Electrode Noise | Low |
+| Movement Risk | Low |
+
+### Level 3 — Severe (Poorly Controlled) — EP001
+| Variable | Value |
+|---|---|
+| Excess Eye Blink | Mild |
+| Muscle Artifact Risk | Low |
+| Sweating | No |
+| Electrode Noise | None |
+| Movement Risk | Low |
+
+### Level 4 — Refractory / Status Epilepticus (Operational Emergency)
+| Variable | Value |
+|---|---|
+| Excess Eye Blink | Marked |
+| Muscle Artifact Risk | High |
+| Sweating | Yes |
+| Electrode Noise | High |
+| Movement Risk | High (seizure movement) |
+
+### Severity Classification Logic
+```mermaid
+flowchart TD
+    A[EEG acquisition context] --> B{Recording need}
+    B -->|routine outpatient EEG| L1[Level 1 Mild]
+    B -->|sleep-deprived / repeat EEG| L2[Level 2 Moderate]
+    B -->|prolonged / video-EEG monitoring| L3[Level 3 Severe]
+    B -->|continuous ICU cEEG for status| L4[Level 4 Status Emergency]
+    L3 --> E[EP001]
+```
+**Reason:** Artifact load climbs with severity, from a still cooperative outpatient to a convulsing status patient at the bedside. **Why:** Emergency conditions add sweat, muscle, and movement artifact that the technician must flag so cerebral activity is not confused with noise. **What is happening:** Each artifact source escalates from None/Low toward High as the recording moves into the ICU. **How it is happening:** The technician grades each source in real time per tier, preserving the raw record while marking low-trust segments. **Reference:** Fisher et al. (2017).
+
 ## Pipeline and Role Diagrams
 
 ```mermaid

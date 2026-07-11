@@ -21,6 +21,70 @@
 | Rescue Medication | Midazolam Nasal Spray |
 | Previous Drug Failure | Carbamazepine |
 
+## Severity Scenario Model — Neurologist View
+
+*Caption - The same assessment answered across four epilepsy severity levels from the neurologist's point of view; each variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*
+
+### Level 1 — Mild (Well-Controlled)
+| Variable | Value |
+|---|---|
+| Current Medication | Lamotrigine (monotherapy) |
+| Dose | 100 mg BID |
+| Duration | 24 months |
+| Adherence | 98% |
+| Missed Doses | <1/month |
+| Side Effects | None |
+| Rescue Medication | Not required |
+| Previous Drug Failure | None |
+
+### Level 2 — Moderate (Intermediate)
+| Variable | Value |
+|---|---|
+| Current Medication | Levetiracetam (monotherapy) |
+| Dose | 750 mg BID |
+| Duration | 12 months |
+| Adherence | 93% |
+| Missed Doses | 1/month |
+| Side Effects | Mild irritability |
+| Rescue Medication | Midazolam Nasal Spray (rarely used) |
+| Previous Drug Failure | None |
+
+### Level 3 — Severe (Poorly Controlled) — EP001
+| Variable | Value |
+|---|---|
+| Current Medication | Levetiracetam |
+| Dose | 1000 mg BID |
+| Duration | 12 months |
+| Adherence | 88% |
+| Missed Doses | 3/month |
+| Side Effects | Irritability |
+| Rescue Medication | Midazolam Nasal Spray |
+| Previous Drug Failure | Carbamazepine |
+
+### Level 4 — Refractory / Status Epilepticus (Operational Emergency)
+| Variable | Value |
+|---|---|
+| Current Medication | Levetiracetam + Carbamazepine (polytherapy, drug-resistant) |
+| Dose | Max tolerated + IV loading |
+| Duration | 12 months, failed >=2 appropriate ASMs |
+| Adherence | Recent lapse / subtherapeutic levels |
+| Missed Doses | Multiple (abrupt withdrawal) |
+| Side Effects | Sedation, respiratory-depression risk |
+| Rescue Medication | IV Lorazepam + IV Levetiracetam/Phenytoin loading |
+| Previous Drug Failure | Carbamazepine and Levetiracetam (>=2 failed) |
+
+### Severity Classification Logic
+```mermaid
+flowchart TD
+    A[Neurologist assessment] --> B{Severity markers}
+    B -->|rare, controlled| L1[Level 1 Mild]
+    B -->|moderate burden| L2[Level 2 Moderate]
+    B -->|breakthrough despite adherence| L3[Level 3 Severe]
+    B -->|seizures every ~5 min / status| L4[Level 4 Status Emergency]
+    L3 --> E[EP001]
+```
+**Reason:** The regimen escalates along a severity ladder from low-dose monotherapy to emergency IV loading. **Why:** Drug count, adherence, and prior failures define drug-resistance status for EP001. **What is happening:** Therapy intensifies as control fails, culminating in IV benzodiazepine plus loading in status. **How it is happening:** The neurologist reads regimen, adherence, and failure history against level and ILAE drug-resistance thresholds. **Reference:** Fisher et al. (2017); Kwan et al. (2010) ILAE drug-resistance criteria.
+
 ## Data Flow in the Pipeline
 
 ```mermaid
