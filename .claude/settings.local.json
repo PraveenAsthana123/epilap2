@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__claude_ai_Google_Drive__search_files",
+      "mcp__claude_ai_Google_Drive__list_recent_files",
+      "Bash(npm --version)",
+      "PowerShell($n = \\(Get-Command node -ErrorAction SilentlyContinue\\); $p = \\(Get-Command npm -ErrorAction SilentlyContinue\\); \"node: $\\($n.Source\\)\"; if\\($n\\){ node --version }; \"npm: $\\($p.Source\\)\"; if\\($p\\){ npm --version })",
+      "PowerShell(\"winget: \" + \\(Get-Command winget -ErrorAction SilentlyContinue\\).Source; \"choco: \" + \\(Get-Command choco -ErrorAction SilentlyContinue\\).Source; \"python: \" + \\(Get-Command python -ErrorAction SilentlyContinue\\).Source; \"py: \" + \\(Get-Command py -ErrorAction SilentlyContinue\\).Source)",
+      "PowerShell(winget install OpenJS.NodeJS.LTS -e --silent --accept-source-agreements --accept-package-agreements --disable-interactivity)",
+      "PowerShell($env:Path = [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"Machine\"\\) + \";\" + [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"User\"\\); $node = \\(Get-Command node -ErrorAction SilentlyContinue\\).Source; \"node path: $node\"; if\\($node\\){ node --version; npm --version })",
+      "PowerShell($env:Path = [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"Machine\"\\) + \";\" + [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"User\"\\); Set-Location \"C:\\\\Aman_prod\\\\Epi\\\\viewer\"; npm install --no-fund --no-audit 2>&1 | Select-Object -Last 15)",
+      "PowerShell($env:Path = [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"Machine\"\\) + \";\" + [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"User\"\\); Set-Location \"C:\\\\Aman_prod\\\\Epi\\\\viewer\"; npm run build 2>&1 | Select-Object -Last 25)",
+      "PowerShell($env:Path = [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"Machine\"\\) + \";\" + [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"User\"\\); Set-Location \"C:\\\\Aman_prod\\\\Epi\\\\viewer\"; npm run dev)",
+      "PowerShell(try { $r = Invoke-WebRequest -Uri \"http://localhost:5173/\" -UseBasicParsing -TimeoutSec 10; \"STATUS: $\\($r.StatusCode\\)\"; if\\($r.Content -match 'id=\"root\"'\\){ \"root div: present\" }; $m = Invoke-WebRequest -Uri \"http://localhost:5173/src/main.jsx\" -UseBasicParsing -TimeoutSec 10; \"main.jsx status: $\\($m.StatusCode\\)\" } catch { \"ERROR: $\\($_.Exception.Message\\)\" })",
+      "PowerShell($env:Path = [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"Machine\"\\) + \";\" + [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"User\"\\); Set-Location \"C:\\\\Aman_prod\\\\Epi\\\\viewer\"; npm install mermaid --no-fund --no-audit 2>&1 | Select-Object -Last 6)",
+      "PowerShell($env:Path = [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"Machine\"\\) + \";\" + [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"User\"\\); Set-Location \"C:\\\\Aman_prod\\\\Epi\\\\viewer\"; npm run build 2>&1 | Select-Object -Last 8)",
+      "PowerShell(try { $r = Invoke-WebRequest -Uri \"http://localhost:5173/\" -UseBasicParsing -TimeoutSec 8; \"server: $\\($r.StatusCode\\) OK\" } catch { \"server down: $\\($_.Exception.Message\\)\" })",
+      "Bash(cd \"/c/Users/pasth/.claude/projects/c--Aman-prod-Epi/cda4a0f5-5cb8-45f4-89cd-d7a0bbd91fef/subagents/workflows/wf_3a930e9b-a68\")",
+      "Bash(wc -l journal.jsonl)",
+      "Bash(grep -v '```')",
+      "Bash(cat \"/c/Users/pasth/.claude/settings.json\" 2>/dev/null || echo \"NO GLOBAL settings.json\"; echo \"=== project local ===\"; cat \"/c/Aman_prod/Epi/.claude/settings.local.json\" 2>/dev/null || echo \"none\")",
+      "Read(//c/Users/pasth/.claude/**)"
+    ]
+  }
+}

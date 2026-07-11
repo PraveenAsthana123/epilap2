@@ -1,0 +1,101 @@
+Patient_ID,Field_Strength,Lesion_Present,Lesion_Type,Hippocampal_Vol_cm3,Localization,AI_Localization_Pct
+EP001,3T,Yes,Cavernoma,2.99,Left Temporal,92
+EP002,1.5T,Yes,Hippocampal Sclerosis,2.79,Left Frontal,38
+EP003,1.5T,No,Cavernoma,3.07,Generalized,73
+EP004,1.5T,No,Cortical Dysplasia,2.77,Parietal,56
+EP005,1.5T,No,Cavernoma,3.05,Right Frontal,23
+EP006,1.5T,No,None,3.37,Left Temporal,67
+EP007,1.5T,Yes,Cavernoma,3.37,Left Temporal,40
+EP008,3T,Yes,Cavernoma,2.67,Right Temporal,36
+EP009,1.5T,No,None,3.03,Parietal,78
+EP010,3T,Yes,None,3.07,Generalized,75
+EP011,1.5T,No,Hippocampal Sclerosis,3.46,Generalized,62
+EP012,3T,No,Hippocampal Sclerosis,3.2,Right Temporal,41
+EP013,3T,Yes,Hippocampal Sclerosis,3.26,Occipital,60
+EP014,3T,No,Cavernoma,2.88,Left Temporal,21
+EP015,3T,No,None,2.95,Right Frontal,51
+EP016,1.5T,No,Cavernoma,3.13,Occipital,55
+EP017,3T,No,Hippocampal Sclerosis,3.47,Generalized,37
+EP018,3T,No,None,2.84,Parietal,26
+EP019,3T,No,None,3.39,Generalized,16
+EP020,3T,Yes,Cortical Dysplasia,2.62,Generalized,30
+EP021,1.5T,No,Cavernoma,2.7,Occipital,26
+EP022,3T,No,Hippocampal Sclerosis,3.37,Left Frontal,21
+EP023,3T,No,Cortical Dysplasia,2.87,Occipital,31
+EP024,3T,Yes,Hippocampal Sclerosis,2.93,Left Temporal,22
+EP025,3T,Yes,Cortical Dysplasia,2.63,Right Temporal,76
+EP026,1.5T,No,Cortical Dysplasia,3.2,Generalized,25
+EP027,3T,No,Hippocampal Sclerosis,2.98,Right Temporal,59
+EP028,1.5T,Yes,Cortical Dysplasia,2.81,Left Frontal,27
+EP029,1.5T,Yes,Hippocampal Sclerosis,2.57,Parietal,11
+EP030,1.5T,No,Cavernoma,2.85,Right Temporal,90
+EP031,3T,No,Cavernoma,3.36,Left Temporal,22
+EP032,1.5T,Yes,Cavernoma,2.85,Right Frontal,50
+EP033,1.5T,No,None,3.14,Right Temporal,80
+EP034,3T,No,Cortical Dysplasia,3.35,Occipital,48
+EP035,1.5T,Yes,Cavernoma,2.8,Left Temporal,40
+EP036,1.5T,No,Hippocampal Sclerosis,3.0,Parietal,19
+EP037,1.5T,No,None,3.43,Right Temporal,59
+EP038,3T,No,None,3.05,Right Temporal,70
+EP039,1.5T,No,Cortical Dysplasia,3.09,Left Temporal,43
+EP040,1.5T,Yes,Cavernoma,3.01,Occipital,74
+EP041,3T,No,Cavernoma,2.58,Parietal,78
+EP042,3T,No,Cortical Dysplasia,2.81,Parietal,36
+EP043,1.5T,No,None,2.89,Occipital,18
+EP044,3T,Yes,Hippocampal Sclerosis,2.56,Left Temporal,65
+EP045,1.5T,Yes,None,3.17,Occipital,32
+EP046,1.5T,Yes,Cortical Dysplasia,2.66,Left Frontal,76
+EP047,3T,No,Hippocampal Sclerosis,2.87,Occipital,44
+EP048,1.5T,No,Cortical Dysplasia,2.84,Right Frontal,44
+EP049,3T,No,Cortical Dysplasia,3.0,Parietal,56
+EP050,1.5T,Yes,None,2.66,Generalized,23
+EP051,1.5T,No,Hippocampal Sclerosis,3.24,Left Temporal,15
+EP052,1.5T,No,Hippocampal Sclerosis,2.55,Left Frontal,59
+EP053,1.5T,No,Cortical Dysplasia,3.05,Occipital,63
+EP054,1.5T,Yes,Cavernoma,3.42,Left Frontal,44
+EP055,3T,No,Cortical Dysplasia,3.0,Left Temporal,32
+EP056,1.5T,Yes,Cavernoma,2.57,Right Frontal,46
+EP057,3T,No,None,2.59,Right Frontal,11
+EP058,3T,Yes,None,3.24,Right Temporal,69
+EP059,3T,Yes,Hippocampal Sclerosis,3.23,Parietal,41
+EP060,3T,Yes,Cortical Dysplasia,2.73,Left Frontal,11
+EP061,1.5T,No,Cavernoma,3.35,Occipital,49
+EP062,1.5T,Yes,Cavernoma,2.99,Left Temporal,28
+EP063,1.5T,No,Cortical Dysplasia,3.42,Generalized,76
+EP064,3T,No,Cavernoma,3.47,Left Temporal,84
+EP065,1.5T,Yes,Cavernoma,2.57,Parietal,17
+EP066,1.5T,No,Hippocampal Sclerosis,2.79,Generalized,50
+EP067,3T,No,None,2.82,Left Frontal,39
+EP068,1.5T,Yes,Hippocampal Sclerosis,3.28,Parietal,23
+EP069,1.5T,Yes,Cavernoma,2.97,Right Frontal,25
+EP070,1.5T,No,Cavernoma,2.81,Left Frontal,25
+EP071,3T,Yes,Cortical Dysplasia,2.72,Generalized,51
+EP072,1.5T,Yes,None,2.9,Left Temporal,48
+EP073,1.5T,Yes,Cortical Dysplasia,3.45,Generalized,67
+EP074,1.5T,No,Cortical Dysplasia,2.96,Generalized,27
+EP075,1.5T,Yes,Hippocampal Sclerosis,2.63,Generalized,61
+EP076,1.5T,Yes,None,3.42,Left Temporal,12
+EP077,1.5T,No,Cavernoma,3.31,Left Temporal,52
+EP078,3T,Yes,Cortical Dysplasia,2.67,Parietal,65
+EP079,3T,No,Cavernoma,2.53,Occipital,64
+EP080,1.5T,Yes,Hippocampal Sclerosis,2.77,Right Frontal,29
+EP081,1.5T,Yes,None,3.0,Parietal,71
+EP082,3T,Yes,Cavernoma,2.64,Right Temporal,77
+EP083,1.5T,Yes,Cavernoma,3.28,Left Frontal,71
+EP084,3T,No,None,3.41,Parietal,51
+EP085,1.5T,Yes,Cortical Dysplasia,2.82,Right Temporal,13
+EP086,3T,No,Cortical Dysplasia,3.31,Right Frontal,77
+EP087,1.5T,Yes,Hippocampal Sclerosis,2.6,Occipital,40
+EP088,1.5T,Yes,Hippocampal Sclerosis,3.08,Generalized,59
+EP089,1.5T,Yes,Hippocampal Sclerosis,2.74,Left Frontal,55
+EP090,1.5T,No,None,3.45,Parietal,28
+EP091,1.5T,No,Cavernoma,3.04,Right Temporal,72
+EP092,1.5T,Yes,Hippocampal Sclerosis,3.1,Left Temporal,77
+EP093,3T,No,Hippocampal Sclerosis,3.31,Left Frontal,32
+EP094,3T,No,Cortical Dysplasia,2.52,Parietal,28
+EP095,3T,No,Cortical Dysplasia,2.87,Occipital,60
+EP096,3T,No,None,2.82,Right Temporal,65
+EP097,3T,No,None,2.67,Parietal,88
+EP098,1.5T,No,Hippocampal Sclerosis,2.88,Occipital,47
+EP099,1.5T,Yes,Cavernoma,3.35,Generalized,82
+EP100,3T,Yes,Hippocampal Sclerosis,3.14,Left Temporal,73

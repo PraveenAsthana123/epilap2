@@ -1,0 +1,11 @@
+Patient_ID,APACHE_II,GCS,Status_Epilepticus_Type,Seizure_Burden_Pct,ICU_Outcome
+EP002,14,14,Refractory,27,Deceased
+EP005,13,6,Refractory,24,Survived
+EP015,11,6,None,42,Deceased
+EP016,28,6,Convulsive,36,Survived
+EP027,15,15,Non-convulsive,91,Deceased
+EP036,28,12,Convulsive,35,Survived
+EP049,16,11,None,83,Survived
+EP075,19,6,Convulsive,85,Survived
+EP081,28,8,Convulsive,90,Deceased
+EP100,13,6,Convulsive,65,Deceased

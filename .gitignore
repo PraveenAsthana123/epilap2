@@ -1,0 +1,28 @@
+# Dependencies (NEVER commit — hundreds of MB)
+node_modules/
+viewer/node_modules/
+
+# Build output
+viewer/dist/
+dist/
+
+# Large EEG signal binaries — fetch locally, don't commit (GitHub 100MB/file limit)
+*.edf
+*.bdf
+*.fif
+*.set
+*.mat
+data/siena-sample/**/*.edf
+data/**/*.edf
+
+# Env / secrets
+.env
+.env.*
+!.env.example
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.log
+
+# Keep: docs/, viewer/src, synthetic CSVs, dataset metadata

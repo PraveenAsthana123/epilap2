@@ -1,0 +1,101 @@
+Patient_ID,Gene,ACMG_Class,Pharmacogenomic_Variant,Drug_Response
+EP001,CDKL5,Benign,None,Resistant
+EP002,DEPDC5,Benign,HLA-B*15:02,Sensitive
+EP003,STXBP1,Likely Pathogenic,POLG,Sensitive
+EP004,KCNQ2,Likely Pathogenic,HLA-B*15:02,Partial
+EP005,SCN1A,Likely Pathogenic,CYP2C9*3,Partial
+EP006,KCNQ2,VUS,CYP2C9*3,Sensitive
+EP007,DEPDC5,VUS,CYP2C9*3,Sensitive
+EP008,None,N/A,HLA-B*15:02,Resistant
+EP009,KCNQ2,Benign,POLG,Resistant
+EP010,CDKL5,Likely Pathogenic,POLG,Resistant
+EP011,KCNQ2,Likely Pathogenic,CYP2C9*3,Resistant
+EP012,SCN1A,Likely Pathogenic,CYP2C9*3,Partial
+EP013,SCN2A,Likely Pathogenic,HLA-B*15:02,Partial
+EP014,STXBP1,Likely Pathogenic,HLA-B*15:02,Resistant
+EP015,CDKL5,Pathogenic,None,Partial
+EP016,KCNQ2,Pathogenic,HLA-B*15:02,Partial
+EP017,SCN1A,Pathogenic,HLA-B*15:02,Partial
+EP018,SCN1A,Benign,None,Resistant
+EP019,SCN1A,VUS,None,Partial
+EP020,SCN2A,Likely Pathogenic,HLA-B*15:02,Resistant
+EP021,DEPDC5,Pathogenic,POLG,Partial
+EP022,STXBP1,Likely Pathogenic,None,Sensitive
+EP023,STXBP1,Pathogenic,POLG,Sensitive
+EP024,None,N/A,HLA-B*15:02,Resistant
+EP025,SCN2A,Likely Pathogenic,POLG,Partial
+EP026,SCN2A,VUS,None,Resistant
+EP027,SCN2A,Pathogenic,None,Sensitive
+EP028,CDKL5,Benign,POLG,Sensitive
+EP029,SCN1A,Pathogenic,HLA-B*15:02,Sensitive
+EP030,None,N/A,None,Sensitive
+EP031,SCN1A,Pathogenic,HLA-B*15:02,Resistant
+EP032,CDKL5,Likely Pathogenic,None,Resistant
+EP033,KCNQ2,Benign,HLA-B*15:02,Sensitive
+EP034,None,N/A,CYP2C9*3,Sensitive
+EP035,None,N/A,POLG,Resistant
+EP036,None,N/A,POLG,Resistant
+EP037,CDKL5,Pathogenic,HLA-B*15:02,Sensitive
+EP038,SCN1A,Likely Pathogenic,CYP2C9*3,Resistant
+EP039,KCNQ2,Benign,POLG,Partial
+EP040,SCN1A,VUS,POLG,Sensitive
+EP041,SCN1A,Benign,None,Resistant
+EP042,KCNQ2,Benign,None,Resistant
+EP043,CDKL5,Likely Pathogenic,HLA-B*15:02,Sensitive
+EP044,CDKL5,Pathogenic,CYP2C9*3,Sensitive
+EP045,DEPDC5,Benign,None,Sensitive
+EP046,STXBP1,Benign,POLG,Partial
+EP047,SCN1A,Likely Pathogenic,None,Resistant
+EP048,SCN1A,Benign,None,Sensitive
+EP049,SCN1A,VUS,POLG,Sensitive
+EP050,CDKL5,Likely Pathogenic,POLG,Partial
+EP051,STXBP1,Pathogenic,None,Partial
+EP052,CDKL5,Likely Pathogenic,None,Resistant
+EP053,CDKL5,Benign,CYP2C9*3,Partial
+EP054,STXBP1,Pathogenic,HLA-B*15:02,Partial
+EP055,SCN2A,Benign,None,Sensitive
+EP056,SCN1A,Benign,POLG,Sensitive
+EP057,KCNQ2,VUS,HLA-B*15:02,Partial
+EP058,SCN2A,Benign,None,Sensitive
+EP059,SCN1A,Benign,None,Partial
+EP060,DEPDC5,Pathogenic,None,Resistant
+EP061,KCNQ2,Pathogenic,None,Partial
+EP062,CDKL5,Pathogenic,HLA-B*15:02,Resistant
+EP063,DEPDC5,Pathogenic,HLA-B*15:02,Sensitive
+EP064,None,N/A,POLG,Partial
+EP065,STXBP1,Likely Pathogenic,None,Resistant
+EP066,KCNQ2,Pathogenic,CYP2C9*3,Resistant
+EP067,KCNQ2,Benign,POLG,Partial
+EP068,DEPDC5,Pathogenic,HLA-B*15:02,Partial
+EP069,SCN2A,Pathogenic,POLG,Resistant
+EP070,None,N/A,POLG,Partial
+EP071,STXBP1,VUS,HLA-B*15:02,Sensitive
+EP072,SCN2A,Benign,CYP2C9*3,Partial
+EP073,CDKL5,Benign,HLA-B*15:02,Resistant
+EP074,STXBP1,Likely Pathogenic,CYP2C9*3,Sensitive
+EP075,None,N/A,None,Sensitive
+EP076,DEPDC5,Likely Pathogenic,POLG,Sensitive
+EP077,None,N/A,None,Sensitive
+EP078,CDKL5,Pathogenic,None,Resistant
+EP079,CDKL5,Likely Pathogenic,None,Sensitive
+EP080,STXBP1,Pathogenic,None,Partial
+EP081,DEPDC5,Likely Pathogenic,CYP2C9*3,Partial
+EP082,None,N/A,CYP2C9*3,Sensitive
+EP083,DEPDC5,VUS,None,Resistant
+EP084,STXBP1,Likely Pathogenic,POLG,Resistant
+EP085,KCNQ2,VUS,None,Sensitive
+EP086,SCN2A,Benign,POLG,Partial
+EP087,STXBP1,VUS,CYP2C9*3,Sensitive
+EP088,SCN2A,VUS,POLG,Partial
+EP089,SCN2A,Likely Pathogenic,POLG,Partial
+EP090,SCN1A,VUS,None,Partial
+EP091,STXBP1,Benign,POLG,Resistant
+EP092,None,N/A,HLA-B*15:02,Partial
+EP093,SCN1A,Pathogenic,None,Sensitive
+EP094,SCN1A,Pathogenic,CYP2C9*3,Resistant
+EP095,None,N/A,CYP2C9*3,Resistant
+EP096,CDKL5,VUS,CYP2C9*3,Sensitive
+EP097,CDKL5,VUS,CYP2C9*3,Partial
+EP098,SCN1A,VUS,None,Sensitive
+EP099,STXBP1,Likely Pathogenic,None,Sensitive
+EP100,STXBP1,VUS,HLA-B*15:02,Resistant

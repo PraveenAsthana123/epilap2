@@ -1,0 +1,101 @@
+Patient_ID,Device_ID,Monitoring_Days,Seizures_Detected,Signal_Quality,Localization,Risk_Score,Risk_Level
+EP001,DEV001,84,0,85%,Left Temporal,81,High
+EP002,DEV002,111,5,97%,Right Frontal,47,Low
+EP003,DEV003,39,9,99%,Parietal,88,High
+EP004,DEV004,61,9,90%,Right Temporal,47,Low
+EP005,DEV005,98,11,98%,Left Frontal,80,High
+EP006,DEV006,84,8,93%,Right Frontal,73,Moderate
+EP007,DEV007,80,0,90%,Left Frontal,68,Moderate
+EP008,DEV008,73,9,89%,Generalized,44,Low
+EP009,DEV009,96,7,89%,Occipital,33,Low
+EP010,DEV010,112,0,94%,Right Frontal,59,Moderate
+EP011,DEV011,87,10,96%,Parietal,51,Moderate
+EP012,DEV012,38,10,88%,Left Temporal,78,High
+EP013,DEV013,44,0,92%,Left Frontal,44,Low
+EP014,DEV014,39,6,96%,Right Temporal,83,High
+EP015,DEV015,84,12,94%,Right Frontal,82,High
+EP016,DEV016,110,2,93%,Right Temporal,37,Low
+EP017,DEV017,104,7,93%,Right Frontal,71,Moderate
+EP018,DEV018,42,7,99%,Parietal,70,Moderate
+EP019,DEV019,89,5,95%,Generalized,73,Moderate
+EP020,DEV020,98,7,88%,Right Temporal,63,Moderate
+EP021,DEV021,91,4,88%,Left Frontal,65,Moderate
+EP022,DEV022,110,3,96%,Occipital,66,Moderate
+EP023,DEV023,60,7,90%,Parietal,92,High
+EP024,DEV024,56,1,94%,Occipital,65,Moderate
+EP025,DEV025,70,5,97%,Generalized,78,High
+EP026,DEV026,57,0,89%,Occipital,48,Low
+EP027,DEV027,64,7,95%,Left Frontal,40,Low
+EP028,DEV028,47,3,98%,Parietal,91,High
+EP029,DEV029,91,11,89%,Right Temporal,64,Moderate
+EP030,DEV030,98,11,94%,Right Temporal,43,Low
+EP031,DEV031,26,10,99%,Parietal,61,Moderate
+EP032,DEV032,101,3,85%,Left Temporal,58,Moderate
+EP033,DEV033,62,11,92%,Left Temporal,82,High
+EP034,DEV034,20,8,99%,Right Temporal,47,Low
+EP035,DEV035,103,7,92%,Occipital,82,High
+EP036,DEV036,116,4,90%,Left Frontal,55,Moderate
+EP037,DEV037,118,1,95%,Parietal,37,Low
+EP038,DEV038,88,11,96%,Generalized,59,Moderate
+EP039,DEV039,42,6,99%,Generalized,34,Low
+EP040,DEV040,24,6,97%,Right Frontal,52,Moderate
+EP041,DEV041,115,4,99%,Left Temporal,53,Moderate
+EP042,DEV042,58,9,94%,Left Temporal,31,Low
+EP043,DEV043,56,7,95%,Parietal,72,Moderate
+EP044,DEV044,37,8,92%,Left Frontal,93,High
+EP045,DEV045,34,5,87%,Occipital,54,Moderate
+EP046,DEV046,102,4,96%,Right Temporal,88,High
+EP047,DEV047,114,5,97%,Left Frontal,31,Low
+EP048,DEV048,42,9,98%,Occipital,54,Moderate
+EP049,DEV049,74,8,90%,Left Temporal,81,High
+EP050,DEV050,105,1,87%,Right Temporal,81,High
+EP051,DEV051,61,3,85%,Left Frontal,91,High
+EP052,DEV052,50,7,97%,Left Frontal,79,High
+EP053,DEV053,58,9,96%,Parietal,72,Moderate
+EP054,DEV054,53,10,90%,Occipital,31,Low
+EP055,DEV055,27,10,86%,Right Frontal,60,Moderate
+EP056,DEV056,40,6,95%,Parietal,69,Moderate
+EP057,DEV057,108,1,95%,Left Frontal,69,Moderate
+EP058,DEV058,98,3,88%,Right Temporal,77,High
+EP059,DEV059,39,7,96%,Parietal,91,High
+EP060,DEV060,73,11,93%,Right Frontal,77,High
+EP061,DEV061,117,3,95%,Generalized,57,Moderate
+EP062,DEV062,87,7,93%,Occipital,40,Low
+EP063,DEV063,29,9,86%,Left Temporal,76,High
+EP064,DEV064,45,9,93%,Right Temporal,94,High
+EP065,DEV065,61,8,92%,Left Temporal,51,Moderate
+EP066,DEV066,111,9,92%,Left Temporal,56,Moderate
+EP067,DEV067,77,12,85%,Right Frontal,95,High
+EP068,DEV068,85,6,92%,Parietal,46,Low
+EP069,DEV069,91,7,95%,Generalized,37,Low
+EP070,DEV070,112,0,91%,Left Frontal,69,Moderate
+EP071,DEV071,115,3,94%,Left Temporal,30,Low
+EP072,DEV072,74,5,96%,Left Temporal,35,Low
+EP073,DEV073,28,7,85%,Left Frontal,37,Low
+EP074,DEV074,43,12,87%,Generalized,82,High
+EP075,DEV075,67,6,92%,Generalized,83,High
+EP076,DEV076,68,1,95%,Occipital,78,High
+EP077,DEV077,103,5,86%,Right Temporal,47,Low
+EP078,DEV078,87,2,96%,Right Temporal,80,High
+EP079,DEV079,116,0,89%,Right Frontal,30,Low
+EP080,DEV080,88,6,98%,Right Temporal,84,High
+EP081,DEV081,78,5,87%,Left Frontal,61,Moderate
+EP082,DEV082,112,12,86%,Left Temporal,54,Moderate
+EP083,DEV083,98,12,99%,Left Temporal,83,High
+EP084,DEV084,46,1,86%,Parietal,60,Moderate
+EP085,DEV085,77,9,95%,Occipital,34,Low
+EP086,DEV086,51,11,85%,Right Frontal,36,Low
+EP087,DEV087,49,8,88%,Generalized,86,High
+EP088,DEV088,37,8,89%,Right Temporal,37,Low
+EP089,DEV089,93,9,97%,Occipital,70,Moderate
+EP090,DEV090,50,4,99%,Right Temporal,71,Moderate
+EP091,DEV091,72,4,89%,Left Temporal,58,Moderate
+EP092,DEV092,100,10,91%,Parietal,52,Moderate
+EP093,DEV093,26,5,95%,Occipital,93,High
+EP094,DEV094,120,8,90%,Occipital,78,High
+EP095,DEV095,72,2,89%,Right Frontal,83,High
+EP096,DEV096,116,8,92%,Right Temporal,53,Moderate
+EP097,DEV097,58,11,87%,Generalized,58,Moderate
+EP098,DEV098,27,8,91%,Right Frontal,89,High
+EP099,DEV099,69,3,89%,Right Temporal,47,Low
+EP100,DEV100,102,1,99%,Right Frontal,72,Moderate

@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>DBA Blueprint — Enterprise AI for Epilepsy Intelligence</title>
+<style>
+  :root{
+    --bg:#f7f8fa; --panel:#ffffff; --ink:#1a1f2b; --muted:#5b6472;
+    --line:#e5e8ee; --accent:#4f46e5; --accent-soft:#eef0fe;
+    --code-bg:#f2f3f7; --shadow:0 1px 3px rgba(20,25,40,.08),0 8px 24px rgba(20,25,40,.06);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0f1218; --panel:#161b24; --ink:#e7ebf2; --muted:#9aa4b4;
+      --line:#242c39; --accent:#818cf8; --accent-soft:#1d2233;
+      --code-bg:#1b212c; --shadow:0 1px 3px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);
+    }
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--bg); color:var(--ink);
+    font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  #root{display:flex;min-height:100vh}
+  /* Sidebar */
+  .sidebar{
+    width:300px;flex:0 0 300px;background:var(--panel);border-right:1px solid var(--line);
+    height:100vh;position:sticky;top:0;overflow-y:auto;padding:22px 16px;
+  }
+  .brand{font-weight:700;font-size:15px;letter-spacing:-.01em;margin:0 8px 4px}
+  .brand small{display:block;font-weight:500;color:var(--muted);font-size:12px;margin-top:3px}
+  .search{width:100%;margin:16px 0 10px;padding:9px 12px;border:1px solid var(--line);
+    border-radius:9px;background:var(--bg);color:var(--ink);font-size:13px;outline:none}
+  .search:focus{border-color:var(--accent)}
+  .navgroup{margin-top:14px}
+  .navgroup .label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;
+    color:var(--muted);padding:0 8px;margin-bottom:6px}
+  .navitem{display:block;width:100%;text-align:left;border:0;background:transparent;color:var(--ink);
+    padding:8px 10px;border-radius:8px;cursor:pointer;font-size:13.5px;line-height:1.35}
+  .navitem:hover{background:var(--accent-soft)}
+  .navitem.active{background:var(--accent);color:#fff;font-weight:600}
+  /* Content */
+  .content{flex:1;min-width:0;padding:44px 6vw 90px;max-width:980px;margin:0 auto}
+  .crumb{color:var(--muted);font-size:12.5px;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
+  .md h1{font-size:30px;line-height:1.2;letter-spacing:-.02em;margin:.2em 0 .5em}
+  .md h2{font-size:22px;margin:1.6em 0 .5em;padding-bottom:.3em;border-bottom:1px solid var(--line)}
+  .md h3{font-size:17px;margin:1.4em 0 .4em}
+  .md p{margin:.7em 0}
+  .md ul,.md ol{margin:.6em 0;padding-left:1.4em}
+  .md li{margin:.25em 0}
+  .md a{color:var(--accent)}
+  .md strong{font-weight:650}
+  .md blockquote{margin:1em 0;padding:.6em 1em;border-left:3px solid var(--accent);
+    background:var(--accent-soft);border-radius:0 8px 8px 0;color:var(--ink)}
+  .md blockquote p{margin:.3em 0}
+  .md code{background:var(--code-bg);padding:.12em .4em;border-radius:5px;font-size:.88em;
+    font-family:"SF Mono",Menlo,Consolas,monospace}
+  .md pre{background:var(--code-bg);padding:16px 18px;border-radius:12px;overflow-x:auto;
+    border:1px solid var(--line);line-height:1.5}
+  .md pre code{background:none;padding:0;font-size:12.5px}
+  .md table{border-collapse:collapse;width:100%;margin:1em 0;font-size:13.5px;display:block;overflow-x:auto}
+  .md th,.md td{border:1px solid var(--line);padding:8px 11px;text-align:left;vertical-align:top}
+  .md th{background:var(--accent-soft);font-weight:650}
+  .md tr:nth-child(even) td{background:color-mix(in srgb,var(--panel) 60%,var(--bg))}
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:48px;padding-top:20px;border-top:1px solid var(--line)}
+  .pager button{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 16px;
+    color:var(--ink);cursor:pointer;font-size:13px;max-width:48%;text-align:left}
+  .pager button:hover{border-color:var(--accent)}
+  .pager .dir{display:block;font-size:11px;color:var(--muted);margin-bottom:2px}
+  .menubtn{display:none}
+  @media (max-width:820px){
+    .sidebar{position:fixed;z-index:30;transform:translateX(-100%);transition:transform .2s}
+    .sidebar.open{transform:none}
+    .menubtn{display:inline-flex;position:fixed;top:14px;left:14px;z-index:40;background:var(--accent);
+      color:#fff;border:0;border-radius:9px;padding:9px 13px;cursor:pointer;box-shadow:var(--shadow)}
+    .content{padding-top:64px}
+  }
+</style>
+</head>
+<body>
+<button class="menubtn" onclick="document.querySelector('.sidebar').classList.toggle('open')">☰ Menu</button>
+<div id="root"></div>
+
+<!-- ============ EMBEDDED DOCS (raw markdown, not executed) ============ -->
+<script type="text/markdown" data-id="overview" data-title="Overview" data-group="Start">
+# DBA Dissertation Blueprint
+## Enterprise AI Platform for Explainable Multimodal Epilepsy Intelligence
+
+This repository holds the full dissertation blueprint and (subsequently) the reference implementation for a **Doctor of Business Administration (DBA)** focused on enterprise AI transformation in healthcare.
+
+### The Three Central Contributions
+
+Rather than presenting many independent innovations, the dissertation is organized around three central, defendable contributions:
+
+1. **Multimodal AI Framework** — integrates primary clinical assessment with EEG analytics for epilepsy decision support.
+2. **Enterprise Clinical Intelligence Platform** — combines explainable AI, evidence retrieval (RAG), human oversight, and governance.
+3. **Business Value Evaluation Framework** — demonstrates how enterprise AI affects clinical workflows, operational efficiency, governance, and organizational outcomes.
+
+These combine technical innovation with organizational transformation and measurable business impact — the defining posture of a DBA rather than a purely technical PhD.
+
+### The Five Pillars / Five Pipelines
+
+| Pillar | Pipeline | Purpose | Final Output |
+|---|---|---|---|
+| 1 | **A – Primary Assessment AI** (16 phases) | Clinical assessment, questionnaires, medication, neurologist workflow | Clinical risk prediction |
+| 2 | **B – Secondary EEG AI** (16 phases) | EEG signal processing, biomarkers, deep learning | EEG abnormality prediction |
+| 3 | **C – Multimodal Fusion AI** | Combine clinical + EEG + longitudinal monitoring | Integrated patient risk score |
+| 4 | **D – Enterprise AI Platform** | RAG, multi-agent orchestration, deployment, monitoring, governance | Production hospital AI ecosystem |
+| 5 | **E – Enterprise Evaluation** | Clinical + AI + business + operations + governance validation | Measurable organizational impact |
+
+> For the DBA, **Pipeline C (Multimodal Fusion)** is the primary research contribution — it enables the core experimental comparison: *primary-only vs. EEG-only vs. multimodal*.
+
+### End-to-End Enterprise Research Stack
+
+```
+Business Problem
+  → Research Questions → Literature Review
+  → Primary Clinical AI → Secondary EEG AI → Multimodal Fusion AI
+  → Explainable AI → Clinical Evidence RAG → Multi-Agent Enterprise AI
+  → Clinical Decision Support → Enterprise Deployment → AI Governance
+  → Business Evaluation → DBA Contributions
+```
+</script>
+
+<script type="text/markdown" data-id="part1" data-title="Part I — Business Problem" data-group="Part I–III">
+# PART I — Business Problem
+
+## Chapter 1 — Introduction
+
+### Business Problem
+Current epilepsy diagnosis is: Slow · Expensive · Fragmented · Reactive · Dependent on specialists · Limited remote monitoring · Poor integration between clinical data and EEG · Limited explainability · Limited enterprise deployment.
+
+### Business Goals
+- Reduce patient onboarding time
+- Improve neurologist productivity
+- Improve EEG interpretation
+- Support rural healthcare
+- Enable remote monitoring
+- Establish enterprise AI governance
+
+### Research Gap
+Existing research focuses on **EEG only**, **Clinical only**, and **ML accuracy only**. Missing: Enterprise AI · Business Value · RAG · Multi-Agent · Human-in-the-loop · Governance · ROI.
+
+### Research Questions
+| # | Research Question |
+|---|---|
+| **RQ1** | Can multimodal AI outperform EEG-only AI? |
+| **RQ2** | Can explainable AI improve neurologist trust? |
+| **RQ3** | Can enterprise AI reduce patient onboarding time? |
+| **RQ4** | Can RAG improve evidence-based reporting? |
+| **RQ5** | Can governance improve safe deployment? |
+
+### Research Objectives
+```
+Develop → Enterprise AI Platform → Evaluate across:
+   Clinical · AI · Business · Operations · Governance
+```
+
+## Chapter 2 — Literature Review
+```
+Healthcare → Epilepsy → EEG → Signal Processing → Machine Learning →
+Deep Learning → Explainable AI → RAG → Multi-Agent → MCP →
+Clinical Decision Support → Responsible AI → Enterprise Architecture →
+Healthcare Digital Transformation
+```
+
+### Gap Analysis
+| Existing Research | Gap |
+|---|---|
+| EEG Classification | No Business Value |
+| CNN | No Governance |
+| Transformer | No RAG |
+| EEG Biomarkers | No Enterprise Platform |
+| Explainability | No Clinical Workflow |
+| Remote Monitoring | No Enterprise AI |
+
+## Chapter 3 — Conceptual Framework
+```
+Business Problem → Clinical Problem → Primary AI → Secondary AI →
+Fusion AI → RAG → Agent → Enterprise → Business Value
+```
+</script>
+
+<script type="text/markdown" data-id="part2" data-title="Part II — Methodology" data-group="Part I–III">
+# PART II — Research Methodology
+
+## Chapter 4 — Research Design
+
+**Methodological stance:** Mixed method · Secondary research · Quantitative · Qualitative · Design Science Research · Enterprise Architecture.
+
+### Data
+| Type | Source |
+|---|---|
+| **Primary** | Clinical assessment |
+| **Secondary** | EEG |
+
+**Sample:** Patients · Controls · EEG recordings · Neurologists · EEG technicians.
+
+### Research Variables
+| Independent | Dependent |
+|---|---|
+| Clinical | Diagnosis support |
+| EEG | Risk |
+| Medication | Severity |
+| Sleep | Clinical decision |
+| Age | — |
+
+### Hypotheses
+| Hypothesis | Model | Expected Contribution |
+|---|---|---|
+| **H1** | Primary assessment only | Establish predictive value of structured clinical assessment |
+| **H2** | EEG only | Quantify predictive value of electrophysiological biomarkers |
+| **H3** | Primary + EEG (multimodal fusion) | Demonstrate multimodal integration significantly improves performance |
+| **H4** | Multimodal + XAI + RAG + Human-in-the-loop | Improve trust & workflow without replacing clinical judgment |
+| **H5** | Enterprise platform | Reduce onboarding time, report turnaround, workload while maintaining governance |
+</script>
+
+<script type="text/markdown" data-id="pa" data-title="Pipeline A — Primary Assessment" data-group="Part III — Pipelines">
+# Pipeline A — Primary Clinical Assessment AI
+### Chapter 5 — 16 Phases
+
+**Objective:** Produce structured clinical intelligence from neurologist assessments and patient-reported data, ending in a **clinical risk prediction**.
+
+| # | Phase | Purpose |
+|---|---|---|
+| 1 | Data Collection | Digital onboarding, questionnaires, demographics, consent |
+| 2 | Data Validation | Completeness, range checks, consistency |
+| 3 | Data Cleaning | Missing values, outliers, normalization |
+| 4 | Standardization | Coding standards (ICD, SNOMED), units, vocabularies |
+| 5 | Exploratory Analysis | Distributions, correlations, cohort profiling |
+| 6 | Statistical Analysis | Hypothesis testing, association strength |
+| 7 | Feature Engineering | Clinical scores (sleep, seizure, anxiety, depression) |
+| 8 | Feature Selection | Reduce to informative clinical predictors |
+| 9 | Classical Machine Learning | Baseline risk models |
+| 10 | Deep Learning | Tabular/clinical transformers (TabTransformer) |
+| 11 | Explainable AI | SHAP, feature attributions on clinical vector |
+| 12 | Clinical Evidence RAG | Retrieve guidelines for clinical reasoning |
+| 13 | Clinical Decision Support | Role-specific clinical output |
+| 14 | Human-in-the-Loop | Neurologist accept / modify / reject |
+| 15 | Enterprise Deployment | Serving, EMR integration, workflow automation |
+| 16 | Governance & Continuous Improvement | Model registry, drift, retraining |
+
+```
+Patient → Primary Assessment → Clinical Features → Clinical AI → Clinical Risk Prediction
+```
+
+### Example Clinical Feature Vector (128 features)
+| Feature | Description |
+|---|---|
+| Age | Patient age |
+| Medication Score | Adherence + response |
+| Sleep Score | Sleep quality / deprivation triggers |
+| Seizure Score | Frequency & type |
+| Depression Score | Screening instrument |
+| Anxiety Score | Screening instrument |
+
+The 128-D clinical embedding becomes an input to **Pipeline C — Multimodal Fusion**.
+</script>
+
+<script type="text/markdown" data-id="pb" data-title="Pipeline B — Secondary EEG" data-group="Part III — Pipelines">
+# Pipeline B — Secondary EEG AI
+### Chapter 6 — 16 Phases
+
+**Objective:** Produce an **EEG abnormality prediction** from raw EEG through signal processing, biomarkers, and deep learning — ending in an evidence-supported, governed clinical platform.
+
+| # | Phase | Purpose |
+|---|---|---|
+| 1 | EEG Acquisition & Data Collection | Device integration, EDF/BDF/FIF import |
+| 2 | EEG Validation & Quality Assessment | Channels, sampling rate, impedance, artifacts |
+| 3 | Signal Cleaning & Artifact Removal | Filtering, ICA, artifact rejection |
+| 4 | Standardization & Harmonization | Montage, resampling, BIDS compliance |
+| 5 | Exploratory Signal Analysis | Topomaps, spectra, visual review |
+| 6 | Statistical Analysis | Band power, connectivity statistics |
+| 7 | Signal Transformation | FFT, wavelet, time-frequency |
+| 8 | Feature Engineering | Spike counts, theta power, coherence |
+| 9 | Feature Selection | Discriminative biomarkers |
+| 10 | Classical Machine Learning | Baseline classifiers |
+| 11 | Deep Learning | EEGNet/CNN/transformer → 1024-D embedding |
+| 12 | Explainable AI | SHAP, Grad-CAM, attention, channel/frequency/time importance |
+| 13 | Clinical Evidence RAG | ILAE/AAN/NICE guidelines, SOPs, research |
+| 14 | Clinical Decision Support | Role-specific views |
+| 15 | Enterprise Deployment & AI Operations | Inference service, EMR, monitoring, DR |
+| 16 | Governance & Responsible AI | Model/data/bias/drift governance |
+
+### Phase 13 — Clinical Evidence RAG
+```
+EEG → AI → Prediction → Clinical Evidence → Research Papers →
+EEG Guidelines → Hospital SOP → Evidence-Based Report
+```
+Hybrid retrieval (vector + keyword + metadata) → rerank → validate → merge AI + evidence → role-specific reports. **Evidence confidence** combines AI confidence, explainability, retrieval quality, EEG quality, guideline match (example ≈ **97%**).
+
+### Phase 14 — Clinical Decision Support (worked example)
+| Item | Value |
+|---|---|
+| Patient | EP001 |
+| EEG Prediction | Left temporal epileptiform activity |
+| Probability | 98% |
+| Evidence Confidence | 97% |
+| Main Channels | T7, P7, F7 |
+| Main Biomarkers | Sharp waves, theta power, temporal coherence |
+| EEG Quality | Excellent |
+| Human Review | Required |
+
+### Phase 15 — Deployment KPI targets
+inference < 3s · uptime > 99.9% · AI–clinician agreement > 90% · report turnaround < 10 min · failed inference < 1% · cost reduction 20–30%.
+
+### Phase 16 — Responsible AI Principles
+Fairness · Transparency · Accountability · Reliability · Privacy · Safety (*AI never issues an autonomous diagnosis*).
+
+```
+EEG → Signal Processing → EEG AI → EEG Embedding (1024-D) → EEG Abnormality Prediction
+```
+</script>
+
+<script type="text/markdown" data-id="pc" data-title="Pipeline C — Multimodal Fusion ★" data-group="Part III — Pipelines">
+# Pipeline C — Multimodal Clinical Intelligence
+### Chapter 7 — Primary + Secondary Data Fusion
+
+> **The novel contribution of the DBA.** Fuse structured clinical data with EEG biomarkers into a single explainable AI model.
+
+```
+PRIMARY DATA                         SECONDARY DATA
+Neurologist Assessment               EEG
+Medication, History, Symptoms         → Cleaning
+Questionnaire, Family History         → Transformation
+Sleep, Vitals, Lab, MRI Summary       → Feature Engineering
+   → Clinical Feature Engineering     → Deep Learning
+   → Clinical Embedding (128-D)       → EEG Embedding (1024-D)
+                     \\             /
+                      Fusion Layer
+                          → Multimodal AI → Explainability
+                          → RAG → Clinical Decision Support
+                          → Neurologist → Patient
+```
+
+### C5 — Fusion Strategies
+| Strategy | Description |
+|---|---|
+| Early Fusion | Concatenate clinical + EEG into one large feature vector |
+| **Intermediate Fusion ★** | Separate networks → embeddings → fusion layer |
+| Late Fusion | Independent predictions → meta-model |
+
+> **Recommendation: Intermediate Fusion** — best balance of flexibility, performance, interpretability.
+
+### C6 — Candidate Architectures
+Transformer Fusion · Cross Attention · Multimodal Transformer · Deep & Cross Network · TabTransformer + EEGNet · Clinical Transformer + CNN · GNN + Transformer.
+
+### C8 — Joint Explainability (worked example)
+```
+Prediction: 92%
+  Clinical → Medication failure
+  EEG      → Left temporal sharp waves + high theta
+  ⇒ High Risk
+```
+
+### C13 — Final Enterprise Output
+| Field | Value |
+|---|---|
+| Overall Clinical Risk | **87%** |
+| EEG | Left temporal |
+| Clinical | High seizure frequency |
+| Medication | Poor response |
+| Evidence | ILAE |
+| Confidence | 96% |
+| Recommendation | Neurologist review |
+
+**Core experimental comparison:** Primary-only (H1) vs EEG-only (H2) vs Multimodal (H3).
+</script>
+
+<script type="text/markdown" data-id="pd" data-title="Pipeline D — Enterprise Platform" data-group="Part III — Pipelines">
+# Pipeline D — Enterprise Healthcare AI Platform
+### Chapter 8 — Intelligent Epilepsy Care Ecosystem
+
+**Objective:** The complete hospital ecosystem connecting patients, clinicians, AI, governance, operations, research, and continuous learning.
+
+```
+PATIENT (Mobile · Wearables · Home EEG · Smart Watch)
+  → Patient Engagement → Primary Assessment AI
+  → EEG Platform (Acquisition · Validation · AI · XAI)
+  → Multimodal AI → Clinical Evidence (RAG · Guidelines · Research · SOP)
+  → Clinical Decision Support → Human Review
+  → Electronic Medical Record → Enterprise Monitoring → Continuous Learning
+```
+
+### The 12 Layers
+| Layer | Focus |
+|---|---|
+| 1 | Patient Engagement (registration, questionnaire, reminders, seizure diary, sleep, caregiver, telemedicine) |
+| 2 | Clinical Operations (neurologist, technician, nurse, pharmacist, coordinator, admin) |
+| 3 | AI Intelligence (Primary + EEG + Fusion + Predictive + Remote Monitoring) |
+| 4 | Agentic AI (10 agents) |
+| 5 | Knowledge Platform (guidelines, model cards, research, SOP, drug DB, education) |
+| 6 | Clinical Decision Support (single screen) |
+| 7 | Enterprise Integration (EMR/EHR, LIS, PACS, scheduling, pharmacy, billing, IdP, notifications) |
+| 8 | Continuous Monitoring |
+| 9 | Enterprise Governance |
+| 10 | Research Platform |
+| 11 | Executive Dashboard |
+| 12 | Continuous Learning |
+
+### Layer 4 — Multi-Agent Architecture
+| Agent | Responsibility |
+|---|---|
+| Patient Intake | Questionnaires, demographics, consent |
+| Clinical Assessment | Neurologist findings & structured assessments |
+| EEG Analysis | Preprocessing, quality checks, inference |
+| Imaging | Correlate MRI/CT summaries |
+| Medication | Anti-seizure meds, adherence, interactions |
+| Evidence | Retrieve guidelines & scientific evidence |
+| Report Generation | Draft clinician & patient reports |
+| Scheduling | Recommend follow-up EEGs / appointments |
+| Monitoring | Watch drift, failures, performance |
+| Governance | Compliance, audit logs, approvals |
+</script>
+
+<script type="text/markdown" data-id="pe" data-title="Pipeline E — Evaluation" data-group="Part III — Pipelines">
+# Pipeline E — Enterprise Evaluation & Validation Framework
+### Chapter 9 — Clinical + AI + Business + Operations + Governance
+
+**Objective:** Prove the platform improves clinical outcomes, AI performance, operations, business KPIs, patient experience, governance, and ROI.
+
+### The 15 Evaluation Layers
+| Layer | Focus | Sample Metrics |
+|---|---|---|
+| 1 | Clinical | Time to diagnosis, missed abnormal EEG, agreement, follow-up |
+| 2 | AI | Accuracy, precision, recall, F1, ROC-AUC, PR-AUC, MCC, κ, calibration |
+| 3 | Operational | Registration, onboarding, scheduling, reporting, workload, queue |
+| 4 | Business | Cost/patient, revenue, utilization, adoption, ROI, throughput |
+| 5 | Patient Experience | Satisfaction, waiting time, usability, adherence, trust |
+| 6 | Clinician Experience | Ease, trust, time saved, explainability, workflow |
+| 7 | Explainability | SHAP/Grad-CAM consistency, agreement, usefulness, stability |
+| 8 | RAG | Retrieval precision/recall, citation accuracy, hallucination, groundedness |
+| 9 | Enterprise AI | Latency, availability, GPU, API response, throughput, failure |
+| 10 | Governance | Bias, fairness, audit, overrides, drift, privacy |
+| 11 | Statistical | McNemar, DeLong, Wilcoxon, Bootstrap CI, ANOVA, Mixed Effects |
+| 12 | Economic | ROI, payback, cost-benefit, NPV, IRR, TCO |
+| 13 | Research | External validation, generalization, reproducibility, robustness |
+| 14 | Longitudinal | 1/3/6/12-month seizure reduction, adherence, QoL |
+| 15 | Final Scorecard | Composite domain scores |
+
+### Worked Example — Clinical KPIs
+| KPI | Before AI | After AI | Improvement |
+|---|---|---|---|
+| Time to diagnosis | 18 days | 8 days | ↓56% |
+| Time to EEG interpretation | 3 days | 20 min | ↓89% |
+| Missed abnormal EEG | 12% | 4% | ↓67% |
+| Neurologist agreement | 82% | 95% | ↑16% |
+| Follow-up compliance | 61% | 88% | ↑44% |
+
+### Business & Economic
+| KPI | Improvement |
+|---|---|
+| Productivity | +32% |
+| Cost | −26% |
+| Throughput | +41% |
+| AI Adoption | 91% |
+
+| Item | Value |
+|---|---|
+| Investment | CAD 1.5 M |
+| Annual Savings | CAD 700K |
+| Payback | 2.1 years |
+
+### Final Enterprise Scorecard
+| Domain | KPIs | Scores |
+|---|---|---|
+| Clinical | Diagnostic support / Safety / Accuracy | 94 / 97 / 96 |
+| Technical | AI / RAG / Explainability | 95 / 94 / 96 |
+| Operations | Productivity / Workflow / Reporting | 93 / 95 / 97 |
+| Business | ROI / Adoption / Cost Reduction | 92 / 96 / 91 |
+| Governance | Fairness / Audit / Compliance | 95 / 98 / 97 |
+</script>
+
+<script type="text/markdown" data-id="part4" data-title="Part IV — Implementation" data-group="Part IV–VIII">
+# PART IV — Implementation
+
+## Chapter 10 — Azure (or Hybrid) Architecture
+| Service | Role |
+|---|---|
+| Azure AI Foundry | AI orchestration & model hub |
+| Azure OpenAI | LLM / RAG generation |
+| Azure AI Search | Vector + keyword retrieval |
+| Azure Machine Learning | Training & MLOps |
+| Azure Kubernetes Service | Scalable inference |
+| Azure API Management | API gateway |
+| Azure Monitor | Observability |
+| Microsoft Fabric | Analytics platform |
+| Azure SQL | Relational clinical data |
+| Azure Blob Storage | EEG files & artifacts |
+| Azure Key Vault | Secrets & keys |
+| Azure Entra ID | Identity & access |
+| Azure Event Grid / Service Bus | Eventing & messaging |
+| Azure Functions | Serverless tasks |
+| Azure Container Registry | Image registry |
+| Azure DevOps / GitHub | CI/CD & source |
+| Power BI | Executive dashboards |
+| FHIR Integration | Clinical interoperability |
+
+## Chapter 11 — Multi-Agent Architecture
+Agents: Patient · Neurologist · EEG · Medication · MRI · Scheduling · Reporting · Governance · Monitoring · RAG.
+
+## Chapter 12 — Implementation
+Screens · Database · API · Security · RBAC · Workflow (EEG completed → AI draft → review → EMR update).
+</script>
+
+<script type="text/markdown" data-id="part5" data-title="Part V–VIII — Results & Conclusion" data-group="Part IV–VIII">
+# PART V — Evaluation (Chapters 13–17)
+| Chapter | Evaluation |
+|---|---|
+| 13 | Clinical |
+| 14 | Technical |
+| 15 | Business |
+| 16 | Governance |
+| 17 | ROI |
+
+> Detailed metrics live in **Pipeline E**.
+
+# PART VI — Results
+Statistics · Graphs · Comparison (Traditional → Primary AI → EEG AI → Fusion AI → Enterprise AI) · Business/Clinical/AI KPIs.
+
+# PART VII — Discussion
+```
+Traditional → Primary AI → EEG AI → Fusion AI → Enterprise AI
+```
+Interpret *why* multimodal + enterprise integration outperforms single-modality models — in accuracy, workflow, trust, governance, and organizational value.
+
+# PART VIII — Conclusion
+### Contribution
+| Dimension | Contribution |
+|---|---|
+| Academic | Multimodal fusion methodology + evaluation framework |
+| Clinical | Faster, more consistent decision support |
+| Business | Measurable ROI and operational efficiency |
+| Enterprise | Deployable, governed AI platform architecture |
+| Social | Rural healthcare access & remote monitoring |
+</script>
+
+<script type="text/markdown" data-id="appendix" data-title="Appendix" data-group="Reference">
+# Appendix
+Questionnaire · Survey · AI Prompts · API · Database schema · Architecture diagrams · ER Diagram · Workflow · Code · Feature Dictionary · Model Cards · RAG Evaluation · Security Checklist · Governance Checklist.
+
+## Enterprise Risk Register (excerpt)
+| Risk | Impact | Mitigation |
+|---|---|---|
+| Poor EEG quality | Incorrect prediction | Technician QC + automated checks |
+| Model drift | Reduced performance | Monitoring + retraining |
+| Data drift | Generalization failure | Drift detection pipeline |
+| False positives | Unnecessary investigations | Human review |
+| False negatives | Missed abnormalities | High-sensitivity threshold + oversight |
+| Cybersecurity incident | Data exposure | Encryption, RBAC, monitoring |
+
+## Model Registry (excerpt)
+| Version | Validation Dataset | Accuracy | Status |
+|---|---|---|---|
+| v1.0 | Temple EEG | 96% | Production |
+| v1.1 | Temple + Siena | 97% | Validation |
+| v2.0 | Multimodal | 98% | Candidate |
+</script>
+
+<script type="text/markdown" data-id="pubs" data-title="Publication Strategy" data-group="Reference">
+# Publication Strategy (Top 1%)
+Use the dissertation to produce **multiple publishable outputs**.
+
+| Paper | Contribution | Suggested Journal Type |
+|---|---|---|
+| Paper 1 | Clinical assessment AI pipeline | Digital Health / Medical Informatics |
+| Paper 2 | EEG signal processing & multimodal biomarkers | Biomedical Signal Processing |
+| Paper 3 | Explainable multimodal AI for epilepsy | AI in Medicine |
+| Paper 4 | RAG + Multi-Agent clinical decision support | Medical AI / Health Informatics |
+| Paper 5 | Enterprise AI governance & deployment | Health / Enterprise Information Systems |
+| Paper 6 | Business value & digital transformation | Business / DBA / Digital Transformation |
+
+## Final Recommendation
+Refine around **three central contributions**:
+1. A multimodal AI framework integrating primary clinical assessment with EEG analytics.
+2. An enterprise clinical intelligence platform (explainable AI, RAG, human oversight, governance).
+3. A business value evaluation framework linking enterprise AI to workflows, efficiency, governance, and outcomes.
+
+Technical innovation + organizational transformation + measurable business impact = a strong DBA.
+</script>
+
+<!-- ============ LIBRARIES (CDN) ============ -->
+<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://cdn.jsdelivr.net/npm/marked@12/marked.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<script type="text/babel">
+const { useState, useMemo, useEffect } = React;
+
+// Collect embedded docs from the markdown script blocks
+const DOCS = Array.from(document.querySelectorAll('script[type="text/markdown"]')).map(el => ({
+  id: el.dataset.id,
+  title: el.dataset.title,
+  group: el.dataset.group,
+  md: el.textContent.trim(),
+}));
+
+marked.setOptions({ gfm: true, breaks: false });
+
+function App(){
+  const [active, setActive] = useState(DOCS[0].id);
+  const [q, setQ] = useState("");
+
+  const groups = useMemo(() => {
+    const map = new Map();
+    DOCS.forEach(d => {
+      const hit = !q || d.title.toLowerCase().includes(q.toLowerCase()) || d.md.toLowerCase().includes(q.toLowerCase());
+      if(!hit) return;
+      if(!map.has(d.group)) map.set(d.group, []);
+      map.get(d.group).push(d);
+    });
+    return map;
+  }, [q]);
+
+  const idx = DOCS.findIndex(d => d.id === active);
+  const doc = DOCS[idx];
+  const prev = DOCS[idx-1], next = DOCS[idx+1];
+  const html = useMemo(() => marked.parse(doc.md), [doc]);
+
+  useEffect(() => { window.scrollTo(0,0); }, [active]);
+
+  const go = id => { setActive(id); document.querySelector('.sidebar')?.classList.remove('open'); };
+
+  return (
+    <React.Fragment>
+      <aside className="sidebar">
+        <div className="brand">DBA Blueprint
+          <small>Enterprise AI · Explainable Multimodal Epilepsy Intelligence</small>
+        </div>
+        <input className="search" placeholder="Search…" value={q} onChange={e=>setQ(e.target.value)} />
+        {[...groups.entries()].map(([g, items]) => (
+          <div className="navgroup" key={g}>
+            <div className="label">{g}</div>
+            {items.map(d => (
+              <button key={d.id}
+                className={"navitem" + (d.id===active ? " active" : "")}
+                onClick={()=>go(d.id)}>{d.title}</button>
+            ))}
+          </div>
+        ))}
+        {groups.size===0 && <div className="navgroup"><div className="label">No matches</div></div>}
+      </aside>
+
+      <main className="content">
+        <div className="crumb">{doc.group}</div>
+        <div className="md" dangerouslySetInnerHTML={{__html: html}} />
+        <div className="pager">
+          {prev ? <button onClick={()=>go(prev.id)}><span className="dir">← Previous</span>{prev.title}</button> : <span/>}
+          {next ? <button onClick={()=>go(next.id)} style={{textAlign:'right'}}><span className="dir">Next →</span>{next.title}</button> : <span/>}
+        </div>
+      </main>
+    </React.Fragment>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body>
+</html>
