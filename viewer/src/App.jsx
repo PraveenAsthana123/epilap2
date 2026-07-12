@@ -4,7 +4,25 @@ import remarkGfm from 'remark-gfm'
 import remarkMath from 'remark-math'
 import rehypeKatex from 'rehype-katex'
 import 'katex/dist/katex.min.css'
+import 'katex/contrib/mhchem'          // advanced: chemistry equations (\ce{...})
 import Mermaid from './Mermaid.jsx'
+
+// Advanced KaTeX options: custom macros, resilient parsing, display alignment support.
+const KATEX_OPTS = {
+  throwOnError: false,
+  strict: false,
+  trust: true,
+  fleqn: false,
+  macros: {
+    '\\argmax': '\\operatorname*{arg\\,max}',
+    '\\argmin': '\\operatorname*{arg\\,min}',
+    '\\E': '\\mathbb{E}',
+    '\\R': '\\mathbb{R}',
+    '\\prob': '\\mathbb{P}',
+    '\\AUC': '\\mathrm{AUC}',
+    '\\indep': '\\perp\\!\\!\\!\\perp',
+  },
+}
 import { parseSeverity, bandOf, scoreOf } from './scoring.js'
 import DataView from './DataView.jsx'
 import Simulation from './Simulation.jsx'
@@ -471,7 +489,7 @@ export default function App() {
                 </>
               ) : (
                 <article className="md">
-                  <ReactMarkdown remarkPlugins={[remarkGfm, remarkMath]} rehypePlugins={[rehypeKatex]} components={MD_COMPONENTS}>{active.md}</ReactMarkdown>
+                  <ReactMarkdown remarkPlugins={[remarkGfm, remarkMath]} rehypePlugins={[[rehypeKatex, KATEX_OPTS]]} components={MD_COMPONENTS}>{active.md}</ReactMarkdown>
                 </article>
               )}
             </>
