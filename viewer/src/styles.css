@@ -139,6 +139,8 @@ body{
 .dash-row{cursor:pointer}
 .dash-row:hover{background:var(--accent-soft)}
 .dash-h2{font-size:19px;margin:1.6em 0 .5em;padding-left:.5em;border-left:4px solid var(--accent)}
+.chartbox{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px;margin:10px 0;max-width:620px;color:var(--muted)}
+.chart text{fill:var(--muted)}
 .brand{font-weight:700;font-size:15px;letter-spacing:-.01em;margin:0 8px 4px}
 .brand small{display:block;font-weight:500;color:var(--muted);font-size:11.5px;margin-top:3px;line-height:1.4}
 .search{width:100%;margin:16px 0 6px;padding:9px 12px;border:1px solid var(--line);

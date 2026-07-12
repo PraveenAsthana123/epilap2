@@ -3,6 +3,15 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import Mermaid from './Mermaid.jsx'
 import { parseSeverity, bandOf, scoreOf } from './scoring.js'
+import DataView from './DataView.jsx'
+
+// Load every generated dataset (data/analysis/*.csv) as raw text for the Data tab.
+const CSV_MODULES = import.meta.glob('../../data/analysis/*.csv', {
+  query: '?raw', import: 'default', eager: true,
+})
+const DATASETS = Object.entries(CSV_MODULES)
+  .map(([path, text]) => ({ name: path.split('/').pop(), text }))
+  .sort((a, b) => a.name.localeCompare(b.name))
 
 // Custom renderers: code fences tagged ```mermaid become diagrams.
 const MD_COMPONENTS = {
@@ -192,6 +201,7 @@ export default function App() {
   function enter(v) {
     setView(v); setNavOpen(false); setQuery(''); setScoreMode(false)
     if (v === 'home') { setActiveId(null); return }
+    if (v === 'data') { setActiveId(null); return }
     if (v === 'all') { setActiveId(ALL_DOCS[0]?.id ?? null); return }
     const rd = ROLE_DOCS[v]
     setActiveId((rd.overview || rd.sections[0])?.id ?? null)
@@ -253,9 +263,24 @@ export default function App() {
         <button className={'tab tab-all' + (view === 'all' ? ' active' : '')} onClick={() => enter('all')}>
           All Docs
         </button>
+        {DATASETS.length > 0 && (
+          <button className={'tab tab-all' + (view === 'data' ? ' active' : '')} onClick={() => enter('data')}>
+            📊 Data
+          </button>
+        )}
       </nav>
     </header>
   )
+
+  // ---- Data tab: browse every generated CSV -------------------------------
+  if (view === 'data') {
+    return (
+      <div className="app">
+        {topbar}
+        <DataView datasets={DATASETS} />
+      </div>
+    )
+  }
 
   // ---- Home ----------------------------------------------------------------
   if (view === 'home') {
