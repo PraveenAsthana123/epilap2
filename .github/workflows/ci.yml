@@ -24,13 +24,14 @@ jobs:
           pip install -r analysis/requirements.txt
           pip install shap lime fairlearn pytest
           pip install -r api/requirements.txt
-      - name: Generate data artefacts (cohort, scenarios, DB)
+      - name: Generate data artefacts (cohort, scenarios, governance, DB)
         run: |
           cd analysis
           python make_cohort.py
           python primary_analysis.py
           python build_scenarios.py
           python build_var_dictionary.py
+          python governance.py
           cd .. && python db/build_sqlite.py
       - name: Run analysis tests
         run: cd analysis && python -m pytest -q

@@ -34,11 +34,12 @@
 | C2 | **Responsible AI Governance** (risk, audit, compliance, accountability) | Lifecycle control | 🟡 16 pillars + implementation docs; audit table unused |
 | C3 | **Explainable AI for CDS** (clinician-friendly) | Why the recommendation | 🟢 runnable SHAP/LIME ([RAI runtime](analysis/responsible-ai-runtime.md)) |
 | C4 | **Multimodal Decision Support** (EEG + clinical + MRI) | The fusion engine | 🟢 fusion built (synthetic) |
-| C5 | **AI Confidence & Uncertainty Estimation** (when to abstain) | Safe deferral | ⬜ **not built — key gap** |
-| C6 | **Clinical Evidence Concordance Engine** (agreement/conflict) | Trust across sources | 🟡 concordance in [surgical](surgical-recommendation.md); no general engine |
+| C5 | **AI Confidence & Uncertainty Estimation** (when to abstain) | Safe deferral | 🟢 built — [`analysis/governance.py`](analysis/governance-confidence-concordance.md): calibration + abstention (acc 0.907→0.942 on confident 80%) |
+| C6 | **Clinical Evidence Concordance Engine** (agreement/conflict) | Trust across sources | 🟢 built — `governance.py` concordance engine (flags discordant patients for review; EP001 Concordant) |
 
-**Two clear next builds (runnable):** C5 (confidence/uncertainty → abstention) and C6 (concordance
-engine) — both are governance-core, both currently gaps, both extend the existing fusion engine.
+**Built (2026-07-11):** C5 (confidence/uncertainty → abstention) and C6 (concordance engine) are now
+runnable code with tests, extending the fusion engine. **Remaining key gap:** integrate a **real EEG
+corpus** (Siena/TUH) so the scenarios report defensible (non-synthetic) results.
 
 ## 3. Validation scenarios (the framework proves itself on these)
 

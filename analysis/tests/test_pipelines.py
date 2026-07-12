@@ -145,3 +145,25 @@ def test_guardrail_allows_clean_text():
     r = g.check("Focal impaired-awareness seizures, left temporal.")
     assert r["blocked"] is False                                                   # negative case
     assert r["reasons"] == []
+
+
+# ---------------------------------------------------------------------------
+# governance C6 — concordance engine
+# ---------------------------------------------------------------------------
+def test_concordance_labels_and_ep001():
+    p = os.path.join(ROOT, "data", "analysis", "concordance.csv")
+    if not os.path.exists(p):
+        pytest.skip("run analysis/governance.py first")
+    df = pd.read_csv(p)
+    assert set(df["concordance"]).issubset({"Concordant", "Partial", "Discordant"})  # positive
+    assert df.loc[df.patient_id == "EP001", "concordance"].iloc[0] == "Concordant"   # positive
+    assert df["sources_agree"].between(0, 3).all()                                   # negative: no bad count
+
+
+def test_concordance_rules_are_binary():
+    import governance
+    df = pd.read_csv(os.path.join(ROOT, "data", "analysis", "primary_clean_features.csv")).head(20)
+    eeg = pd.read_csv(os.path.join(ROOT, "data", "analysis", "cohort_eeg.csv"))
+    m = df.merge(eeg, on="patient_id", how="left")
+    assert set(governance._rule_clinical(m).astype(int).unique()).issubset({0, 1})   # positive
+    assert set(governance._rule_eeg(m).astype(int).unique()).issubset({0, 1})
