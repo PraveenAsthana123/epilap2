@@ -84,3 +84,15 @@ def test_data_quality_profile():
     prof = dq.profile_dataset("t", df)
     assert {"null_pct", "uniqueness_score", "consistency_score", "sensitive_classification"} <= set(prof.columns)
     assert prof.loc[prof.column == "patient_id", "sensitive_classification"].iloc[0] == "direct-identifier"
+
+
+# ---- observability / monitoring ----
+def test_observability_drift_and_quality():
+    import observability as obs
+    df = pd.read_csv(os.path.join(ROOT, "data", "analysis", "cohort_primary.csv"))
+    drift = obs.data_drift(df)
+    flagged = set(drift[drift.drift == "DRIFT"]["feature"])
+    assert "age" in flagged and "pt_qolie31" in flagged   # positive: simulated drift detected
+    assert "npsy_moca" not in flagged                     # negative: unshifted feature stable
+    perf, pred = obs.model_performance(df)
+    assert 0 <= perf["accuracy"] <= 1 and 0 <= perf["recall"] <= 1

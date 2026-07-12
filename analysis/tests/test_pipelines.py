@@ -234,3 +234,20 @@ def test_preprocessing_techniques():
     # IQR flags an obvious outlier (negative-path).
     s = pd.Series([1, 1, 1, 1, 100])
     assert bool(pp.outliers(s, "iqr").iloc[-1]) is True
+
+
+# ---------------------------------------------------------------------------
+# Time-series pipeline
+# ---------------------------------------------------------------------------
+def test_timeseries_clean_and_features():
+    import timeseries as ts
+    import numpy as np
+    idx = pd.date_range("2026-01-01", periods=20, freq="D")
+    df = pd.DataFrame({"date": list(idx) + [idx[5]], "seizures": list(range(20)) + [99]})  # dup ts
+    df = df.drop(index=[10]).reset_index(drop=True)                                        # missing day
+    clean, n_missing = ts.clean_index(df)
+    assert clean.index.is_unique                          # positive: duplicate timestamp removed
+    assert n_missing >= 1                                 # positive: gap detected + filled
+    feats = ts.features(clean)
+    assert "lag1" in feats and "roll7_mean" in feats      # lag + rolling features
+    assert "lag99" not in feats                           # negative

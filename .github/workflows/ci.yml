@@ -39,7 +39,9 @@ jobs:
           python decision_support.py
           python mlops/data_quality.py
           python preprocessing.py
-          cd .. && python db/build_sqlite.py
+          python timeseries.py
+          cd .. && python mlops/observability.py
+          python db/build_sqlite.py
       - name: MLOps demo + tests (contract/feature-store/tracking/rollback)
         run: |
           python mlops/run_mlops_demo.py

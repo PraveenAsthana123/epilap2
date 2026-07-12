@@ -66,10 +66,26 @@ record_count · **schema_version** · **feature_version** · **sensitive_classif
 | A/B testing · batch vs real-time inference · baseline selection | 📄 (experiment_tracker + model_registry provide the hooks) |
 | Model-specific metrics (accuracy/precision/recall/AUC/PR-AUC/calibration/Brier/DCA) | ✅ primary/fusion/governance |
 
-## Statistical / time-series (from the 23-step flow)
+## Time-series
+➕ `analysis/timeseries.py` → [report](analysis/timeseries-analysis.md)
+
+datetime parse/sort · **duplicate-timestamp removal** · **missing-timestamp fill (reindex)** ·
+**timezone normalisation (UTC)** · resampling · **rolling stats** · **lag/lead + calendar features** ·
+**trend/seasonality decomposition** · **stationarity (ADF) + differencing** · **time-based split (never
+random)** · **TimeSeriesSplit CV** · **SARIMAX** + gradient-boosting(lags) · **MAE/RMSE/MAPE/MASE**.
+📄 ARIMA/SARIMA variants, LSTM/GRU/TFT, XGBoost/LightGBM/CatBoost = swap-in models (need longitudinal real data).
+
+## Observability / monitoring
+➕ `mlops/observability.py` → [report](analysis/observability-report.md)
+
+**model performance** (accuracy/precision/recall/F1) · **prediction monitoring** (pred + confidence +
+class distribution) · **data drift (KS test)** — correctly flags simulated drift · **concept drift**
+(feature↔target relation change) · **data quality** (missing/duplicate/null%/outlier + contract).
+
+## Statistical (from the 23-step flow)
 ✅ descriptives, normality, correlation, chi-square, ANOVA, ordinal/logistic/Cox regression,
-effect sizes, CIs, **survival analysis** (recurrence). 📄 MANOVA/ANCOVA/mixed-effects and deep
-time-series (LSTM/Transformer/TFT) are documented as next-stage (need longitudinal real data).
+effect sizes, CIs, **survival analysis** (recurrence). 📄 MANOVA/ANCOVA/mixed-effects need
+longitudinal real data.
 
 ## How to run everything added
 ```bash
