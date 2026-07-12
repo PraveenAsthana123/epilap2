@@ -37,3 +37,6 @@ Thumbs.db
 
 # MLOps generated store (rebuild via mlops/run_mlops_demo.py)
 mlops/store/
+
+# Large real EEG recordings (rebuild via analysis/fetch_chbmit.py)
+data/real/chbmit/*.edf

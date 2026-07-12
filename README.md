@@ -143,7 +143,8 @@ Detailed primary‑ and secondary‑data walkthrough: **[pipeline‑by‑phase](
 | EEG focus‑lateralisation AUC | 0.93 |
 | Fusion AUC | 0.976 |
 | Recurrence C‑index (Cox) | 0.663 |
-| **Real EEG external‑validation AUC** | **0.979** |
+| **Real EEG external‑validation AUC** (EEG‑Eye‑State) | **0.979** |
+| **Real EPILEPSY EEG seizure detection AUC** (CHB‑MIT chb01_03, ictal vs interictal) | **0.970** |
 | Fairness demographic‑parity gap (before → after) | 0.175 → 0.087 |
 | Decision support | 47% auto‑recommendable, 53% routed to clinician |
 
