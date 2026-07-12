@@ -1,0 +1,53 @@
+name: CI
+
+# Runs the analysis + API pytest suites, the viewer Vitest suite, and the viewer
+# build on every push / PR. This is the production gate the brutal review flagged.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  python:
+    name: Python tests (analysis + API)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r analysis/requirements.txt
+          pip install shap lime fairlearn pytest
+          pip install -r api/requirements.txt
+      - name: Generate data artefacts (cohort, scenarios, DB)
+        run: |
+          cd analysis
+          python make_cohort.py
+          python primary_analysis.py
+          python build_scenarios.py
+          python build_var_dictionary.py
+          cd .. && python db/build_sqlite.py
+      - name: Run analysis tests
+        run: cd analysis && python -m pytest -q
+      - name: Run API tests
+        run: cd api && python -m pytest -q
+
+  viewer:
+    name: Viewer tests + build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install
+        run: cd viewer && npm ci
+      - name: Unit tests (Vitest)
+        run: cd viewer && npm test
+      - name: Build
+        run: cd viewer && npm run build
