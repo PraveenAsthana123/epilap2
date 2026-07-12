@@ -19,7 +19,8 @@
       "Bash(wc -l journal.jsonl)",
       "Bash(grep -v '```')",
       "Bash(cat \"/c/Users/pasth/.claude/settings.json\" 2>/dev/null || echo \"NO GLOBAL settings.json\"; echo \"=== project local ===\"; cat \"/c/Aman_prod/Epi/.claude/settings.local.json\" 2>/dev/null || echo \"none\")",
-      "Read(//c/Users/pasth/.claude/**)"
+      "Read(//c/Users/pasth/.claude/**)",
+      "WebSearch"
     ]
   }
 }
