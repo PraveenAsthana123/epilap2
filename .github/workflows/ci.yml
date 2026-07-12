@@ -40,6 +40,9 @@ jobs:
           python mlops/data_quality.py
           python preprocessing.py
           python timeseries.py
+          python eda.py
+          cd .. && python mlops/phase_gates.py
+          cd analysis
           cd .. && python mlops/observability.py
           python db/build_sqlite.py
       - name: MLOps demo + tests (contract/feature-store/tracking/rollback)

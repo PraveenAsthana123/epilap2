@@ -1,0 +1,14 @@
+phase,pipeline,monitoring,quality_checks,score,status,visualization,checks_passed,checks_total
+1. Problem definition,docs/research-problems.md,n/a,3/3,100,Green,docs/research-framework.md,3,3
+2. Data ingestion,analysis/make_cohort.py,freshness / record count,3/3,100,Green,viewer Data tab,3,3
+3. Data validation,mlops/data_quality.py,contract violations,3/3,100,Green,docs/analysis/data-quality-report.md,3,3
+4. Data preparation,analysis/preprocessing.py,null% / outlier%,3/4,75,Amber,docs/analysis/eda-report.md,3,4
+5. Feature engineering / store,mlops/feature_store.py,feature drift,3/3,100,Green,docs/analysis/variable-dictionary.md,3,3
+6. Model development,analysis/primary_analysis.py,n/a,3/4,75,Amber,docs/analysis/primary-analysis.md,3,4
+7. Training,analysis/run_all.py,n/a,3/3,100,Green,docs/analysis/primary-analysis.md,3,3
+8. Evaluation / validation,analysis/eda.py,performance decay,3/5,60,Amber,docs/analysis/eda-report.md (charts),3,5
+9. Explainability / fairness,analysis/responsible_ai_runtime.py,fairness gap,3/3,100,Green,docs/analysis/responsible-ai-runtime.md,3,3
+10. Deployment / serving,api/main.py,latency / error rate,3/4,75,Amber,GET /metrics,3,4
+11. Monitoring / observability,mlops/observability.py,drift / system / API,4/4,100,Green,docs/analysis/observability-report.md,4,4
+12. Governance,docs/responsible-ai/index.md,audit / compliance,3/4,75,Amber,docs/responsible-ai/implementation/index.md,3,4
+13. Retraining / continuous learning,mlops/retrain.py (planned),champion-challenger,0/3,0,Red,docs/phase-gates-scorecard.md,0,3
