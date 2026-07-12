@@ -1,0 +1,41 @@
+stage_no,stage,pipeline,status,evidence
+1,Business & clinical problem definition,P1,done,pipeline-1
+2,Research questions & hypotheses,P1,done,pipeline-1 / hypotheses.md
+3,Outcome / target / horizon definition,P1,done,seizure-recurrence-90d
+4,Study design & cohort protocol,P1,done,pipeline-1
+5,"Ethics, consent & data-use approval",P1,done,"governance/01,02"
+6,Source-system identification,P2,partial,pipelines-2-7 §2
+7,Data ownership & data contract,P2,partial,mlops/data_contract.py
+8,Batch/stream/API/CDC ingestion,P2,partial,§4 patterns
+9,Landing zone & raw immutable storage,P2,gap,§5 lakehouse
+10,Schema & contract validation,P2,done,mlops/data_contract.py
+11,Invalid-record quarantine,P2,partial,§5
+12,Master patient index & entity resolution,P2,gap,§7
+13,Cleaning & harmonisation,P3,done,preprocessing.py
+14,Clinical terminology standardisation,P2,partial,ILAE/SNOMED map
+15,Data-quality scoring,P2,done,mlops/data_quality.py
+16,Metadata / catalog / lineage,P2,partial,§8
+17,Sensitive-data classification & security,P7,done,governance/00
+18,Curated clinical dataset,P3,done,data/analysis/*clean*
+19,"Annotation, labelling & adjudication",P3,partial,§12
+20,Temporal alignment & cohort construction,P3,done,make_cohort.py
+21,Exploratory & statistical analysis,P4,done,analysis/eda.py
+22,Missing-data & outlier strategy,P3,done,§11 taxonomy
+23,"Encoding, scaling, transformation",P3,done,preprocessing.py
+24,Feature engineering,P3,done,feature_store.py
+25,Leakage review,P3,done,§15 subject-level
+26,Feature validation & registry,P3,partial,§13
+27,Offline & online feature store,P3,partial,feature_store.py + §14
+28,Baseline model development,P4,done,§18
+29,Classical / survival / time-series,P4,done,"recurrence, timeseries"
+30,Experiment tracking & HPO,P4,done,experiment_tracker.py
+31,Internal / temporal / external validation,P4,done,external_validation.csv
+32,"Calibration, fairness, explainability",P4,done,responsible_ai_runtime.py
+33,Clinical utility & safety validation,P7,partial,§30 safety layer
+34,Model registry & approval,P5,done,model_registry.py
+35,Batch / real-time deployment,P5,done,api/main.py
+36,RAG & agent integration,P6,partial,vector_db_pipeline.py
+37,Human clinical oversight,P7,done,human-in-the-loop
+38,"Observability, drift, quality monitoring",P5,done,observability.py
+39,"Retraining, recalibration, rollback",P5,done,retrain.py
+40,"Retention, archival, deletion, retirement",P2,partial,§35

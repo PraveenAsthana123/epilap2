@@ -28,6 +28,7 @@ import build_catalogues       # pain-point register + visualization catalogue
 import secondary_eeg_full      # full 23-phase EEG pipeline on real CHB-MIT (STFT/CWT/2D/SMOTE/HPO)
 import phase_io_export         # per-phase input/process/output + governance (viewer Phase Explorer)
 import vector_db_pipeline      # RAG vector DB (embed->index->retrieve) + scheduled jobs
+import enterprise_flow_export  # 7-pipeline / 40-stage operating model + prediction-object CSVs
 
 
 STAGES = [
@@ -46,6 +47,7 @@ STAGES = [
     ("Secondary — full 23-phase EEG (real CHB-MIT)", secondary_eeg_full),
     ("Phase Explorer — per-phase input/process/output export", phase_io_export),
     ("RAG — vector DB pipeline + scheduled jobs", vector_db_pipeline),
+    ("Operating model — 7 pipelines / 40 stages / prediction object", enterprise_flow_export),
 ]
 
 

@@ -15,6 +15,7 @@ import Dashboards from './Dashboards.jsx'
 import AIForms from './AIForms.jsx'
 import Monitoring from './Monitoring.jsx'
 import PhaseExplorer from './PhaseExplorer.jsx'
+import OperatingModel from './OperatingModel.jsx'
 
 // Primary/secondary phase explorers are PhaseExplorer bound to a pipeline.
 const PrimaryPhases = ({ datasets }) => <PhaseExplorer datasets={datasets} pipeline="primary" title="Primary Data Pipeline" icon="🧬" />
@@ -75,9 +76,9 @@ const SEVERITY = [
 
 // Human-friendly ordering for the "All Docs" nav sections (the rest of the blueprint).
 const GROUP_ORDER = [
-  'Start', 'Vision', 'Analytics', 'Responsible AI', 'Part I–III', 'Pipelines',
-  'Part IV–VIII', 'Primary Assessment', 'Roles & Stakeholders', 'HEP Dataset',
-  'Source Datasets', 'Dataset Dossiers', 'Reference',
+  'Start', 'Vision', 'Operating Model', 'Governance', 'Analytics', 'Responsible AI',
+  'Part I–III', 'Pipelines', 'Part IV–VIII', 'Primary Assessment', 'Roles & Stakeholders',
+  'HEP Dataset', 'Source Datasets', 'Dataset Dossiers', 'Reference',
 ]
 
 // Extract the first H1 as the doc title; fall back to the path.
@@ -89,6 +90,8 @@ function titleFromMarkdown(md, fallback) {
 // Map a doc path to an "All Docs" nav group. Order of checks matters (most specific first).
 function classify(rel) {
   const parts = rel.split('/')
+  if (rel.startsWith('enterprise-flow/')) return 'Operating Model'
+  if (rel.startsWith('governance/')) return 'Governance'
   if (rel.startsWith('analysis/')) return 'Analytics'
   if (rel.startsWith('responsible-ai/')) return 'Responsible AI'
   if (rel === 'research-vision.md') return 'Vision'
@@ -217,7 +220,7 @@ export default function App() {
     setView(v); setNavOpen(false); setQuery(''); setScoreMode(false)
     if (v === 'home') { setActiveId(null); return }
     if (['data', 'sim', 'scenarios', 'phases', 'eeg', 'dataviz', 'survey', 'reports',
-         'dashboards', 'forms', 'monitoring', 'pphases', 'sphases'].includes(v)) { setActiveId(null); return }
+         'dashboards', 'forms', 'monitoring', 'pphases', 'sphases', 'opmodel'].includes(v)) { setActiveId(null); return }
     if (v === 'all') { setActiveId(ALL_DOCS[0]?.id ?? null); return }
     const rd = ROLE_DOCS[v]
     setActiveId((rd.overview || rd.sections[0])?.id ?? null)
@@ -279,7 +282,7 @@ export default function App() {
         <button className={'tab tab-all' + (view === 'all' ? ' active' : '')} onClick={() => enter('all')}>
           All Docs
         </button>
-        {['pphases:🧬 Primary', 'sphases:〰️ Secondary', 'dataviz:📊 Data Viz', 'survey:🗣️ Survey',
+        {['opmodel:🏛️ Operating Model', 'pphases:🧬 Primary', 'sphases:〰️ Secondary', 'dataviz:📊 Data Viz', 'survey:🗣️ Survey',
           'forms:📝 AI Forms', 'dashboards:🧭 Dashboards', 'reports:📄 Reports', 'monitoring:📡 Monitoring',
           'sim:🧪 Simulation', 'scenarios:📚 Scenarios', 'phases:✅ Phases',
           'eeg:〜 EEG'].concat(DATASETS.length > 0 ? ['data:🗃️ Data'] : []).map((t) => {
@@ -297,7 +300,7 @@ export default function App() {
   // ---- Data-driven tabs ---------------------------------------------------
   const EXTRA = { data: DataView, sim: Simulation, scenarios: Scenarios, phases: PhaseDashboard, eeg: EEGWaveform,
     dataviz: DataViz, survey: Survey, reports: Reports, dashboards: Dashboards, forms: AIForms, monitoring: Monitoring,
-    pphases: PrimaryPhases, sphases: SecondaryPhases }
+    pphases: PrimaryPhases, sphases: SecondaryPhases, opmodel: OperatingModel }
   if (EXTRA[view]) {
     const Comp = EXTRA[view]
     return (

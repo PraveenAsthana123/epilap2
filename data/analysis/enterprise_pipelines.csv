@@ -1,0 +1,8 @@
+id,pipeline,owner,question,artefacts
+P1,Research & Clinical Protocol,DBA researcher + epileptologist + statistician,"What clinical problem, which population, what outcome?","protocol, cohort def, target def, SAP, ethics"
+P2,Data Engineering & Governance,Data architect + data steward,"How does data arrive, get contracted, governed, versioned?","data contracts, lakehouse zones, catalog, lineage"
+P3,Data Prep & Feature Engineering,ML/data engineer,"How is data cleaned, labelled, made leakage-safe, stored?","feature registry, feature store, leakage review"
+P4,Statistical & ML Modelling,ML architect + statistician,"What model, validated how, calibrated, fair?","experiments, baselines, validation, calibration"
+P5,MLOps & Deployment,ML platform engineer,"How is the model registered, served, rolled back, monitored?","registry, serving, rollback, monitoring"
+P6,"RAG, LLM & Agent Engineering",GenAI engineer,How is knowledge retrieved and generated safely?,"vector DB, prompt registry, agent policy, LLM eval"
+P7,"Clinical Safety, Responsible-AI & Monitoring",Clinical safety lead + privacy officer,"How is it kept safe, fair, private, overseen?","safety layer, fairness, consent, audit"

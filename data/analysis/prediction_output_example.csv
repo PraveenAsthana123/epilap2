@@ -1,0 +1,24 @@
+field,value
+patient_pseudonymous_id,EP001
+prediction_timestamp,2026-07-12T09:14:00-06:00
+prediction_horizon_days,90
+model_name,epi-recurrence-fusion
+model_version,7.2.0
+feature_set_version,5.1
+dataset_version,3.2
+predicted_class,breakthrough_seizure
+raw_probability,0.72
+calibrated_probability,0.64
+uncertainty_level,moderate
+risk_category,elevated
+top_contributing_factors,line_length_up; asm_adherence_low; sleep_variability_high
+protective_factors,stable_asm_regimen
+missing_critical_information,recent_ambulatory_EEG
+out_of_distribution_indicator,false
+fairness_warning,none
+clinical_guideline_evidence,ILAE ictal-EEG guidance; ASM-adherence evidence
+recommended_next_assessment,neurologist review + repeat EEG within 2 weeks
+human_review_status,pending
+clinician_override_status,none
+override_reason,none
+audit_id,aud-2026-07-12-0009
