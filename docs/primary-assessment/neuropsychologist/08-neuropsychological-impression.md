@@ -25,6 +25,25 @@
 | Confidence | Moderate–High (convergent) |
 | Primary Recommendations | Verbal memory strategy training; mood referral; sleep/ASM review |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The items/tests the neuropsychologist administers for this section, with response type, validation, EP001's example score, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| NPS-0801 | Global screen (MoCA) summary? | Read-only(Auto) | MoCA 0-30 | 26/30 (borderline) | global_screen_moca |
+| NPS-0802 | Verbal memory summary? | Dropdown[Impaired, Low Average, Average, Above Average] | Categorical | Low Average (selectively weak) | verbal_memory_summary |
+| NPS-0803 | Visual memory summary? | Dropdown[Impaired, Low Average, Average, Above Average] | Categorical | Average (preserved) | visual_memory_summary |
+| NPS-0804 | Verbal–visual dissociation present? | Dropdown[Absent, Emerging, Present] | Categorical | Present (verbal < visual) | verbal_visual_dissociation |
+| NPS-0805 | Attention/processing speed summary? | Dropdown[Impaired, Low Average, Average, Above Average] | Categorical | Low Average (ASM/sleep related) | attention_speed_summary |
+| NPS-0806 | Executive function summary? | Text | Free-text summary | Mild shifting/inhibition weakness | executive_summary |
+| NPS-0807 | Confrontation naming (BNT) summary? | Read-only(Auto) | 0-60 | 48/60 (mild anomia) | confrontation_naming_summary |
+| NPS-0808 | Mood/anxiety composite summary? | Read-only(Auto) | Composite scores | GAD-7 = 9; BDI-II = 17; NDDI-E borderline | mood_anxiety_summary |
+| NPS-0809 | Quality of life (QOLIE-31) summary? | Dropdown[Good, Mildly reduced, Moderately reduced, Severely reduced] | Categorical | Moderately reduced | qol_summary |
+| NPS-0810 | Lateralizing formulation? | Dropdown[No lateralizing deficit, Possible left-temporal, Left temporal, Right temporal] | Categorical | Left (dominant) temporal profile | lateralizing_formulation |
+| NPS-0811 | Confidence in the formulation? | Dropdown[Low, Moderate, Moderate–High, High] | Categorical | Moderate–High (convergent) | formulation_confidence |
+| NPS-0812 | Primary recommendations? | Text | Free-text list | Verbal memory strategy training; mood referral; sleep/ASM review | primary_recommendations |
+
 ## Severity Scenario Model — Neuropsychologist View
 
 *Caption - The same cognitive assessment across four epilepsy severity levels from the neuropsychologist's point of view; each score shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

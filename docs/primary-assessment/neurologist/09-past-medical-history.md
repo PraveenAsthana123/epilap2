@@ -19,6 +19,19 @@
 | Febrile Seizures | No |
 | Developmental Delay | No |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The patient-facing questions the neurologist asks to capture this section, with response type, validation, EP001's example answer, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| NEU-0901 | Have you ever had a head injury or concussion? If so, when? | Dropdown[None, Mild concussion, Moderate TBI, Severe TBI] + Date | Allowed set; year 1900-present | Mild concussion (2019) | head_injury_history |
+| NEU-0902 | Have you ever been told you had a stroke? | Yes-No | Yes/No | No | prior_stroke_flag |
+| NEU-0903 | Have you ever been diagnosed with a brain tumor? | Yes-No | Yes/No | No | brain_tumor_flag |
+| NEU-0904 | Have you had any infection of the brain or spinal cord (e.g., meningitis, encephalitis)? | Yes-No | Yes/No | No | cns_infection_flag |
+| NEU-0905 | As a child, did you have seizures with fever (febrile seizures)? | Dropdown[No, Simple, Complex/prolonged] | Allowed set | No | febrile_seizure_history |
+| NEU-0906 | Were you ever told you had developmental delay as a child? | Yes-No | Yes/No | No | developmental_delay_flag |
+
 ## Severity Scenario Model — Neurologist View
 
 *Caption - The same assessment answered across four epilepsy severity levels from the neurologist's point of view; each variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

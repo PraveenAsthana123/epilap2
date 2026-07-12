@@ -25,6 +25,25 @@
 | Titration Headroom | Yes — both agents below mid-range |
 | Recommendation | Repeat trough after LEV titration |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The items the pharmacist records for this section, with response type, validation, EP001's example value, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| PHA-0601 | What type of serum sample was taken? | Dropdown[Trough/Random/STAT/Serial] | Single select | Trough (pre-dose) | sample_type |
+| PHA-0602 | What is the carbamazepine serum level? | Number | 0–20 mg/L (CBZ ref 4–12 mg/L) | 6.2 mg/L | cbz_serum_level_mgl |
+| PHA-0603 | What is the carbamazepine reference range? | Read-only(Auto) | 4–12 mg/L | 4–12 mg/L | cbz_reference_range |
+| PHA-0604 | How is the carbamazepine level interpreted? | Dropdown[Subtherapeutic/Low-therapeutic/Mid/High/Toxic] | Single select | Low-therapeutic | cbz_level_interpretation |
+| PHA-0605 | What is the levetiracetam serum level? | Number | 0–60 mg/L (LEV ref 12–46 mg/L) | 18 mg/L (est.) | lev_serum_level_mgl |
+| PHA-0606 | What is the levetiracetam reference range? | Read-only(Auto) | 12–46 mg/L | 12–46 mg/L | lev_reference_range |
+| PHA-0607 | How is the levetiracetam level interpreted? | Dropdown[Subtherapeutic/Low-therapeutic/Mid/High/Toxic] | Single select | Low-therapeutic | lev_level_interpretation |
+| PHA-0608 | What is the sampling context? | Text | Free text | Steady state, morning trough | sampling_context |
+| PHA-0609 | What was the adherence level at the time of sampling? | Number | MPR 0.00–1.00 | MPR 0.88 (borderline) | adherence_at_sampling |
+| PHA-0610 | What is the estimated auto-induction effect on the level? | Text | Free text | Likely lowering CBZ level | auto_induction_effect |
+| PHA-0611 | Is titration headroom available on current levels? | Yes-No | Yes / No | Yes — both agents below mid-range | titration_headroom_flag |
+| PHA-0612 | What is the therapeutic-drug-monitoring recommendation? | Text | Free text | Repeat trough after LEV titration | tdm_recommendation |
+
 ## Severity Scenario Model — Pharmacist View
 
 *Caption - The same assessment answered across four epilepsy severity levels from the pharmacist's point of view; each variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

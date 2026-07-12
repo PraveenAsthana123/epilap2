@@ -32,6 +32,32 @@
 | Coding Audit Flag | Passed |
 | Height / Weight / BMI | 175 cm / 72 kg / 23.5 |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The administrative items captured for this section, with response type, validation, EP001's example value, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| ADM-0401 | What is the patient's assigned Patient ID? | Read-only(Auto) | Format EP### | EP001 | patient_id_resolution |
+| ADM-0402 | What is the de-identified Study ID? | Read-only(Auto) | Format DBA-EP-### | DBA-EP-001 | study_id_mapping |
+| ADM-0403 | What is the encounter type? | Dropdown[Consult/Follow-up/Urgent/Emergency] | Allowed set | Outpatient Neurology Consult | encounter_type_classification |
+| ADM-0404 | What is the encounter date? | Date | ISO date (YYYY-MM-DD) | 2026-07-14 | encounter_timeline_anchor |
+| ADM-0405 | What is the place of service code? | Dropdown[11/21/23] | CMS POS code set | 11 (Office) | place_of_service_validation |
+| ADM-0406 | What is the primary diagnosis (ICD-10)? | Text | ICD-10 code format | G40.209 | icd10_code_assignment |
+| ADM-0407 | What is the diagnosis description? | Text | Non-empty | Localization-related focal epilepsy with complex partial seizures, not intractable, without status epilepticus | diagnosis_text_mapping |
+| ADM-0408 | What is the alternate diagnosis (ICD-10)? | Text | ICD-10 code format | G40.109 | alternate_code_suggestion |
+| ADM-0409 | What is the laterality note? | Text | Non-empty | Left-temporal focus | laterality_extraction |
+| ADM-0410 | What is the E/M service (CPT)? | Text | CPT code format | 99204 (New patient, moderate complexity) | em_level_recommendation |
+| ADM-0411 | What is the EEG procedure (CPT)? | Text | CPT code or Not performed | 95816 (EEG, awake and drowsy) | procedure_code_assignment |
+| ADM-0412 | What is the MRI procedure (CPT)? | Text | CPT code or Not performed | 70553 (MRI brain w/ and w/o contrast) | imaging_code_assignment |
+| ADM-0413 | What modifier applies? | Text | CPT modifier or None | None | modifier_suggestion |
+| ADM-0414 | Who is the rendering provider? | Text | Non-empty provider | Attending Neurologist | provider_attribution |
+| ADM-0415 | Is medical necessity documented? | Yes-No | Documented with rationale | Documented (new-onset focal seizures) | medical_necessity_validation |
+| ADM-0416 | What is the charge capture status? | Dropdown[Complete/Incomplete/Expedited] | Allowed set | Complete | charge_capture_tracking |
+| ADM-0417 | What is the claim status? | Dropdown[Ready to Submit/Held/Submitted/Denied] | Allowed set | Ready to Submit | claim_status_prediction |
+| ADM-0418 | What is the coding audit flag? | Dropdown[Passed/Priority review/Failed] | Allowed set | Passed | coding_audit_flagging |
+| ADM-0419 | What are the patient's height, weight, and BMI? | Number | cm / kg / BMI numeric | 175 cm / 72 kg / 23.5 | anthropometric_capture |
+
 ## Severity Scenario Model — Administrator View
 
 *Caption - The same administrative record across four epilepsy severity levels from the administrator's point of view; each variable shifts with clinical acuity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

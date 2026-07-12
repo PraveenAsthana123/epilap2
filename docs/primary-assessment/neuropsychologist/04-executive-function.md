@@ -25,6 +25,25 @@
 | Category Fluency (Animals) | 16 (Low Average) |
 | Interpretation | Mild shifting/inhibition weakness; concept formation intact |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The items/tests the neuropsychologist administers for this section, with response type, validation, EP001's example score, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| NPS-0401 | Trail Making A completion time? | Number | seconds | 28 sec (Scaled 10) | trail_making_a_time |
+| NPS-0402 | Trail Making B completion time? | Number | seconds | 78 sec (Scaled 8) | trail_making_b_time |
+| NPS-0403 | Trail B–A difference? | Read-only(Auto) | seconds | 50 sec (mildly elevated) | trail_b_minus_a |
+| NPS-0404 | Stroop Word T-score? | Score | T 20-80 | T = 52 | stroop_word_t |
+| NPS-0405 | Stroop Color T-score? | Score | T 20-80 | T = 49 | stroop_color_t |
+| NPS-0406 | Stroop Color-Word interference T-score? | Score | T 20-80 | T = 43 (mild) | stroop_interference_t |
+| NPS-0407 | WCST categories completed? | Score | 0-6 | 5/6 | wcst_categories_completed |
+| NPS-0408 | WCST perseverative errors T-score? | Score | T 20-80 | T = 41 (mild) | wcst_perseverative_errors_t |
+| NPS-0409 | WCST failures to maintain set? | Number | Count | 1 | wcst_failure_maintain_set |
+| NPS-0410 | Verbal Fluency (FAS) total? | Number | raw count | 34 (Low Average) | verbal_fluency_fas |
+| NPS-0411 | Category Fluency (Animals) total? | Number | raw count | 16 (Low Average) | category_fluency_animals |
+| NPS-0412 | Clinical interpretation of executive function? | Text | Free-text summary | Mild shifting/inhibition weakness; concept formation intact | executive_interpretation |
+
 ## Severity Scenario Model — Neuropsychologist View
 
 *Caption - The same cognitive assessment across four epilepsy severity levels from the neuropsychologist's point of view; each score shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

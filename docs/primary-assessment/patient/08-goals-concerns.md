@@ -25,6 +25,25 @@
 | Willing To Try | Sleep changes, better adherence |
 | Confidence In Plan | Moderate, hopeful |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The self-report questions the patient answers for this section, with response type, validation, EP001's example answer, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| PAT-0801 | What is my top goal for treatment? | Text | Free-text ≤120 chars | Regain driving independence | primary_goal |
+| PAT-0802 | What is my second goal? | Text | Free-text ≤120 chars | Fewer seizures per month | secondary_goal |
+| PAT-0803 | What is my third goal? | Text | Free-text ≤120 chars | Sleep better and lower stress | tertiary_goal |
+| PAT-0804 | What is my biggest concern? | Text | Free-text ≤120 chars | Losing my license affects my job | primary_concern |
+| PAT-0805 | What is my second concern? | Text | Free-text ≤120 chars | Seizure at work in front of colleagues | secondary_concern |
+| PAT-0806 | What is my third concern? | Text | Free-text ≤120 chars | Long-term medication side effects | tertiary_concern |
+| PAT-0807 | How does epilepsy affect my work? | Text | Free-text ≤200 chars | Commute and confidence affected | work_impact |
+| PAT-0808 | How does epilepsy affect my relationships? | Text | Free-text ≤200 chars | Wife worries; I feel dependent | relationship_impact |
+| PAT-0809 | What does treatment success look like to me? | Text | Free-text ≤200 chars | 3 months seizure-free, driving again | success_definition |
+| PAT-0810 | What support do I want? | Text | Free-text ≤200 chars | Clear plan and trigger coaching | desired_support |
+| PAT-0811 | What am I willing to try? | Text | Free-text ≤200 chars | Sleep changes, better adherence | willingness_to_change |
+| PAT-0812 | How confident am I in my care plan? | Dropdown[Low/Moderate/High] | Ordered category | Moderate, hopeful | plan_confidence |
+
 ## Severity Scenario Model — Patient View
 
 *Caption - The same self-report across four epilepsy severity levels from the patient's point of view; each self-reported variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

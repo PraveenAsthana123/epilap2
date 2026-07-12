@@ -19,6 +19,19 @@
 | Average Impedance | 3.1 kΩ |
 | All Channels <5 kΩ | Yes |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The items the EEG technician records for this section, with response type, validation, EP001's example value, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| EEG-0301 | What is the measured impedance at Fp1? | Number | kΩ; target <5 kΩ | 3.2 kΩ | fp1_impedance_kohm |
+| EEG-0302 | What is the measured impedance at Fp2? | Number | kΩ; target <5 kΩ | 3.1 kΩ | fp2_impedance_kohm |
+| EEG-0303 | What is the measured impedance at F3? | Number | kΩ; target <5 kΩ | 2.9 kΩ | f3_impedance_kohm |
+| EEG-0304 | What is the measured impedance at F4? | Number | kΩ; target <5 kΩ | 3.0 kΩ | f4_impedance_kohm |
+| EEG-0305 | What is the average impedance across channels? | Read-only(Auto) | kΩ; mean of channels | 3.1 kΩ | average_impedance_kohm |
+| EEG-0306 | Do all channels meet the <5 kΩ quality gate? | Yes-No | Yes/No; derived from channel values | Yes | all_channels_under_5kohm |
+
 ## Severity Scenario Model — EEG Technician View
 
 *Caption - The same acquisition assessment across four epilepsy severity levels from the EEG technician's point of view; each variable shifts with severity and recording context. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes, requiring continuous emergency EEG.*

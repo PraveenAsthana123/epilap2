@@ -24,6 +24,24 @@
 | Witnessed | Yes |
 | Seizure Diary | Mobile App |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The patient-facing questions the neurologist asks to capture this section, with response type, validation, EP001's example answer, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| NEU-0301 | What type of epilepsy have you been told you have? | Dropdown[Focal Epilepsy|Generalized Epilepsy|Combined|Unknown] | one-of[...] | Focal Epilepsy | epilepsy_type |
+| NEU-0302 | What type of seizures do you experience? | Dropdown[Focal Aware|Focal Impaired Awareness|Focal to Bilateral Tonic-Clonic|Generalized] | one-of[...] | Focal Impaired Awareness | seizure_type |
+| NEU-0303 | How often do your seizures happen? | Number | 0-300 per month | 5/month | seizure_freq_pm |
+| NEU-0304 | How long does a typical seizure last? | Number | 0-3600 sec | 90 sec | avg_seizure_duration_sec |
+| NEU-0305 | What is the longest seizure you have had? | Number | 0-3600 sec | 3 min | longest_seizure_sec |
+| NEU-0306 | When was your most recent seizure? | Date | ISO-8601 date | 2026-06-18 | last_seizure_date |
+| NEU-0307 | Do your seizures ever come in clusters? | Yes-No | one-of[Yes|No] | No | cluster_seizures |
+| NEU-0308 | Have you ever had a seizure that would not stop? | Yes-No | one-of[Yes|No] | No | status_epilepticus |
+| NEU-0309 | Do you have seizures during sleep or at night? | Dropdown[Yes|No|Occasional] | one-of[...] | Yes | nocturnal_seizures |
+| NEU-0310 | Are your seizures usually seen by someone else? | Yes-No | one-of[Yes|No] | Yes | witnessed |
+| NEU-0311 | How do you keep track of your seizures? | Dropdown[Mobile App|Paper Diary|None|Inpatient EEG telemetry] | one-of[...] | Mobile App | seizure_diary_method |
+
 ## Severity Scenario Model — Neurologist View
 
 *Caption - The same assessment answered across four epilepsy severity levels from the neurologist's point of view; each variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

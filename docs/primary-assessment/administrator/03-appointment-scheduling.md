@@ -33,6 +33,33 @@
 | Appointment Status | Confirmed |
 | No-Show Risk Flag | Low |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The administrative items captured for this section, with response type, validation, EP001's example value, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| ADM-0301 | What is the patient's assigned Patient ID? | Read-only(Auto) | Format EP### | EP001 | patient_id_resolution |
+| ADM-0302 | What is the de-identified Study ID? | Read-only(Auto) | Format DBA-EP-### | DBA-EP-001 | study_id_mapping |
+| ADM-0303 | What is the visit type? | Dropdown[New Patient/Established/Emergency] | Allowed set | New Patient | visit_type_classification |
+| ADM-0304 | What is the appointment type? | Dropdown[Consult/Follow-up/Urgent/Emergency] | Allowed set | Outpatient Neurology Consult | appointment_type_routing |
+| ADM-0305 | What is the scheduled appointment date? | Date | ISO date (YYYY-MM-DD) | 2026-07-14 | calendar_slot_optimization |
+| ADM-0306 | What is the scheduled appointment time? | Text | 24h time (HH:MM) | 09:30 | slot_time_allocation |
+| ADM-0307 | What is the appointment duration? | Number | Minutes > 0 | 45 min | duration_estimation |
+| ADM-0308 | What is the clinic location? | Text | Non-empty facility/suite | Neurology Outpatient, Suite 3 | resource_location_assignment |
+| ADM-0309 | Who is the assigned provider? | Text | Non-empty provider | Attending Neurologist | provider_matching |
+| ADM-0310 | What is the referral source? | Text | Non-empty source | Family Physician | referral_source_attribution |
+| ADM-0311 | What is the booking channel? | Dropdown[Referral Intake/Patient Portal/Clinic Triage/ED Triage] | Allowed set | Referral Intake | channel_utilization_analysis |
+| ADM-0312 | Is an interpreter required? | Yes-No | Boolean | No | interpreter_need_prediction |
+| ADM-0313 | Is transport assistance required? | Yes-No | Boolean | No | transport_need_prediction |
+| ADM-0314 | When is the EEG scheduled? | Date | ISO date-time or Not required | 2026-07-21 10:00 | diagnostic_sequencing |
+| ADM-0315 | When is the MRI scheduled? | Date | ISO date-time or Not required | 2026-07-23 14:00 | imaging_sequencing |
+| ADM-0316 | When is the follow-up appointment? | Date | ISO date with interval | 2026-10-14 (3 months) | followup_interval_planning |
+| ADM-0317 | What is the reminder method? | Dropdown[SMS/Email/SMS + Email/Call] | Allowed set | SMS + Email | reminder_channel_selection |
+| ADM-0318 | What is the referral-to-consult wait time? | Number | Days >= 0 | 3 days | access_wait_time_metric |
+| ADM-0319 | What is the appointment status? | Dropdown[Confirmed/Pending/Admitted/Cancelled] | Allowed set | Confirmed | appointment_status_tracking |
+| ADM-0320 | What is the no-show risk flag? | Dropdown[Low/Medium/High/N/A] | Allowed set | Low | no_show_risk_prediction |
+
 ## Severity Scenario Model — Administrator View
 
 *Caption - The same administrative record across four epilepsy severity levels from the administrator's point of view; each variable shifts with clinical acuity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

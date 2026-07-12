@@ -23,6 +23,23 @@
 | OT049 Impact summary | Major interference across work, transport, and home occupations; fear-driven avoidance present |
 | OT050 Occupational Impact Score (Auto) | 80% (High) |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The questions the occupational therapist asks for this section, with response type, validation, EP001's example answer, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| OT041 | Do seizures interfere with the patient's work? | Dropdown[Yes/No/N/A] | One of allowed set | Yes — on medical leave | work_interference_flag |
+| OT042 | Do seizures interfere with the patient's school participation? | Dropdown[Yes/No/N/A] | One of allowed set | N/A — not a student | school_interference_flag |
+| OT043 | Do seizures interfere with driving/transportation? | Dropdown[Yes/No/N/A] | One of allowed set | Yes — driving restricted, uses public transport/lifts | transport_interference_flag |
+| OT044 | Do seizures interfere with household activities? | Dropdown[Yes/No/N/A] | One of allowed set | Yes — cooking/meal-prep affected | household_interference_flag |
+| OT045 | Do seizures interfere with social participation? | Dropdown[Yes/No/N/A] | One of allowed set | Yes — reduced community participation | social_interference_flag |
+| OT046 | Do seizures interfere with the patient's sleep? | Dropdown[Yes/No/N/A] | One of allowed set | Yes — nocturnal seizures affect sleep | sleep_interference_flag |
+| OT047 | Does fear of seizures limit the patient's activities? | Yes-No | Yes or No | Yes | seizure_fear_limitation_flag |
+| OT048 | Does the patient avoid activities due to seizure concerns? | Yes-No | Yes or No | Yes — avoids solo cooking and swimming | activity_avoidance_flag |
+| OT049 | Summarize the occupational impact of seizures. | Text | Free text, 20-500 chars | Major interference across work, transport, and home occupations; fear-driven avoidance present | seizure_impact_embedding |
+| OT050 | Occupational impact score for the patient. | Read-only(Auto) | 0-100%, system-derived | 80% (High) | occupational_impact_score |
+
 ## Severity Scenario Model — Occupational Therapist View
 
 *Caption - The same assessment answered across four epilepsy severity levels from the occupational therapist's point of view; each variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

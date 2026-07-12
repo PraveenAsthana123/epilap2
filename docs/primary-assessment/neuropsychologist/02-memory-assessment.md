@@ -26,6 +26,26 @@
 | Retention (% retained, verbal) | 74% |
 | Interpretation | Selective verbal-memory weakness, visuospatial preserved |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The items/tests the neuropsychologist administers for this section, with response type, validation, EP001's example score, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| NPS-0201 | Which memory battery was administered? | Dropdown[WMS-IV, WMS-III, RBANS] | Battery name | WMS-IV (Adult) | memory_battery |
+| NPS-0202 | Auditory (verbal) memory index? | Score | Index 40-160 | 84 (Low Average) | auditory_verbal_memory_index |
+| NPS-0203 | Logical Memory I (immediate) scaled score? | Score | Scaled 1-19 | Scaled 6 | logical_memory_i_scaled |
+| NPS-0204 | Logical Memory II (delayed) scaled score? | Score | Scaled 1-19 | Scaled 5 | logical_memory_ii_scaled |
+| NPS-0205 | Verbal Paired Associates II scaled score? | Score | Scaled 1-19 | Scaled 6 | verbal_paired_associates_ii_scaled |
+| NPS-0206 | Verbal recognition score? | Score | 0-30 | 22/30 | verbal_recognition_score |
+| NPS-0207 | Visual memory index? | Score | Index 40-160 | 102 (Average) | visual_memory_index |
+| NPS-0208 | Designs I / II scaled scores? | Score | Scaled 1-19 each | Scaled 10 / 10 | designs_scaled |
+| NPS-0209 | Visual Reproduction II scaled score? | Score | Scaled 1-19 | Scaled 11 | visual_reproduction_ii_scaled |
+| NPS-0210 | Visual recognition score? | Score | 0-30 | 27/30 | visual_recognition_score |
+| NPS-0211 | Verbal–visual discrepancy? | Read-only(Auto) | Index-point difference | 18 pts (verbal < visual) | verbal_visual_discrepancy |
+| NPS-0212 | Percent verbal information retained? | Number | 0-100% | 74% | verbal_retention_pct |
+| NPS-0213 | Clinical interpretation of the memory profile? | Text | Free-text summary | Selective verbal-memory weakness, visuospatial preserved | memory_interpretation |
+
 ## Severity Scenario Model — Neuropsychologist View
 
 *Caption - The same cognitive assessment across four epilepsy severity levels from the neuropsychologist's point of view; each score shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

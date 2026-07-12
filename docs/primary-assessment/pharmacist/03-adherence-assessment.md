@@ -25,6 +25,25 @@
 | Intervention | Dose-timing counselling, reminder app |
 | Reassessment Interval | 4 weeks |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The items the pharmacist records for this section, with response type, validation, EP001's example value, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| PHA-0301 | Which methods were used to assess adherence? | Dropdown[Pill count/MPR/Self-report/Inpatient MAR review] (multi-select) | At least 1 required | Pill count + MPR + self-report | adherence_method_set |
+| PHA-0302 | How many days of refill records were reviewed? | Number | 30–365 days | 90 days | refill_window_days |
+| PHA-0303 | What is the medication possession ratio (MPR)? | Number | 0.00–1.00 | 0.88 | medication_possession_ratio |
+| PHA-0304 | What is the pill-count adherence percentage? | Percentage | 0–100% | 87% | pill_count_adherence_pct |
+| PHA-0305 | What did the patient self-report about missed doses? | Text | Free text | Occasionally misses evening dose | self_report_adherence |
+| PHA-0306 | How many doses are missed per week (estimated)? | Number | 0–14 | 1–2 (evening CBZ) | missed_doses_per_week |
+| PHA-0307 | What is the overall adherence category? | Dropdown[Optimal/Good/Suboptimal/Critical] | Single select | Suboptimal (borderline) | adherence_category |
+| PHA-0308 | What adherence barrier was identified? | Text | Free text, or None | Evening schedule / work shift timing | adherence_barrier_tag |
+| PHA-0309 | What is the observed dosing pattern? | Text | Free text | Consistent morning, variable evening | dosing_pattern_profile |
+| PHA-0310 | What is the likely impact of adherence on seizure control? | Dropdown[None/Minimal/Plausible contributor/Precipitant] | Single select | Plausible contributor to breakthrough | adherence_control_impact |
+| PHA-0311 | What adherence intervention is planned? | Text | Free text | Dose-timing counselling, reminder app | adherence_intervention |
+| PHA-0312 | When should adherence be reassessed? | Dropdown[4 weeks/3 months/6–12 months/Continuous] | Single select | 4 weeks | reassessment_interval |
+
 ## Severity Scenario Model — Pharmacist View
 
 *Caption - The same assessment answered across four epilepsy severity levels from the pharmacist's point of view; each variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

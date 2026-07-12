@@ -25,6 +25,25 @@
 | Discrepancies Resolved | Yes — timing counselling flagged |
 | Total Active Medications | 2 ASMs + 1 supplement |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The items the pharmacist records for this section, with response type, validation, EP001's example value, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| PHA-0101 | What is the patient's unique identifier? | Read-only(Auto) | Format EP-YYYY-NNN | EP001 (EP-2026-001) | patient_identity_link |
+| PHA-0102 | What is the patient's current body weight? | Number | 30–200 kg | 72 kg | weight_based_dosing |
+| PHA-0103 | On what date was this reconciliation performed? | Date | ISO 8601 (YYYY-MM-DD) | 2026-07-11 | reconciliation_recency_flag |
+| PHA-0104 | Which sources did you use to verify the medication list? | Dropdown[Prescriber orders/Pharmacy dispensing log/Patient interview/ED-ICU chart] (multi-select) | At least 1 required | Prescriber orders, pharmacy dispensing log, patient interview | source_completeness_score |
+| PHA-0105 | What is the first antiseizure medication, dose, and frequency? | Text | Drug name + dose + frequency | Carbamazepine (CBZ) 400 mg BID | primary_asm_encoding |
+| PHA-0106 | What is the second antiseizure medication, dose, and frequency? | Text | Drug name + dose + frequency, or None | Levetiracetam (LEV) 500 mg BID | secondary_asm_encoding |
+| PHA-0107 | Is any PRN or rescue medication prescribed? | Text | Drug + route, or None | None currently prescribed | rescue_medication_flag |
+| PHA-0108 | What OTC medications or supplements does the patient take? | Text | Free text, or None | Occasional ibuprofen; vitamin D 1000 IU | otc_interaction_input |
+| PHA-0109 | Does the patient have any known drug allergies? | Text | NKDA or allergen list | No known drug allergies (NKDA) | allergy_alert_flag |
+| PHA-0110 | How many discrepancies were found between sources? | Number | Integer ≥ 0 | 1 (CBZ evening dose taken late/variably) | discrepancy_count |
+| PHA-0111 | Were the identified discrepancies resolved? | Yes-No | Yes / No / Not applicable | Yes — timing counselling flagged | discrepancy_resolution_status |
+| PHA-0112 | How many total active medications are on the reconciled list? | Read-only(Auto) | Auto-count from list | 2 ASMs + 1 supplement | medication_burden_index |
+
 ## Severity Scenario Model — Pharmacist View
 
 *Caption - The same assessment answered across four epilepsy severity levels from the pharmacist's point of view; each variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

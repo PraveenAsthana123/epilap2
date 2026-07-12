@@ -25,6 +25,25 @@
 | Sustained Attention Lapses | Mild, late-block |
 | Interpretation | Mild slowing; likely ASM + sleep-deficit related |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The items/tests the neuropsychologist administers for this section, with response type, validation, EP001's example score, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| NPS-0301 | Digit Span Forward raw/scaled score? | Score | Scaled 1-19 | 6 (Scaled 9) | digit_span_forward |
+| NPS-0302 | Digit Span Backward raw/scaled score? | Score | Scaled 1-19 | 4 (Scaled 8) | digit_span_backward |
+| NPS-0303 | Digit Span Sequencing scaled score? | Score | Scaled 1-19 | Scaled 8 | digit_span_sequencing |
+| NPS-0304 | Spatial Span scaled score? | Score | Scaled 1-19 | Scaled 10 | spatial_span |
+| NPS-0305 | Symbol Search scaled score (WAIS-IV)? | Score | Scaled 1-19 | Scaled 8 | symbol_search |
+| NPS-0306 | Coding / Digit Symbol scaled score? | Score | Scaled 1-19 | Scaled 7 | coding_digit_symbol |
+| NPS-0307 | Processing Speed Index? | Score | Index 40-160 | 88 (Low Average) | processing_speed_index |
+| NPS-0308 | Continuous Performance omission errors? | Number | Count | 6 (mild) | cpt_omissions |
+| NPS-0309 | Continuous Performance commission errors? | Number | Count | 4 (WNL) | cpt_commissions |
+| NPS-0310 | Mean reaction time? | Number | ms | 412 ms (mildly slowed) | reaction_time_mean_ms |
+| NPS-0311 | Sustained attention lapses observed? | Dropdown[None, Occasional, Mild late-block, Frequent] | Categorical | Mild, late-block | sustained_attention_lapses |
+| NPS-0312 | Clinical interpretation of attention/speed? | Text | Free-text summary | Mild slowing; likely ASM + sleep-deficit related | attention_speed_interpretation |
+
 ## Severity Scenario Model — Neuropsychologist View
 
 *Caption - The same cognitive assessment across four epilepsy severity levels from the neuropsychologist's point of view; each score shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

@@ -21,6 +21,21 @@
 | Speech Difficulty | Mild |
 | Numbness | Left Hand |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The patient-facing questions the neurologist asks to capture this section, with response type, validation, EP001's example answer, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| NEU-0401 | Do you get any warning before a seizure? | Dropdown[Yes|No|Occasional] | one-of[...] | Yes | aura_present |
+| NEU-0402 | Do you notice a metallic or unusual taste? | Dropdown[Yes|No|Occasional] | one-of[...] | Yes | aura_metallic_taste |
+| NEU-0403 | Do you get a feeling of deja vu beforehand? | Yes-No | one-of[Yes|No] | Yes | aura_deja_vu |
+| NEU-0404 | Do you feel a sudden sense of fear? | Yes-No | one-of[Yes|No] | No | aura_fear |
+| NEU-0405 | Do you see any visual changes or lights? | Yes-No | one-of[Yes|No] | No | aura_visual |
+| NEU-0406 | Do you hear any unusual sounds? | Yes-No | one-of[Yes|No] | No | aura_auditory |
+| NEU-0407 | Do you have any trouble speaking beforehand? | Dropdown[None|Mild|Moderate|Global] | one-of[...] | Mild | aura_speech_difficulty |
+| NEU-0408 | Do you feel any numbness or tingling, and where? | Dropdown[None|Left Hand|Right Hand|Face|Other] | one-of[...] | Left Hand | aura_numbness_location |
+
 ## Severity Scenario Model — Neurologist View
 
 *Caption - The same assessment answered across four epilepsy severity levels from the neurologist's point of view; each variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

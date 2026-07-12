@@ -18,6 +18,18 @@
 | Memory Loss | Temporary |
 | Recovery Time | 45 min |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The patient-facing questions the neurologist asks to capture this section, with response type, validation, EP001's example answer, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| NEU-0601 | How long are you confused after a seizure? | Number | 0-1440 min | 20 min | postictal_confusion_min |
+| NEU-0602 | Do you get a headache afterwards, and how bad? | Dropdown[None|Mild|Moderate|Severe] | one-of[...] | Mild | postictal_headache |
+| NEU-0603 | How tired do you feel afterwards? | Dropdown[None|Mild|Moderate|Severe|Profound] | one-of[...] | Severe | postictal_fatigue |
+| NEU-0604 | Do you have any memory loss after a seizure? | Dropdown[None|Brief|Temporary|Prolonged] | one-of[...] | Temporary | postictal_memory_loss |
+| NEU-0605 | How long until you feel back to normal? | Number | 0-1440 min | 45 min | recovery_time_min |
+
 ## Severity Scenario Model — Neurologist View
 
 *Caption - The same assessment answered across four epilepsy severity levels from the neurologist's point of view; each variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

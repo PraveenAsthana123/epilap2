@@ -25,6 +25,25 @@
 | Assessment Date | 2026-07-08 |
 | Change Since Last (3-mo) | Slightly worse |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The self-report questions the patient answers for this section, with response type, validation, EP001's example answer, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| PAT-0601 | How much do I worry about having seizures? | Number | QOLIE-31 0–100 | 42 (frequent worry) | qolie_seizure_worry |
+| PAT-0602 | How would I rate my overall quality of life? | Number | QOLIE-31 0–100 | 55 (moderately reduced) | qolie_overall_qol |
+| PAT-0603 | How is my emotional well-being? | Number | QOLIE-31 0–100 | 58 | qolie_emotional_wellbeing |
+| PAT-0604 | How are my energy and fatigue levels? | Number | QOLIE-31 0–100 | 48 | qolie_energy_fatigue |
+| PAT-0605 | How is my cognitive functioning? | Number | QOLIE-31 0–100 | 52 | qolie_cognitive_function |
+| PAT-0606 | How much do medication effects bother me? | Number | QOLIE-31 0–100 | 50 | qolie_medication_effects |
+| PAT-0607 | How is my social functioning? | Number | QOLIE-31 0–100 | 60 | qolie_social_function |
+| PAT-0608 | What is my QOLIE-31 total score? | Read-only(Auto) | QOLIE-31 0–100 | 53 (moderately reduced) | qolie_total_score |
+| PAT-0609 | What has the biggest impact on my quality of life? | Text | Free-text ≤120 chars | Cannot drive independently | primary_qol_impact |
+| PAT-0610 | What has the second biggest impact? | Text | Free-text ≤120 chars | Seizure worry at work | secondary_qol_impact |
+| PAT-0611 | When did I complete this assessment? | Date | ISO date ≤ today | 2026-07-08 | assessment_date |
+| PAT-0612 | How has my quality of life changed since last time? | Dropdown[Much better/Slightly better/Same/Slightly worse/Much worse] | Ordered category | Slightly worse | qol_change_trend |
+
 ## Severity Scenario Model — Patient View
 
 *Caption - The same self-report across four epilepsy severity levels from the patient's point of view; each self-reported variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

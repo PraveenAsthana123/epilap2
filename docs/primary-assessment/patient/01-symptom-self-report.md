@@ -24,6 +24,24 @@
 | Do I Log Every Event | Yes, in my phone diary |
 | Confidence In My Report | High for auras, medium for exact timing |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The self-report questions the patient answers for this section, with response type, validation, EP001's example answer, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| PAT-0101 | What do I feel just before a seizure? | Dropdown[Metallic taste/Déjà vu/Rising sensation/Fear/Visual change/None] | Free-text allowed; ≤200 chars | Metallic taste, then déjà vu | aura_symptom_profile |
+| PAT-0102 | How much warning time do I get before a seizure? | Dropdown[None/<10 sec/10–30 sec/30–60 sec/>1 min] | Ordered category | About 10–20 seconds | aura_warning_window |
+| PAT-0103 | What happens to my speech during the warning? | Dropdown[Normal/Slow/Words wrong/Cannot speak] | Ordered category | Words come out wrong or slow | ictal_speech_impairment |
+| PAT-0104 | How aware am I during a seizure? | Dropdown[Fully aware/Partly aware/Lose track/Unconscious] | Ordered category | I lose track, cannot respond | awareness_impairment_level |
+| PAT-0105 | How many seizures do I have per month (my count)? | Number | Integer 0–150/month | About 5 per month | self_reported_seizure_frequency |
+| PAT-0106 | How long does a typical seizure last? | Dropdown[<1 min/1–2 min/2–5 min/>5 min] | Ordered category | Roughly a minute or two | typical_seizure_duration |
+| PAT-0107 | How do I feel after a seizure? | Text | Free-text ≤200 chars | Confused, headache, very tired | postictal_symptom_profile |
+| PAT-0108 | How long do I need to recover after a seizure? | Dropdown[<10 min/10–30 min/30–60 min/>1 hr] | Ordered category | 30–60 minutes before I feel normal | postictal_recovery_burden |
+| PAT-0109 | Which symptom bothers me most? | Text | Free-text ≤120 chars | The confusion afterward | dominant_symptom_flag |
+| PAT-0110 | Do I log every seizure event? | Yes-No | Boolean | Yes, in my phone diary | diary_logging_flag |
+| PAT-0111 | How confident am I in my report? | Dropdown[Low/Medium/High/Mixed] | Ordered category | High for auras, medium for exact timing | self_report_confidence |
+
 ## Severity Scenario Model — Patient View
 
 *Caption - The same self-report across four epilepsy severity levels from the patient's point of view; each self-reported variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

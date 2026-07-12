@@ -18,6 +18,18 @@
 | 4 | No technical issues anticipated. |
 | 5 | Suitable for routine EEG with hyperventilation and photic stimulation. |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The items the EEG technician records for this section, with response type, validation, EP001's example value, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| EEG-0601 | Was the patient cooperative during acquisition? | Text | Free text; ≤200 chars | Patient cooperative. | patient_cooperation_note |
+| EEG-0602 | What was the electrode impedance quality? | Text | Free text; ≤200 chars | Good electrode impedance. | electrode_impedance_note |
+| EEG-0603 | Was sleep deprivation status confirmed? | Text | Free text; ≤200 chars | Sleep deprivation confirmed. | sleep_deprivation_note |
+| EEG-0604 | Were any technical issues anticipated? | Text | Free text; ≤200 chars | No technical issues anticipated. | technical_issues_note |
+| EEG-0605 | What study type and activation procedures are the recording suitable for? | Text | Free text; ≤200 chars | Suitable for routine EEG with hyperventilation and photic stimulation. | study_suitability_note |
+
 ## Severity Scenario Model — EEG Technician View
 
 *Caption - The same acquisition assessment across four epilepsy severity levels from the EEG technician's point of view; each variable shifts with severity and recording context. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes, requiring continuous emergency EEG.*

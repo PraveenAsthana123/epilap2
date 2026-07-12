@@ -23,6 +23,23 @@
 | OT029 Other Priorities | Improve overall independence |
 | OT030 Priority Ranking Score (Auto) | Top 3: Return to Work, Improve Independence, Safer Meal Preparation |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The questions the occupational therapist asks for this section, with response type, validation, EP001's example answer, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| OT021 | How high a priority is improving self-care for the patient? | Dropdown[Low/Medium/High priority/Not applicable] | One of allowed set | Medium priority — mostly independent | selfcare_priority_weight |
+| OT022 | How high a priority is improving household activities? | Dropdown[Low/Medium/High priority/Not applicable] | One of allowed set | High priority — safer meal preparation wanted | household_priority_weight |
+| OT023 | How high a priority is returning to work? | Dropdown[Low/Medium/High priority/Not applicable] | One of allowed set | High priority — return to work is top goal | work_priority_weight |
+| OT024 | How high a priority is school participation? | Dropdown[Low/Medium/High priority/Not applicable] | One of allowed set | Not applicable | school_priority_weight |
+| OT025 | How high a priority is driving/transportation? | Dropdown[Low/Medium/High priority/Not applicable] | One of allowed set | Medium priority — currently not driving | transport_priority_weight |
+| OT026 | How high a priority is social participation? | Dropdown[Low/Medium/High priority/Not applicable] | One of allowed set | Medium priority — limited by seizure fear | social_priority_weight |
+| OT027 | How high a priority is leisure? | Dropdown[Low/Medium/High priority/Not applicable] | One of allowed set | Low priority — maintained with spouse | leisure_priority_weight |
+| OT028 | How high a priority is community participation? | Dropdown[Low/Medium/High priority/Not applicable] | One of allowed set | Medium priority — outings curtailed | community_priority_weight |
+| OT029 | What other priorities does the patient identify? | Text | Free text, 5-300 chars | Improve overall independence | other_priorities_intent |
+| OT030 | Ranked top priorities for the patient. | Read-only(Auto) | System-derived top 3 | Top 3: Return to Work, Improve Independence, Safer Meal Preparation | priority_ranking_score |
+
 ## Severity Scenario Model — Occupational Therapist View
 
 *Caption - The same priorities answered across four epilepsy severity levels from the occupational therapist's point of view; each variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

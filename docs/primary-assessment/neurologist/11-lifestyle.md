@@ -20,6 +20,20 @@
 | Caffeine | 4 cups/day |
 | Occupation Stress | High |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The patient-facing questions the neurologist asks to capture this section, with response type, validation, EP001's example answer, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| NEU-1101 | On average, how many hours do you sleep per day? | Number | 0-24 hrs, 1 decimal | 5.2 hrs/day | sleep_hours_per_day |
+| NEU-1102 | How would you rate your sleep quality? | Dropdown[Good, Fair, Poor, Very poor] | Allowed set | Poor | sleep_quality_rating |
+| NEU-1103 | Do you smoke? | Yes-No | Yes/No | No | smoking_status |
+| NEU-1104 | How often do you drink alcohol? | Dropdown[None, Occasional, Social, Heavy] | Allowed set | Social | alcohol_use_level |
+| NEU-1105 | How often do you exercise? | Dropdown[None, Weekly, Twice/week, Daily] | Allowed set | Twice/week | exercise_frequency |
+| NEU-1106 | How many cups of caffeinated drinks do you have per day? | Number | 0-20 cups/day | 4 cups/day | caffeine_cups_per_day |
+| NEU-1107 | How would you rate your stress level at work? | Dropdown[Low, Moderate, High, Severe] | Allowed set | High | occupational_stress_level |
+
 ## Severity Scenario Model — Neurologist View
 
 *Caption - The same assessment answered across four epilepsy severity levels from the neurologist's point of view; each variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

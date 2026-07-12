@@ -27,6 +27,27 @@
 | Caregiver/Spouse Included | Yes (wife present) |
 | Follow-Up Education Needed | Sleep and stress management |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The questions/observations the nurse records for this section, with response type, validation, EP001's example value, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| NUR-0501 | Was seizure first-aid taught? | Yes-No | Yes/No + detail | Yes (recovery position, timing, when to call) | seizure_first_aid_taught |
+| NUR-0502 | Was trigger avoidance discussed? | Yes-No | Yes/No + detail | Yes (sleep, stress, missed meds) | trigger_avoidance_discussed |
+| NUR-0503 | Was sleep hygiene education given? | Yes-No | Yes/No + target vs current hrs | Yes (target 7-8 hrs; currently 5.2 hrs) | sleep_hygiene_education |
+| NUR-0504 | Was medication adherence coaching provided? | Yes-No | Yes/No + method | Yes (alarms, pill organizer) | adherence_coaching |
+| NUR-0505 | Was rescue medication training delivered? | Text | Drug + method, or "Not required" | Buccal midazolam demonstrated | rescue_medication_training |
+| NUR-0506 | Were driving regulations explained? | Yes-No | Yes/No + status | Yes (restriction understood) | driving_regulations_explained |
+| NUR-0507 | Was seizure diary training provided? | Text | Method (app/paper), or "Optional" | Mobile app reinforced | seizure_diary_training |
+| NUR-0508 | Was aura recognition education given? | Text | Free text or "Not applicable" | Metallic taste, déjà vu as warning | aura_recognition_education |
+| NUR-0509 | Was alcohol/caffeine advice provided? | Yes-No | Provided / Deferred | Provided | alcohol_caffeine_advice |
+| NUR-0510 | What teaching method was used? | Dropdown[Verbal + leaflet, Verbal + written leaflet, Verbal + written leaflet + teach-back, Family briefing + emergency instruction] | Allowed set only | Verbal + written leaflet + teach-back | teaching_method |
+| NUR-0511 | What was the teach-back comprehension level? | Dropdown[Good, Adequate, Caregiver confirms emergency steps] | Allowed set only | Adequate | teach_back_comprehension |
+| NUR-0512 | What educational materials were given? | Text | Free text | Epilepsy self-management booklet | educational_materials_given |
+| NUR-0513 | Was the caregiver/spouse included? | Yes-No | Yes / No / Optional | Yes (wife present) | caregiver_included |
+| NUR-0514 | What follow-up education is needed? | Text | Free text | Sleep and stress management | follow_up_education_needed |
+
 ## Severity Scenario Model — Nurse View
 
 *Caption - The same assessment answered across four epilepsy severity levels from the nurse's point of view; each variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

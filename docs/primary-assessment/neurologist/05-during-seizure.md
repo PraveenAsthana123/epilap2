@@ -27,6 +27,19 @@ consistent with the left-temporal focus, with no secondary generalization record
 | Limb Jerking | Right Arm |
 | Generalization | No |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The patient-facing questions the neurologist asks to capture this section, with response type, validation, EP001's example answer, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| NEU-0501 | Do you lose awareness during a seizure? | Yes-No | one-of[Yes|No] | Yes | awareness_impaired |
+| NEU-0502 | Do you ever bite your tongue during a seizure? | Yes-No | one-of[Yes|No] | Yes | tongue_biting |
+| NEU-0503 | Do you lose control of your bladder during a seizure? | Yes-No | one-of[Yes|No] | No | urinary_incontinence |
+| NEU-0504 | Do your eyes turn to one side, and which way? | Dropdown[None|Left|Right] | one-of[...] | Right | eye_deviation_side |
+| NEU-0505 | Which limb jerks or stiffens during a seizure? | Dropdown[None|Right Arm|Left Arm|Bilateral convulsive] | one-of[...] | Right Arm | limb_jerking_site |
+| NEU-0506 | Does the seizure ever spread to a full-body convulsion? | Yes-No | one-of[Yes|No] | No | generalization |
+
 ## Severity Scenario Model — Neurologist View
 
 *Caption - The same assessment answered across four epilepsy severity levels from the neurologist's point of view; each variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

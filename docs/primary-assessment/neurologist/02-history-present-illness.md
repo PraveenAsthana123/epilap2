@@ -20,6 +20,20 @@
 | Recent infection | No |
 | Medication recently changed | Yes |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The patient-facing questions the neurologist asks to capture this section, with response type, validation, EP001's example answer, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| NEU-0201 | When did your very first seizure happen? | Date | ISO-8601 date | 2024-01-14 | first_seizure_date |
+| NEU-0202 | How old were you when the first seizure occurred? | Number | 0-120 years | 27 | age_at_first_seizure |
+| NEU-0203 | What happened during that first seizure? | Text | free-text, 3-300 chars | Sudden loss of awareness followed by right arm jerking | initial_presentation |
+| NEU-0204 | Are your seizures becoming more frequent? | Yes-No | one-of[Yes|No|Occasionally] | Yes | frequency_increasing |
+| NEU-0205 | Are you still having seizures despite treatment? | Yes-No | one-of[Yes|No|Rare] | Yes | breakthrough_seizures |
+| NEU-0206 | Have you had any recent infection or illness? | Yes-No | one-of[Yes|No] | No | recent_infection |
+| NEU-0207 | Has your medication been changed recently? | Yes-No | one-of[Yes|No] | Yes | medication_recently_changed |
+
 ## Severity Scenario Model — Neurologist View
 
 *Caption - The same assessment answered across four epilepsy severity levels from the neurologist's point of view; each variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

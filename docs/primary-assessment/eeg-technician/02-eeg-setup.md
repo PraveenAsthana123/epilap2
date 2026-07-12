@@ -19,6 +19,19 @@
 | Sampling Rate Planned | 512 Hz |
 | Recording Duration | 30 min |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The items the EEG technician records for this section, with response type, validation, EP001's example value, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| EEG-0201 | Which electrode placement system is used? | Dropdown[10–20 International, 10–10 Extended, High-density] | Allowed set | 10–20 International | electrode_system |
+| EEG-0202 | How many electrodes are applied? | Number | Integer 19–256 | 21 | number_of_electrodes |
+| EEG-0203 | What electrode cap size was fitted? | Dropdown[Small, Medium, Large] | Allowed set | Medium | electrode_cap_size |
+| EEG-0204 | Which reference scheme is configured? | Dropdown[Linked Ears, Average, Cz, Bipolar] | Allowed set | Linked Ears | reference_scheme |
+| EEG-0205 | What is the planned sampling rate? | Dropdown[256 Hz, 512 Hz, 1024 Hz] | Allowed set; ≥256 Hz | 512 Hz | sampling_rate_planned |
+| EEG-0206 | What is the planned recording duration? | Number | Minutes; ≥20 min (or Continuous) | 30 min | recording_duration_min |
+
 ## Severity Scenario Model — EEG Technician View
 
 *Caption - The same acquisition assessment across four epilepsy severity levels from the EEG technician's point of view; each variable shifts with severity and recording context. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes, requiring continuous emergency EEG.*

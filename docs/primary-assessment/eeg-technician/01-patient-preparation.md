@@ -21,6 +21,21 @@
 | Last Seizure Documented | Yes |
 | Pregnancy Status | N/A |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The items the EEG technician records for this section, with response type, validation, EP001's example value, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| EEG-0101 | Has the patient's identity been verified against wristband/records? | Yes-No | Yes/No; must be Yes to proceed | Yes | identity_verified |
+| EEG-0102 | Has informed consent been signed for the EEG study? | Yes-No | Yes/No; must be Yes to proceed | Yes | consent_signed |
+| EEG-0103 | Is this a sleep-deprived study? | Yes-No | Yes/No | Yes | sleep_deprived_study |
+| EEG-0104 | Is the patient's hair clean and free of product? | Yes-No | Yes/No | Yes | hair_clean |
+| EEG-0105 | Have all metal objects been removed? | Yes-No | Yes/No | Yes | metal_objects_removed |
+| EEG-0106 | Has current anti-seizure medication been recorded? | Yes-No | Yes/No | Yes | medication_recorded |
+| EEG-0107 | Has the date/time of last seizure been documented? | Yes-No | Yes/No | Yes | last_seizure_documented |
+| EEG-0108 | What is the patient's pregnancy status? | Dropdown[Yes, No, N/A] | Allowed set: Yes/No/N/A | N/A | pregnancy_status |
+
 ## Severity Scenario Model — EEG Technician View
 
 *Caption - The same acquisition assessment across four epilepsy severity levels from the EEG technician's point of view; each variable shifts with severity and recording context. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes, requiring continuous emergency EEG.*

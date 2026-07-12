@@ -33,6 +33,33 @@
 | Data Sharing Agreement | In place (research use) |
 | Governance Review Date | 2026-07-11 |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The administrative items captured for this section, with response type, validation, EP001's example value, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| ADM-0501 | What is the patient's assigned Patient ID? | Read-only(Auto) | Format EP### | EP001 | patient_id_resolution |
+| ADM-0502 | What is the de-identified Study ID? | Read-only(Auto) | Format DBA-EP-### | DBA-EP-001 | study_id_mapping |
+| ADM-0503 | What record system holds the data? | Dropdown[EHR/EHR + PACS/EHR + Critical Care] | Allowed set | Electronic Health Record (EHR) | system_of_record_tagging |
+| ADM-0504 | What interoperability standard is used? | Dropdown[HL7 FHIR R4/HL7 v2/DICOM] | Allowed set | HL7 FHIR R4 | interoperability_compliance |
+| ADM-0505 | What is the data classification? | Dropdown[Public/Sensitive/PHI/PHI-Critical] | Allowed set | Sensitive / Protected Health Information | data_classification_tagging |
+| ADM-0506 | What access control model is enforced? | Dropdown[RBAC/ABAC/Break-glass] | Allowed set | Role-Based (RBAC) | access_model_enforcement |
+| ADM-0507 | Is the minimum necessary policy enforced? | Yes-No | Boolean | Enforced | minimum_necessary_audit |
+| ADM-0508 | Is audit logging enabled? | Yes-No | Immutable boolean | Enabled (immutable) | audit_log_monitoring |
+| ADM-0509 | What is the encryption-at-rest standard? | Dropdown[AES-256/AES-128/None] | Allowed set | AES-256 | encryption_compliance_check |
+| ADM-0510 | What is the encryption-in-transit standard? | Dropdown[TLS 1.3/TLS 1.2/None] | Allowed set | TLS 1.3 | transit_security_check |
+| ADM-0511 | What de-identification method is applied? | Dropdown[Safe Harbor/Expert Determination/None] | Allowed set | Safe Harbor (18 identifiers removed) | deidentification_validation |
+| ADM-0512 | Who holds the re-identification key custody? | Text | Restricted role | Restricted (data custodian) | key_custody_control |
+| ADM-0513 | What is the consent scope on file? | Dropdown[Treatment/Treatment + Research/Emergency] | Allowed set | Treatment + De-identified Research | consent_scope_enforcement |
+| ADM-0514 | What is the GDPR lawful basis? | Dropdown[Explicit consent/Vital interests/Legal obligation] | Allowed set | Explicit consent | lawful_basis_classification |
+| ADM-0515 | Which data subject rights are enabled? | Dropdown[Access/Rectification/Erasure] | Allowed set (multi) | Access, Rectification, Erasure | data_rights_management |
+| ADM-0516 | What is the retention period? | Number | Years >= 0 | 10 years (post last encounter) | retention_policy_enforcement |
+| ADM-0517 | What is the breach notification SLA? | Number | Hours > 0 | 72 hours | breach_sla_monitoring |
+| ADM-0518 | What is the backup frequency? | Dropdown[Daily/Continuous/Weekly] | Allowed set | Daily (encrypted) | backup_integrity_check |
+| ADM-0519 | Is a data sharing agreement in place? | Yes-No | Boolean with scope | In place (research use) | data_sharing_compliance |
+| ADM-0520 | What is the governance review date? | Date | ISO date (YYYY-MM-DD) | 2026-07-11 | governance_review_scheduling |
+
 ## Severity Scenario Model — Administrator View
 
 *Caption - The same administrative record across four epilepsy severity levels from the administrator's point of view; each variable shifts with clinical acuity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

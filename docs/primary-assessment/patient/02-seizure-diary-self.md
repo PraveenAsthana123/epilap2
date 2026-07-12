@@ -25,6 +25,25 @@
 | Diary Adherence (days logged) | 27 of 30 days |
 | Reminder Notifications | Enabled (nightly) |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The self-report questions the patient answers for this section, with response type, validation, EP001's example answer, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| PAT-0201 | What tool do I use to log my seizures? | Dropdown[Mobile App/Paper diary/Web portal/Wearable] | Fixed list | Mobile App (daily) | diary_tool_type |
+| PAT-0202 | How do I record each event? | Dropdown[Self-entry after event/Proxy entry/Retrospective] | Fixed list | Self-entry after each event | logging_method |
+| PAT-0203 | How many events did I log this month? | Number | Integer 0–150 | 5 | monthly_event_count |
+| PAT-0204 | What is my average events per month over 3 months? | Number | Decimal 0–150 | 5.0 | rolling_3mo_frequency |
+| PAT-0205 | When was my most recent seizure? | Date | ISO date ≤ today | 2026-07-08 | days_since_last_event |
+| PAT-0206 | What time of day do my seizures usually happen? | Dropdown[Morning/Afternoon/Evening/Night/Variable] | Fixed list | Late evening / night | time_of_day_pattern |
+| PAT-0207 | How many of my events were nocturnal? | Number | Integer 0–event count | 2 of 5 | nocturnal_event_ratio |
+| PAT-0208 | How many events had an aura logged first? | Number | Integer 0–event count | 4 of 5 | aura_presence_ratio |
+| PAT-0209 | How many events fell on a missed-dose day? | Number | Integer 0–event count | 1 of 5 | missed_dose_event_ratio |
+| PAT-0210 | How quickly do I log an event after it happens? | Dropdown[<1 hr/Within 2 hr/Within 3 hr/Next day/Later] | Ordered category | Within 2 hours | logging_delay |
+| PAT-0211 | How many days this month did I log in the diary? | Number | Integer 0–31 | 27 of 30 days | diary_adherence_rate |
+| PAT-0212 | Do I have reminder notifications enabled? | Yes-No | Boolean | Enabled (nightly) | reminder_enabled_flag |
+
 ## Severity Scenario Model — Patient View
 
 *Caption - The same self-report across four epilepsy severity levels from the patient's point of view; each self-reported variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

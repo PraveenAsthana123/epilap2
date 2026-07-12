@@ -25,6 +25,25 @@
 | Counselling Trigger | Yes — future co-prescribing caution |
 | Recommendation | Document inducer status prominently in record |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The items the pharmacist records for this section, with response type, validation, EP001's example value, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| PHA-0401 | Which screening tool was used for the interaction check? | Read-only(Auto) | Tool name | CYP450 interaction matrix + clinical database | screening_tool_id |
+| PHA-0402 | Which drug is the index enzyme inducer? | Text | Drug name, or None | Carbamazepine (strong CYP3A4 inducer) | index_inducer_flag |
+| PHA-0403 | Does the index drug undergo auto-induction? | Yes-No | Yes / No | Yes — CBZ induces its own metabolism | auto_induction_flag |
+| PHA-0404 | What is the severity of the CBZ × LEV interaction? | Dropdown[None/Minimal/Minor/Moderate/Major] | Single select | Minimal (LEV renally cleared, non-CYP) | cbz_lev_interaction_severity |
+| PHA-0405 | What is the severity of the CBZ × oral contraceptives interaction? | Dropdown[None/Minimal/Minor/Moderate/Major] | Single select | Major — reduced contraceptive efficacy | cbz_oc_interaction_severity |
+| PHA-0406 | What is the severity of the CBZ × warfarin interaction? | Dropdown[None/Minimal/Minor/Moderate/Major] | Single select | Major — reduced anticoagulant effect | cbz_warfarin_interaction_severity |
+| PHA-0407 | What is the severity of the CBZ × ibuprofen (OTC) interaction? | Dropdown[None/Minimal/Minor/Moderate/Major] | Single select | Minor — monitor, no action | cbz_ibuprofen_interaction_severity |
+| PHA-0408 | Is any enzyme inhibitor present in the regimen? | Yes-No | Yes / No | No | enzyme_inhibitor_flag |
+| PHA-0409 | What is the highest interaction-severity flag overall? | Dropdown[None/Minor/Moderate/Major] | Single select | Major (contraceptive / anticoagulant class) | highest_interaction_severity |
+| PHA-0410 | How many clinically active interactions are present now? | Number | Integer ≥ 0 | 0 current (no OC/warfarin now) | active_interaction_count |
+| PHA-0411 | Is a counselling trigger raised for co-prescribing? | Yes-No | Yes / No / Low | Yes — future co-prescribing caution | counselling_trigger_flag |
+| PHA-0412 | What is the interaction-screen recommendation? | Text | Free text | Document inducer status prominently in record | interaction_recommendation |
+
 ## Severity Scenario Model — Pharmacist View
 
 *Caption - The same assessment answered across four epilepsy severity levels from the pharmacist's point of view; each variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

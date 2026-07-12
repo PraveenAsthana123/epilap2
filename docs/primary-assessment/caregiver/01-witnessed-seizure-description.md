@@ -25,6 +25,25 @@
 | Post-Event State | Confusion and fatigue ~10–20 min |
 | Injury During Event | 1 fall to date |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The questions the caregiver (spouse) answers for this section, with response type, validation, EP001's example value, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| CAR-101 | What is your relationship to the patient? | Dropdown[Spouse/Parent/Sibling/Child/Friend/Other] | Allowed set | Spouse (lives with patient) | observer_relationship |
+| CAR-102 | How many of the patient's seizures have you personally witnessed? | Dropdown[None/Some/Yes (majority)/All] | Allowed set | Yes (majority) | witnessed_event_proportion |
+| CAR-103 | What does the patient do at the very start of a seizure? | Text | Free text ≤200 chars | Sudden behavioral arrest / staring | onset_behavior_pattern |
+| CAR-104 | What repetitive movements do you see during the event? | Text | Free text ≤200 chars | Lip-smacking, hand fumbling | automatism_detection |
+| CAR-105 | Is the patient aware or responsive during the event? | Dropdown[Retained/Partially impaired/Impaired] | Allowed set | Impaired (unresponsive to name) | awareness_impairment_level |
+| CAR-106 | How do you test whether the patient responds during an event? | Text | Free text ≤200 chars | Calls name, touches arm — no response | responsiveness_test_method |
+| CAR-107 | How long does a typical seizure last (seconds)? | Number | 0–600 sec | ~90 sec | typical_duration_seconds |
+| CAR-108 | Does the event ever spread to whole-body jerking? | Dropdown[Never/Rare/Occasional/Frequent] | Allowed set | Occasional (bilateral jerking) | secondary_generalization_flag |
+| CAR-109 | Do the eyes or head turn to one side during the event? | Dropdown[None/Occasional/Frequent] | Allowed set | Head turns to right at times | head_eye_deviation |
+| CAR-110 | Does the patient make any sounds during the event? | Dropdown[None/Occasional/Frequent] | Allowed set | Occasional low mumbling | vocalization_pattern |
+| CAR-111 | How does the patient behave after the event, and for how long? | Text | Free text ≤200 chars | Confusion and fatigue ~10–20 min | postictal_state_profile |
+| CAR-112 | How many injuries or falls have occurred during events? | Number | 0–99 | 1 fall to date | event_injury_count |
+
 ## Severity Scenario Model — Caregiver View
 
 *Caption - The same observation across four epilepsy severity levels from the caregiver's (spouse's) point of view; each observed variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

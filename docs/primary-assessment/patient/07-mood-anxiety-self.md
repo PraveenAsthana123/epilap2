@@ -25,6 +25,25 @@
 | Main Emotional Concern | Worry about next seizure |
 | Assessment Date | 2026-07-08 |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The self-report questions the patient answers for this section, with response type, validation, EP001's example answer, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| PAT-0701 | What is my total GAD-7 anxiety score? | Read-only(Auto) | GAD-7 0–21 | 9 (moderate anxiety) | gad7_total_score |
+| PAT-0702 | How often have I felt nervous or anxious? | Dropdown[Not at all/Several days/More than half the days/Nearly every day] | GAD-7 item 0–3 | Several days | gad7_nervousness |
+| PAT-0703 | How often do I worry about having seizures? | Dropdown[Not at all/Several days/More than half the days/Nearly every day] | GAD-7 item 0–3 | More than half the days | gad7_seizure_worry |
+| PAT-0704 | How often do I have trouble relaxing? | Dropdown[Not at all/Several days/More than half the days/Nearly every day] | GAD-7 item 0–3 | Several days | gad7_trouble_relaxing |
+| PAT-0705 | How often do I feel restless? | Dropdown[Not at all/Several days/More than half the days/Nearly every day] | GAD-7 item 0–3 | Several days | gad7_restlessness |
+| PAT-0706 | What is my total NDDI-E depression score? | Read-only(Auto) | NDDI-E 6–24 | 14 (mildly elevated) | nddie_total_score |
+| PAT-0707 | Am I above the NDDI-E screening cutoff (>15)? | Read-only(Auto) | Boolean (cutoff >15) | Below cutoff | nddie_cutoff_flag |
+| PAT-0708 | How often does everything feel like a struggle? | Dropdown[Never/Rarely/Sometimes/Always] | NDDI-E item 1–4 | Sometimes | nddie_struggle |
+| PAT-0709 | How often do I feel down or unhappy? | Dropdown[Never/Rarely/Sometimes/Always] | NDDI-E item 1–4 | Sometimes | nddie_feeling_down |
+| PAT-0710 | Have I had thoughts of self-harm (NDDI-E)? | Yes-No | Boolean; triggers safety flag | Not endorsed | suicidality_safety_flag |
+| PAT-0711 | What is my main emotional concern? | Text | Free-text ≤120 chars | Worry about next seizure | primary_emotional_concern |
+| PAT-0712 | When did I complete this assessment? | Date | ISO date ≤ today | 2026-07-08 | assessment_date |
+
 ## Severity Scenario Model — Patient View
 
 *Caption - The same self-report across four epilepsy severity levels from the patient's point of view; each self-reported variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

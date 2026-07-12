@@ -23,6 +23,21 @@
 
 **Derived:** Trigger Burden = 4 (High)
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The patient-facing questions the neurologist asks to capture this section, with response type, validation, EP001's example answer, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| NEU-0701 | Do your seizures get worse when you lack sleep? | Yes-No | one-of[Yes|No] | Yes | trigger_sleep_deprivation |
+| NEU-0702 | Does general stress bring on your seizures? | Yes-No | one-of[Yes|No] | Yes | trigger_stress |
+| NEU-0703 | Do flashing or flickering lights trigger seizures? | Yes-No | one-of[Yes|No] | No | trigger_flashing_lights |
+| NEU-0704 | Does having a fever trigger your seizures? | Yes-No | one-of[Yes|No] | No | trigger_fever |
+| NEU-0705 | Does drinking alcohol trigger your seizures? | Dropdown[Yes|No|Occasionally] | one-of[...] | Occasionally | trigger_alcohol |
+| NEU-0706 | Do missed medication doses trigger seizures? | Yes-No | one-of[Yes|No] | Yes | trigger_missed_medication |
+| NEU-0707 | Does emotional upset bring on your seizures? | Yes-No | one-of[Yes|No] | Yes | trigger_emotional_stress |
+| NEU-0708 | Does going without food (fasting) trigger seizures? | Yes-No | one-of[Yes|No] | No | trigger_fasting |
+
 ## Severity Scenario Model — Neurologist View
 
 *Caption - The same assessment answered across four epilepsy severity levels from the neurologist's point of view; each variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

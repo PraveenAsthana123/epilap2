@@ -32,6 +32,32 @@
 | GDPR Data-Use Basis | Explicit consent |
 | Financial Responsibility Agreement | Signed 2026-07-11 |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The administrative items captured for this section, with response type, validation, EP001's example value, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| ADM-0201 | What is the patient's assigned Patient ID? | Read-only(Auto) | Format EP### | EP001 | patient_id_resolution |
+| ADM-0202 | What is the de-identified Study ID? | Read-only(Auto) | Format DBA-EP-### | DBA-EP-001 | study_id_mapping |
+| ADM-0203 | What is the patient's insurance type? | Dropdown[Commercial/Medicare/Medicaid/Self-Pay] | Allowed set | Commercial (Employer-Sponsored PPO) | payer_mix_classification |
+| ADM-0204 | Is the payer name on file and verified? | Yes-No | Verified boolean | On file (verified) | payer_identification |
+| ADM-0205 | Is the policy number on file and verified? | Yes-No | Verified boolean; policy format | On file (verified) | coverage_validation |
+| ADM-0206 | Is the group number on file and verified? | Yes-No | Verified boolean | On file (verified) | group_plan_matching |
+| ADM-0207 | What is the subscriber relationship? | Dropdown[Self/Spouse/Child/Other] | Allowed set | Self | subscriber_link_resolution |
+| ADM-0208 | What is the eligibility status? | Dropdown[Active/Inactive/Pending] | Allowed set | Active / Verified | eligibility_verification |
+| ADM-0209 | What is the eligibility verification date? | Date | ISO date (YYYY-MM-DD) | 2026-07-10 | verification_recency_check |
+| ADM-0210 | Is prior authorization required? | Yes-No | Boolean with procedure list | Yes (EEG, MRI) | prior_auth_prediction |
+| ADM-0211 | What is the prior authorization status? | Dropdown[Approved/Pending/Denied/N/A] | Allowed set | Approved | auth_status_tracking |
+| ADM-0212 | What is the specialist copay amount? | Number | Currency >= 0 (USD) | $40 (Specialist) | out_of_pocket_estimation |
+| ADM-0213 | What is the deductible-met status? | Dropdown[Met/Partial/Not Met] | Allowed set | Partial | deductible_progress_tracking |
+| ADM-0214 | What is the coordination of benefits status? | Dropdown[None/Primary/Secondary] | Allowed set | None (single payer) | cob_resolution |
+| ADM-0215 | Is consent to treat signed? | Yes-No | Signed with ISO date | Signed 2026-07-11 | consent_status_tracking |
+| ADM-0216 | Is the HIPAA privacy acknowledgement signed? | Yes-No | Signed with ISO date | Signed 2026-07-11 | privacy_acknowledgement_check |
+| ADM-0217 | Is de-identified research consent signed? | Yes-No | Signed with ISO date | Signed 2026-07-11 | research_consent_scope |
+| ADM-0218 | What is the GDPR data-use lawful basis? | Dropdown[Explicit consent/Vital interests/Legal obligation] | Allowed set | Explicit consent | lawful_basis_classification |
+| ADM-0219 | Is the financial responsibility agreement signed? | Yes-No | Signed with ISO date | Signed 2026-07-11 | financial_agreement_tracking |
+
 ## Severity Scenario Model — Administrator View
 
 *Caption - The same administrative record across four epilepsy severity levels from the administrator's point of view; each variable shifts with clinical acuity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

@@ -18,6 +18,18 @@
 | Social Limitation | Moderate |
 | Fatigue | High |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The patient-facing questions the neurologist asks to capture this section, with response type, validation, EP001's example answer, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| NEU-1401 | Based on the QOLIE-31 questionnaire, what is your overall quality-of-life score? | Number | Integer 0-100 | 56/100 | qolie31_composite_score |
+| NEU-1402 | How would you rate your level of anxiety? | Dropdown[None, Mild, Moderate, Severe] | Allowed set | Mild | anxiety_level |
+| NEU-1403 | How would you rate your level of depression or low mood? | Dropdown[None, Minimal, Mild, Moderate, Severe] | Allowed set | Mild | depression_level |
+| NEU-1404 | How much does epilepsy limit your social activities? | Dropdown[None, Mild, Moderate, Severe] | Allowed set | Moderate | social_limitation_level |
+| NEU-1405 | How would you rate your fatigue or energy levels? | Dropdown[Low, Moderate, High, Very high] | Allowed set | High | fatigue_level |
+
 ## Severity Scenario Model — Neurologist View
 
 *Caption - The same assessment answered across four epilepsy severity levels from the neurologist's point of view; each variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

@@ -32,6 +32,32 @@
 | Visit Type | New Patient |
 | Registration Status | Active |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The administrative items captured for this section, with response type, validation, EP001's example value, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| ADM-0101 | What is the patient's assigned Patient ID? | Read-only(Auto) | Format EP### | EP001 | patient_id_resolution |
+| ADM-0102 | What is the patient's Medical Record Number? | Read-only(Auto) | Format EP-YYYY-### | EP-2026-001 | mrn_deduplication |
+| ADM-0103 | What is the de-identified Study ID? | Read-only(Auto) | Format DBA-EP-### | DBA-EP-001 | study_id_mapping |
+| ADM-0104 | What is the patient's full legal name? | Text | Non-empty; HIPAA-protected | [Redacted per HIPAA] | identity_verification |
+| ADM-0105 | What is the patient's date of birth? | Date | ISO date (YYYY-MM-DD) | 1997-03-14 | age_derivation |
+| ADM-0106 | What is the patient's age? | Read-only(Auto) | Derived integer 0-120 years | 29 years | age_band_stratification |
+| ADM-0107 | What is the patient's sex? | Dropdown[Male/Female/Other] | Allowed set | Male | demographic_cohorting |
+| ADM-0108 | What is the patient's handedness? | Dropdown[Right/Left/Ambidextrous] | Allowed set | Right | lateralization_flag |
+| ADM-0109 | What is the patient's marital status? | Dropdown[Single/Married/Divorced/Widowed] | Allowed set | Married | support_context_tagging |
+| ADM-0110 | What is the patient's occupation? | Text | Free text | Software Engineer | functional_safety_context |
+| ADM-0111 | What is the patient's highest education level? | Dropdown[High School/Bachelor's/Master's/Doctorate] | Allowed set | Bachelor's Degree | health_literacy_estimate |
+| ADM-0112 | What is the patient's preferred language? | Dropdown[English/Spanish/Other] | Allowed set | English | interpreter_need_prediction |
+| ADM-0113 | Is the patient's contact phone on file and verified? | Yes-No | Verified boolean | On file (verified) | reachability_scoring |
+| ADM-0114 | Is the patient's email on file and verified? | Yes-No | Verified boolean; email format | On file (verified) | reminder_channel_selection |
+| ADM-0115 | Is the patient's address on file and verified? | Yes-No | Verified boolean | On file (verified) | geolocation_access_analysis |
+| ADM-0116 | Who is the patient's emergency contact? | Text | Non-empty relationship | Spouse (on file) | emergency_contact_activation |
+| ADM-0117 | What is the registration date? | Date | ISO date (YYYY-MM-DD) | 2026-07-11 | encounter_timeline_anchor |
+| ADM-0118 | What is the visit type? | Dropdown[New Patient/Established/Emergency] | Allowed set | New Patient | visit_type_classification |
+| ADM-0119 | What is the registration status? | Dropdown[Active/Inactive/Pending] | Allowed set | Active | record_status_monitoring |
+
 ## Severity Scenario Model — Administrator View
 
 *Caption - The same administrative record across four epilepsy severity levels from the administrator's point of view; each variable shifts with clinical acuity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

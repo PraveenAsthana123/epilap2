@@ -26,6 +26,26 @@
 | Barriers to Adherence | Shift work, forgetfulness |
 | Patient Self-Admin Capable | Yes (supervised) |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The questions/observations the nurse records for this section, with response type, validation, EP001's example value, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| NUR-0301 | What is the first ASM and dose? | Text | Drug name + dose + frequency | Carbamazepine 400 mg BID | asm_1_regimen |
+| NUR-0302 | What is the second ASM and dose? | Text | Drug name + dose + frequency, or "None" | Levetiracetam 500 mg BID | asm_2_regimen |
+| NUR-0303 | What is the administration route? | Dropdown[Oral, IV, Buccal, IV / buccal] | Allowed set only | Oral | administration_route |
+| NUR-0304 | Was the morning dose given (and when)? | Yes-No | Yes/No + time HH:MM (or Withheld) | Yes (08:00) | morning_dose_given |
+| NUR-0305 | Was the evening dose given (and when)? | Yes-No | Yes/No + time HH:MM (or Withheld) | Yes (20:00) | evening_dose_given |
+| NUR-0306 | How many doses were missed in the last 30 days? | Number | 0-60 | 7 | doses_missed_30d |
+| NUR-0307 | What is the measured adherence percentage? | Number | 0-100 % | 88% | measured_adherence_pct |
+| NUR-0308 | What method was used to assess adherence? | Dropdown[Self-report, Pill count + self-report, Self-report + app reminder, Emergency medication chart] | Allowed set only | Pill count + self-report | adherence_method |
+| NUR-0309 | What was the last serum ASM level check? | Text | Drug + level (mg/L) + interpretation | Carbamazepine 7.2 mg/L (therapeutic) | last_serum_level |
+| NUR-0310 | What side effects were reported? | Text | Free text or "None" | Dizziness, mild drowsiness | reported_side_effects |
+| NUR-0311 | What PRN/rescue medication is in place? | Text | Drug + status (available/given) | Buccal midazolam (available, not used) | prn_rescue_medication |
+| NUR-0312 | What are the barriers to adherence? | Text | Free text or "None" | Shift work, forgetfulness | adherence_barriers |
+| NUR-0313 | Is the patient capable of self-administration? | Dropdown[Yes (independent), Yes (supervised), No (fully dependent)] | Allowed set only | Yes (supervised) | self_admin_capable |
+
 ## Severity Scenario Model — Nurse View
 
 *Caption - The same assessment answered across four epilepsy severity levels from the nurse's point of view; each variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

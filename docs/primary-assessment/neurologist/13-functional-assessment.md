@@ -20,6 +20,20 @@
 | Falls | 1 |
 | Injury Risk | Moderate |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The patient-facing questions the neurologist asks to capture this section, with response type, validation, EP001's example answer, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| NEU-1301 | What is your current driving status given your seizures? | Dropdown[Permitted, Conditional, Restricted, Prohibited] | Allowed set | Restricted | driving_status |
+| NEU-1302 | How much has epilepsy affected your work or employment? | Dropdown[None, Mild, Moderate, Severe/unable to work] | Allowed set | Moderate | employment_impact_level |
+| NEU-1303 | Can you manage basic daily self-care (bathing, dressing, eating) independently? | Dropdown[Independent, Assisted, Dependent] | Allowed set | Independent | adl_status |
+| NEU-1304 | Can you manage complex daily tasks (finances, shopping, medication) independently? | Dropdown[Independent, Assisted, Dependent] | Allowed set | Independent | iadl_status |
+| NEU-1305 | Has your productivity at work been affected? | Dropdown[Normal, Slightly reduced, Reduced, Severely impaired] | Allowed set | Reduced | work_productivity_level |
+| NEU-1306 | How many falls have you had in the recent period? | Number | Integer 0-99 | 1 | fall_count |
+| NEU-1307 | What is your overall risk of injury from seizures? | Dropdown[Low, Low-Moderate, Moderate, High] | Allowed set | Moderate | injury_risk_level |
+
 ## Severity Scenario Model — Neurologist View
 
 *Caption - The same assessment answered across four epilepsy severity levels from the neurologist's point of view; each variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

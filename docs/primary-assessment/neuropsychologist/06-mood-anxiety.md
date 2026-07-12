@@ -24,6 +24,24 @@
 | Perceived Stigma | Mild |
 | Interpretation | Mild-moderate anxiety + mild depression; monitor & refer |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The items/tests the neuropsychologist administers for this section, with response type, validation, EP001's example score, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| NPS-0601 | NDDI-E total score (/24)? | Score | NDDI-E 6-24 | 14 (screen positive threshold ≥15 → borderline) | nddie_total |
+| NPS-0602 | NDDI-E suicidality item response? | Dropdown[Denies ideation, Passive ideation, Active ideation] | Escalate if positive | Denies active ideation | nddie_suicidality_item |
+| NPS-0603 | GAD-7 total score (/21)? | Score | GAD-7 0-21 | 9 (mild–moderate anxiety) | gad7_total |
+| NPS-0604 | BDI-II total score (/63)? | Score | BDI-II 0-63 | 17 (mild depression) | bdi_ii_total |
+| NPS-0605 | BDI-II cognitive subscale level? | Dropdown[WNL, Slightly elevated, Mildly elevated, Elevated] | Categorical | Mildly elevated | bdi_cognitive_subscale |
+| NPS-0606 | BDI-II somatic subscale level? | Dropdown[WNL, Mildly elevated, Elevated] | Categorical | Elevated (sleep/fatigue driven) | bdi_somatic_subscale |
+| NPS-0607 | Self-reported irritability? | Dropdown[Absent, Occasional, Present] | Categorical | Present, ASM-linked | irritability_self_report |
+| NPS-0608 | Average sleep (hrs/day)? | Number | hours 0-24 | 5.2 (poor) | sleep_hours_per_day |
+| NPS-0609 | Suspected ASM contributor? | Text | Medication name | Levetiracetam (mood/irritability) | suspected_asm_contributor |
+| NPS-0610 | Perceived stigma level? | Dropdown[None, Minimal, Mild, Moderate, Severe] | Categorical | Mild | perceived_stigma |
+| NPS-0611 | Clinical interpretation of mood/anxiety? | Text | Free-text summary | Mild-moderate anxiety + mild depression; monitor & refer | mood_anxiety_interpretation |
+
 ## Severity Scenario Model — Neuropsychologist View
 
 *Caption - The same cognitive assessment across four epilepsy severity levels from the neuropsychologist's point of view; each score shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

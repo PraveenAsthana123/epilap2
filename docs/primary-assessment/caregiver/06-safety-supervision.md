@@ -25,6 +25,25 @@
 | Nocturnal Supervision | Bed sharing, phone nearby |
 | Emergency Plan Documented | Partial (informal) |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The questions the caregiver (spouse) answers for this section, with response type, validation, EP001's example value, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| CAR-601 | What is the patient's current driving status? | Dropdown[Permitted/Conditional/Restricted/Prohibited] | Allowed set | Restricted (not driving) | driving_status |
+| CAR-602 | How many falls have occurred in the last year? | Number | 0–99 | 1 | falls_last_year |
+| CAR-603 | How severe was the worst injury? | Dropdown[None/Minor/Moderate/High] | Allowed set | Moderate (bruising, no fracture) | injury_severity |
+| CAR-604 | Which high-risk activities do you supervise? | Text | Free text ≤200 chars | Bathing, cooking, stairs | supervised_activities |
+| CAR-605 | What bathroom adaptations are in place? | Text | Free text ≤200 chars | Shower preferred over bath | bathroom_adaptation |
+| CAR-606 | What kitchen precautions are in place? | Text | Free text ≤200 chars | Back burners, reduced solo cooking | kitchen_precautions |
+| CAR-607 | Are you trained in seizure first aid? | Dropdown[No/Basic awareness/Yes (basic)/Yes (advanced)] | Allowed set | Yes (basic) | first_aid_training_level |
+| CAR-608 | Do you know the recovery position? | Yes-No | Yes/No | Yes | recovery_position_known |
+| CAR-609 | Do you know when to call emergency services? | Yes-No | Yes/No | Knows >5 min rule | emergency_timing_knowledge |
+| CAR-610 | Is rescue medication available at home? | Yes-No | Yes/No | Not prescribed | rescue_medication_available |
+| CAR-611 | What supervision is in place at night? | Text | Free text ≤200 chars | Bed sharing, phone nearby | nocturnal_supervision |
+| CAR-612 | Is there a documented emergency plan? | Dropdown[None/Informal/Partial/Formal] | Allowed set | Partial (informal) | emergency_plan_status |
+
 ## Severity Scenario Model — Caregiver View
 
 *Caption - The same observation across four epilepsy severity levels from the caregiver's (spouse's) point of view; each observed variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

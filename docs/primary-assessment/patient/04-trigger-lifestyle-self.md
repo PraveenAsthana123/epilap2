@@ -25,6 +25,25 @@
 | Trigger Burden (my sense) | High |
 | Willing To Change | Sleep schedule first |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The self-report questions the patient answers for this section, with response type, validation, EP001's example answer, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| PAT-0401 | How many hours of sleep do I usually get? | Number | Decimal 0–14 hrs/night | About 5.2 hours/night | average_sleep_hours |
+| PAT-0402 | How would I rate my sleep quality? | Dropdown[Very poor/Poor/Fair/Good/Excellent] | Ordered category | Poor | sleep_quality_rating |
+| PAT-0403 | How high is my work stress level? | Dropdown[None/Low/Moderate/High/Very high] | Ordered category | High (deadlines) | work_stress_level |
+| PAT-0404 | How often do I drink alcohol? | Dropdown[Never/Occasionally/Weekly/Daily] | Ordered category | Occasionally, weekends | alcohol_frequency |
+| PAT-0405 | Does a missed dose act as a trigger for me? | Dropdown[Never/Rarely/Sometimes/Often/Always] | Ordered category | Sometimes, evening dose | missed_dose_trigger_flag |
+| PAT-0406 | How much caffeine do I consume daily? | Number | Integer 0–12 cups/day | 3–4 coffees/day | daily_caffeine_intake |
+| PAT-0407 | How much screen time do I have before bed? | Dropdown[None/Low/Moderate/High] | Ordered category | High, late nights | pre_sleep_screen_time |
+| PAT-0408 | Which trigger do I notice most? | Text | Free-text ≤120 chars | Poor sleep | primary_trigger |
+| PAT-0409 | What is my second most noticed trigger? | Text | Free-text ≤120 chars | Work stress | secondary_trigger |
+| PAT-0410 | How much do I exercise? | Dropdown[None/Light/Moderate/Regular] | Ordered category | Light, irregular | exercise_level |
+| PAT-0411 | How would I rate my overall trigger burden? | Dropdown[Low/Moderate/High/Very high] | Ordered category | High | trigger_burden_score |
+| PAT-0412 | What am I most willing to change? | Text | Free-text ≤120 chars | Sleep schedule first | modifiable_change_priority |
+
 ## Severity Scenario Model — Patient View
 
 *Caption - The same self-report across four epilepsy severity levels from the patient's point of view; each self-reported variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

@@ -28,6 +28,28 @@
 | Family Updated | Yes (spouse) |
 | Care Plan Reviewed | Yes (this shift) |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The questions/observations the nurse records for this section, with response type, validation, EP001's example value, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| NUR-0701 | What handover format is used? | Dropdown[SBAR, SBAR + emergency escalation] | Allowed set only | SBAR | handover_format |
+| NUR-0702 | What is the Situation summary? | Text | Free text (<=160 chars) | 29M, focal impaired-awareness epilepsy, breakthrough seizures | sbar_situation |
+| NUR-0703 | What is the Background summary? | Text | Free text (<=160 chars) | Left-temporal onset; CBZ + LEV; 88% adherence | sbar_background |
+| NUR-0704 | What is the Assessment this shift? | Text | Free text (<=160 chars) | 1 observed seizure this shift; vitals stable | sbar_assessment |
+| NUR-0705 | What is the Recommendation? | Text | Free text (<=160 chars) | Continue 15-min checks; monitor SpO2 | sbar_recommendation |
+| NUR-0706 | What are the active nursing diagnoses? | Text | Free text | Risk of injury; risk of ineffective coping | active_nursing_diagnoses |
+| NUR-0707 | What seizure precautions are in place? | Text | Free text | Padded rails, recovery position, suction ready | seizure_precautions |
+| NUR-0708 | What is the monitoring frequency? | Text | Free text | 15-min visual + hourly vitals overnight | monitoring_frequency |
+| NUR-0709 | What medications are due next shift? | Text | Drug + dose + time | CBZ 400 mg + LEV 500 mg at 20:00 | medications_due_next_shift |
+| NUR-0710 | What is the rescue plan? | Text | Free text | Buccal midazolam if seizure > 5 min | rescue_plan |
+| NUR-0711 | What outstanding tasks remain? | Text | Free text | Sleep-hygiene follow-up; psychology referral | outstanding_tasks |
+| NUR-0712 | What falls precaution is in place? | Text | Morse score + measure | Morse 45; call bell in reach | falls_precaution |
+| NUR-0713 | What are the escalation criteria? | Text | Free text | NEWS2 >= 3, cluster, or status | escalation_criteria |
+| NUR-0714 | Was the family updated? | Yes-No | Yes or No + who | Yes (spouse) | family_updated |
+| NUR-0715 | Was the care plan reviewed this shift? | Yes-No | Yes / Emergency care plan active | Yes (this shift) | care_plan_reviewed |
+
 ## Severity Scenario Model — Nurse View
 
 *Caption - The same assessment answered across four epilepsy severity levels from the nurse's point of view; each variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

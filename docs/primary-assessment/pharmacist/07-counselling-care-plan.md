@@ -25,6 +25,25 @@
 | Follow-Up | Pharmacist review in 4 weeks |
 | Shared With | Neurologist, patient |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The items the pharmacist records for this section, with response type, validation, EP001's example value, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| PHA-0701 | On what date was the care plan created? | Date | ISO 8601 (YYYY-MM-DD) | 2026-07-11 | care_plan_date |
+| PHA-0702 | What is the primary goal of the care plan? | Text | Free text | Reduce seizure frequency toward control | primary_care_goal |
+| PHA-0703 | What is the adherence counselling action? | Text | Free text | Fix evening CBZ timing; reminder app | adherence_counselling_item |
+| PHA-0704 | What is the sleep counselling action? | Text | Free text | Address 5.2 hr sleep as trigger | sleep_counselling_item |
+| PHA-0705 | What is the interaction counselling action? | Text | Free text | Warn on future OC / CYP3A4 co-meds | interaction_counselling_item |
+| PHA-0706 | What is the adverse-effect counselling action? | Text | Free text | Report diplopia, mood, dizziness early | adverse_effect_counselling_item |
+| PHA-0707 | What dosing action is recommended to the prescriber? | Text | Free text | Recommend LEV titration to prescriber | dosing_action |
+| PHA-0708 | What is the monitoring plan? | Text | Free text | Repeat TDM + sodium at 4–6 weeks | monitoring_plan |
+| PHA-0709 | What is the adherence (MPR) target? | Number | MPR target 0.00–1.00 | MPR greater than 0.95 | adherence_target_mpr |
+| PHA-0710 | Was patient understanding confirmed? | Dropdown[Teach-back confirmed/Partial/Not confirmed] | Single select | Teach-back confirmed | teach_back_status |
+| PHA-0711 | When is the follow-up scheduled? | Text | Date or interval | Pharmacist review in 4 weeks | follow_up_schedule |
+| PHA-0712 | With whom is the care plan shared? | Dropdown[Neurologist/Patient/ICU/Emergency team] (multi-select) | At least 1 required | Neurologist, patient | care_plan_recipients |
+
 ## Severity Scenario Model — Pharmacist View
 
 *Caption - The same assessment answered across four epilepsy severity levels from the pharmacist's point of view; each variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

@@ -23,6 +23,23 @@
 | OT009 Referral Summary | 29M with poorly controlled focal impaired-awareness seizures (~5/month), on medical leave, needing assistance with meal preparation; referred for functional and safety assessment |
 | OT010 OT Electronic Signature | Signed — OT, 2026-07-11 |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The questions the occupational therapist asks for this section, with response type, validation, EP001's example answer, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| OT001 | Who referred the patient for occupational therapy? | Dropdown[Neurologist/Nurse/Self/Other] | Epilepsy-care referrer only (never psychiatry) | Neurologist | referral_source_class |
+| OT002 | What is the reason for this OT referral? | Text | Free text, 10-300 chars | Functional decline and safety concerns limiting daily occupations | referral_reason_intent |
+| OT003 | What is the primary epilepsy diagnosis? | Dropdown[Focal/Generalized/Combined/Unknown Epilepsy] | Must be an epilepsy diagnosis | Focal Epilepsy (left-temporal) | epilepsy_diagnosis_code |
+| OT004 | When was epilepsy diagnosed? | Date | ISO-8601, not in future | 2024-03-12 | diagnosis_recency_index |
+| OT005 | What is the current seizure classification? | Dropdown[Focal Aware/Focal Impaired Awareness/Focal to Bilateral Tonic-Clonic] | ILAE 2017 allowed set | Focal Impaired Awareness (from neurologist) | seizure_classification_code |
+| OT006 | How urgent is this referral? | Dropdown[Routine/Priority/Urgent] | One of allowed set | Priority | referral_urgency_level |
+| OT007 | Is a previous OT assessment available? | Yes-No | Yes or No | No | prior_ot_episode_flag |
+| OT008 | Were previous OT records reviewed? | Dropdown[Yes/No/Not applicable] | One of allowed set | Not applicable (no prior records) | prior_records_reviewed_flag |
+| OT009 | Summarize the referral in the patient's context. | Text | Free text, 20-500 chars | 29M with poorly controlled focal impaired-awareness seizures (~5/month), on medical leave, needing assistance with meal preparation; referred for functional and safety assessment | referral_summary_embedding |
+| OT010 | OT electronic signature confirming referral capture. | Signature | Signed name + date | Signed — OT, 2026-07-11 | signature_verified_flag |
+
 ## Severity Scenario Model — Occupational Therapist View
 
 *Caption - The same referral answered across four epilepsy severity levels from the occupational therapist's point of view; each variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

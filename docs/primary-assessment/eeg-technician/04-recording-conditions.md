@@ -18,6 +18,18 @@
 | Hyperventilation Planned | Yes |
 | Photic Stimulation Planned | Yes |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The items the EEG technician records for this section, with response type, validation, EP001's example value, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| EEG-0401 | Is the patient awake at the start of recording? | Yes-No | Yes/No | Yes | awake_state |
+| EEG-0402 | Is drowsiness expected during the recording? | Yes-No | Yes/No | Yes | drowsy_expected |
+| EEG-0403 | Is sleep expected during the recording? | Yes-No | Yes/No | No | sleep_expected |
+| EEG-0404 | Is hyperventilation planned as an activation procedure? | Yes-No | Yes/No | Yes | hyperventilation_planned |
+| EEG-0405 | Is photic stimulation planned as an activation procedure? | Yes-No | Yes/No | Yes | photic_stimulation_planned |
+
 ## Severity Scenario Model — EEG Technician View
 
 *Caption - The same acquisition assessment across four epilepsy severity levels from the EEG technician's point of view; each variable shifts with severity and recording context. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes, requiring continuous emergency EEG.*

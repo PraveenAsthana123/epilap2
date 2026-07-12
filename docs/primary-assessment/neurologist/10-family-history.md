@@ -17,6 +17,17 @@
 | Stroke | None |
 | Dementia | None |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The patient-facing questions the neurologist asks to capture this section, with response type, validation, EP001's example answer, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| NEU-1001 | Does anyone in your family have epilepsy or seizures? If so, which relative? | Dropdown[None, First-degree, Second-degree, Distant] + Text | Allowed set; relative label | Maternal Uncle | family_epilepsy_relative |
+| NEU-1002 | Does any close relative have migraines? | Dropdown[None, Mother, Father, Sibling, Other] | Allowed set | Mother | family_migraine_relative |
+| NEU-1003 | Has any family member had a stroke? | Dropdown[None, First-degree, Second-degree, Grandparent] | Allowed set | None | family_stroke_relative |
+| NEU-1004 | Is there any family history of dementia? | Dropdown[None, First-degree, Second-degree, Grandparent] | Allowed set | None | family_dementia_relative |
+
 ## Severity Scenario Model — Neurologist View
 
 *Caption - The same assessment answered across four epilepsy severity levels from the neurologist's point of view; each variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

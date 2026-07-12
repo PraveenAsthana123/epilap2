@@ -27,6 +27,27 @@
 | Psychology Referral Needed | Consider (mood + stress) |
 | QOLIE-31 Referenced | Yes |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The questions/observations the nurse records for this section, with response type, validation, EP001's example value, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| NUR-0601 | What is the PHQ-2 mood screen score? | Number | 0-6 | 2 (mild low mood) | phq2_mood_score |
+| NUR-0602 | What is the GAD-2 anxiety screen score? | Number | 0-6 | 3 (mild anxiety) | gad2_anxiety_score |
+| NUR-0603 | What is the reported stress level? | Dropdown[Low, Moderate, High] | Allowed set only | High (work + seizure worry) | reported_stress_level |
+| NUR-0604 | What is the patient's coping style? | Text | Free text | Problem-focused, some avoidance | coping_style |
+| NUR-0605 | What is the employment impact? | Text | Free text or "None" | Software engineer; concentration concerns | employment_impact |
+| NUR-0606 | What is the marital/social support status? | Text | Free text | Married; supportive spouse | marital_social_support |
+| NUR-0607 | What is the level of perceived stigma? | Dropdown[Low, Mild, Moderate, High] | Allowed set only | Moderate (discloses selectively) | perceived_stigma |
+| NUR-0608 | What is the impact of driving loss? | Dropdown[None, Moderate, Significant, Prohibited] | Allowed set only | Significant (independence, commute) | driving_loss_impact |
+| NUR-0609 | Is there sleep-related distress? | Yes-No | Yes/No + detail | Yes (5.2 hrs, worry-driven) | sleep_related_distress |
+| NUR-0610 | What is the level of social isolation? | Dropdown[None, Low, Moderate, High] | Allowed set only | Low | social_isolation |
+| NUR-0611 | What was the suicidal ideation screen result? | Dropdown[Negative, Positive, Deferred] | Allowed set only | Negative | suicidal_ideation_screen |
+| NUR-0612 | Was a support group referral offered? | Yes-No | Offered / Not required / Planned | Offered (epilepsy peer group) | support_group_referral |
+| NUR-0613 | Is a psychology referral needed? | Dropdown[No, Monitor, Consider, Yes] | Allowed set only | Consider (mood + stress) | psychology_referral_needed |
+| NUR-0614 | Was QOLIE-31 referenced? | Yes-No | Yes / Deferred | Yes | qolie31_referenced |
+
 ## Severity Scenario Model — Nurse View
 
 *Caption - The same assessment answered across four epilepsy severity levels from the nurse's point of view; each variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

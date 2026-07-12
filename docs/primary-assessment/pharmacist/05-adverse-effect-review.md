@@ -26,6 +26,26 @@
 | Mood Monitoring | Track LEV irritability at follow-up |
 | Titration Feasibility | LEV headroom available with monitoring |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The items the pharmacist records for this section, with response type, validation, EP001's example value, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| PHA-0501 | Which tool was used for the adverse-effect review? | Read-only(Auto) | Tool name | ASM-specific adverse-effect checklist | review_tool_id |
+| PHA-0502 | What is the severity of carbamazepine-related dizziness? | Dropdown[None/Mild/Moderate/Severe] | Single select | Mild, intermittent | cbz_dizziness_severity |
+| PHA-0503 | What is the severity of carbamazepine-related diplopia? | Dropdown[None/Mild/Moderate/Severe] | Single select | Occasional, dose-related | cbz_diplopia_severity |
+| PHA-0504 | What is the serum sodium (carbamazepine hyponatremia screen)? | Number | 120–145 mmol/L | Screen — Na 137 mmol/L (normal) | serum_sodium_mmol |
+| PHA-0505 | Is there any history of carbamazepine rash? | Yes-No | Yes / No | None | cbz_rash_flag |
+| PHA-0506 | What is the severity of levetiracetam-related mood/irritability? | Dropdown[None/Mild/Moderate/Severe] | Single select | Mild irritability reported | lev_mood_severity |
+| PHA-0507 | What is the severity of levetiracetam-related somnolence? | Dropdown[None/Minimal/Mild/Moderate/Severe] | Single select | Minimal | lev_somnolence_severity |
+| PHA-0508 | What is the overall tolerability rating? | Dropdown[Excellent/Good/Acceptable/Poor] | Single select | Acceptable — no dose-limiting toxicity | overall_tolerability |
+| PHA-0509 | Is any dose-limiting effect present? | Text | Free text, or None | None currently | dose_limiting_effect_flag |
+| PHA-0510 | Is any serious adverse drug reaction flagged? | Yes-No | Yes / No | None | serious_adr_flag |
+| PHA-0511 | What is the sodium-monitoring plan? | Text | Free text | Continue periodic checks (CBZ) | sodium_monitoring_plan |
+| PHA-0512 | What is the mood-monitoring plan? | Text | Free text | Track LEV irritability at follow-up | mood_monitoring_plan |
+| PHA-0513 | Is upward dose titration feasible given tolerability? | Dropdown[None/Small/Available/IV only] | Single select | LEV headroom available with monitoring | titration_feasibility |
+
 ## Severity Scenario Model — Pharmacist View
 
 *Caption - The same assessment answered across four epilepsy severity levels from the pharmacist's point of view; each variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

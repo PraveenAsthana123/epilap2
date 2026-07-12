@@ -23,6 +23,23 @@
 | OT039 Functional Concern Summary | Independent with minor difficulty across most ADL; requires assistance with cooking and shopping due to seizure and safety risk |
 | OT040 Functional Concern Score (Auto) | 62/100 (moderate-high concern; assistance needed in 2 IADL domains) |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The questions the occupational therapist asks for this section, with response type, validation, EP001's example answer, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| OT031 | What level of difficulty does the patient have with dressing? | Dropdown[Independent/Independent — minor difficulty/Requires assistance/Dependent] | One of allowed set | Independent — minor difficulty | dressing_difficulty_level |
+| OT032 | What level of difficulty does the patient have with bathing? | Dropdown[Independent/Independent — minor difficulty/Requires assistance/Dependent] | One of allowed set | Independent — minor difficulty (seizure-safety aware) | bathing_difficulty_level |
+| OT033 | What level of difficulty does the patient have with cooking? | Dropdown[Independent/Independent — minor difficulty/Requires assistance/Dependent] | One of allowed set | Requires assistance (burn/seizure risk at stove) | cooking_difficulty_level |
+| OT034 | What level of difficulty does the patient have with shopping? | Dropdown[Independent/Independent — minor difficulty/Requires assistance/Dependent] | One of allowed set | Requires assistance (fatigue, crowds, transport) | shopping_difficulty_level |
+| OT035 | What level of difficulty does the patient have managing medications? | Dropdown[Independent/Independent — minor difficulty/Requires assistance/Dependent] | One of allowed set | Independent — minor difficulty (88% adherence) | medication_management_difficulty_level |
+| OT036 | What level of difficulty does the patient have using technology? | Dropdown[Independent/Independent — minor difficulty/Requires assistance/Dependent] | One of allowed set | Independent | technology_use_difficulty_level |
+| OT037 | What level of difficulty does the patient have remembering appointments? | Dropdown[Independent/Independent — minor difficulty/Requires assistance/Dependent] | One of allowed set | Independent — minor difficulty (post-ictal memory) | appointment_recall_difficulty_level |
+| OT038 | What level of difficulty does the patient have completing tasks? | Dropdown[Independent/Independent — minor difficulty/Requires assistance/Dependent] | One of allowed set | Independent — minor difficulty (fatigue interrupts) | task_completion_difficulty_level |
+| OT039 | Summarize the patient's functional concerns. | Text | Free text, 20-500 chars | Independent with minor difficulty across most ADL; requires assistance with cooking and shopping due to seizure and safety risk | functional_concern_embedding |
+| OT040 | Aggregate functional concern score for the patient. | Read-only(Auto) | 0-100, system-derived | 62/100 (moderate-high concern; assistance needed in 2 IADL domains) | functional_concern_score |
+
 ## Severity Scenario Model — Occupational Therapist View
 
 *Caption - The same functional concerns answered across four epilepsy severity levels from the occupational therapist's point of view; each variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

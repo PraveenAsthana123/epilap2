@@ -25,6 +25,25 @@
 | Level of Consciousness (ACVPU) | Alert |
 | Capillary Blood Glucose | 5.4 mmol/L |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The questions/observations the nurse records for this section, with response type, validation, EP001's example value, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| NUR-0101 | What is the patient's blood pressure? | Text | Format ###/## mmHg (systolic 70-220 / diastolic 40-130) | 124/78 mmHg | blood_pressure_reading |
+| NUR-0102 | What is the patient's heart rate? | Number | 30-220 bpm | 72 bpm | heart_rate_bpm |
+| NUR-0103 | What is the patient's temperature? | Number | 34.0-42.0 C | 36.7 C | body_temperature_c |
+| NUR-0104 | What is the patient's oxygen saturation (SpO2)? | Number | 50-100 % | 98% | oxygen_saturation_pct |
+| NUR-0105 | What is the patient's respiratory rate? | Number | 4-60 /min | 16 /min | respiratory_rate |
+| NUR-0106 | What is the NEWS2 aggregate score? | Read-only (Auto) | 0-20 (derived from vitals) | 0 (Low) | news2_aggregate_score |
+| NUR-0107 | What is the patient's weight? | Number | 20-300 kg | 78 kg | body_weight_kg |
+| NUR-0108 | What is the patient's height? | Number | 100-250 cm | 178 cm | body_height_cm |
+| NUR-0109 | What is the patient's BMI? | Read-only (Auto) | 10.0-70.0 (weight/height derived) | 24.6 (Normal) | body_mass_index |
+| NUR-0110 | What is the patient's pain score? | Severity(0-10) | Integer 0-10 | 2 (post-ictal headache) | pain_score_0_10 |
+| NUR-0111 | What is the patient's level of consciousness (ACVPU)? | Dropdown[Alert, Confusion, Voice, Pain, Unresponsive] | Allowed set only | Alert | acvpu_consciousness_level |
+| NUR-0112 | What is the capillary blood glucose? | Number | 1.0-30.0 mmol/L | 5.4 mmol/L | capillary_blood_glucose |
+
 ## Severity Scenario Model — Nurse View
 
 *Caption - The same assessment answered across four epilepsy severity levels from the nurse's point of view; each variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

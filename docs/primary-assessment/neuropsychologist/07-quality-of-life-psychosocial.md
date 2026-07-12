@@ -25,6 +25,25 @@
 | Marital/Social Support | Married, supportive spouse |
 | Interpretation | Moderate QoL reduction; seizure worry & fatigue dominant |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The items/tests the neuropsychologist administers for this section, with response type, validation, EP001's example score, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| NPS-0701 | QOLIE-31 overall T-score? | Score | T 0-100 | 58 (moderately reduced) | qolie31_overall_t |
+| NPS-0702 | Seizure worry subscale? | Score | T 0-100 | 44 (reduced) | seizure_worry_subscale |
+| NPS-0703 | Overall quality of life subscale? | Score | T 0-100 | 60 | overall_qol_subscale |
+| NPS-0704 | Emotional wellbeing subscale? | Score | T 0-100 | 55 | emotional_wellbeing_subscale |
+| NPS-0705 | Energy/fatigue subscale? | Score | T 0-100 | 48 (reduced) | energy_fatigue_subscale |
+| NPS-0706 | Cognitive function (self-rated) subscale? | Score | T 0-100 | 50 | cognitive_function_subscale |
+| NPS-0707 | Medication effects subscale? | Score | T 0-100 | 52 | medication_effects_subscale |
+| NPS-0708 | Social function subscale? | Score | T 0-100 | 56 | social_function_subscale |
+| NPS-0709 | Employment status? | Dropdown[Employed unrestricted, Employed with accommodations, Medical leave, Unemployed] | Categorical | Employed (software engineer) | employment_status |
+| NPS-0710 | Driving status? | Dropdown[Unrestricted, Conditional, Restricted, Prohibited] | Categorical | Restricted per seizure control | driving_status |
+| NPS-0711 | Marital/social support? | Text | Free-text | Married, supportive spouse | marital_social_support |
+| NPS-0712 | Clinical interpretation of QoL/psychosocial function? | Text | Free-text summary | Moderate QoL reduction; seizure worry & fatigue dominant | qol_interpretation |
+
 ## Severity Scenario Model — Neuropsychologist View
 
 *Caption - The same cognitive assessment across four epilepsy severity levels from the neuropsychologist's point of view; each score shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

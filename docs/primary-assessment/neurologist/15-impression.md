@@ -19,6 +19,19 @@
 | Medication Adjustment | Increase Levetiracetam |
 | Follow-up | 3 months |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The patient-facing questions the neurologist asks to capture this section, with response type, validation, EP001's example answer, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| NEU-1501 | What is the integrated epilepsy diagnosis for this patient? | Text | Free text, clinician-entered | Drug-responsive focal epilepsy with breakthrough seizures | epilepsy_diagnosis |
+| NEU-1502 | Is the patient a candidate for epilepsy surgery? | Dropdown[No, Yes (referral)] | Allowed set | No | surgical_candidate_flag |
+| NEU-1503 | Is a brain MRI recommended? | Dropdown[No, Yes (3T epilepsy protocol)] | Allowed set | No | mri_recommended_flag |
+| NEU-1504 | Is a repeat EEG required? | Dropdown[No, Optional, Yes, Yes (continuous video-EEG)] | Allowed set | Yes | repeat_eeg_flag |
+| NEU-1505 | What medication adjustment is planned? | Text | Free text, clinician-entered | Increase Levetiracetam | medication_adjustment |
+| NEU-1506 | When should the patient return for follow-up? | Dropdown[12 months, 6 months, 3 months, Emergency admission (days)] | Allowed set | 3 months | followup_interval |
+
 ## Severity Scenario Model — Neurologist View
 
 *Caption - The same assessment answered across four epilepsy severity levels from the neurologist's point of view; each variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

@@ -26,6 +26,26 @@
 | Effort/Engagement | Adequate |
 | Interpretation | Borderline-normal; recall & naming soft signs |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The items/tests the neuropsychologist administers for this section, with response type, validation, EP001's example score, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| NPS-0101 | Which standardized screening instrument was administered? | Dropdown[MoCA, MMSE, ACE-III] | Instrument name | MoCA (v8.1) | screening_instrument |
+| NPS-0102 | What was the total screening score? | Score | MoCA 0-30 | 26/30 | moca_total_score |
+| NPS-0103 | Was an education adjustment applied? | Dropdown[Yes, No] | +1 pt if ≤12 yrs education | No (16 yrs, not required) | education_adjustment_flag |
+| NPS-0104 | Score on the visuospatial/executive items? | Score | 0-5 | 5/5 | visuospatial_executive_score |
+| NPS-0105 | Score on the naming items? | Score | 0-3 | 2/3 (lion missed) | naming_subscore |
+| NPS-0106 | Score on the attention items? | Score | 0-6 | 5/6 | attention_subscore |
+| NPS-0107 | Score on language repetition/fluency? | Score | 0-3 | 2/3 | language_subscore |
+| NPS-0108 | Score on the abstraction items? | Score | 0-2 | 2/2 | abstraction_subscore |
+| NPS-0109 | Score on delayed recall? | Score | 0-5 | 3/5 (2 with cue) | delayed_recall_subscore |
+| NPS-0110 | Score on the orientation items? | Score | 0-6 | 6/6 | orientation_subscore |
+| NPS-0111 | Confirmatory MMSE total score? | Score | MMSE 0-30 | 28/30 | mmse_total_score |
+| NPS-0112 | Rate the patient's effort/engagement. | Dropdown[Adequate, Suboptimal, Poor] | Categorical | Adequate | effort_engagement_rating |
+| NPS-0113 | Clinical interpretation of the screen? | Text | Free-text summary | Borderline-normal; recall & naming soft signs | screening_interpretation |
+
 ## Severity Scenario Model — Neuropsychologist View
 
 *Caption - The same cognitive assessment across four epilepsy severity levels from the neuropsychologist's point of view; each score shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

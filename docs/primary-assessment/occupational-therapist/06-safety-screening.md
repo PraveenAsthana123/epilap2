@@ -23,6 +23,23 @@
 | OT059 Safety notes | Priority hazard is unsupervised cooking; recommend hob guards, kettle/meal-prep modification, bathroom grab rails |
 | OT060 Safety Risk Score (Auto) | 70% (High) |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The questions the occupational therapist asks for this section, with response type, validation, EP001's example answer, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| OT051 | Has the patient had any falls in the past 12 months? | Yes-No | Yes or No (record count) | Yes — 1 fall | fall_history_flag |
+| OT052 | Has the patient had any burns or kitchen accidents? | Yes-No | Yes or No | Yes — minor burn during cooking | burn_incident_flag |
+| OT053 | Are there bathroom safety concerns? | Yes-No | Yes or No | Yes — no grab rails, uses bathtub | bathroom_hazard_flag |
+| OT054 | Are stairs present at the patient's home? | Yes-No | Yes or No | Yes | stairs_present_flag |
+| OT055 | Does the patient live alone? | Yes-No | Yes or No | No — lives with spouse | lives_alone_flag |
+| OT056 | Does the patient use mobility aids? | Yes-No | Yes or No | No | mobility_aid_flag |
+| OT057 | Is an emergency response plan available? | Dropdown[Yes/No/Partial] | One of allowed set | Partial — informal plan, not documented | emergency_plan_status |
+| OT058 | Is immediate OT intervention required? | Yes-No | Yes or No | Yes — kitchen safety | immediate_intervention_flag |
+| OT059 | Record safety notes and recommended modifications. | Text | Free text, 20-500 chars | Priority hazard is unsupervised cooking; recommend hob guards, kettle/meal-prep modification, bathroom grab rails | safety_notes_embedding |
+| OT060 | Aggregate safety risk score for the patient. | Read-only(Auto) | 0-100%, system-derived | 70% (High) | safety_risk_score |
+
 ## Severity Scenario Model — Occupational Therapist View
 
 *Caption - The same assessment answered across four epilepsy severity levels from the occupational therapist's point of view; each variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

@@ -25,6 +25,25 @@
 | Bed Sharing | Yes (spouse in same bed) |
 | SUDEP Concern Discussed | Yes, with neurologist |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The questions the caregiver (spouse) answers for this section, with response type, validation, EP001's example value, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| CAR-301 | Does the patient have seizures during sleep? | Yes-No | Yes/No | Yes | nocturnal_seizure_present |
+| CAR-302 | Do you wake to witness night-time seizures, and how often? | Dropdown[None/Occasionally/Yes (some)/Yes (most)] | Allowed set | Yes (spouse wakes to some) | nocturnal_witness_rate |
+| CAR-303 | Do you suspect seizures you did not directly see? | Yes-No | Yes/No | Yes (indirect signs) | unwitnessed_event_suspected |
+| CAR-304 | What morning signs suggest a night-time seizure? | Text | Free text ≤200 chars | Bitten tongue, sore muscles, wet pillow | indirect_morning_signs |
+| CAR-305 | What bedding disturbance do you notice after an event? | Text | Free text ≤200 chars | Displaced sheets, moved pillow | bedding_disruption_signs |
+| CAR-306 | Is the patient confused on waking? | Dropdown[No/Rare/Intermittent/Frequent] | Allowed set | Yes, intermittent | waking_confusion_level |
+| CAR-307 | How often does the patient wake unusually fatigued? | Dropdown[No/Occasional/Frequent] | Allowed set | Frequent | morning_fatigue_frequency |
+| CAR-308 | Does the patient wet the bed after a suspected event? | Dropdown[No/Occasional/Frequent] | Allowed set | Occasional | nocturnal_enuresis_flag |
+| CAR-309 | How many nocturnal events do you estimate per month? | Number | 0–100 | ~3/month | estimated_nocturnal_count |
+| CAR-310 | What monitoring do you use at night? | Text | Free text ≤200 chars | Baseline audio via phone, no device yet | nocturnal_monitoring_aid |
+| CAR-311 | Do you share a bed with the patient? | Yes-No | Yes/No | Yes (spouse in same bed) | bed_sharing_flag |
+| CAR-312 | Have you discussed SUDEP risk with the clinician? | Yes-No | Yes/No | Yes, with neurologist | sudep_discussion_flag |
+
 ## Severity Scenario Model — Caregiver View
 
 *Caption - The same observation across four epilepsy severity levels from the caregiver's (spouse's) point of view; each observed variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

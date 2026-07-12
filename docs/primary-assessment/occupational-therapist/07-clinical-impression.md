@@ -23,6 +23,23 @@
 | OT069 Assessment complete | Yes |
 | OT070 Electronic signature | Signed — OT, 2026-07-11 |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The questions the occupational therapist asks for this section, with response type, validation, EP001's example answer, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| OT061 | Were major occupational problems identified? | Yes-No | Yes or No | Yes — work participation, meal-prep safety, community mobility | occupational_problem_flag |
+| OT062 | What is the highest-priority OT issue? | Text | Free text, 5-300 chars | Safe return to work + meal-prep (kitchen) safety | priority_issue_intent |
+| OT063 | Which immediate interventions are recommended? | Checklist | One or more interventions | Kitchen-safety modifications, energy/seizure-aware meal prep, graded return-to-work plan | recommended_intervention_set |
+| OT064 | What additional assessments are required? | Checklist | Zero or more assessments | Home safety assessment, driving/transport review | additional_assessment_set |
+| OT065 | Is referral to another MDT member recommended? | Yes-No | Yes or No | Yes — neurologist (driving), social worker (work) | mdt_referral_flag |
+| OT066 | Does the patient agree with the assessment priorities? | Yes-No | Yes or No | Yes | patient_agreement_flag |
+| OT067 | What is the baseline functional independence level? | Dropdown[Fully independent/Independent with minor difficulty/Requires assistance/Dependent] | One of allowed set | Independent with minor difficulty; needs assistance with cooking | baseline_independence_level |
+| OT068 | Summarize the initial OT clinical impression. | Text | Free text, 20-500 chars | Focal impaired-awareness epilepsy with high occupational impact and high safety risk; kitchen safety and return-to-work are lead goals | clinical_impression_embedding |
+| OT069 | Is the assessment complete? | Yes-No | Yes or No | Yes | assessment_complete_flag |
+| OT070 | OT electronic signature closing the assessment. | Signature | Signed name + date | Signed — OT, 2026-07-11 | signature_verified_flag |
+
 ## Severity Scenario Model — Occupational Therapist View
 
 *Caption - The same assessment answered across four epilepsy severity levels from the occupational therapist's point of view; each variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

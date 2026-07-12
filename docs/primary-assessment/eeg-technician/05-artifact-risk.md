@@ -18,6 +18,18 @@
 | Electrode Noise | None |
 | Movement Risk | Low |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The items the EEG technician records for this section, with response type, validation, EP001's example value, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| EEG-0501 | What is the level of excess eye-blink artifact? | Dropdown[None, Mild, Moderate, Marked] | Allowed set | Mild | excess_eye_blink |
+| EEG-0502 | What is the muscle artifact risk? | Dropdown[Low, Moderate, High] | Allowed set | Low | muscle_artifact_risk |
+| EEG-0503 | Is sweating artifact present? | Yes-No | Yes/No | No | sweating_artifact |
+| EEG-0504 | What is the level of electrode noise? | Dropdown[None, Low, Moderate, High] | Allowed set | None | electrode_noise |
+| EEG-0505 | What is the movement artifact risk? | Dropdown[Low, Moderate, High] | Allowed set | Low | movement_risk |
+
 ## Severity Scenario Model — EEG Technician View
 
 *Caption - The same acquisition assessment across four epilepsy severity levels from the EEG technician's point of view; each variable shifts with severity and recording context. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes, requiring continuous emergency EEG.*

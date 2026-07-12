@@ -26,6 +26,26 @@
 | Side Effect That Bothers Me Most | Dizziness |
 | Do Side Effects Affect Adherence | Occasionally skip when very tired |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The self-report questions the patient answers for this section, with response type, validation, EP001's example answer, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| PAT-0501 | How often do I feel dizzy or unsteady? | Dropdown[Never/Rarely/Sometimes/Always] | LAEP category | Sometimes | side_effect_dizziness |
+| PAT-0502 | How often do I feel tired or fatigued? | Dropdown[Never/Rarely/Sometimes/Always] | LAEP category | Sometimes | side_effect_fatigue |
+| PAT-0503 | How often do I feel irritable? | Dropdown[Never/Rarely/Sometimes/Always] | LAEP category | Rarely–Sometimes (mild) | side_effect_irritability |
+| PAT-0504 | How often do I have difficulty concentrating? | Dropdown[Never/Rarely/Sometimes/Always] | LAEP category | Sometimes | side_effect_concentration |
+| PAT-0505 | How often do I have memory problems? | Dropdown[Never/Rarely/Sometimes/Always] | LAEP category | Rarely | side_effect_memory |
+| PAT-0506 | How often do I get headaches? | Dropdown[Never/Rarely/Sometimes/Always] | LAEP category | Rarely | side_effect_headache |
+| PAT-0507 | How often do I feel sleepy? | Dropdown[Never/Rarely/Sometimes/Always] | LAEP category | Sometimes | side_effect_sleepiness |
+| PAT-0508 | How often do I have shaky hands (tremor)? | Dropdown[Never/Rarely/Sometimes/Always] | LAEP category | Never | side_effect_tremor |
+| PAT-0509 | How often do I have blurred or double vision? | Dropdown[Never/Rarely/Sometimes/Always] | LAEP category | Rarely | side_effect_vision |
+| PAT-0510 | How often do I feel low in mood? | Dropdown[Never/Rarely/Sometimes/Always] | LAEP category | Rarely | side_effect_low_mood |
+| PAT-0511 | How would I rate my overall side-effect burden? | Dropdown[None/Mild/Moderate/Severe] | Ordered category | Moderate | overall_side_effect_burden |
+| PAT-0512 | Which side effect bothers me most? | Text | Free-text ≤120 chars | Dizziness | dominant_side_effect |
+| PAT-0513 | Do side effects affect my medication adherence? | Yes-No | Boolean | Occasionally skip when very tired | side_effect_adherence_impact |
+
 ## Severity Scenario Model — Patient View
 
 *Caption - The same self-report across four epilepsy severity levels from the patient's point of view; each self-reported variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

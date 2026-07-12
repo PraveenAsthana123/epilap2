@@ -25,6 +25,25 @@
 | Last Logged Event | 2026-06-18 |
 | Data Shared With | Neurologist at visits |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The questions the caregiver (spouse) answers for this section, with response type, validation, EP001's example value, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| CAR-201 | How do you record seizure events? | Dropdown[Mobile app/Notebook/App + notebook/Occasional note] | Allowed set | Shared mobile app + bedside notebook | diary_capture_method |
+| CAR-202 | How soon after an event do you log it? | Dropdown[Per event same day/Per event/As needed/Weekly] | Allowed set | Per event, same day | logging_latency |
+| CAR-203 | On average, how many seizures occur per month? | Number | 0–100 | 5/month | monthly_seizure_count |
+| CAR-204 | How many daytime events are logged per month? | Number | 0–100 | ~2/month | daytime_event_count |
+| CAR-205 | How many nocturnal events are logged per month? | Number | 0–100 | ~3/month | nocturnal_event_count |
+| CAR-206 | What is the longest seizure-free gap (days)? | Number | 0–3650 | 11 days | longest_seizure_free_gap |
+| CAR-207 | How often do seizures cluster on a single day? | Dropdown[None/Rare/Occasional/Frequent] | Allowed set | Rare (1 in last 3 months) | cluster_day_frequency |
+| CAR-208 | At what time of day do events most often occur? | Text | Free text ≤200 chars | Often early morning / on waking | event_time_pattern |
+| CAR-209 | How often is a missed dose linked to an event? | Text | Free text ≤200 chars | Noted on 2 of last 5 events | missed_dose_correlation |
+| CAR-210 | What percentage of events do you manage to log? | Number | 0–100 % | High (≈95% of events) | diary_adherence_rate |
+| CAR-211 | What is the date of the most recent logged event? | Date | YYYY-MM-DD | 2026-06-18 | last_event_date |
+| CAR-212 | Who do you share the diary with? | Dropdown[Neurologist/GP/Emergency services/None] | Allowed set | Neurologist at visits | diary_sharing_target |
+
 ## Severity Scenario Model — Caregiver View
 
 *Caption - The same observation across four epilepsy severity levels from the caregiver's (spouse's) point of view; each observed variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

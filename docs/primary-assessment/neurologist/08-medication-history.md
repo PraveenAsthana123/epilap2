@@ -21,6 +21,21 @@
 | Rescue Medication | Midazolam Nasal Spray |
 | Previous Drug Failure | Carbamazepine |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The patient-facing questions the neurologist asks to capture this section, with response type, validation, EP001's example answer, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| NEU-0801 | Which seizure medication are you taking now? | Text | free-text drug name, 2-100 chars | Levetiracetam | current_medication |
+| NEU-0802 | What dose do you take and how often? | Text | dose + frequency, 2-50 chars | 1000 mg BID | medication_dose |
+| NEU-0803 | How long have you been on this medication? | Number | 0-600 months | 12 months | medication_duration_months |
+| NEU-0804 | What percentage of doses do you manage to take? | Percentage | 0-100% | 88% | adherence_pct |
+| NEU-0805 | How many doses do you miss in a typical month? | Number | 0-100 per month | 3/month | missed_doses_pm |
+| NEU-0806 | Do you notice any side effects from the medication? | Text | free-text, 0-200 chars | Irritability | side_effects |
+| NEU-0807 | Do you have a rescue medication for emergencies? | Text | free-text drug name, 0-100 chars | Midazolam Nasal Spray | rescue_medication |
+| NEU-0808 | Have any seizure medications failed you before? | Text | free-text drug name, 0-100 chars | Carbamazepine | previous_drug_failure |
+
 ## Severity Scenario Model — Neurologist View
 
 *Caption - The same assessment answered across four epilepsy severity levels from the neurologist's point of view; each variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

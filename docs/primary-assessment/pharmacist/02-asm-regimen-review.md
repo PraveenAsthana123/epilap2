@@ -25,6 +25,25 @@
 | Seizure Control | Inadequate — ~5/month, breakthrough |
 | Regimen Recommendation | Optimize LEV titration; reassess CBZ trough |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The items the pharmacist records for this section, with response type, validation, EP001's example value, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| PHA-0201 | What is the first antiseizure medication? | Text | Drug name | Carbamazepine (CBZ) | primary_asm_identity |
+| PHA-0202 | What is the carbamazepine dose and total daily amount? | Text | mg BID; max 1600 mg/day | 400 mg BID (800 mg/day) | cbz_daily_dose_mg |
+| PHA-0203 | What is carbamazepine's mechanism of action? | Read-only(Auto) | Drug-class lookup | Sodium-channel blockade | mechanism_class_tag |
+| PHA-0204 | What is carbamazepine's enzyme-induction status? | Read-only(Auto) | Inducer / inhibitor / neutral | Strong CYP3A4 inducer (auto-inducer) | enzyme_induction_flag |
+| PHA-0205 | What is the second antiseizure medication? | Text | Drug name, or None | Levetiracetam (LEV) | secondary_asm_identity |
+| PHA-0206 | What is the levetiracetam dose and total daily amount? | Text | mg BID; 500–3000 mg/day | 500 mg BID (1000 mg/day) | lev_daily_dose_mg |
+| PHA-0207 | What is levetiracetam's mechanism of action? | Read-only(Auto) | Drug-class lookup | SV2A synaptic-vesicle binding | mechanism_class_tag |
+| PHA-0208 | What is the rationale for this drug combination? | Text | Free text | Complementary mechanisms; no shared metabolism target | combination_rationality_score |
+| PHA-0209 | Is the carbamazepine dose adequate relative to the ceiling? | Dropdown[Subtherapeutic/Low/Low-moderate/Adequate/At-ceiling] | Single select | Low–moderate; below weight-based ceiling | cbz_dose_adequacy |
+| PHA-0210 | Is the levetiracetam dose adequate relative to headroom? | Dropdown[Subtherapeutic/Low/Low-moderate/Adequate/At-ceiling] | Single select | Low; titration headroom to 1500–3000 mg/day | lev_dose_adequacy |
+| PHA-0211 | What is the current seizure-control status? | Dropdown[Controlled/Mostly controlled/Inadequate/Status] | Single select | Inadequate — ~5/month, breakthrough | seizure_control_status |
+| PHA-0212 | What is the regimen recommendation? | Text | Free text | Optimize LEV titration; reassess CBZ trough | regimen_optimization_action |
+
 ## Severity Scenario Model — Pharmacist View
 
 *Caption - The same assessment answered across four epilepsy severity levels from the pharmacist's point of view; each variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

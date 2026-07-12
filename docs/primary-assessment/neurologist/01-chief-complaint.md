@@ -20,6 +20,20 @@
 | Hospital admission | 1 |
 | Patient expectation | Better seizure control |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The patient-facing questions the neurologist asks to capture this section, with response type, validation, EP001's example answer, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| NEU-0101 | What brings you in to see us today? | Text | free-text, 3-300 chars | Recurrent seizures over the last 18 months | chief_complaint_text |
+| NEU-0102 | What is your single biggest concern right now? | Text | free-text, 3-200 chars | Increasing seizure frequency | primary_concern |
+| NEU-0103 | How long has this problem been going on? | Number | 0-600 months | 18 months | problem_duration_months |
+| NEU-0104 | On a scale of 0 to 10, how severe does this feel? | Severity(0-10) | 0-10 | 8/10 | severity_self_report |
+| NEU-0105 | How many emergency visits have you had for this? | Number | 0-100 | 2 | emergency_visit_count |
+| NEU-0106 | How many times have you been admitted to hospital? | Number | 0-100 | 1 | hospital_admission_count |
+| NEU-0107 | What are you hoping we can achieve today? | Text | free-text, 3-200 chars | Better seizure control | patient_expectation |
+
 ## Severity Scenario Model — Neurologist View
 
 *Caption - The same assessment answered across four epilepsy severity levels from the neurologist's point of view; each variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

@@ -27,6 +27,27 @@
 | SUDEP Risk Discussed | Yes |
 | Safe Environment Checklist | Completed |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The questions/observations the nurse records for this section, with response type, validation, EP001's example value, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| NUR-0401 | How many falls occurred in the last 12 months? | Number | 0-100 | 1 | falls_12m_count |
+| NUR-0402 | What was the severity of fall injury? | Dropdown[None, Moderate, High] | Allowed set only | Moderate (bruising, no fracture) | fall_injury_severity |
+| NUR-0403 | Is there tongue or cheek biting? | Dropdown[No, Occasional (minor), Yes (lateral, minor), Deep lateral] | Allowed set only | Yes (lateral, minor) | tongue_cheek_biting |
+| NUR-0404 | Is there incontinence during seizures? | Yes-No | Yes or No | No | seizure_incontinence |
+| NUR-0405 | Is there a history of burns or scalds? | Yes-No | Yes / No / Under review | No | burns_scalds_history |
+| NUR-0406 | Has there been a head injury from a seizure? | Yes-No | Yes or No | No | seizure_head_injury |
+| NUR-0407 | What is the overall injury risk rating? | Dropdown[Low, Low-Moderate, Moderate, Very High] | Allowed set only | Moderate | injury_risk_rating |
+| NUR-0408 | What is the Morse Fall Scale score? | Number | 0-125 | 45 (Moderate) | morse_fall_scale_score |
+| NUR-0409 | What bed rails or padding are in place? | Text | Free text | Padded rails in place | bed_rails_padding |
+| NUR-0410 | What supervision level is assigned? | Dropdown[Routine, Standard, Intermittent (15-min checks), Continuous 1:1] | Allowed set only | Intermittent (15-min checks) | supervision_level |
+| NUR-0411 | What is the patient's driving status? | Dropdown[Permitted, Conditional, Restricted, Prohibited] | Allowed set only | Restricted | driving_status |
+| NUR-0412 | Is bathing supervision advised? | Yes-No | Yes/No + note (shower vs bath) | Yes (shower, not bath) | bathing_supervision_advised |
+| NUR-0413 | Was SUDEP risk discussed? | Yes-No | Yes or No | Yes | sudep_risk_discussed |
+| NUR-0414 | Was the safe-environment checklist completed? | Dropdown[Completed, Emergency safety measures active] | Allowed set only | Completed | safe_environment_checklist |
+
 ## Severity Scenario Model — Nurse View
 
 *Caption - The same assessment answered across four epilepsy severity levels from the nurse's point of view; each variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

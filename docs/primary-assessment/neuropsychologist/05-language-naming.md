@@ -24,6 +24,24 @@
 | Reading / Writing | Functionally intact |
 | Interpretation | Anomia with phonemic-cue responsiveness; comprehension spared |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The items/tests the neuropsychologist administers for this section, with response type, validation, EP001's example score, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| NPS-0501 | Handedness / language dominance? | Dropdown[Right/left-dominant, Left/right-dominant, Mixed] | Categorical | Right-handed / left-dominant (presumed) | handedness_dominance |
+| NPS-0502 | Boston Naming Test score (/60)? | Score | 0-60 | 48 (mildly reduced) | bnt_score |
+| NPS-0503 | BNT phonemic cue benefit? | Number | items gained | +6 items | bnt_phonemic_cue_benefit |
+| NPS-0504 | BNT semantic cue benefit? | Number | items gained | +1 item | bnt_semantic_cue_benefit |
+| NPS-0505 | Tip-of-the-tongue frequency? | Dropdown[Normal, Mildly elevated, Elevated, Frequent] | Categorical | Elevated | tip_of_tongue_frequency |
+| NPS-0506 | Auditory comprehension (Token Test) score? | Score | 0-44 | 42/44 (WNL) | token_test_score |
+| NPS-0507 | Repetition status? | Dropdown[Intact, Impaired] | Categorical | Intact | repetition_status |
+| NPS-0508 | Category Fluency (Animals) total? | Number | raw count | 16 (Low Average) | category_fluency_animals |
+| NPS-0509 | Letter Fluency (FAS) total? | Number | raw count | 34 (Low Average) | letter_fluency_fas |
+| NPS-0510 | Reading / writing status? | Dropdown[Intact, Functionally intact, Impaired] | Categorical | Functionally intact | reading_writing_status |
+| NPS-0511 | Clinical interpretation of language/naming? | Text | Free-text summary | Anomia with phonemic-cue responsiveness; comprehension spared | language_naming_interpretation |
+
 ## Severity Scenario Model — Neuropsychologist View
 
 *Caption - The same cognitive assessment across four epilepsy severity levels from the neuropsychologist's point of view; each score shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

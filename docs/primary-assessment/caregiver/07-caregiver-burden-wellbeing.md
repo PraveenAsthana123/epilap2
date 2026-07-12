@@ -25,6 +25,25 @@
 | Perceived Coping | Fair to good |
 | Support Group Engagement | Not yet, interested |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The questions the caregiver (spouse) answers for this section, with response type, validation, EP001's example value, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| CAR-701 | Which burden instrument was used? | Read-only(Auto) | Fixed value | Zarit Burden Interview (ZBI-22) | burden_instrument |
+| CAR-702 | What is your total ZBI burden score? | Number | 0–88 | 32 (mild–moderate burden) | zbi_total_score |
+| CAR-703 | How often is your own sleep disrupted by caregiving? | Dropdown[None/Occasional/Frequent/Constant] | Allowed set | Frequent (nocturnal vigilance) | caregiver_sleep_disruption |
+| CAR-704 | How anxious are you about the patient's seizures? | Dropdown[Minimal/Mild/Moderate/Severe] | Allowed set | Moderate | seizure_anxiety_level |
+| CAR-705 | How much has caregiving affected your work or career? | Dropdown[None/Mild/Moderate/Major] | Allowed set | Mild (some flexibility used) | work_impact_level |
+| CAR-706 | How restricted is your social life? | Dropdown[None/Mild/Moderate/Severe] | Allowed set | Moderate | social_restriction_level |
+| CAR-707 | How much financial strain do you experience? | Dropdown[None/Mild/Moderate/Significant] | Allowed set | Mild | financial_strain_level |
+| CAR-708 | How much relationship strain do you experience? | Dropdown[None/Mild/Moderate/High] | Allowed set | Mild | relationship_strain_level |
+| CAR-709 | How often do you neglect your own health? | Dropdown[No/Occasional/Frequent] | Allowed set | Occasional | self_health_neglect |
+| CAR-710 | How much respite or support is available to you? | Dropdown[Not needed/Some/Limited/Overwhelmed] | Allowed set | Limited (family nearby) | respite_availability |
+| CAR-711 | How well do you feel you are coping? | Dropdown[Good/Fair to good/Fair/Crisis] | Allowed set | Fair to good | perceived_coping_level |
+| CAR-712 | Are you engaged with a caregiver support group? | Dropdown[Not needed/Aware/Not yet, interested/Engaged] | Allowed set | Not yet, interested | support_group_engagement |
+
 ## Severity Scenario Model — Caregiver View
 
 *Caption - The same observation across four epilepsy severity levels from the caregiver's (spouse's) point of view; each observed variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

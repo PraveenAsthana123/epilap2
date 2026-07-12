@@ -27,6 +27,27 @@
 | Recovery Position Applied | Yes |
 | Witnessed By | Night-shift nurse |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The questions/observations the nurse records for this section, with response type, validation, EP001's example value, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| NUR-0201 | When did the observed seizure event occur (date/time)? | Date | ISO datetime YYYY-MM-DD HH:MM | 2026-07-10 03:14 | event_datetime |
+| NUR-0202 | What seizure type was observed? | Dropdown[Focal Aware, Focal Impaired Awareness, Focal to Bilateral Tonic-Clonic, Generalized, Not observed] | Allowed set only | Focal Impaired Awareness | observed_seizure_type |
+| NUR-0203 | What onset lateralization signs were seen? | Text | Free text (<=120 chars) | Left temporal (right-hand automatisms) | onset_lateralization_signs |
+| NUR-0204 | What was the observed seizure duration? | Number | 1-3600 sec | 85 sec | seizure_duration_sec |
+| NUR-0205 | Was an aura reported before the event? | Text | Free text or "None" | Metallic taste, déjà vu | pre_ictal_aura |
+| NUR-0206 | What motor features were observed? | Text | Free text or "None observed" | Lip-smacking, right-hand fumbling | motor_features |
+| NUR-0207 | What was the awareness level during the event? | Dropdown[Preserved, Partially preserved, Impaired, Absent] | Allowed set only | Impaired (unresponsive to voice) | ictal_awareness_level |
+| NUR-0208 | Was there head or eye deviation, and which way? | Dropdown[None, Rightward, Leftward, Sustained rightward, Sustained leftward] | Allowed set only | Rightward | head_eye_deviation |
+| NUR-0209 | Was there incontinence during the seizure? | Yes-No | Yes or No | No | ictal_incontinence |
+| NUR-0210 | Was there tongue or cheek biting? | Dropdown[No, Lateral (minor), Deep lateral] | Allowed set only | Lateral (minor) | tongue_biting |
+| NUR-0211 | What was the post-ictal recovery duration? | Number | 0-1440 min (or "No return to baseline") | 12 min | post_ictal_duration_min |
+| NUR-0212 | What was the lowest peri-ictal SpO2? | Number | 50-100 % | 93% | peri_ictal_spo2_lowest |
+| NUR-0213 | Was the recovery position applied? | Yes-No | Yes or No / Not required | Yes | recovery_position_applied |
+| NUR-0214 | Who witnessed the event? | Text | Free text (role/name) | Night-shift nurse | witnessed_by |
+
 ## Severity Scenario Model — Nurse View
 
 *Caption - The same assessment answered across four epilepsy severity levels from the nurse's point of view; each variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

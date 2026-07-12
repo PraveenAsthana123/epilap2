@@ -23,6 +23,23 @@
 | OT019 Occupational Profile Summary | 29M married, living with supportive spouse; valued worker role interrupted by medical leave; routines and community outings curtailed by ~5 seizures/month |
 | OT020 Occupational Participation Score (Auto) | 40/100 (reduced; ~80% occupational impact) |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The questions the occupational therapist asks for this section, with response type, validation, EP001's example answer, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| OT011 | What is the patient's current living arrangement? | Dropdown[Lives with spouse/Lives with family/Lives alone/Supervised/Inpatient] | One of allowed set | Lives with spouse | living_arrangement_class |
+| OT012 | What is the patient's marital/relationship status? | Dropdown[Single/Married/Partnered/Divorced/Widowed] | One of allowed set | Married | relationship_status_class |
+| OT013 | Who is the patient's primary caregiver? | Dropdown[None required/Spouse/Family/Clinical staff] | One of allowed set | Spouse | caregiver_support_class |
+| OT014 | What is the patient's current employment status? | Dropdown[Employed full-time/Employed with adjustments/On medical leave/Unable to work] | One of allowed set | On medical leave (affected) | employment_status_class |
+| OT015 | What is the patient's student status? | Dropdown[Not a student/Part-time student/Full-time student] | One of allowed set | Not a student | student_status_flag |
+| OT016 | Describe the patient's typical daily routine. | Text | Free text, 10-400 chars | Structured mornings, rests midday after fatigue, limited outings due to seizure fear | daily_routine_structure_index |
+| OT017 | What hobbies and leisure activities does the patient value? | Checklist | One or more activities | Cooking, reading, walking with spouse | leisure_engagement_profile |
+| OT018 | Which roles are most important to the patient? | Checklist | One or more roles | Spouse, worker, home contributor | valued_roles_profile |
+| OT019 | Summarize the patient's occupational profile. | Text | Free text, 20-500 chars | 29M married, living with supportive spouse; valued worker role interrupted by medical leave; routines and community outings curtailed by ~5 seizures/month | occupational_profile_embedding |
+| OT020 | Occupational participation score for the patient. | Read-only(Auto) | 0-100, system-derived | 40/100 (reduced; ~80% occupational impact) | occupational_participation_index |
+
 ## Severity Scenario Model — Occupational Therapist View
 
 *Caption - The same occupational profile answered across four epilepsy severity levels from the occupational therapist's point of view; each variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

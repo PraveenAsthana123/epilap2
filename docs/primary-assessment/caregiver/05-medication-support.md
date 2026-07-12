@@ -25,6 +25,25 @@
 | Doses Witnessed Taken | Majority (morning most reliable) |
 | Adherence Barrier | Irregular schedule / deadlines |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The questions the caregiver (spouse) answers for this section, with response type, validation, EP001's example value, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| CAR-501 | What is the first anti-seizure medication and dose? | Text | Drug name + dose | Carbamazepine 400 mg BID | asm1_regimen |
+| CAR-502 | What is the second anti-seizure medication and dose? | Text | Drug name + dose | Levetiracetam 500 mg BID | asm2_regimen |
+| CAR-503 | Who provides medication reminders? | Dropdown[Self-managed/Spouse/Shared/Carer] | Allowed set | Spouse (verbal + phone alarm) | reminder_provider |
+| CAR-504 | How often are reminders given? | Dropdown[Not needed/As needed/Once daily/Twice daily] | Allowed set | Twice daily | reminder_frequency |
+| CAR-505 | Is a pill organizer used? | Yes-No | Yes/No | Yes (weekly, spouse-filled) | pill_organizer_used |
+| CAR-506 | What percentage of doses do you observe taken? | Number | 0–100 % | 88% | observed_adherence_rate |
+| CAR-507 | Which dose is most often missed? | Dropdown[None/Morning/Afternoon/Evening] | Allowed set | Evening (late work) | most_missed_dose |
+| CAR-508 | Who manages prescription refills? | Dropdown[Patient/Spouse/Shared/Pharmacy] | Allowed set | Spouse tracks and reorders | refill_management |
+| CAR-509 | What medication side effects do you observe? | Text | Free text ≤200 chars | Mild drowsiness, occasional irritability | observed_side_effects |
+| CAR-510 | What behavior or mood changes do you observe? | Text | Free text ≤200 chars | Mood dip noted with Levetiracetam | observed_behavior_change |
+| CAR-511 | How many doses do you personally witness taken? | Dropdown[Rarely/Some/Majority/All] | Allowed set | Majority (morning most reliable) | doses_witnessed_taken |
+| CAR-512 | What is the main barrier to adherence? | Text | Free text ≤200 chars | Irregular schedule / deadlines | adherence_barrier |
+
 ## Severity Scenario Model — Caregiver View
 
 *Caption - The same observation across four epilepsy severity levels from the caregiver's (spouse's) point of view; each observed variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

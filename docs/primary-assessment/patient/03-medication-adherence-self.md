@@ -25,6 +25,25 @@
 | Confidence Taking Correctly | High for morning, medium for evening |
 | Refill On Time | Yes, mail pharmacy |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The self-report questions the patient answers for this section, with response type, validation, EP001's example answer, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| PAT-0301 | What is my main anti-seizure medication and dose? | Text | Free-text ≤120 chars | Carbamazepine 400 mg twice daily | primary_asm_regimen |
+| PAT-0302 | What is my second anti-seizure medication and dose? | Text | Free-text ≤120 chars | Levetiracetam 500 mg twice daily | secondary_asm_regimen |
+| PAT-0303 | What percentage of my doses do I take (my estimate)? | Percentage | 0–100% | 88% of doses | self_reported_adherence_rate |
+| PAT-0304 | Which dose do I usually miss? | Dropdown[Morning/Midday/Evening/Night/None] | Fixed list | Evening dose | missed_dose_timing |
+| PAT-0305 | What is the main reason I miss doses? | Dropdown[Forget/Busy/Travel/Side effects/Cost/Other] | Fixed list | Busy at work, forget | primary_nonadherence_reason |
+| PAT-0306 | What is the second reason I miss doses? | Dropdown[Forget/Busy/Travel/Side effects/Cost/Other] | Fixed list | Away from home / travel | secondary_nonadherence_reason |
+| PAT-0307 | Do I use reminders to take my medication? | Yes-No | Boolean | Phone alarm, sometimes ignore | reminder_use_flag |
+| PAT-0308 | Do I use a pillbox or organizer? | Yes-No | Boolean | Yes, weekly organizer | pillbox_use_flag |
+| PAT-0309 | How many doses did I miss in the last 2 weeks? | Number | Integer 0–56 | About 3 | recent_missed_dose_count |
+| PAT-0310 | Do I ever stop medication when feeling well? | Yes-No | Boolean | No, I keep taking it | discontinuation_risk_flag |
+| PAT-0311 | How confident am I that I take it correctly? | Dropdown[Low/Medium/High/Mixed] | Ordered category | High for morning, medium for evening | adherence_confidence |
+| PAT-0312 | Do I refill my prescription on time? | Yes-No | Boolean | Yes, mail pharmacy | refill_timeliness_flag |
+
 ## Severity Scenario Model — Patient View
 
 *Caption - The same self-report across four epilepsy severity levels from the patient's point of view; each self-reported variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

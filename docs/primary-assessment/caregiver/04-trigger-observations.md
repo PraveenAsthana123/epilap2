@@ -25,6 +25,25 @@
 | Trigger–Event Correlation | Poor sleep precedes most events |
 | Observed Trigger Burden | Moderate–High |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The questions the caregiver (spouse) answers for this section, with response type, validation, EP001's example value, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| CAR-401 | How many hours does the patient sleep per day? | Number | 0–24 hrs | 5.2 hrs/day (short) | observed_sleep_duration |
+| CAR-402 | How would you rate the patient's sleep quality? | Dropdown[Good/Fair/Poor] | Allowed set | Poor, fragmented | observed_sleep_quality |
+| CAR-403 | How often does the patient work late into the night? | Dropdown[Rare/Sometimes/Frequent] | Allowed set | Frequent | late_night_work_frequency |
+| CAR-404 | How much work stress do you observe? | Dropdown[Low/Moderate/High] | Allowed set | High during deadlines | observed_work_stress |
+| CAR-405 | How often do you observe missed medication doses? | Dropdown[None/Rare/Occasional/Frequent] | Allowed set | Occasional (mainly evening) | observed_missed_doses |
+| CAR-406 | How much alcohol does the patient consume? | Dropdown[None/Rare, low/Moderate/High] | Allowed set | Rare, low | observed_alcohol_use |
+| CAR-407 | How much caffeine does the patient consume? | Dropdown[Low/Moderate/High] | Allowed set | High (late-day coffee) | observed_caffeine_use |
+| CAR-408 | How much screen time before bed do you observe? | Dropdown[Low/Moderate/High] | Allowed set | High | pre_bed_screen_time |
+| CAR-409 | How often does the patient skip meals? | Dropdown[None/Rare/Occasional/Frequent] | Allowed set | Occasional under deadlines | observed_meal_skipping |
+| CAR-410 | What is the strongest trigger you observe? | Text | Free text ≤200 chars | Sleep deficit | strongest_observed_trigger |
+| CAR-411 | What pattern links triggers to the patient's seizures? | Text | Free text ≤200 chars | Poor sleep precedes most events | trigger_event_correlation |
+| CAR-412 | Overall, how heavy is the trigger burden? | Dropdown[Low/Low–Moderate/Moderate–High/Critical] | Allowed set | Moderate–High | observed_trigger_burden |
+
 ## Severity Scenario Model — Caregiver View
 
 *Caption - The same observation across four epilepsy severity levels from the caregiver's (spouse's) point of view; each observed variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

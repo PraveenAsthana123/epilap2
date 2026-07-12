@@ -33,6 +33,33 @@
 | Escalation Flag | None |
 | Referral Status | Accepted |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The administrative items captured for this section, with response type, validation, EP001's example value, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| ADM-0601 | What is the patient's assigned Patient ID? | Read-only(Auto) | Format EP### | EP001 | patient_id_resolution |
+| ADM-0602 | What is the de-identified Study ID? | Read-only(Auto) | Format DBA-EP-### | DBA-EP-001 | study_id_mapping |
+| ADM-0603 | What is the referral source? | Text | Non-empty source | Family Physician | referral_source_attribution |
+| ADM-0604 | What is the referral reason? | Text | Non-empty clinical reason | New-onset focal seizures | referral_reason_classification |
+| ADM-0605 | What is the referral received date? | Date | ISO date (YYYY-MM-DD) | 2026-07-08 | intake_timeline_anchor |
+| ADM-0606 | What is the referral type? | Dropdown[Consult/Follow-up/Urgent/Emergency Transfer] | Allowed set | Outpatient Neurology Consult | referral_type_routing |
+| ADM-0607 | What is the triage priority? | Dropdown[Routine/Urgent/Emergent] | Allowed set | Routine (fast-tracked) | triage_priority_prediction |
+| ADM-0608 | Is the referral complete? | Dropdown[Complete/Incomplete] | Allowed set | Complete (notes + labs attached) | referral_completeness_check |
+| ADM-0609 | What supporting documents are attached? | Text | Non-empty document list | GP notes, basic metabolic panel | document_completeness_analysis |
+| ADM-0610 | Did the insurance pre-check pass? | Dropdown[Passed/Failed/Deferred] | Allowed set | Passed | eligibility_precheck |
+| ADM-0611 | When is the consult booked? | Date | ISO date or Immediate | 2026-07-14 | consult_scheduling_link |
+| ADM-0612 | What diagnostics are coordinated? | Text | Non-empty diagnostic list | EEG + MRI | diagnostic_coordination |
+| ADM-0613 | What is the interdisciplinary loop? | Text | Non-empty team list | Neurology, EEG Tech, Neuropsychology | care_team_composition |
+| ADM-0614 | When was the referral acknowledgement sent? | Date | ISO date or Immediate | 2026-07-08 | acknowledgement_tracking |
+| ADM-0615 | When is the outcome letter to the referrer due? | Text | Scheduled milestone | Scheduled post-consult | loop_closure_scheduling |
+| ADM-0616 | Is a care coordinator assigned? | Yes-No | Boolean | Assigned | coordinator_assignment |
+| ADM-0617 | What is the referral tracking ID? | Read-only(Auto) | Format REF-EP###-#### | REF-EP001-0708 | referral_tracking_id |
+| ADM-0618 | What is the loop closure status? | Dropdown[In Progress/Closed/Emergent handoff] | Allowed set | In Progress | loop_closure_monitoring |
+| ADM-0619 | What is the escalation flag? | Dropdown[None/Watch/Activated] | Allowed set | None | escalation_flag_prediction |
+| ADM-0620 | What is the referral status? | Dropdown[Accepted/Pending/Admitted/Declined] | Allowed set | Accepted | referral_status_tracking |
+
 ## Severity Scenario Model — Administrator View
 
 *Caption - The same administrative record across four epilepsy severity levels from the administrator's point of view; each variable shifts with clinical acuity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*

@@ -21,6 +21,21 @@
 | Gait | Normal |
 | Romberg | Negative |
 
+## Questionnaire (Enterprise Form)
+
+*Caption - The patient-facing questions the neurologist asks to capture this section, with response type, validation, EP001's example answer, and the derived AI feature.*
+
+| ID | Question | Response Type | Validation | EP001 (Example) | AI Feature |
+|---|---|---|---|---|---|
+| NEU-1201 | Mental status testing — are orientation, memory, and attention intact? | Dropdown[Normal, Abnormal, Post-ictal confusion/obtunded] | Allowed set | Normal | mental_status_exam |
+| NEU-1202 | Cranial nerve examination — any deficit (e.g., gaze deviation)? | Dropdown[Normal, Abnormal, Gaze deviation] | Allowed set | Normal | cranial_nerve_exam |
+| NEU-1203 | Motor examination — any weakness or paresis? | Dropdown[Normal, Abnormal, Todd's paresis] | Allowed set | Normal | motor_exam_result |
+| NEU-1204 | Sensory examination — any sensory loss? | Dropdown[Normal, Reduced, Absent] | Allowed set | Normal | sensory_exam_result |
+| NEU-1205 | Reflexes — are deep tendon reflexes normal and symmetric? | Dropdown[Normal, Mildly brisk, Asymmetric brisk] | Allowed set | Normal | reflex_exam_result |
+| NEU-1206 | Coordination testing — any dysmetria or incoordination? | Dropdown[Normal, Impaired] | Allowed set | Normal | coordination_exam_result |
+| NEU-1207 | Gait assessment — is walking steady and normal? | Dropdown[Normal, Unsteady, Unable] | Allowed set | Normal | gait_exam_result |
+| NEU-1208 | Romberg test — does the patient sway or fall with eyes closed? | Dropdown[Negative, Positive, Untestable] | Allowed set | Negative | romberg_test_result |
+
 ## Severity Scenario Model — Neurologist View
 
 *Caption - The same assessment answered across four epilepsy severity levels from the neurologist's point of view; each variable shifts with severity. EP001 corresponds to Level 3 (Severe). Level 4 is the operational emergency — status epilepticus with seizures recurring about every 5 minutes.*
