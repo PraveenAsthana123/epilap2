@@ -4,9 +4,14 @@
 > **Why (this doc):** It is the single entry point that frames the entire dissertation — establishing the three central contributions, the five pillars, and how enterprise AI for **epilepsy** intelligence ties technical innovation to measurable business value.
 > **How:** By presenting a research-spine (problem → objective → contributions), a pillar-to-pipeline map, an end-to-end enterprise research stack, and diagrammatic overviews (flowchart, sequence, network, journey) so an examiner can grasp scope in minutes.
 
-This repository holds the full dissertation blueprint and (subsequently) the reference
+This repository holds the full dissertation blueprint and the reference
 implementation for a **Doctor of Business Administration (DBA)** focused on enterprise
 AI transformation in healthcare.
+
+> **📄 Compiled deliverables.** The full doctoral dissertation is in [`docs/thesis/`](thesis/00-front-matter.md)
+> and compiled to **[docs/DBA-Epilepsy-Thesis.pdf](DBA-Epilepsy-Thesis.pdf)** (52 pp). The technical
+> deliverable is compiled to **[docs/DBA-Epilepsy-Deliverable.pdf](DBA-Epilepsy-Deliverable.pdf)** (64 pp).
+> Regenerate with `python analysis/build_thesis_pdf.py` and `python analysis/build_pdf.py`.
 
 **Problem.** Epilepsy care is fragmented across clinical assessment and EEG interpretation, with limited explainable, governed AI support to help neurologists and EEG technicians reach consistent, defensible decisions at enterprise scale.
 

@@ -4,7 +4,7 @@
 
 ### Responsible, Explainable AI for EEG‑Based Epilepsy Analytics — Under Human Clinical Oversight
 
-*A full DBA research deliverable: a docs‑first clinical blueprint, an interactive role‑portal viewer, a reproducible analytics + MLOps stack, a Responsible‑AI framework, a database, and a REST API — end to end.*
+*A full DBA research deliverable: a **doctoral dissertation** ([docs/thesis/](docs/thesis/) + [PDF](docs/DBA-Epilepsy-Thesis.pdf)), a 7‑pipeline enterprise operating model, an interactive role‑portal viewer, a reproducible analytics + MLOps stack, a Responsible‑AI + governance framework (HIPAA/NIST/OWASP/IRB), a RAG vector‑DB + RDF knowledge graph, a database, and a REST API — end to end.*
 
 ![Tests](https://img.shields.io/badge/tests-66_passing-brightgreen)
 ![Lifecycle](https://img.shields.io/badge/phase_gates-100%2F100-brightgreen)
@@ -20,6 +20,27 @@
 > The pipeline is *also* validated on **real EEG** (EEG‑Eye‑State, external‑validation AUC **0.979**).
 > Epilepsy‑labelled real corpora (Siena / TUH) plug in via `analysis/fetch_siena.py` — the method is
 > identical. This is **decision support**, never autonomous diagnosis; a clinician confirms every output.
+
+---
+
+## 📄 Dissertation & PDFs
+
+The full **DBA doctoral dissertation** lives in [`docs/thesis/`](docs/thesis/) — front matter + 8 chapters
+of academic prose (~25k words), each with a flowchart, sequence diagram, network diagram, and C4 model.
+Two compiled PDFs are generated from the docs:
+
+| PDF | Pages | Contents | Build |
+|---|---|---|---|
+| **[docs/DBA-Epilepsy-Thesis.pdf](docs/DBA-Epilepsy-Thesis.pdf)** | 52 | The dissertation: Abstract → Ch1 Introduction → Ch2 Literature Review → Ch3 Methodology → Ch4 System Design → Ch5 Implementation → Ch6 Results → Ch7 Discussion → Ch8 Conclusion | `python analysis/build_thesis_pdf.py` |
+| **[docs/DBA-Epilepsy-Deliverable.pdf](docs/DBA-Epilepsy-Deliverable.pdf)** | 64 | Technical deliverable: operating model, pipelines, secondary‑EEG, governance (HIPAA/NIST/OWASP/IRB), MCP/knowledge‑graph, prediction schema | `python analysis/build_pdf.py` |
+
+> Open a PDF from the VSCode explorer (inline viewer) or download from the repo. Mermaid diagrams render
+> live in the interactive viewer; in the PDFs they appear as labelled diagram placeholders.
+
+Chapters: [Front matter](docs/thesis/00-front-matter.md) · [Ch1 Introduction](docs/thesis/ch1-introduction.md) ·
+[Ch2 Literature Review](docs/thesis/ch2-literature-review.md) · [Ch3 Methodology](docs/thesis/ch3-methodology.md) ·
+[Ch4 System Design](docs/thesis/ch4-system-design.md) · [Ch5 Implementation](docs/thesis/ch5-implementation.md) ·
+[Ch6 Results](docs/thesis/ch6-results-evaluation.md) · [Ch7–8 Discussion & Conclusion](docs/thesis/ch7-8-discussion-conclusion.md)
 
 ---
 
@@ -156,11 +177,20 @@ phase gates, and runs weekly (`cron`).
 
 ## Documentation
 
-[Architecture & internals](docs/ARCHITECTURE-INTERNALS.md) · [Research problems](docs/research-problems.md) ·
-[DBA strategy](docs/dba-strategy-and-prioritization.md) · [Responsible AI](docs/responsible-ai/index.md) ·
-[Data engineering / MLOps](docs/data-engineering-mlops.md) · [Monitoring](docs/monitoring-observability.md) ·
-[Checklist coverage](docs/checklist-coverage.md) · [Global policy](docs/GLOBAL-POLICY.md) ·
-[Prompt log](docs/prompt-log/index.md)
+**Dissertation:** [Thesis (docs/thesis/)](docs/thesis/) · **PDFs:** [Thesis PDF](docs/DBA-Epilepsy-Thesis.pdf) · [Deliverable PDF](docs/DBA-Epilepsy-Deliverable.pdf)
+
+**Enterprise operating model:** [7 pipelines / 40 stages](docs/enterprise-flow/00-operating-model.md) ·
+[Pipeline 1 — Research Protocol](docs/enterprise-flow/pipeline-1-research-clinical-protocol.md) ·
+[Pipelines 2–7 + missing layers](docs/enterprise-flow/pipelines-2-7-and-missing-layers.md) ·
+[MCP · Multi‑Agent · Knowledge Graph (RDF)](docs/enterprise-flow/mcp-multiagent-knowledge-graph.md) ·
+[Prediction output schema](docs/enterprise-flow/prediction-output-schema.md)
+
+**Governance:** [Security/HIPAA/NIST/OWASP](docs/governance/00-security-compliance.md) ·
+[IRB submission](docs/governance/01-irb-submission.md) · [Patient consent + EULA](docs/governance/02-patient-consent-eula.md)
+
+**Reference:** [Architecture & internals](docs/ARCHITECTURE-INTERNALS.md) · [Research problems](docs/research-problems.md) ·
+[Responsible AI](docs/responsible-ai/index.md) · [Data engineering / MLOps](docs/data-engineering-mlops.md) ·
+[Monitoring](docs/monitoring-observability.md) · [Global policy](docs/GLOBAL-POLICY.md) · [Prompt log](docs/prompt-log/index.md)
 
 ## Standards
 

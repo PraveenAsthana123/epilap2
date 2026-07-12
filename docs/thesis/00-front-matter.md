@@ -4,6 +4,10 @@
 
 *Reference index case: Patient EP001 · Scope: Epilepsy*
 
+> **Compiled PDF:** this dissertation is compiled to [DBA-Epilepsy-Thesis.pdf](../DBA-Epilepsy-Thesis.pdf)
+> (52 pp) via `python analysis/build_thesis_pdf.py`. The companion technical deliverable is
+> [DBA-Epilepsy-Deliverable.pdf](../DBA-Epilepsy-Deliverable.pdf).
+
 ---
 
 ## Abstract
