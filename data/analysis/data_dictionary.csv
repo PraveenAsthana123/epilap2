@@ -1,0 +1,59 @@
+variable,role_modality
+patient_id,Demographics
+age,Demographics
+sex,Demographics
+employment,Demographics
+education,Demographics
+marital,Demographics
+neuro_seizure_freq_pm,Neurologist
+neuro_awareness_impaired,Neurologist
+neuro_nocturnal,Neurologist
+neuro_duration_sec,Neurologist
+neuro_aura,Neurologist
+neuro_postictal_min,Neurologist
+neuro_trigger_burden,Neurologist
+eegtech_impedance_kohm,EEG Technician
+eegtech_artifact_grade,EEG Technician
+eegtech_sleep_deprived,EEG Technician
+nurse_seizure_obs_pm,Nurse
+nurse_injury_events,Nurse
+nurse_rescue_med,Nurse
+nurse_sbp,Nurse
+nurse_hr,Nurse
+npsy_moca,Neuropsychologist
+npsy_verbal_mem_z,Neuropsychologist
+npsy_naming_z,Neuropsychologist
+npsy_gad7,Neuropsychologist
+npsy_nddi_e,Neuropsychologist
+pharm_asm_count,Pharmacist
+pharm_cbz_level,Pharmacist
+pharm_adherence_pct,Pharmacist
+pharm_interaction_flags,Pharmacist
+pharm_tdm_urgency,Pharmacist
+care_witnessed_freq_pm,Caregiver
+care_supervision,Caregiver
+care_zbi_burden,Caregiver
+pt_qolie31,Patient
+pt_selfreport_adherence_pct,Patient
+pt_side_effect_burden,Patient
+admin_encounter_acuity,Administrator
+admin_prior_admissions,Administrator
+severity_level,Target
+severity_label,Target
+drug_resistant,Target
+eeg_delta,EEG (secondary)
+eeg_theta,EEG (secondary)
+eeg_alpha,EEG (secondary)
+eeg_beta,EEG (secondary)
+eeg_gamma,EEG (secondary)
+eeg_left_temporal_pow,EEG (secondary)
+eeg_right_temporal_pow,EEG (secondary)
+eeg_temporal_asym,EEG (secondary)
+eeg_spike_rate_pm,EEG (secondary)
+eeg_focal_slowing,EEG (secondary)
+eeg_entropy,EEG (secondary)
+eeg_paf_hz,EEG (secondary)
+eeg_connectivity,EEG (secondary)
+eeg_qc_grade,EEG (secondary)
+eeg_focus_channel,EEG (secondary)
+focus_side,Target (secondary)

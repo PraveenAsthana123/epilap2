@@ -48,8 +48,9 @@ const SEVERITY = [
 
 // Human-friendly ordering for the "All Docs" nav sections (the rest of the blueprint).
 const GROUP_ORDER = [
-  'Start', 'Part I–III', 'Pipelines', 'Part IV–VIII', 'Primary Assessment',
-  'Roles & Stakeholders', 'HEP Dataset', 'Source Datasets', 'Dataset Dossiers', 'Reference',
+  'Start', 'Vision', 'Analytics', 'Part I–III', 'Pipelines', 'Part IV–VIII',
+  'Primary Assessment', 'Roles & Stakeholders', 'HEP Dataset', 'Source Datasets',
+  'Dataset Dossiers', 'Reference',
 ]
 
 // Extract the first H1 as the doc title; fall back to the path.
@@ -61,6 +62,9 @@ function titleFromMarkdown(md, fallback) {
 // Map a doc path to an "All Docs" nav group. Order of checks matters (most specific first).
 function classify(rel) {
   const parts = rel.split('/')
+  if (rel.startsWith('analysis/')) return 'Analytics'
+  if (rel === 'research-vision.md') return 'Vision'
+  if (rel === 'patient-onboarding.md') return 'Vision'
   if (rel.startsWith('primary-assessment/')) return 'Primary Assessment'
   if (rel.startsWith('stakeholders/') || rel.startsWith('roles-study/')) return 'Roles & Stakeholders'
   if (rel.startsWith('hep/')) return 'HEP Dataset'
