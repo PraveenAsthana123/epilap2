@@ -43,3 +43,15 @@ def test_score_rejects_bad_level():
 def test_patient_ep001_and_missing():
     assert c.get("/patient/EP001").json()["band"]["label"] == "Severe"   # positive
     assert c.get("/patient/NOPE").status_code == 404                     # negative
+
+
+def test_api_key_enforced_when_set(monkeypatch):
+    # With EPI_API_KEY set, protected endpoints require the header.
+    monkeypatch.setenv("EPI_API_KEY", "secret123")
+    body = {"sections": [{"items": [{"level": 3, "weight": 1.0}]}]}
+    assert c.post("/score", json=body).status_code == 401                        # negative: missing key
+    assert c.post("/score", json=body, headers={"X-API-Key": "wrong"}).status_code == 401
+    assert c.post("/score", json=body, headers={"X-API-Key": "secret123"}).status_code == 200  # positive
+    # Open (no key configured) still works for dev.
+    monkeypatch.delenv("EPI_API_KEY", raising=False)
+    assert c.post("/score", json=body).status_code == 200

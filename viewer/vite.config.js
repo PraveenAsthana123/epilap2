@@ -7,5 +7,16 @@ export default defineConfig({
   server: {
     fs: { allow: ['..'] },
     host: true,
+    // Proxy /api to the FastAPI service so the viewer can call it in dev.
+    proxy: {
+      '/api': { target: 'http://localhost:8000', changeOrigin: true,
+                rewrite: (p) => p.replace(/^\/api/, '') },
+    },
+  },
+  // Vitest: jsdom so React component/button tests can render + click.
+  test: {
+    environment: 'jsdom',
+    globals: true,
+    setupFiles: ['./src/test-setup.js'],
   },
 })

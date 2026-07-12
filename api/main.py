@@ -21,7 +21,8 @@ Docs: http://127.0.0.1:8000/docs  (auto OpenAPI/Swagger)
 from __future__ import annotations
 import os, csv, sqlite3
 from typing import Optional
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Security, Depends
+from fastapi.security import APIKeyHeader
 from pydantic import BaseModel, Field
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -31,6 +32,19 @@ DB = os.path.join(ROOT, "db", "epilepsy.db")
 
 app = FastAPI(title="Epilepsy Intelligence Platform API", version="1.0.0",
               description="Roles, seizure/epilepsy scenarios, and weighted severity scoring.")
+
+# ---- Optional API-key auth (governance/accountability) --------------------
+# If the EPI_API_KEY env var is set, protected endpoints require a matching
+# `X-API-Key` header; if unset (dev), the API is open. This keeps local dev
+# frictionless while enabling real access control in deployment.
+_api_key_header = APIKeyHeader(name="X-API-Key", auto_error=False)
+
+
+def require_key(key: str = Security(_api_key_header)):
+    expected = os.environ.get("EPI_API_KEY")
+    if expected and key != expected:
+        raise HTTPException(status_code=401, detail="Invalid or missing X-API-Key")
+    return True
 
 
 # --------------------------------------------------------------------------- helpers
@@ -110,7 +124,7 @@ def scenario(scenario_id: str):
 
 
 @app.post("/score")
-def score(req: ScoreRequest):
+def score(req: ScoreRequest, _auth: bool = Depends(require_key)):
     """Weighted severity score: item -> section (Σ L·w / Σ w) -> role (mean of sections) -> band."""
     section_scores = []
     for sec in req.sections:
@@ -125,7 +139,7 @@ def score(req: ScoreRequest):
 
 
 @app.get("/patient/{patient_id}")
-def patient(patient_id: str):
+def patient(patient_id: str, _auth: bool = Depends(require_key)):
     """Patient record + stored composite severity (from the SQLite DB)."""
     if not os.path.exists(DB):
         raise HTTPException(500, "epilepsy.db missing — run db/build_sqlite.py")
