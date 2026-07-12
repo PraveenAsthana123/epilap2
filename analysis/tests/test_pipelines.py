@@ -197,3 +197,21 @@ def test_recurrence_survival_output():
     assert df["time_days"].between(0, 365).all()                             # positive: censored
     assert set(df["recurred"].unique()).issubset({0, 1})                     # negative: binary event
     assert df.loc[df.patient_id == "EP001", "risk_band"].iloc[0] == "High"   # EP001 is severe
+
+
+# ---------------------------------------------------------------------------
+# Integrated decision support (flagship #6 capstone)
+# ---------------------------------------------------------------------------
+def test_integrated_decisions():
+    p = os.path.join(ROOT, "data", "analysis", "decisions.csv")
+    if not os.path.exists(p):
+        pytest.skip("run analysis/decision_support.py first")
+    df = pd.read_csv(p)
+    # POSITIVE: every patient has a recommendation and a boolean gate result.
+    assert df["recommendation"].notna().all()
+    assert set(df["auto_recommendable"].astype(str).unique()).issubset({"True", "False"})
+    # NEGATIVE: deferred patients must NOT carry an auto recommendation flag.
+    deferred = df[~df["auto_recommendable"].astype(bool)]
+    assert (deferred["recommendation"].str.contains("REVIEW", case=False)).all()
+    # EP001 passes both gates.
+    assert bool(df.loc[df.patient_id == "EP001", "auto_recommendable"].iloc[0]) is True

@@ -250,8 +250,8 @@ Pseudo-R² = 0.394.
 
 | class | before | after |
 |---|---|---|
-| not_resistant | 308 | None |
-| drug_resistant | 192 | None |
+| not_resistant | 308 | 308 |
+| drug_resistant | 192 | 308 |
 
 ## Stage 10 — Bias / Fairness Audit
 

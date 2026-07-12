@@ -72,7 +72,7 @@
 
 | metric | before | after_mitigation | target |
 |---|---|---|---|
-| Demographic parity diff | 0.175 | 0.087 | <0.10 |
+| Demographic parity diff | 0.175 | 0.071 | <0.10 |
 | Equalized odds diff | 0.131 | 0.190 | <0.10 |
 
 **Reason:** Measure and reduce demographic disparity. **Why:** Fairness/bias pillars require auditing AND mitigation, not just measurement. **What is happening:** Parity/equalised-odds gaps are computed per sex and reduced by threshold optimisation. **How it is happening:** Fairlearn MetricFrame measures; ThresholdOptimizer adjusts per-group thresholds. **Reference:** Bird et al. (2020); Hardt, Price & Srebro (2016).

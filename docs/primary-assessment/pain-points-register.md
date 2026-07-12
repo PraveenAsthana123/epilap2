@@ -3,7 +3,7 @@
 > **Why (this doc):** A consolidated matrix of every role/stakeholder's pain points and the EP001 evidence/impact behind each — the problem space the platform addresses. **How:** auto-extracted from each `roles-*.md` landing page by `analysis/build_catalogues.py`.
 
 | Role | Pain Point | Evidence / Impact (EP001) |
-**Roles covered:** 9 · **Pain points:** 46
+**Roles covered:** 10 · **Pain points:** 52
 
 |---|---|---|
 | Administrator | Prior-authorization delay | EEG and MRI require payer approval |
@@ -52,3 +52,9 @@
 | Pharmacist | Underdosing / titration headroom | Both ASMs low-therapeutic; LEV below ceiling |
 | Pharmacist | Enzyme-induction risk | CBZ strong CYP3A4 auto-inducer, low trough 6.2 mg/L |
 | Pharmacist | Tolerability monitoring | CBZ dizziness/diplopia/hyponatremia; LEV irritability |
+| Radiologist | Incomplete / low-field MRI missing MTS | Subtle left hippocampal signal needs 3T epilepsy protocol |
+| Radiologist | Non-epilepsy-protocol scans | Routine axial imaging under-samples the hippocampi |
+| Radiologist | Discordant imaging vs EEG | Concordance must be verified against left temporal EEG focus |
+| Radiologist | Incidental findings | Non-target findings can distract from the epileptogenic lesion |
+| Radiologist | Report turnaround | Delayed finalization slows presurgical referral |
+| Radiologist | Lack of prior-scan comparison | No baseline MRI limits stable-vs-progressive judgment |
