@@ -1,5 +1,12 @@
 # Chapter 4 — System Design & Architecture
 
+## At a glance
+- **Model:** 7 connected pipelines (research → data eng → features → modelling → MLOps → RAG/agent → safety).
+- **Data:** lakehouse zones (immutable raw), data contracts, MPI, catalog/lineage; mesh + fabric + lakehouse are complementary.
+- **Features/serving:** offline+online feature store (point-in-time); FastAPI /predict, registry + rollback.
+- **GenAI/governance:** RAG vector DB + RDF knowledge graph + MCP/agents; HIPAA/NIST/OWASP by design.
+- **Views:** C4 Context + Container; honest maturity (implemented vs specified).
+
 ## 4.1 Introduction and Design Rationale
 
 This chapter presents the system design and architecture for the explainable, multimodal artificial intelligence (AI) platform that underpins the remote epilepsy care programme evaluated in this dissertation. The purpose of the chapter is to translate the clinical and organisational requirements established in the preceding chapters into a coherent enterprise architecture that is defensible on grounds of security, scalability, explainability, and auditability. The design follows the principles of design-science research articulated by Hevner, March, Park, and Ram (2004), in which a purposeful artefact is constructed and evaluated against a real organisational problem — in this instance, the fragmented, episodic, and often inequitable delivery of epilepsy care to patients who live at a distance from specialist epileptology services.

@@ -1,5 +1,19 @@
 # Chapter 3 — Research Methodology
 
+## At a glance
+- **Design:** Design Science Research + mixed-methods evaluation (pragmatism).
+- **Data:** real CHB-MIT EEG + EEG-Eye-State (external); synthetic 500-patient clinical cohort (labelled).
+- **Methods:** preprocess → features → in-fold SMOTE → models (LR/ordinal/RF/MLP, Cox, SARIMAX) → eval → SHAP.
+- **Rigor/ethics:** seed=42, subject-level splits, TRIPOD/PROBAST, IRB + consent + HIPAA de-identification.
+
+| RQ | Hypothesis (H1) | Test |
+|---|---|---|
+| RQ1 | biomarkers discriminate ictal | Mann-Whitney U |
+| RQ2 | model beats baseline / generalises | DeLong |
+| RQ3 | drivers clinically legible | SHAP/permutation |
+| RQ4 | governance feasible | phase gates |
+| RQ5 | operating model improves maturity | 40-stage status |
+
 ## 3.1 Introduction and Philosophical Orientation
 
 This chapter specifies the methodological architecture through which the central design problem of this dissertation is investigated: how to conceive, construct, and evaluate an enterprise-grade, explainable, multimodal artificial intelligence (AI) platform that supports remote epilepsy care without displacing clinical authority. The chapter articulates the philosophical stance adopted, the overarching research design, the research questions and their attendant hypotheses, the unit of analysis, the data sources, the analytical procedures, and the provisions made for rigor, validity, and ethics. Throughout, the emphasis is on epilepsy as a chronic neurological condition characterised by recurrent seizures, and on the specific instrumentation—scalp electroencephalography (EEG), structured clinical assessment, and role-differentiated decision support—required to reason about ictal and inter-ictal states at a distance.

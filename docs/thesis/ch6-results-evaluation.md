@@ -1,5 +1,12 @@
 # Chapter 6 — Results & Evaluation
 
+## At a glance
+- **Real EEG:** cross-validated ROC-AUC ≈ 0.92; ictal-vs-interictal ≈ 0.97; external (EEG-Eye-State) ≈ 0.979.
+- **Top drivers:** line-length, gamma-band power, PLV (SHAP + permutation agree); Mann-Whitney p < 0.001.
+- **Hypotheses:** H1–H3 supported (real data); H4–H5 partially supported (synthetic / partial implementation).
+- **Build status:** 40 stages = 26 done · 12 partial · 2 documented; phase gates at high maturity.
+- **Honesty:** clinical/fusion results are synthetic demonstrations, not clinical validation.
+
 ## 6.1 Introduction and Evaluation Philosophy
 
 This chapter reports the empirical findings that arise from applying the platform's evaluation protocol to the models developed in the preceding chapters, and it interprets those findings against the five research hypotheses (H1–H5) formulated in Chapter 3. The presentation is deliberately disciplined about the distinction between two very different classes of evidence. The strongest and most defensible results derive from real, publicly available electroencephalography (EEG) data: seizure detection and ictal-versus-interictal discrimination on the CHB-MIT Scalp EEG Database, together with an external validation on the EEG-Eye-State dataset drawn from OpenML. The clinical severity and multimodal fusion results, by contrast, were produced on a synthetic 500-patient cohort; they are reported throughout as a methodological demonstration of the modelling and evaluation machinery rather than as clinical validation. Maintaining this separation is itself a substantive contribution: it protects the reader from over-claiming and models the kind of honest reporting that responsible clinical artificial-intelligence (AI) research demands.

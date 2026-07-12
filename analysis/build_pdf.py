@@ -17,7 +17,7 @@ from reportlab.lib.units import mm
 from reportlab.lib import colors
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.platypus import (SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle,
-                                PageBreak, Image, ListFlowable, ListItem)
+                                PageBreak, Image, ListFlowable, ListItem, KeepTogether)
 from reportlab.lib.enums import TA_CENTER
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -116,7 +116,8 @@ def parse_md(md: str, base_dir: str):
                         trows.append(cells)
                 i += 1
             if trows:
-                flow.append(table_from(trows)); flow.append(Spacer(1, 6))
+                # Keep each table on a single page (no split across pages) when it fits.
+                flow.append(KeepTogether(table_from(trows))); flow.append(Spacer(1, 6))
             continue
         # image
         m = re.match(r"!\[(.*?)\]\((.+?)\)", ln.strip())
@@ -126,7 +127,8 @@ def parse_md(md: str, base_dir: str):
             if os.path.exists(p):
                 try:
                     img = Image(p); img._restrictSize(150 * mm, 90 * mm)
-                    flow.append(img); flow.append(Paragraph(inline(m.group(1)), CAP)); flow.append(Spacer(1, 6))
+                    # Keep figure + its caption together on one page.
+                    flow.append(KeepTogether([img, Paragraph(inline(m.group(1)), CAP)])); flow.append(Spacer(1, 6))
                 except Exception:
                     pass
             i += 1; continue

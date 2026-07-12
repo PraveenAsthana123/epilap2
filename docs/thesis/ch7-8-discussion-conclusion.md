@@ -1,5 +1,11 @@
 # Chapter 7 — Discussion
 
+## At a glance
+- **Interpretation:** real detection performance is credible; line-length/gamma/PLV are clinically legible.
+- **Value:** the seven-pipeline operating model, explainability, RAG + knowledge graph, and governance-by-design.
+- **DBA lens:** organisational value — ownership, adoption, trust, risk — over algorithmic novelty.
+- **Human-in-the-loop:** decision support only; neurologist authority throughout.
+
 ## 7.1 Overview
 
 This chapter interprets the empirical and design outcomes reported in the preceding chapters against the backdrop of the epilepsy informatics, explainable artificial intelligence, and enterprise systems literatures. Because this is a Doctor of Business Administration (DBA) enquiry rather than a purely computational thesis, the discussion deliberately foregrounds organisational value, operating-model design, adoption dynamics, risk, and governance, while treating the algorithmic results as evidence that the operating model can be trusted to carry clinical weight. The central argument advanced here is that the demonstrated seizure-detection performance is a necessary but not sufficient condition for remote epilepsy care; the sufficient condition is a governed, explainable, and reproducible operating model into which such performance can be safely embedded. The platform designed and evaluated in this research is presented as an instantiation of that operating model.
@@ -83,6 +89,11 @@ Adoption also entails managed risk. The principal organisational risks — autom
 ---
 
 # Chapter 8 — Conclusion, Limitations and Future Work
+
+## At a glance
+- **Contributions:** theoretical (governed multimodal operating model), methodological (real-EEG explainable reproducible pipeline), practical (deployable artefact), reflective (honest boundary).
+- **Limitations:** synthetic clinical data; MLP stand-in for deep models; TF-IDF RAG; MCP/agents specified not executable; single-subject EEG; no prospective trial.
+- **Future:** IRB multi-subject data, real deep models on spectrograms, neural embeddings, executable agents, online feature store, stepped-wedge clinical evaluation.
 
 ## 8.1 Restating the Problem and the Response
 

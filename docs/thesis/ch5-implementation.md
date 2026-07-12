@@ -1,5 +1,12 @@
 # Chapter 5 — Implementation
 
+## At a glance
+- **Signal:** real CHB-MIT EEG via MNE; band-pass 0.5–45 + notch + re-reference; 4 s epochs, subject-level splits.
+- **Representation:** STFT spectrogram + CWT scalogram + connectivity + power-band heatmap (1D→2D).
+- **Features/models:** 12 features (band power, Hjorth, Higuchi FD, entropy, PLV, line-length); SMOTE in-fold; RF + MLP + GridSearchCV.
+- **MLOps:** data contract, feature store, registry+rollback, observability, FastAPI, CI.
+- **GenAI/reproducibility:** RAG vector DB + RDF KG; seed=42, one-command `run_all.py`, interactive viewer.
+
 ## 5.1 Overview and Implementation Philosophy
 
 This chapter documents how the platform described in Chapters 3 and 4 was actually constructed, moving from architectural intent to running code. The guiding principle throughout implementation was *honest engineering*: every capability claimed by the platform is backed by an executable artefact that a reviewer can regenerate from a clean checkout, and every place where a lightweight component substitutes for a heavier production dependency is disclosed explicitly rather than concealed. This discipline matters in a doctoral context because reproducibility and transparency are themselves contributions; a demonstration that quietly relies on fabricated numbers, or that cannot be re-run, undermines the very governance argument the platform advances.

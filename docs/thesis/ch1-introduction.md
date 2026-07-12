@@ -1,5 +1,19 @@
 # Chapter 1 — Introduction
 
+## At a glance
+- **Problem:** epilepsy care is slow, fragmented, reactive — the gap is *operational*, not algorithmic.
+- **Aim:** design, implement, evaluate an enterprise, explainable, multimodal, governed epilepsy platform.
+- **Evidence:** real EEG (CHB-MIT) is the empirical core; clinical/fusion models are synthetic (labelled).
+- **Structure:** 7 sections, 4 figures (flowchart · sequence · network · C4), 2 tables.
+
+| RQ | Focus |
+|---|---|
+| RQ1 | interpretable EEG biomarkers discriminate ictal states |
+| RQ2 | detector generalises to an external benchmark |
+| RQ3 | explanations identify clinically legible drivers |
+| RQ4 | governance-by-design is feasible/auditable |
+| RQ5 | enterprise operating model improves deployability |
+
 ## 1.1 Background
 
 Epilepsy is among the most common serious neurological disorders, affecting an estimated fifty million

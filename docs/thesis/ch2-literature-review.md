@@ -1,5 +1,11 @@
 # Chapter 2 — Literature Review
 
+## At a glance
+- **Reviews:** EEG ML (classical + deep), time-frequency/imaging, multimodal fusion, explainable AI, responsible AI, MLOps, RAG + knowledge graphs.
+- **Finding:** prior work locally optimises isolated models — governance, explainability, deployment advance separately.
+- **Gap:** no enterprise-grade, explainable, governed, multimodal, deployable *epilepsy* platform spanning the full lifecycle.
+- **Response:** this study builds exactly that (real EEG + XAI + 7 pipelines + RAG/KG + governance).
+
 ## 2.1 Introduction and Scope of the Review
 
 This chapter critically synthesises the body of scholarship that informs the design, implementation, and evaluation of an enterprise-grade, explainable, multimodal artificial intelligence (AI) platform for remote epilepsy care. Rather than cataloguing prior work in isolation, the review is organised around the argument that although individual technical components of such a platform are well studied, the literature contains a persistent integration gap: prior research overwhelmingly optimises isolated models for narrowly defined tasks and rarely delivers a governed, deployable, end-to-end system that spans the full data-to-model-to-generative-AI-to-governance lifecycle for epilepsy. Establishing this gap requires traversing several distinct literatures — the clinical epidemiology and diagnostic pathway of epilepsy, signal processing and machine learning for electroencephalography (EEG), explainable and responsible AI, machine learning operations (MLOps) and clinical prediction-model reporting standards, and retrieval-augmented generation (RAG) with knowledge graphs for clinical decision support. Each literature is mature in its own right, yet the seams between them remain thinly theorised and rarely engineered.
