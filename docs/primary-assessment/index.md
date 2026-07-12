@@ -127,10 +127,21 @@ answered across four epilepsy severity levels from that role's perspective:
 | 6 | [06-safety-screening.md](occupational-therapist/06-safety-screening.md) | Initial Safety Screening (OT051–060) |
 | 7 | [07-clinical-impression.md](occupational-therapist/07-clinical-impression.md) | Initial Clinical Impression (OT061–070) |
 
+## Radiologist Assessment (Imaging / Secondary)
+| # | File | Section |
+|---|---|---|
+| 1 | [01-imaging-referral.md](radiologist/01-imaging-referral.md) | Imaging Referral (RAD001) |
+| 2 | [02-mri-brain.md](radiologist/02-mri-brain.md) | MRI Brain |
+| 3 | [03-ct-brain.md](radiologist/03-ct-brain.md) | CT Brain |
+| 4 | [04-advanced-imaging.md](radiologist/04-advanced-imaging.md) | Advanced Imaging (PET/SPECT/fMRI/MEG) |
+| 5 | [05-lesion-localization.md](radiologist/05-lesion-localization.md) | Lesion → Epileptogenic-Zone Concordance |
+| 6 | [06-radiology-impression.md](radiologist/06-radiology-impression.md) | Radiology Impression |
+
 ## Derived / Roles
 | File | Contents |
 |---|---|
 | [ai-derived-features.md](ai-derived-features.md) | AI features derived before EEG |
+| [roles-radiologist.md](roles-radiologist.md) | Radiologist: imaging assessments, pain points, tasks |
 | [roles-neurologist.md](roles-neurologist.md) | Neurologist: assessments, concerns, tasks |
 | [roles-eeg-technician.md](roles-eeg-technician.md) | EEG Technician: assessments, concerns, tasks |
 | [roles-nurse.md](roles-nurse.md) | Nurse: assessments, concerns, tasks |

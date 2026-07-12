@@ -37,6 +37,7 @@ const ROLES = [
   { key: 'patient',          label: 'Patient',          icon: '🧍', dir: 'primary-assessment/patient/',          overview: 'primary-assessment/roles-patient.md',          blurb: 'Self-reported symptoms, seizure diary & outcomes' },
   { key: 'administrator',    label: 'Administrator',    icon: '🗂️', dir: 'primary-assessment/administrator/',    overview: 'primary-assessment/roles-administrator.md',    blurb: 'Registration, coding, scheduling & governance' },
   { key: 'occupational-therapist', label: 'Occupational Therapist', icon: '🧰', dir: 'primary-assessment/occupational-therapist/', overview: 'primary-assessment/roles-occupational-therapist.md', blurb: 'Function, ADL/IADL, participation, home safety & return-to-work' },
+  { key: 'radiologist', label: 'Radiologist', icon: '🩻', dir: 'primary-assessment/radiologist/', overview: 'primary-assessment/roles-radiologist.md', blurb: 'MRI/CT/PET imaging, lesion & epileptogenic-zone localization' },
 ]
 const ROLE_OVERVIEWS = new Set(ROLES.map((r) => r.overview))
 
