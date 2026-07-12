@@ -24,7 +24,7 @@ available secondary data and the governance thesis.
 | 1 | **Early Diagnosis & Clinical Decision Support** | ⭐⭐⭐⭐⭐ | EEG + clinical history → classification + CDSS | 🟡 severity/type classification built (synthetic) | Real EEG; "early" framing + time-to-diagnosis |
 | 2 | **Explainable AI for EEG Interpretation** | ⭐⭐⭐⭐⭐ | SHAP/saliency/attention on EEG features & spectrograms | 🟡 SHAP/LIME runtime on clinical model | EEG-signal-level XAI on real data |
 | 3 | **Drug-Resistant Epilepsy Prediction** | ⭐⭐⭐⭐⭐ | EEG trends + clinical → resistance risk | 🟢 `drug_resistant` model (AUC 0.969, synthetic) | Real EEG trend features |
-| 4 | **Seizure Recurrence Risk Prediction** | ⭐⭐⭐⭐⭐ | Survival / time-to-event from EEG + factors | ⬜ not built | New: survival analysis (Cox / time-to-event) |
+| 4 | **Seizure Recurrence Risk Prediction** | ⭐⭐⭐⭐⭐ | Survival / time-to-event from EEG + factors | 🟢 built — [`analysis/recurrence.py`](analysis/recurrence-risk.md): Kaplan-Meier + Cox (C-index 0.663), EP001 High risk | Real EEG trend features |
 | 5 | **Presurgical Decision Support** | ⭐⭐⭐⭐⭐ | EEG + MRI + clinical concordance | 🟢 doc + concordance model ([surgical](surgical-recommendation.md)) | Real multimodal concordance |
 | 6 | **Multimodal Decision Support (engine)** | ⭐⭐⭐⭐⭐ | Fuse EEG + clinical + imaging — the overarching engine | 🟢 fusion built (AUC 0.976, synthetic) | Real EEG/imaging inputs |
 

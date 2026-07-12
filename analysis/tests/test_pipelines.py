@@ -183,3 +183,17 @@ def test_eeg_dsp_asymmetry_lateralises():
     assert 0.9 < s < 1.1
     # NEGATIVE: peak alpha frequency stays in the physiological 8-13 Hz band.
     assert 8 <= fL["eeg_paf_hz"] <= 13
+
+
+# ---------------------------------------------------------------------------
+# Flagship #4 — seizure recurrence survival analysis
+# ---------------------------------------------------------------------------
+def test_recurrence_survival_output():
+    p = os.path.join(ROOT, "data", "analysis", "recurrence.csv")
+    if not os.path.exists(p):
+        pytest.skip("run analysis/recurrence.py first")
+    df = pd.read_csv(p)
+    assert set(df["risk_band"]).issubset({"Low", "Medium", "High"})          # positive
+    assert df["time_days"].between(0, 365).all()                             # positive: censored
+    assert set(df["recurred"].unique()).issubset({0, 1})                     # negative: binary event
+    assert df.loc[df.patient_id == "EP001", "risk_band"].iloc[0] == "High"   # EP001 is severe

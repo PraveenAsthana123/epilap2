@@ -22,7 +22,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r analysis/requirements.txt
-          pip install shap lime fairlearn pytest
+          pip install shap lime fairlearn lifelines pytest
           pip install -r api/requirements.txt
       - name: Generate data artefacts (cohort, scenarios, governance, DB)
         run: |
@@ -32,6 +32,7 @@ jobs:
           python build_scenarios.py
           python build_var_dictionary.py
           python governance.py
+          python recurrence.py
           cd .. && python db/build_sqlite.py
       - name: Run analysis tests
         run: cd analysis && python -m pytest -q
