@@ -29,6 +29,7 @@ import secondary_eeg_full      # full 23-phase EEG pipeline on real CHB-MIT (STF
 import phase_io_export         # per-phase input/process/output + governance (viewer Phase Explorer)
 import vector_db_pipeline      # RAG vector DB (embed->index->retrieve) + scheduled jobs
 import enterprise_flow_export  # 7-pipeline / 40-stage operating model + prediction-object CSVs
+import knowledge_graph_export   # epilepsy RDF knowledge graph (Turtle) + node/edge CSVs
 
 
 STAGES = [
@@ -48,6 +49,7 @@ STAGES = [
     ("Phase Explorer — per-phase input/process/output export", phase_io_export),
     ("RAG — vector DB pipeline + scheduled jobs", vector_db_pipeline),
     ("Operating model — 7 pipelines / 40 stages / prediction object", enterprise_flow_export),
+    ("Knowledge graph — epilepsy RDF/Turtle + node/edge CSVs", knowledge_graph_export),
 ]
 
 

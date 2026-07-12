@@ -1,0 +1,20 @@
+id,label,type
+EP001,Patient EP001,Patient
+focal,Focal seizure,SeizureType
+generalized,Generalized seizure,SeizureType
+absence,Absence seizure,SeizureType
+ftbtc,Focal to bilateral tonic-clonic,SeizureType
+line_length,Line-length,EEGFeature
+band_gamma,Gamma band power,EEGFeature
+plv,Phase-locking value,EEGFeature
+spike_rate,Interictal spike rate,EEGFeature
+levetiracetam,Levetiracetam,ASM
+lamotrigine,Lamotrigine,ASM
+valproate,Valproate,ASM
+neurologist,Neurologist assessment,Assessment
+eeg_tech,EEG technician assessment,Assessment
+breakthrough,Breakthrough seizure (90d),Outcome
+status_epilepticus,Status epilepticus,Outcome
+ilae,ILAE 2017 classification,Guideline
+severity_l3,Severity L3 (Severe),Severity
+temporal_lobe,Temporal lobe focus,BrainRegion

@@ -16,6 +16,8 @@ import AIForms from './AIForms.jsx'
 import Monitoring from './Monitoring.jsx'
 import PhaseExplorer from './PhaseExplorer.jsx'
 import OperatingModel from './OperatingModel.jsx'
+import KnowledgeGraph from './KnowledgeGraph.jsx'
+import IPOVR from './TabMeta.jsx'
 
 // Primary/secondary phase explorers are PhaseExplorer bound to a pipeline.
 const PrimaryPhases = ({ datasets }) => <PhaseExplorer datasets={datasets} pipeline="primary" title="Primary Data Pipeline" icon="🧬" />
@@ -220,7 +222,7 @@ export default function App() {
     setView(v); setNavOpen(false); setQuery(''); setScoreMode(false)
     if (v === 'home') { setActiveId(null); return }
     if (['data', 'sim', 'scenarios', 'phases', 'eeg', 'dataviz', 'survey', 'reports',
-         'dashboards', 'forms', 'monitoring', 'pphases', 'sphases', 'opmodel'].includes(v)) { setActiveId(null); return }
+         'dashboards', 'forms', 'monitoring', 'pphases', 'sphases', 'opmodel', 'kg'].includes(v)) { setActiveId(null); return }
     if (v === 'all') { setActiveId(ALL_DOCS[0]?.id ?? null); return }
     const rd = ROLE_DOCS[v]
     setActiveId((rd.overview || rd.sections[0])?.id ?? null)
@@ -282,7 +284,8 @@ export default function App() {
         <button className={'tab tab-all' + (view === 'all' ? ' active' : '')} onClick={() => enter('all')}>
           All Docs
         </button>
-        {['opmodel:🏛️ Operating Model', 'pphases:🧬 Primary', 'sphases:〰️ Secondary', 'dataviz:📊 Data Viz', 'survey:🗣️ Survey',
+        {['opmodel:🏛️ Operating Model', 'pphases:🧬 Primary', 'sphases:〰️ Secondary', 'kg:🕸️ Knowledge Graph',
+          'dataviz:📊 Data Viz', 'survey:🗣️ Survey',
           'forms:📝 AI Forms', 'dashboards:🧭 Dashboards', 'reports:📄 Reports', 'monitoring:📡 Monitoring',
           'sim:🧪 Simulation', 'scenarios:📚 Scenarios', 'phases:✅ Phases',
           'eeg:〜 EEG'].concat(DATASETS.length > 0 ? ['data:🗃️ Data'] : []).map((t) => {
@@ -300,12 +303,13 @@ export default function App() {
   // ---- Data-driven tabs ---------------------------------------------------
   const EXTRA = { data: DataView, sim: Simulation, scenarios: Scenarios, phases: PhaseDashboard, eeg: EEGWaveform,
     dataviz: DataViz, survey: Survey, reports: Reports, dashboards: Dashboards, forms: AIForms, monitoring: Monitoring,
-    pphases: PrimaryPhases, sphases: SecondaryPhases, opmodel: OperatingModel }
+    pphases: PrimaryPhases, sphases: SecondaryPhases, opmodel: OperatingModel, kg: KnowledgeGraph }
   if (EXTRA[view]) {
     const Comp = EXTRA[view]
     return (
       <div className="app">
         {topbar}
+        <IPOVR view={view} />
         <Comp datasets={DATASETS} />
       </div>
     )

@@ -29,6 +29,7 @@ DOCS = [
     ("Enterprise Operating Model — 7 Pipelines / 40 Stages", "docs/enterprise-flow/00-operating-model.md"),
     ("Pipeline 1 — Research & Clinical Protocol", "docs/enterprise-flow/pipeline-1-research-clinical-protocol.md"),
     ("Pipelines 2-7 + Every Missing Layer", "docs/enterprise-flow/pipelines-2-7-and-missing-layers.md"),
+    ("MCP · Multi-Agent · Knowledge Graph (RDF)", "docs/enterprise-flow/mcp-multiagent-knowledge-graph.md"),
     ("Prediction Output Schema", "docs/enterprise-flow/prediction-output-schema.md"),
     ("Secondary (EEG) — 23-Phase Pipeline on Real Data", "docs/analysis/secondary-eeg-full.md"),
     ("AIOps · DataOps · ModelOps · Fusion · Decision-AI", "docs/analysis/aiops-dataops-modelops-fusion.md"),

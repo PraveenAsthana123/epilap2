@@ -1,0 +1,57 @@
+@prefix kg: <http://epilepsy.ai/kg#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+kg:ASM a rdfs:Class .
+kg:Assessment a rdfs:Class .
+kg:BrainRegion a rdfs:Class .
+kg:EEGFeature a rdfs:Class .
+kg:Guideline a rdfs:Class .
+kg:Outcome a rdfs:Class .
+kg:Patient a rdfs:Class .
+kg:SeizureType a rdfs:Class .
+kg:Severity a rdfs:Class .
+
+kg:EP001 a kg:Patient ; rdfs:label "Patient EP001" .
+kg:focal a kg:SeizureType ; rdfs:label "Focal seizure" .
+kg:generalized a kg:SeizureType ; rdfs:label "Generalized seizure" .
+kg:absence a kg:SeizureType ; rdfs:label "Absence seizure" .
+kg:ftbtc a kg:SeizureType ; rdfs:label "Focal to bilateral tonic-clonic" .
+kg:line_length a kg:EEGFeature ; rdfs:label "Line-length" .
+kg:band_gamma a kg:EEGFeature ; rdfs:label "Gamma band power" .
+kg:plv a kg:EEGFeature ; rdfs:label "Phase-locking value" .
+kg:spike_rate a kg:EEGFeature ; rdfs:label "Interictal spike rate" .
+kg:levetiracetam a kg:ASM ; rdfs:label "Levetiracetam" .
+kg:lamotrigine a kg:ASM ; rdfs:label "Lamotrigine" .
+kg:valproate a kg:ASM ; rdfs:label "Valproate" .
+kg:neurologist a kg:Assessment ; rdfs:label "Neurologist assessment" .
+kg:eeg_tech a kg:Assessment ; rdfs:label "EEG technician assessment" .
+kg:breakthrough a kg:Outcome ; rdfs:label "Breakthrough seizure (90d)" .
+kg:status_epilepticus a kg:Outcome ; rdfs:label "Status epilepticus" .
+kg:ilae a kg:Guideline ; rdfs:label "ILAE 2017 classification" .
+kg:severity_l3 a kg:Severity ; rdfs:label "Severity L3 (Severe)" .
+kg:temporal_lobe a kg:BrainRegion ; rdfs:label "Temporal lobe focus" .
+
+kg:EP001 kg:hasSeizureType kg:focal .
+kg:EP001 kg:hasSeverity kg:severity_l3 .
+kg:EP001 kg:treatedWith kg:levetiracetam .
+kg:EP001 kg:assessedBy kg:neurologist .
+kg:EP001 kg:assessedBy kg:eeg_tech .
+kg:EP001 kg:atRiskOf kg:breakthrough .
+kg:focal kg:localizesTo kg:temporal_lobe .
+kg:focal kg:canEvolveTo kg:ftbtc .
+kg:line_length kg:predicts kg:breakthrough .
+kg:band_gamma kg:predicts kg:breakthrough .
+kg:plv kg:predicts kg:breakthrough .
+kg:spike_rate kg:indicates kg:focal .
+kg:eeg_tech kg:measures kg:line_length .
+kg:eeg_tech kg:measures kg:band_gamma .
+kg:eeg_tech kg:measures kg:plv .
+kg:neurologist kg:prescribes kg:levetiracetam .
+kg:levetiracetam kg:reduces kg:breakthrough .
+kg:lamotrigine kg:treats kg:focal .
+kg:valproate kg:treats kg:generalized .
+kg:absence kg:classifiedBy kg:ilae .
+kg:generalized kg:classifiedBy kg:ilae .
+kg:breakthrough kg:canEscalateTo kg:status_epilepticus .
+kg:ilae kg:grounds kg:neurologist .
