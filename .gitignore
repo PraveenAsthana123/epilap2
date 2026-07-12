@@ -23,6 +23,10 @@ data/**/*.edf
 # Python
 __pycache__/
 *.pyc
+.pytest_cache/
+
+# SQLite (rebuild via db/build_sqlite.py)
+*.db
 
 # OS / editor
 .DS_Store

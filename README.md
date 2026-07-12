@@ -1,90 +1,84 @@
-# Enterprise AI Platform for Explainable Multimodal Epilepsy Intelligence
+# Epilepsy Intelligence Platform — DBA Blueprint
 
-> A **DBA dissertation deliverable**: a navigable, research-grade documentation set plus a
-> React viewer for an explainable, multimodal, enterprise AI platform for epilepsy care.
-> **Reason:** epilepsy care is fragmented across clinical assessment and EEG. **Why:** a DBA
-> must link technical innovation to organizational value. **What:** 100+ canonical Markdown
-> docs + a Vite/React viewer. **How:** docs authored to an 18+-rule standard, rendered with
-> Mermaid diagrams. **Reference:** see `docs/00-overview.md`.
+An **Explainable AI–Driven Remote Epilepsy Care Platform** for faster patient onboarding,
+continuous monitoring, brain-focus localization, and clinical decision support under human
+oversight. This repository is the full DBA deliverable: a docs-first clinical blueprint, an
+interactive viewer, a reproducible analytics stack, a Responsible-AI framework (design +
+runnable), a database schema, and a REST API. All worked examples use patient **EP001**.
 
-## 1. What this is
+> Scope: **epilepsy only.** Data is **synthetic** but clinically plausible and internally consistent.
 
-A structured blueprint + reference documentation for a healthcare AI platform, organized so an
-examiner can trace the argument from business problem → data → models → explainability →
-deployment → governance → business value.
+## What's inside
 
-## 2. Repository structure
+| Area | Path | Highlights |
+|---|---|---|
+| **Clinical assessment** | `docs/primary-assessment/` | **9 roles**, 71 sections, **782 enterprise questionnaire items** (ID · Question · Response Type · Validation · EP001 · AI Feature), each with a 4-level severity model |
+| **Interactive viewer** | `viewer/` | React role-portal: per-role left menu, markdown + Mermaid, **Fill & Score** with section→role→patient severity |
+| **Analytics (runnable)** | `analysis/` | Primary + secondary (EEG) + fusion pipelines; questionnaire validator; scenario DB; **Responsible-AI runtime** (SHAP/LIME/fairness/guardrails) |
+| **Responsible AI** | `docs/responsible-ai/` | 16 pillars + `implementation/` (accountable-AI, fairness, SHAP/LIME, guardrails/red-team, governance) |
+| **Scenario database** | `data/analysis/`, `docs/scenarios/` | 57 seizure/epilepsy scenarios + weighted scoring model |
+| **Database** | `db/` | PostgreSQL schema + runnable SQLite build |
+| **API** | `api/` | FastAPI: roles, scenarios, weighted scoring, patient composite |
+| **Vision** | `docs/research-vision.md`, `docs/patient-onboarding.md` | 6-objective platform vision + AI onboarding |
 
-| Path | Contents |
-|---|---|
-| `docs/` | All documentation (100+ Markdown files) — see index below |
-| `docs/pipeline-a/` | Primary Clinical Assessment AI — 16 phase docs (EP001) |
-| `docs/pipeline-b/` | Secondary EEG AI — 16 phase docs |
-| `docs/stakeholders/` | Role simulations (Neurologist, EEG Tech, Nurse, Patient, Caregiver, Administrator) |
-| `docs/roles-study/` | Per-role retrospective + prospective study designs |
-| `docs/datasets/` | Modality dossiers 18–25 (remote monitoring, wearable, imaging, genomics, surgery, ICU, population) |
-| `docs/source-datasets/` | Named datasets: EPILEPSIAE, TUH, PhysioNet, NINDS + comparison matrix |
-| `docs/hep/` | Human Epilepsy Project primary dataset (modules 1–5 + integration + 20-layer architecture) |
-| `docs/primary-assessment/` | EP001 raw assessment data (Neurologist 15 + EEG Technician 6) |
-| `docs/prompt-log/` | Record of every user input/prompt (policy 24) |
-| `viewer/` | Vite + React app that auto-loads and renders all docs with Mermaid diagrams |
-| `data/synthetic/` | Synthetic sample CSVs (11 schemas, EP001 canonical) |
-| `data/siena-sample/` | Real Siena EEG metadata (git-friendly; EDF fetched locally) |
-| `workflow-*.js` | Multi-agent authoring scripts (documented, re-runnable) |
+## Quick start
 
-## 3. Governing standard
-
-Every substantive doc follows **`docs/GLOBAL-POLICY.md`** (25 mandatory rules). Highlights:
-
-| Rule area | Requirement |
-|---|---|
-| Scope | Epilepsy only |
-| Format | Markdown tables, one MD file per unit, captions on every table |
-| Diagrams | flowchart + sequence + network + journey + **C4 model** per doc |
-| Explainability | Per-heading Why/How; per-diagram Reason/Why/What/How/Reference |
-| Rigor | Research spine (Problem→…→Statistical Analysis), APA7 references, Professor-Readiness Q&A |
-| Ops | Terminal task tracking, ~5-min progress updates, prompt logging, auto-resume after limits |
-
-## 4. How to run the viewer
-
+### Viewer
 ```bash
-cd viewer
-npm install        # first time only (installs React, Vite, Mermaid, react-markdown)
-npm run dev        # serves at http://localhost:5173
-# or
-npm run build      # production build to viewer/dist
+cd viewer && npm install && npm run dev      # http://localhost:5173
 ```
 
-The viewer auto-discovers every `docs/**/*.md` via `import.meta.glob`, renders GitHub-flavored
-tables, and turns ` ```mermaid ` blocks into diagrams. Sidebar navigation + full-text search.
+### Analytics (reproduces every table/figure)
+```bash
+cd analysis && pip install -r requirements.txt
+python run_all.py                            # cohort -> primary -> secondary -> fusion
+python responsible_ai_runtime.py             # SHAP + LIME + fairness + guardrails
+python build_questionnaires.py               # validate + consolidate all 9 role forms
+python build_scenarios.py                    # scenario DB + scoring model
+python -m pytest -q                          # 19 tests (positive + negative)
+```
 
-## 5. Data
+### Database + API
+```bash
+python db/build_sqlite.py                    # db/epilepsy.db (roles, 57 scenarios, EP001)
+cd api && pip install -r requirements.txt && uvicorn main:app --reload   # /docs for Swagger
+python -m pytest -q                          # 7 API tests
+```
 
-- **Synthetic CSVs** (`data/synthetic/`) — regenerate with `python data/generate_synthetic.py`.
-- **Real EEG** — access-controlled or large; see `data/README.md` and `docs/dataset-scorecard.md`.
-  Fetch one open Siena record locally (kept out of git):
-  ```bash
-  curl -o data/siena-sample/PN00/PN00-4.edf \
-    https://physionet.org/files/siena-scalp-eeg/1.0.0/PN00/PN00-4.edf
-  ```
+## Headline results (from the committed run)
 
-## 6. Canonical example patients
+| Result | Value |
+|---|---|
+| Primary drug-resistance AUC | 0.969 |
+| EEG focus-lateralisation AUC | 0.93 |
+| Fusion AUC | 0.976 |
+| Fairness demographic-parity gap (before -> after mitigation) | 0.175 -> 0.087 |
+| Questionnaire items validated | 782 across 71 sections (9 roles) |
+| Scenario catalogue | 57 (28 seizure types, 10 syndromes, 15 clinical, 4 severity) |
+| EP001 | Severe · fused risk 0.59 · focus **Left Temporal** (conf 0.98) |
 
-| ID | Profile | Used in |
-|---|---|---|
-| **EP001** | 29M, focal impaired awareness, left-temporal | Pipeline A/B, primary-assessment, datasets |
-| **HEP001** | 27F, temporal lobe epilepsy | HEP modules |
+## The 9 roles
 
-## 7. Key entry docs
+Neurologist · EEG Technician · Nurse · Neuropsychologist · Pharmacist · Caregiver · Patient ·
+Administrator · Occupational Therapist — each a self-contained questionnaire + severity model,
+scorable in the viewer and via the API.
 
-- `docs/00-overview.md` — dissertation entry point
-- `docs/GLOBAL-POLICY.md` — the mandatory standard
-- `docs/PLAN.md` — milestones
-- `docs/COVERAGE-MATRIX.md` — traceability + missing-checks
-- `docs/GAP-ANALYSIS.md` — brutal top-1% gaps
-- `docs/dataset-scorecard.md` — which dataset to use
+## How it all works
 
-## 8. Caveat
+See **[docs/ARCHITECTURE-INTERNALS.md](docs/ARCHITECTURE-INTERNALS.md)** for each component's
+internal functionality, working approach, and implementation approach, and
+**[docs/GLOBAL-POLICY.md](docs/GLOBAL-POLICY.md)** for the documentation standards.
 
-Clinical numbers (accuracies, KPIs, confidences) are **illustrative placeholders**; replace
-with real data and citations before submission.
+## Standards
+
+- Docs-first; one file per unit of data; every doc carries tables, four Mermaid diagram types
+  (+ C4 where architecture is discussed), Why/How justifications, Professor-readiness Q&A, and
+  APA-7 references.
+- All analytics deterministic (seed 42) and reproducible from a clean checkout.
+- Responsible AI: fairness/bias audited **and** mitigated; explainability via SHAP + LIME;
+  guardrails on inputs; human-in-the-loop before any recommendation.
+
+## Prompt log
+
+Every user request driving this build is recorded under `docs/prompt-log/` for reference and
+defense validation.
