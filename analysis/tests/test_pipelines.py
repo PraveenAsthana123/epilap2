@@ -167,3 +167,19 @@ def test_concordance_rules_are_binary():
     m = df.merge(eeg, on="patient_id", how="left")
     assert set(governance._rule_clinical(m).astype(int).unique()).issubset({0, 1})   # positive
     assert set(governance._rule_eeg(m).astype(int).unique()).issubset({0, 1})
+
+
+# ---------------------------------------------------------------------------
+# Real EEG DSP pipeline — biomarkers computed from waveforms
+# ---------------------------------------------------------------------------
+def test_eeg_dsp_asymmetry_lateralises():
+    import eeg_signal_pipeline as eeg
+    fL, *_ = eeg.run_one(None, "Left")
+    fR, *_ = eeg.run_one(None, "Right")
+    # POSITIVE: left-focus asymmetry is negative, right-focus positive (opposite signs).
+    assert fL["eeg_temporal_asym"] < 0 < fR["eeg_temporal_asym"]
+    # Relative band powers sum to ~1 (computed from the real PSD).
+    s = sum(fL[f"eeg_{b}"] for b in ["delta", "theta", "alpha", "beta", "gamma"])
+    assert 0.9 < s < 1.1
+    # NEGATIVE: peak alpha frequency stays in the physiological 8-13 Hz band.
+    assert 8 <= fL["eeg_paf_hz"] <= 13
