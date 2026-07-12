@@ -40,6 +40,14 @@ def test_score_rejects_bad_level():
     assert c.post("/score", json={"sections": [{"items": [{"level": 9}]}]}).status_code == 422
 
 
+def test_metrics_endpoint():
+    c.get("/health"); c.get("/scenarios")            # generate some traffic
+    m = c.get("/metrics").json()
+    assert m["throughput_requests"] >= 2             # positive: counts requests
+    assert m["mean_latency_ms"] >= 0                 # latency tracked
+    assert 0 <= m["error_rate"] <= 1                 # error rate in range
+
+
 def test_patient_ep001_and_missing():
     assert c.get("/patient/EP001").json()["band"]["label"] == "Severe"   # positive
     assert c.get("/patient/NOPE").status_code == 404                     # negative

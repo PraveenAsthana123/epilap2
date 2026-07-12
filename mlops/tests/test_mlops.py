@@ -96,3 +96,28 @@ def test_observability_drift_and_quality():
     assert "npsy_moca" not in flagged                     # negative: unshifted feature stable
     perf, pred = obs.model_performance(df)
     assert 0 <= perf["accuracy"] <= 1 and 0 <= perf["recall"] <= 1
+
+
+# ---- system monitor ----
+def test_system_snapshot():
+    import system_monitor as sm
+    snap = sm.snapshot()
+    assert 0 <= snap["cpu_pct"] <= 100 and 0 <= snap["memory_pct"] <= 100   # positive
+    assert isinstance(sm.check_alerts({"cpu_pct": 99, "memory_pct": 10, "disk_pct": 10}), list)
+    assert sm.check_alerts({"cpu_pct": 99, "memory_pct": 10, "disk_pct": 10})  # breach detected
+
+
+# ---- logging + LLM monitor ----
+def test_logging_and_llm_monitor():
+    import logging_setup as ls, llm_ops as lo, os, json
+    ls.log_inference("m", 1, {"a": 1}, "Severe", 0.9)
+    ls.log_audit("clinician", "approve", "EP001")
+    p = os.path.join(ls.LOG_DIR, "inference.log")
+    assert os.path.exists(p)
+    last = [json.loads(l) for l in open(p, encoding="utf-8") if l.strip()][-1]
+    assert last["event"] == "prediction"                                    # positive
+    mon = lo.LLMMonitor()
+    mon.record(100, 0.001, 50, True); mon.record(80, 0.0008, 30, False)
+    s = mon.summary()
+    assert s["calls"] == 2 and s["total_tokens"] == 180
+    assert s["hallucination_rate"] == 0.5                                    # 1 of 2 flagged

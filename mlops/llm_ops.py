@@ -96,6 +96,32 @@ class CostTracker:
         return {"tokens": toks, "cost": round(toks / 1000 * self.price, 5)}
 
 
+class LLMMonitor:
+    """Aggregate LLM observability: token usage, cost, hallucination rate, prompt latency."""
+    def __init__(self):
+        self.calls = 0
+        self.tokens = 0
+        self.cost = 0.0
+        self.hallucinations = 0
+        self.latencies_ms = []
+
+    def record(self, tokens, cost, latency_ms, flagged):
+        self.calls += 1
+        self.tokens += tokens
+        self.cost += cost
+        self.latencies_ms.append(latency_ms)
+        if flagged:
+            self.hallucinations += 1
+
+    def summary(self):
+        n = max(1, self.calls)
+        lat = self.latencies_ms or [0]
+        return {"calls": self.calls, "total_tokens": self.tokens, "total_cost": round(self.cost, 5),
+                "hallucination_rate": round(self.hallucinations / n, 3),
+                "mean_latency_ms": round(sum(lat) / len(lat), 1),
+                "p95_latency_ms": round(sorted(lat)[int(0.95 * (len(lat) - 1))], 1)}
+
+
 def main():
     print("LLM/Agent-Ops demo")
     reg = PromptRegistry()

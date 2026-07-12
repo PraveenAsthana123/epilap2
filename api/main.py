@@ -43,8 +43,47 @@ _api_key_header = APIKeyHeader(name="X-API-Key", auto_error=False)
 def require_key(key: str = Security(_api_key_header)):
     expected = os.environ.get("EPI_API_KEY")
     if expected and key != expected:
+        METRICS["auth_failures"] += 1              # security monitoring
         raise HTTPException(status_code=401, detail="Invalid or missing X-API-Key")
     return True
+
+
+# ---- API observability: latency / throughput / error-rate ----------------
+import time as _time
+METRICS = {"requests": 0, "errors": 0, "auth_failures": 0, "latency_sum_ms": 0.0,
+           "by_path": {}}
+
+
+@app.middleware("http")
+async def _observe(request, call_next):
+    t0 = _time.perf_counter()
+    status = 500
+    try:
+        resp = await call_next(request)
+        status = resp.status_code
+        return resp
+    finally:
+        dt = (_time.perf_counter() - t0) * 1000
+        METRICS["requests"] += 1
+        METRICS["latency_sum_ms"] += dt
+        if status >= 400:
+            METRICS["errors"] += 1
+        p = METRICS["by_path"].setdefault(request.url.path, {"n": 0, "ms": 0.0})
+        p["n"] += 1; p["ms"] += dt
+
+
+@app.get("/metrics")
+def metrics():
+    """API observability: throughput, mean latency, error rate, auth failures."""
+    n = max(1, METRICS["requests"])
+    return {
+        "throughput_requests": METRICS["requests"],
+        "mean_latency_ms": round(METRICS["latency_sum_ms"] / n, 2),
+        "error_rate": round(METRICS["errors"] / n, 3),
+        "auth_failures": METRICS["auth_failures"],
+        "by_path": {k: {"n": v["n"], "mean_ms": round(v["ms"] / v["n"], 2)}
+                    for k, v in METRICS["by_path"].items()},
+    }
 
 
 # --------------------------------------------------------------------------- helpers
