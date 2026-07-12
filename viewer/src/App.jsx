@@ -73,6 +73,58 @@ function classify(rel) {
   return 'Reference'
 }
 
+// ---------------------------------------------------------------------------
+// Severity-model parser: turns each section's four "### Level N" tables into a
+// scoring form (one question per variable, four level-tagged answer options).
+// ---------------------------------------------------------------------------
+function parseFirstTable(text) {
+  // Return [firstCol, lastCol] pairs for the first markdown table in `text`,
+  // dropping the header row and the |---| separator.
+  const rows = []
+  let inTable = false
+  for (const line of text.split('\n')) {
+    const t = line.trim()
+    if (t.startsWith('|')) {
+      inTable = true
+      const cells = t.split('|').slice(1, -1).map((c) => c.trim())
+      if (cells.every((c) => /^:?-{2,}:?$/.test(c))) continue // separator row
+      rows.push([cells[0], cells[cells.length - 1]])
+    } else if (inTable) {
+      break // blank / non-pipe line ends the table
+    }
+  }
+  return rows.slice(1) // drop header row
+}
+
+function parseSeverity(md) {
+  const start = md.indexOf('## Severity Scenario Model')
+  if (start < 0) return null
+  let end = md.indexOf('### Severity Classification Logic', start)
+  if (end < 0) {
+    const nextH2 = md.indexOf('\n## ', start + 3)
+    end = nextH2 < 0 ? md.length : nextH2
+  }
+  const block = md.slice(start, end)
+  const perLevel = {} // level number -> [ [key, value], ... ]
+  const levelRe = /###\s*Level\s*([1-4])[^\n]*\n([\s\S]*?)(?=###\s*Level\s*[1-4]|$)/g
+  let m
+  while ((m = levelRe.exec(block))) {
+    perLevel[Number(m[1])] = parseFirstTable(m[2])
+  }
+  const anchor = perLevel[1] || perLevel[3] || perLevel[2] || perLevel[4]
+  if (!anchor || !anchor.length) return null
+  const questions = anchor
+    .map(([key]) => {
+      const options = [1, 2, 3, 4].map((l) => {
+        const row = (perLevel[l] || []).find((r) => r[0] === key)
+        return { level: l, value: row ? row[1] : '—' }
+      })
+      return { key, options }
+    })
+    .filter((q) => q.options.filter((o) => o.value !== '—').length >= 2)
+  return questions.length ? { questions } : null
+}
+
 function buildDocs() {
   const docs = Object.entries(modules).map(([path, md]) => {
     const rel = path.replace('../../docs/', '')
@@ -91,14 +143,14 @@ function buildDocs() {
 
 const DOCS = buildDocs()
 const BY_ID = Object.fromEntries(DOCS.map((d) => [d.id, d]))
+// Precompute the scoring form for every doc that carries a severity model.
+const QUESTIONS = Object.fromEntries(DOCS.map((d) => [d.id, parseSeverity(d.md)]))
 
-// Section docs belonging to one role (numbered files inside its folder), sorted.
 function sectionsFor(role) {
   return DOCS
     .filter((d) => d.path.startsWith(role.dir))
     .sort((a, b) => a.path.localeCompare(b.path, undefined, { numeric: true }))
 }
-// Precompute per-role doc lists once.
 const ROLE_DOCS = Object.fromEntries(
   ROLES.map((r) => [r.key, { overview: BY_ID[r.overview] || null, sections: sectionsFor(r) }])
 )
@@ -108,49 +160,141 @@ const ALL_DOCS = DOCS.filter(
   (d) => !ROLES.some((r) => d.path.startsWith(r.dir)) && !ROLE_OVERVIEWS.has(d.path)
 )
 
+// ---- Scoring math ---------------------------------------------------------
+function bandOf(mean) {
+  if (mean == null) return { label: '—', cls: '', level: 0 }
+  if (mean < 1.75) return { label: 'Mild', cls: 'sev1', level: 1 }
+  if (mean < 2.5) return { label: 'Moderate', cls: 'sev2', level: 2 }
+  if (mean < 3.25) return { label: 'Severe', cls: 'sev3', level: 3 }
+  return { label: 'Refractory / Status', cls: 'sev4', level: 4 }
+}
+function scoreOf(ans, questions) {
+  const levels = questions.map((q) => ans?.[q.key]).filter(Boolean)
+  const mean = levels.length ? levels.reduce((a, b) => a + b, 0) / levels.length : null
+  return { answered: levels.length, total: questions.length, mean, band: bandOf(mean) }
+}
+
+function Gauge({ level }) {
+  return (
+    <div className="gauge">
+      {[1, 2, 3, 4].map((l) => (
+        <span key={l} className={'seg sev' + l + (l === level ? ' on' : '')} />
+      ))}
+    </div>
+  )
+}
+
+// ---- Interactive scoring form for one assessment --------------------------
+function ScoreForm({ doc, ans, setAns, clear, prefill }) {
+  const { questions } = QUESTIONS[doc.id]
+  const s = scoreOf(ans, questions)
+  return (
+    <div className="scoreform">
+      <div className={'scorecard ' + (s.band.cls || 'sevnone')}>
+        <div className="sc-left">
+          <div className="sc-answered">Answered {s.answered}/{s.total}</div>
+          <div className="sc-band">{s.band.label}</div>
+          <Gauge level={s.band.level} />
+        </div>
+        <div className="sc-num">
+          {s.mean != null ? s.mean.toFixed(2) : '—'}<span>/4</span>
+        </div>
+      </div>
+      <div className="sc-actions">
+        <button className="btn" onClick={prefill}>Prefill EP001 (Level 3)</button>
+        <button className="btn ghost" onClick={clear}>Clear answers</button>
+        <span className="sc-hint">Pick the answer that best matches the patient for each item.</span>
+      </div>
+      {questions.map((q) => (
+        <div className="q" key={q.key}>
+          <div className="q-key">{q.key}</div>
+          <div className="q-opts">
+            {q.options.map((o) => (
+              <button
+                key={o.level}
+                disabled={o.value === '—'}
+                className={'opt' + (ans?.[q.key] === o.level ? ' sel sev' + o.level : '')}
+                onClick={() => setAns(q.key, o.level)}
+                title={o.value}
+              >
+                <b>L{o.level}</b> {o.value}
+              </button>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
 export default function App() {
-  // view is 'home' | 'all' | a role key.
-  const [view, setView] = useState('home')
-  const [activeId, setActiveId] = useState(null)
+  const [view, setView] = useState('home') // 'home' | 'all' | role key
+  const [activeId, setActiveId] = useState(null) // doc id, or 'DASH:<role>'
   const [query, setQuery] = useState('')
   const [navOpen, setNavOpen] = useState(false)
+  const [scoreMode, setScoreMode] = useState(false)
+  const [answers, setAnswers] = useState(() => {
+    try { return JSON.parse(localStorage.getItem('ep-answers') || '{}') } catch { return {} }
+  })
+  useEffect(() => {
+    try { localStorage.setItem('ep-answers', JSON.stringify(answers)) } catch {}
+  }, [answers])
 
   const role = ROLES.find((r) => r.key === view) || null
-  const active = activeId ? BY_ID[activeId] : null
+  const isDash = typeof activeId === 'string' && activeId.startsWith('DASH:')
+  const active = isDash ? null : (activeId ? BY_ID[activeId] : null)
+  const activeHasScore = active && QUESTIONS[active.id]
 
-  // Switch portal, picking a sensible default document for the destination.
   function enter(v) {
-    setView(v)
-    setNavOpen(false)
-    setQuery('')
+    setView(v); setNavOpen(false); setQuery(''); setScoreMode(false)
     if (v === 'home') { setActiveId(null); return }
     if (v === 'all') { setActiveId(ALL_DOCS[0]?.id ?? null); return }
     const rd = ROLE_DOCS[v]
     setActiveId((rd.overview || rd.sections[0])?.id ?? null)
   }
+  const go = (id) => { setActiveId(id); setNavOpen(false); setScoreMode(false) }
 
-  const go = (id) => { setActiveId(id); setNavOpen(false) }
+  // Answer setters (kept as stable-ish closures over `answers`).
+  const setAns = (docId, key, level) =>
+    setAnswers((a) => ({ ...a, [docId]: { ...(a[docId] || {}), [key]: level } }))
+  const clearDoc = (docId) =>
+    setAnswers((a) => { const n = { ...a }; delete n[docId]; return n })
+  const prefillDoc = (docId) => {
+    const q = QUESTIONS[docId]
+    if (!q) return
+    setAnswers((a) => ({ ...a, [docId]: Object.fromEntries(q.questions.map((x) => [x.key, 3])) }))
+  }
 
   useEffect(() => { window.scrollTo(0, 0) }, [activeId, view])
 
-  // Grouped nav for the "All Docs" portal, filtered by the search box.
+  // ---- Aggregation: section -> role -> patient ----------------------------
+  const roleAgg = (roleKey) => {
+    const secs = ROLE_DOCS[roleKey].sections.filter((d) => QUESTIONS[d.id])
+    const scored = secs
+      .map((d) => ({ d, s: scoreOf(answers[d.id], QUESTIONS[d.id].questions) }))
+      .filter((x) => x.s.answered > 0)
+    const mean = scored.length ? scored.reduce((a, x) => a + x.s.mean, 0) / scored.length : null
+    return { secs, scored, mean, band: bandOf(mean) }
+  }
+  const patientAgg = () => {
+    const rs = ROLES.map((r) => ({ r, agg: roleAgg(r.key) })).filter((x) => x.agg.mean != null)
+    const mean = rs.length ? rs.reduce((a, x) => a + x.agg.mean, 0) / rs.length : null
+    return { rs, mean, band: bandOf(mean) }
+  }
+
   const allGroups = useMemo(() => {
     const map = new Map()
     for (const d of ALL_DOCS) {
-      const hit =
-        !query ||
+      const hit = !query ||
         d.title.toLowerCase().includes(query.toLowerCase()) ||
         d.md.toLowerCase().includes(query.toLowerCase())
       if (!hit) continue
       if (!map.has(d.group)) map.set(d.group, [])
       map.get(d.group).push(d)
     }
-    return [...map.entries()].sort(
-      (a, b) => GROUP_ORDER.indexOf(a[0]) - GROUP_ORDER.indexOf(b[0])
-    )
+    return [...map.entries()].sort((a, b) => GROUP_ORDER.indexOf(a[0]) - GROUP_ORDER.indexOf(b[0]))
   }, [query])
 
-  // ---- Top tab bar (shared across all views) --------------------------------
   const topbar = (
     <header className="topbar">
       <button className="logo" onClick={() => enter('home')} title="Role portals home">
@@ -158,52 +302,62 @@ export default function App() {
       </button>
       <nav className="tabs">
         {ROLES.map((r) => (
-          <button
-            key={r.key}
-            className={'tab' + (view === r.key ? ' active' : '')}
-            onClick={() => enter(r.key)}
-          >
+          <button key={r.key} className={'tab' + (view === r.key ? ' active' : '')} onClick={() => enter(r.key)}>
             <span className="tab-ic">{r.icon}</span>{r.label}
           </button>
         ))}
-        <button
-          className={'tab tab-all' + (view === 'all' ? ' active' : '')}
-          onClick={() => enter('all')}
-        >
+        <button className={'tab tab-all' + (view === 'all' ? ' active' : '')} onClick={() => enter('all')}>
           All Docs
         </button>
       </nav>
     </header>
   )
 
-  // ---- Home: role portal landing cards -------------------------------------
+  // ---- Home ----------------------------------------------------------------
   if (view === 'home') {
+    const pa = patientAgg()
     return (
       <div className="app">
         {topbar}
         <main className="content home">
           <h1 className="home-h1">Epilepsy Primary Assessment — Role Portals</h1>
           <p className="home-sub">
-            Patient <strong>EP001</strong> · Each role has its own workspace. Open a portal to see
-            that role's assessment questions, captured from its point of view, with a four-level
-            severity model (Mild → Moderate → Severe → Refractory/Status) on every section.
+            Patient <strong>EP001</strong> · Each role has its own workspace. Open a portal to see that
+            role's assessment questions, then use <strong>Fill &amp; Score</strong> to enter answers and
+            get a live severity score (Mild → Moderate → Severe → Refractory/Status).
           </p>
+          {pa.mean != null && (
+            <div className={'composite ' + pa.band.cls}>
+              <div>
+                <div className="comp-label">Current EP001 composite severity</div>
+                <div className="comp-band">{pa.band.label}</div>
+                <div className="comp-sub">{pa.rs.length} of {ROLES.length} roles scored</div>
+              </div>
+              <div className="comp-num">{pa.mean.toFixed(2)}<span>/4</span></div>
+            </div>
+          )}
           <div className="cards">
-            {ROLES.map((r) => (
-              <button className="card" key={r.key} onClick={() => enter(r.key)}>
-                <div className="card-icon">{r.icon}</div>
-                <div className="card-title">{r.label}</div>
-                <div className="card-blurb">{r.blurb}</div>
-                <div className="card-meta">{ROLE_DOCS[r.key].sections.length} assessments →</div>
-              </button>
-            ))}
+            {ROLES.map((r) => {
+              const agg = roleAgg(r.key)
+              return (
+                <button className="card" key={r.key} onClick={() => enter(r.key)}>
+                  <div className="card-icon">{r.icon}</div>
+                  <div className="card-title">{r.label}</div>
+                  <div className="card-blurb">{r.blurb}</div>
+                  <div className="card-foot">
+                    <span className="card-meta">{ROLE_DOCS[r.key].sections.length} assessments →</span>
+                    {agg.mean != null && <span className={'pill ' + agg.band.cls}>{agg.band.label} {agg.mean.toFixed(1)}</span>}
+                  </div>
+                </button>
+              )
+            })}
           </div>
         </main>
       </div>
     )
   }
 
-  // ---- Role portal OR All Docs (both use the sidebar + content shell) -------
+  // ---- Role portal / All Docs ---------------------------------------------
   return (
     <div className="app">
       {topbar}
@@ -220,33 +374,41 @@ export default function App() {
                 </div>
               </div>
               <div className="sevlegend" title="Every assessment section models these four severity levels">
-                {SEVERITY.map((s) => (
-                  <span className={'sev ' + s.cls} key={s.k}>{s.k} {s.label}</span>
-                ))}
+                {SEVERITY.map((s) => (<span className={'sev ' + s.cls} key={s.k}>{s.k} {s.label}</span>))}
               </div>
-              {ROLE_DOCS[role.key].overview && (
-                <div className="navgroup">
-                  <div className="navlabel">Overview</div>
+              <div className="navgroup">
+                <button
+                  className={'navitem dashitem' + (activeId === 'DASH:' + role.key ? ' active' : '')}
+                  onClick={() => go('DASH:' + role.key)}
+                >
+                  📊 Severity Dashboard
+                </button>
+                {ROLE_DOCS[role.key].overview && (
                   <button
                     className={'navitem' + (active?.id === ROLE_DOCS[role.key].overview.id ? ' active' : '')}
                     onClick={() => go(ROLE_DOCS[role.key].overview.id)}
                   >
-                    Role Overview · Concerns · Tasks
+                    📋 Role Overview · Concerns · Tasks
                   </button>
-                </div>
-              )}
+                )}
+              </div>
               <div className="navgroup">
                 <div className="navlabel">Assessments ({ROLE_DOCS[role.key].sections.length})</div>
-                {ROLE_DOCS[role.key].sections.map((d, i) => (
-                  <button
-                    key={d.id}
-                    className={'navitem' + (d.id === active?.id ? ' active' : '')}
-                    onClick={() => go(d.id)}
-                    title={d.path}
-                  >
-                    <span className="numdot">{i + 1}</span>{d.title.replace(/\s*\(EP001\)\s*$/, '')}
-                  </button>
-                ))}
+                {ROLE_DOCS[role.key].sections.map((d, i) => {
+                  const sc = QUESTIONS[d.id] ? scoreOf(answers[d.id], QUESTIONS[d.id].questions) : null
+                  return (
+                    <button
+                      key={d.id}
+                      className={'navitem' + (d.id === active?.id ? ' active' : '')}
+                      onClick={() => go(d.id)}
+                      title={d.path}
+                    >
+                      <span className="numdot">{i + 1}</span>
+                      <span className="navtxt">{d.title.replace(/\s*\(EP001\)\s*$/, '')}</span>
+                      {sc && sc.answered > 0 && <span className={'dot ' + sc.band.cls} title={sc.band.label} />}
+                    </button>
+                  )
+                })}
               </div>
             </>
           ) : (
@@ -255,12 +417,7 @@ export default function App() {
                 All Documents
                 <small>Full DBA blueprint · pipelines, datasets, HEP & reference</small>
               </div>
-              <input
-                className="search"
-                placeholder="Search all docs…"
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-              />
+              <input className="search" placeholder="Search all docs…" value={query} onChange={(e) => setQuery(e.target.value)} />
               {allGroups.map(([group, items]) => (
                 <div className="navgroup" key={group}>
                   <div className="navlabel">{group}</div>
@@ -283,16 +440,33 @@ export default function App() {
         </aside>
 
         <main className="content">
-          {active ? (
+          {isDash && role ? (
+            <Dashboard role={role} roleAgg={roleAgg} patientAgg={patientAgg} answers={answers} go={go} />
+          ) : active ? (
             <>
-              <div className="crumb">
-                {role ? `${role.label} portal` : active.group} · {active.path}
-              </div>
-              <article className="md">
-                <ReactMarkdown remarkPlugins={[remarkGfm]} components={MD_COMPONENTS}>
-                  {active.md}
-                </ReactMarkdown>
-              </article>
+              <div className="crumb">{role ? `${role.label} portal` : active.group} · {active.path}</div>
+              {activeHasScore && (
+                <div className="modetoggle">
+                  <button className={!scoreMode ? 'on' : ''} onClick={() => setScoreMode(false)}>📖 Read</button>
+                  <button className={scoreMode ? 'on' : ''} onClick={() => setScoreMode(true)}>✍️ Fill &amp; Score</button>
+                </div>
+              )}
+              {activeHasScore && scoreMode ? (
+                <>
+                  <h1 className="md-inline-h1">{active.title.replace(/\s*\(EP001\)\s*$/, '')}</h1>
+                  <ScoreForm
+                    doc={active}
+                    ans={answers[active.id]}
+                    setAns={(k, l) => setAns(active.id, k, l)}
+                    clear={() => clearDoc(active.id)}
+                    prefill={() => prefillDoc(active.id)}
+                  />
+                </>
+              ) : (
+                <article className="md">
+                  <ReactMarkdown remarkPlugins={[remarkGfm]} components={MD_COMPONENTS}>{active.md}</ReactMarkdown>
+                </article>
+              )}
             </>
           ) : (
             <div className="crumb">Select an item from the menu.</div>
@@ -300,5 +474,75 @@ export default function App() {
         </main>
       </div>
     </div>
+  )
+}
+
+// ---- Per-role severity dashboard -----------------------------------------
+function Dashboard({ role, roleAgg, patientAgg, go }) {
+  const agg = roleAgg(role.key)
+  const pa = patientAgg()
+  return (
+    <>
+      <div className="crumb">{role.label} portal · Severity Dashboard</div>
+      <h1 className="home-h1">{role.icon} {role.label} — Severity Dashboard</h1>
+      <p className="home-sub">
+        Live scores from the answers you enter under <strong>Fill &amp; Score</strong>. Each assessment is
+        scored as the mean of its answered items (Level 1–4), then averaged into this role's severity and,
+        across all roles, into the overall EP001 composite.
+      </p>
+
+      <div className={'scorecard big ' + (agg.band.cls || 'sevnone')}>
+        <div className="sc-left">
+          <div className="sc-answered">{role.label} role severity · {agg.scored.length}/{agg.secs.length} assessments scored</div>
+          <div className="sc-band">{agg.band.label}</div>
+          <Gauge level={agg.band.level} />
+        </div>
+        <div className="sc-num">{agg.mean != null ? agg.mean.toFixed(2) : '—'}<span>/4</span></div>
+      </div>
+
+      <table className="dash">
+        <thead><tr><th>Assessment</th><th>Answered</th><th>Score</th><th>Severity</th></tr></thead>
+        <tbody>
+          {agg.secs.map((d) => {
+            const found = agg.scored.find((x) => x.d.id === d.id)
+            const s = found?.s
+            return (
+              <tr key={d.id} onClick={() => go(d.id)} className="dash-row">
+                <td>{d.title.replace(/\s*\(EP001\)\s*$/, '')}</td>
+                <td>{s ? `${s.answered}/${s.total}` : '—'}</td>
+                <td>{s?.mean != null ? s.mean.toFixed(2) : '—'}</td>
+                <td>{s ? <span className={'pill ' + s.band.cls}>{s.band.label}</span> : <span className="pill sevnone">Not scored</span>}</td>
+              </tr>
+            )
+          })}
+        </tbody>
+      </table>
+
+      <h2 className="dash-h2">Patient EP001 — composite across all roles</h2>
+      <div className={'scorecard big ' + (pa.band.cls || 'sevnone')}>
+        <div className="sc-left">
+          <div className="sc-answered">{pa.rs.length}/{ROLES.length} roles scored</div>
+          <div className="sc-band">{pa.band.label}</div>
+          <Gauge level={pa.band.level} />
+        </div>
+        <div className="sc-num">{pa.mean != null ? pa.mean.toFixed(2) : '—'}<span>/4</span></div>
+      </div>
+      <table className="dash">
+        <thead><tr><th>Role</th><th>Assessments scored</th><th>Score</th><th>Severity</th></tr></thead>
+        <tbody>
+          {ROLES.map((r) => {
+            const a = roleAgg(r.key)
+            return (
+              <tr key={r.key} className="dash-row" onClick={() => { }}>
+                <td>{r.icon} {r.label}</td>
+                <td>{a.scored.length}/{a.secs.length}</td>
+                <td>{a.mean != null ? a.mean.toFixed(2) : '—'}</td>
+                <td>{a.mean != null ? <span className={'pill ' + a.band.cls}>{a.band.label}</span> : <span className="pill sevnone">Not scored</span>}</td>
+              </tr>
+            )
+          })}
+        </tbody>
+      </table>
+    </>
   )
 }
