@@ -34,3 +34,6 @@ Thumbs.db
 *.log
 
 # Keep: docs/, viewer/src, synthetic CSVs, dataset metadata
+
+# MLOps generated store (rebuild via mlops/run_mlops_demo.py)
+mlops/store/
