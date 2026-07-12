@@ -78,7 +78,7 @@ const SEVERITY = [
 
 // Human-friendly ordering for the "All Docs" nav sections (the rest of the blueprint).
 const GROUP_ORDER = [
-  'Start', 'Vision', 'Operating Model', 'Governance', 'Analytics', 'Responsible AI',
+  'Start', 'Thesis', 'Vision', 'Operating Model', 'Governance', 'Analytics', 'Responsible AI',
   'Part I–III', 'Pipelines', 'Part IV–VIII', 'Primary Assessment', 'Roles & Stakeholders',
   'HEP Dataset', 'Source Datasets', 'Dataset Dossiers', 'Reference',
 ]
@@ -92,6 +92,7 @@ function titleFromMarkdown(md, fallback) {
 // Map a doc path to an "All Docs" nav group. Order of checks matters (most specific first).
 function classify(rel) {
   const parts = rel.split('/')
+  if (rel.startsWith('thesis/')) return 'Thesis'
   if (rel.startsWith('enterprise-flow/')) return 'Operating Model'
   if (rel.startsWith('governance/')) return 'Governance'
   if (rel.startsWith('analysis/')) return 'Analytics'
