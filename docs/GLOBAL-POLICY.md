@@ -30,6 +30,12 @@ automatically — no need to restate them per task.
 | 23 | **README** | Maintain a detailed top-level `README.md` (purpose, structure, how to run, standards, data, index). |
 | 24 | **Save all inputs** | Every user input/prompt is recorded in `docs/prompt-log/`. |
 | 25 | **Missing-check** | On each verification pass, actively check for anything missing (files, diagrams, references, sections) and record it in `docs/COVERAGE-MATRIX.md` with a fix. |
+| 26 | **Security-grade** | Every data path is security-grade by design: **HIPAA** Security/Privacy Rule, **NIST** CSF + 800-53 + AI RMF, **OWASP** Top-10 (web + LLM). See [governance/00-security-compliance.md](governance/00-security-compliance.md). |
+| 27 | **Encryption** | PHI encrypted **at rest (AES-256)** and **in transit (TLS 1.2+)**; keys in KMS (rotated); de-identify (Safe-Harbor) before analysis; no secrets/raw EEG in the repo. |
+| 28 | **Consent + EULA** | Before any patient data is used for analysis, capture **informed consent + EULA** (versioned, timestamped, revocable). See [governance/02-patient-consent-eula.md](governance/02-patient-consent-eula.md). |
+| 29 | **IRB** | Human-subjects data use requires an **IRB** protocol/approval on file. See [governance/01-irb-submission.md](governance/01-irb-submission.md). |
+| 30 | **Every phase = pipeline + analysis + monitoring + scoring + visualization + dashboard + report** | Each model/data phase must implement (or document) all seven: statistical + ML + subjective/sensitivity analysis, continuous monitoring (drift/concept-drift/alerts), scoring, a visualization, a dashboard, and a report. |
+| 31 | **Full analysis set** | Each dataset/model carries: EDA + class-balance (with SMOTE), feature engineering + selection, HPO, full **accuracy matrix** (acc/precision/recall/specificity/F1/AUC/AP/log-loss), loss curve, hypothesis test, sensitivity/ablation, SHAP/permutation explainability, before/after data visualization — all presented in the viewer UI. |
 
 ## Diagram Standard (Mermaid)
 
