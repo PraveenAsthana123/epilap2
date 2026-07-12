@@ -4,6 +4,10 @@ import remarkGfm from 'remark-gfm'
 import Mermaid from './Mermaid.jsx'
 import { parseSeverity, bandOf, scoreOf } from './scoring.js'
 import DataView from './DataView.jsx'
+import Simulation from './Simulation.jsx'
+import Scenarios from './Scenarios.jsx'
+import PhaseDashboard from './PhaseDashboard.jsx'
+import EEGWaveform from './EEGWaveform.jsx'
 
 // Load every generated dataset (data/analysis/*.csv) as raw text for the Data tab.
 const CSV_MODULES = import.meta.glob('../../data/analysis/*.csv', {
@@ -201,7 +205,7 @@ export default function App() {
   function enter(v) {
     setView(v); setNavOpen(false); setQuery(''); setScoreMode(false)
     if (v === 'home') { setActiveId(null); return }
-    if (v === 'data') { setActiveId(null); return }
+    if (['data', 'sim', 'scenarios', 'phases', 'eeg'].includes(v)) { setActiveId(null); return }
     if (v === 'all') { setActiveId(ALL_DOCS[0]?.id ?? null); return }
     const rd = ROLE_DOCS[v]
     setActiveId((rd.overview || rd.sections[0])?.id ?? null)
@@ -263,21 +267,27 @@ export default function App() {
         <button className={'tab tab-all' + (view === 'all' ? ' active' : '')} onClick={() => enter('all')}>
           All Docs
         </button>
-        {DATASETS.length > 0 && (
-          <button className={'tab tab-all' + (view === 'data' ? ' active' : '')} onClick={() => enter('data')}>
-            📊 Data
-          </button>
-        )}
+        {DATASETS.length > 0 && ['data:📊 Data', 'sim:🧪 Simulation', 'scenarios:📚 Scenarios',
+          'phases:✅ Phases', 'eeg:〰️ EEG'].map((t) => {
+          const [k, label] = t.split(':')
+          return (
+            <button key={k} className={'tab tab-all' + (view === k ? ' active' : '')} onClick={() => enter(k)}>
+              {label}
+            </button>
+          )
+        })}
       </nav>
     </header>
   )
 
-  // ---- Data tab: browse every generated CSV -------------------------------
-  if (view === 'data') {
+  // ---- Data-driven tabs ---------------------------------------------------
+  const EXTRA = { data: DataView, sim: Simulation, scenarios: Scenarios, phases: PhaseDashboard, eeg: EEGWaveform }
+  if (EXTRA[view]) {
+    const Comp = EXTRA[view]
     return (
       <div className="app">
         {topbar}
-        <DataView datasets={DATASETS} />
+        <Comp datasets={DATASETS} />
       </div>
     )
   }
