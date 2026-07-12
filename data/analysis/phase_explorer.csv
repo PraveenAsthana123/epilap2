@@ -1,0 +1,25 @@
+pipeline,phase_no,phase,visualization,score,quality_check,score_check,trust,governance_ai,responsible_ai,explainable_ai
+primary,1,Problem & hypotheses,docs/research-framework.md,95,spine complete,peer doc review,pre-registered,scope charter,purpose limitation,stated rationale
+primary,2,Data ingestion,viewer Data tab,90,contract violations=0,row/'count,provenance logged,data contract,consent gate,source sheet
+primary,3,Validation / QC,docs/analysis/data-quality-report.md,88,quality>=threshold,quality gate,reproducible,quality SLA,completeness,quality report
+primary,4,Preparation,docs/analysis/preprocessing-report.md,85,null%/outlier% bounded,leakage check,deterministic seed,transform log,no proxy leakage,transform table
+primary,5,Feature engineering / store,docs/analysis/variable-dictionary.md,82,feature drift watched,stability,versioned features,feature registry,fairness-aware,importance
+primary,6,Model development + HPO,docs/analysis/primary-analysis.md,80,CV variance bounded,nested CV,reproducible run,model card,calibrated,coefficients
+primary,7,Evaluation / validation,docs/analysis/evaluation-rigor.md,84,decision-curve net-benefit,DeLong p,external validation,eval report,subgroup metrics,DCA
+primary,8,Explainability / fairness,docs/analysis/responsible-ai-runtime.md,86,fairness gap<threshold,gap audit,human-reviewable,RAI pillars,bias mitigation,SHAP/LIME
+primary,9,Deployment / serving,GET /metrics,80,latency/error watched,p95 latency,TLS + audit,access control,no autonomous dx,response reasons
+primary,10,Monitoring / retraining,docs/analysis/observability-report.md,78,drift<threshold,PSI,continuous audit,audit trail,ongoing fairness,drift report
+secondary,1,Objective,docs/analysis/secondary-eeg-full.md,95,objective analysis,doc review,pre-defined,scope,purpose,rationale
+secondary,2,Collection (real EEG),EEG tab (waveform),90,descriptive EDA,record count,PhysioNet source,data sheet,de-identified,source
+secondary,3,Standardise (BIDS/FIF),docs/analysis/secondary-eeg-full.md,75,schema check,schema drift,standard format,contract,interoperable,schema table
+secondary,4,Quality control,Data Viz tab,85,quality analysis,artefact%,QC logged,QC report,signal integrity,QC flags
+secondary,5,Preprocess,Data Viz (raw vs clean),92,before/after viz,SNR gain,reversible log,SOP,no distortion,filter list
+secondary,6,Epoch + split,docs/analysis/secondary-eeg-full.md,88,leakage analysis,leakage flag,split logged,split policy,no leakage,split log
+secondary,7,Time-frequency + 2D images,docs/analysis/secondary-eeg-full.md (figures),90,spectral analysis,image QC,deterministic,figure set,representative,TF maps
+secondary,8,Features,Data tab (feature CSVs),88,statistical (Mann-Whitney),p-value,documented,feature table,clinically-grounded,feature list
+secondary,9,Feature eval + selection,Data tab,85,sensitivity + ablation,stability,reproducible,selection log,parsimony,MI ranking
+secondary,10,Train + HPO,docs/analysis/secondary-eeg-full.md,84,ML analysis + loss,CV variance,seeded,model card,balanced classes,loss curve
+secondary,11,Evaluate (accuracy matrix),Data tab (metrics CSVs),90,accuracy matrix,AUC>=0.9,full metrics,scorecard,calibrated,PR/threshold
+secondary,12,XAI,docs/analysis/secondary-eeg-full.md,86,explainability + subjective,attribution stability,human-reviewable,XAI report,transparency,importance + saliency
+secondary,13,RAG + report,docs/analysis/secondary-eeg-full.md,78,retrieval analysis,grounding rate,cited evidence,RAG report,no hallucination,sources shown
+secondary,14,Human review + governance,Monitoring tab,88,monitoring analysis,override rate,human authority,audit trail,accountability,decision log

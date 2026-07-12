@@ -1,0 +1,7 @@
+job_id,name,schedule_cron,trigger,last_status,records
+vdb-ingest,Ingest new SOPs/guidelines/docs,0 2 * * *,daily 02:00,success,14
+vdb-embed,Re-embed changed chunks,15 2 * * *,after ingest,success,14
+vdb-index,Rebuild vector index,30 2 * * *,after embed,success,547
+vdb-eval,Retrieval grounding eval,45 2 * * *,after index,success,4
+vdb-drift,Embedding/topic drift check,0 3 * * 1,weekly Mon 03:00,watch,14
+vdb-purge,Purge revoked-consent chunks,0 4 * * *,daily 04:00,success,0

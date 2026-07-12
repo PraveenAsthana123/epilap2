@@ -1,0 +1,145 @@
+pipeline,phase_no,phase,io,field,value
+primary,1,Problem & hypotheses,input,research question,seizure severity drivers
+primary,1,Problem & hypotheses,input,unit,patient EP001..EP500
+primary,1,Problem & hypotheses,process,define DV/IV,severity L1-4
+primary,1,Problem & hypotheses,process,hypotheses,IV->DV + test
+primary,1,Problem & hypotheses,output,variable dictionary,DV/IV/covariate
+primary,1,Problem & hypotheses,output,hypotheses.md,documented
+primary,2,Data ingestion,input,source,role assessments (10 roles)
+primary,2,Data ingestion,input,real EEG,EEG-Eye-State
+primary,2,Data ingestion,process,materialise cohort,make_cohort.py
+primary,2,Data ingestion,process,data contract,schema enforced
+primary,2,Data ingestion,output,cohort_primary.csv,500 rows
+primary,2,Data ingestion,output,contract,validated
+primary,3,Validation / QC,input,raw cohort,500x N
+primary,3,Validation / QC,input,rules,range/null/type
+primary,3,Validation / QC,process,quality checks,data_quality.py
+primary,3,Validation / QC,process,flag issues,report
+primary,3,Validation / QC,output,data_quality_report.csv,per-column
+primary,3,Validation / QC,output,quality score,0-100
+primary,4,Preparation,input,validated cohort,clean input
+primary,4,Preparation,input,policy,impute/outlier/encode
+primary,4,Preparation,process,preprocess,preprocessing.py
+primary,4,Preparation,process,scale/encode,one-hot + z-score
+primary,4,Preparation,output,primary_clean_features.csv,features
+primary,4,Preparation,output,fitted pipeline,persisted
+primary,5,Feature engineering / store,input,clean features,matrix
+primary,5,Feature engineering / store,input,domain map,weightage
+primary,5,Feature engineering / store,process,derive features,feature_store.py
+primary,5,Feature engineering / store,process,select,MI + importance
+primary,5,Feature engineering / store,output,primary_selected_features.csv,top-k
+primary,5,Feature engineering / store,output,feature metadata,catalogued
+primary,6,Model development + HPO,input,feature matrix,"X,y"
+primary,6,Model development + HPO,input,model space,logit/RF/ordinal
+primary,6,Model development + HPO,process,train,primary_analysis.py
+primary,6,Model development + HPO,process,HPO,GridSearchCV
+primary,6,Model development + HPO,output,AUC / accuracy matrix,computed
+primary,6,Model development + HPO,output,model card,written
+primary,7,Evaluation / validation,input,held-out set,test
+primary,7,Evaluation / validation,input,real data,external_validation.csv
+primary,7,Evaluation / validation,process,metrics,AUC/Brier/C-index
+primary,7,Evaluation / validation,process,DeLong + bootstrap CIs,rigor
+primary,7,Evaluation / validation,output,scorecard,metrics
+primary,7,Evaluation / validation,output,external AUC,0.979 real
+primary,8,Explainability / fairness,input,model,fitted
+primary,8,Explainability / fairness,input,subgroups,sex/age
+primary,8,Explainability / fairness,process,SHAP+LIME,responsible_ai_runtime.py
+primary,8,Explainability / fairness,process,fairness,Fairlearn
+primary,8,Explainability / fairness,output,attributions,per-feature
+primary,8,Explainability / fairness,output,fairness gap,reported
+primary,9,Deployment / serving,input,registered model,pipeline.joblib
+primary,9,Deployment / serving,input,request,features
+primary,9,Deployment / serving,process,serve,api/main.py /predict
+primary,9,Deployment / serving,process,auth,API key + RBAC
+primary,9,Deployment / serving,output,risk score,+explanation
+primary,9,Deployment / serving,output,audit event,logged
+primary,10,Monitoring / retraining,input,live predictions,stream
+primary,10,Monitoring / retraining,input,new labels,feedback
+primary,10,Monitoring / retraining,process,drift/concept-drift,observability.py
+primary,10,Monitoring / retraining,process,champion-challenger,retrain.py
+primary,10,Monitoring / retraining,output,drift alerts,KS/PSI
+primary,10,Monitoring / retraining,output,retrain decision,logged
+secondary,1,Objective,input,goal,seizure detection
+secondary,1,Objective,input,standard,ILAE
+secondary,1,Objective,process,scope,ictal vs interictal
+secondary,1,Objective,process,label rule,annotation window
+secondary,1,Objective,output,charter,documented
+secondary,1,Objective,output,target,binary + severity
+secondary,2,Collection (real EEG),input,dataset,CHB-MIT chb01_03
+secondary,2,Collection (real EEG),input,meta,8 ch @256Hz
+secondary,2,Collection (real EEG),process,read EDF,MNE
+secondary,2,Collection (real EEG),process,index annotations,seizure 2996-3036s
+secondary,2,Collection (real EEG),output,raw tensor,ch x time
+secondary,2,Collection (real EEG),output,record count,1 subject
+secondary,3,Standardise (BIDS/FIF),input,EDF,raw
+secondary,3,Standardise (BIDS/FIF),input,montage,10-20
+secondary,3,Standardise (BIDS/FIF),process,to FIF/BIDS,documented path
+secondary,3,Standardise (BIDS/FIF),process,schema check,channels/units
+secondary,3,Standardise (BIDS/FIF),output,standard object,MNE Raw
+secondary,3,Standardise (BIDS/FIF),output,schema,validated
+secondary,4,Quality control,input,raw signal,8 ch
+secondary,4,Quality control,input,thresholds,rate/noise
+secondary,4,Quality control,process,QC checks,rate/channel/artefact
+secondary,4,Quality control,process,flag,bad epochs
+secondary,4,Quality control,output,quality score,0-100
+secondary,4,Quality control,output,artefact rate,%
+secondary,5,Preprocess,input,raw µV,ch x time
+secondary,5,Preprocess,input,filters,0.5-45 + notch
+secondary,5,Preprocess,process,band-pass+notch,Butterworth/IIR
+secondary,5,Preprocess,process,re-reference,common-avg
+secondary,5,Preprocess,output,clean signal,filtered
+secondary,5,Preprocess,output,before/after,eeg_before_after.csv
+secondary,6,Epoch + split,input,clean signal,continuous
+secondary,6,Epoch + split,input,window,4s
+secondary,6,Epoch + split,process,segment,non-overlap
+secondary,6,Epoch + split,process,subject-level split,no leakage
+secondary,6,Epoch + split,output,epochs,labelled
+secondary,6,Epoch + split,output,train/test,stratified
+secondary,7,Time-frequency + 2D images,input,epoch 1D,samples
+secondary,7,Time-frequency + 2D images,input,transforms,STFT/CWT
+secondary,7,Time-frequency + 2D images,process,STFT spectrogram,scipy
+secondary,7,Time-frequency + 2D images,process,CWT scalogram + heatmap + connectivity,images
+secondary,7,Time-frequency + 2D images,output,2D images,eeg_2d_images.png
+secondary,7,Time-frequency + 2D images,output,connectivity,matrix
+secondary,8,Features,input,epochs,8 ch
+secondary,8,Features,input,feature set,12 features
+secondary,8,Features,process,band power/Hjorth/FD/entropy/PLV/line-length,epoch_features
+secondary,8,Features,process,normalise,z-score
+secondary,8,Features,output,feature matrix,12 cols
+secondary,8,Features,output,stats,eeg_feature_stats.csv
+secondary,9,Feature eval + selection,input,features,12
+secondary,9,Feature eval + selection,input,target,ictal
+secondary,9,Feature eval + selection,process,mutual information,rank
+secondary,9,Feature eval + selection,process,select,top + ablation
+secondary,9,Feature eval + selection,output,ranking,eeg_feature_importance.csv
+secondary,9,Feature eval + selection,output,ablation,sensitivity CSV
+secondary,10,Train + HPO,input,"balanced X,y",SMOTE
+secondary,10,Train + HPO,input,models,RF + MLP
+secondary,10,Train + HPO,process,GridSearchCV,HPO
+secondary,10,Train + HPO,process,fit,subject-level
+secondary,10,Train + HPO,output,models,tuned
+secondary,10,Train + HPO,output,loss curve,eeg_loss_curve.csv
+secondary,11,Evaluate (accuracy matrix),input,test set,holdout
+secondary,11,Evaluate (accuracy matrix),input,predictions,prob
+secondary,11,Evaluate (accuracy matrix),process,metrics,acc/prec/rec/spec/F1/AUC/AP/log-loss
+secondary,11,Evaluate (accuracy matrix),process,threshold sweep,operating point
+secondary,11,Evaluate (accuracy matrix),output,accuracy matrix,eeg_model_metrics.csv
+secondary,11,Evaluate (accuracy matrix),output,PR curve,eeg_pr_curve.csv
+secondary,12,XAI,input,model,best
+secondary,12,XAI,input,test,features
+secondary,12,XAI,process,permutation importance,sklearn
+secondary,12,XAI,process,spectrogram saliency,region diff
+secondary,12,XAI,output,attributions,ranked
+secondary,12,XAI,output,subjective reading,clinician table
+secondary,13,RAG + report,input,prediction,risk
+secondary,13,RAG + report,input,knowledge,SOPs/guidelines
+secondary,13,RAG + report,process,embed + retrieve,vector_db_pipeline.py
+secondary,13,RAG + report,process,generate,doctor + patient report
+secondary,13,RAG + report,output,grounded report,with evidence
+secondary,13,RAG + report,output,citations,retrieved
+secondary,14,Human review + governance,input,AI output,report
+secondary,14,Human review + governance,input,reviewer,neurophysiologist
+secondary,14,Human review + governance,process,approve/reject,human-in-loop
+secondary,14,Human review + governance,process,monitor,drift/concept-drift/security
+secondary,14,Human review + governance,output,sign-off,logged
+secondary,14,Human review + governance,output,audit trail,continuous

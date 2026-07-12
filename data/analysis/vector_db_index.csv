@@ -1,0 +1,16 @@
+doc_id,source,chunk_preview,n_chars
+sop-preprocess,SOP,"Scalp EEG preprocessing: band-pass 0.5-45 Hz, 50/60 Hz notch, re-reference to common avera…",151
+guide-ictal,Guideline,"Seizures appear on EEG as rhythmic, evolving discharges with increasing amplitude and line…",145
+guide-linelength,Evidence,"Line-length is an efficient, robust feature for seizure onset detection and rises sharply …",136
+sop-split,SOP,Use subject-level train/test splits for EEG classification; epoch-level splits leak inform…,146
+guide-status,Guideline,Status epilepticus is a continuous or recurrent seizure lasting >5 minutes; it is an emerg…,144
+gov-hitl,Governance,Clinical AI for epilepsy must keep a neurophysiologist in the loop; the model provides dec…,138
+guide-classification,Guideline,"ILAE 2017 classifies seizures by onset: focal, generalized, or unknown, then by awareness …",140
+sop-security,Governance,PHI is encrypted at rest (AES-256) and in transit (TLS); EEG is de-identified before analy…,146
+chbmit-real-analysis,Doc,"    Why (this doc):   Genuine epilepsy EEG (not synthetic, not eye-state): CHB-MIT chb01_0…",353
+data-quality-report,Doc,    Why (this doc):   The per-column and per-dataset data-quality metadata the checklist r…,385
+eda-report,Doc,"    Why (this doc):   EDA of every generated dataset — shape, missingness, distributions, …",259
+eeg-signal-pipeline,Doc,    Why (this doc):   The secondary-data critique was that EEG features were hand-assigned…,400
+evaluation-rigor,Doc,    Why (this doc):   Point estimates are not enough for a defensible model; this adds cli…,239
+fusion-analysis,Doc,"    Why (this doc):   The dissertation's payoff is fusion — combining the primary
+  clinic…",400

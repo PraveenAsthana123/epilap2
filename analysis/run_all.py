@@ -25,6 +25,9 @@ import build_scenarios        # seizure/epilepsy scenario DB + weighting
 import build_var_dictionary   # DV/IV/covariate dictionary + hypotheses
 import build_questionnaires   # validate + consolidate the 10-role questionnaires
 import build_catalogues       # pain-point register + visualization catalogue
+import secondary_eeg_full      # full 23-phase EEG pipeline on real CHB-MIT (STFT/CWT/2D/SMOTE/HPO)
+import phase_io_export         # per-phase input/process/output + governance (viewer Phase Explorer)
+import vector_db_pipeline      # RAG vector DB (embed->index->retrieve) + scheduled jobs
 
 
 STAGES = [
@@ -40,6 +43,9 @@ STAGES = [
     ("Reference — variable dictionary + hypotheses", build_var_dictionary),
     ("Reference — questionnaire validation", build_questionnaires),
     ("Reference — pain + visualization catalogues", build_catalogues),
+    ("Secondary — full 23-phase EEG (real CHB-MIT)", secondary_eeg_full),
+    ("Phase Explorer — per-phase input/process/output export", phase_io_export),
+    ("RAG — vector DB pipeline + scheduled jobs", vector_db_pipeline),
 ]
 
 

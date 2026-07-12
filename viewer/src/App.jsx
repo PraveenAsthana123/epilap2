@@ -14,6 +14,11 @@ import Reports from './Reports.jsx'
 import Dashboards from './Dashboards.jsx'
 import AIForms from './AIForms.jsx'
 import Monitoring from './Monitoring.jsx'
+import PhaseExplorer from './PhaseExplorer.jsx'
+
+// Primary/secondary phase explorers are PhaseExplorer bound to a pipeline.
+const PrimaryPhases = ({ datasets }) => <PhaseExplorer datasets={datasets} pipeline="primary" title="Primary Data Pipeline" icon="🧬" />
+const SecondaryPhases = ({ datasets }) => <PhaseExplorer datasets={datasets} pipeline="secondary" title="Secondary Data (EEG) Pipeline" icon="〰️" />
 
 // Load every generated dataset (data/analysis/*.csv) as raw text for the Data tab.
 const CSV_MODULES = import.meta.glob('../../data/analysis/*.csv', {
@@ -212,7 +217,7 @@ export default function App() {
     setView(v); setNavOpen(false); setQuery(''); setScoreMode(false)
     if (v === 'home') { setActiveId(null); return }
     if (['data', 'sim', 'scenarios', 'phases', 'eeg', 'dataviz', 'survey', 'reports',
-         'dashboards', 'forms', 'monitoring'].includes(v)) { setActiveId(null); return }
+         'dashboards', 'forms', 'monitoring', 'pphases', 'sphases'].includes(v)) { setActiveId(null); return }
     if (v === 'all') { setActiveId(ALL_DOCS[0]?.id ?? null); return }
     const rd = ROLE_DOCS[v]
     setActiveId((rd.overview || rd.sections[0])?.id ?? null)
@@ -274,9 +279,10 @@ export default function App() {
         <button className={'tab tab-all' + (view === 'all' ? ' active' : '')} onClick={() => enter('all')}>
           All Docs
         </button>
-        {['dataviz:📊 Data Viz', 'survey:🗣️ Survey', 'forms:📝 AI Forms', 'dashboards:🧭 Dashboards',
-          'reports:📄 Reports', 'monitoring:📡 Monitoring', 'sim:🧪 Simulation', 'scenarios:📚 Scenarios',
-          'phases:✅ Phases', 'eeg:〰️ EEG'].concat(DATASETS.length > 0 ? ['data:🗃️ Data'] : []).map((t) => {
+        {['pphases:🧬 Primary', 'sphases:〰️ Secondary', 'dataviz:📊 Data Viz', 'survey:🗣️ Survey',
+          'forms:📝 AI Forms', 'dashboards:🧭 Dashboards', 'reports:📄 Reports', 'monitoring:📡 Monitoring',
+          'sim:🧪 Simulation', 'scenarios:📚 Scenarios', 'phases:✅ Phases',
+          'eeg:〜 EEG'].concat(DATASETS.length > 0 ? ['data:🗃️ Data'] : []).map((t) => {
           const [k, label] = t.split(':')
           return (
             <button key={k} className={'tab tab-all' + (view === k ? ' active' : '')} onClick={() => enter(k)}>
@@ -290,7 +296,8 @@ export default function App() {
 
   // ---- Data-driven tabs ---------------------------------------------------
   const EXTRA = { data: DataView, sim: Simulation, scenarios: Scenarios, phases: PhaseDashboard, eeg: EEGWaveform,
-    dataviz: DataViz, survey: Survey, reports: Reports, dashboards: Dashboards, forms: AIForms, monitoring: Monitoring }
+    dataviz: DataViz, survey: Survey, reports: Reports, dashboards: Dashboards, forms: AIForms, monitoring: Monitoring,
+    pphases: PrimaryPhases, sphases: SecondaryPhases }
   if (EXTRA[view]) {
     const Comp = EXTRA[view]
     return (

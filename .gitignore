@@ -40,3 +40,4 @@ mlops/store/
 
 # Large real EEG recordings (rebuild via analysis/fetch_chbmit.py)
 data/real/chbmit/*.edf
+mlops/store/vector_index.npz
