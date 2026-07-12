@@ -1,6 +1,9 @@
 import React, { useMemo, useState, useEffect } from 'react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+import remarkMath from 'remark-math'
+import rehypeKatex from 'rehype-katex'
+import 'katex/dist/katex.min.css'
 import Mermaid from './Mermaid.jsx'
 import { parseSeverity, bandOf, scoreOf } from './scoring.js'
 import DataView from './DataView.jsx'
@@ -17,6 +20,7 @@ import Monitoring from './Monitoring.jsx'
 import PhaseExplorer from './PhaseExplorer.jsx'
 import OperatingModel from './OperatingModel.jsx'
 import KnowledgeGraph from './KnowledgeGraph.jsx'
+import Charts from './Charts.jsx'
 import IPOVR from './TabMeta.jsx'
 
 // Primary/secondary phase explorers are PhaseExplorer bound to a pipeline.
@@ -223,7 +227,7 @@ export default function App() {
     setView(v); setNavOpen(false); setQuery(''); setScoreMode(false)
     if (v === 'home') { setActiveId(null); return }
     if (['data', 'sim', 'scenarios', 'phases', 'eeg', 'dataviz', 'survey', 'reports',
-         'dashboards', 'forms', 'monitoring', 'pphases', 'sphases', 'opmodel', 'kg'].includes(v)) { setActiveId(null); return }
+         'dashboards', 'forms', 'monitoring', 'pphases', 'sphases', 'opmodel', 'kg', 'charts'].includes(v)) { setActiveId(null); return }
     if (v === 'all') { setActiveId(ALL_DOCS[0]?.id ?? null); return }
     const rd = ROLE_DOCS[v]
     setActiveId((rd.overview || rd.sections[0])?.id ?? null)
@@ -286,7 +290,7 @@ export default function App() {
           All Docs
         </button>
         {['opmodel:🏛️ Operating Model', 'pphases:🧬 Primary', 'sphases:〰️ Secondary', 'kg:🕸️ Knowledge Graph',
-          'dataviz:📊 Data Viz', 'survey:🗣️ Survey',
+          'charts:📈 Charts', 'dataviz:📊 Data Viz', 'survey:🗣️ Survey',
           'forms:📝 AI Forms', 'dashboards:🧭 Dashboards', 'reports:📄 Reports', 'monitoring:📡 Monitoring',
           'sim:🧪 Simulation', 'scenarios:📚 Scenarios', 'phases:✅ Phases',
           'eeg:〜 EEG'].concat(DATASETS.length > 0 ? ['data:🗃️ Data'] : []).map((t) => {
@@ -304,7 +308,7 @@ export default function App() {
   // ---- Data-driven tabs ---------------------------------------------------
   const EXTRA = { data: DataView, sim: Simulation, scenarios: Scenarios, phases: PhaseDashboard, eeg: EEGWaveform,
     dataviz: DataViz, survey: Survey, reports: Reports, dashboards: Dashboards, forms: AIForms, monitoring: Monitoring,
-    pphases: PrimaryPhases, sphases: SecondaryPhases, opmodel: OperatingModel, kg: KnowledgeGraph }
+    pphases: PrimaryPhases, sphases: SecondaryPhases, opmodel: OperatingModel, kg: KnowledgeGraph, charts: Charts }
   if (EXTRA[view]) {
     const Comp = EXTRA[view]
     return (
@@ -467,7 +471,7 @@ export default function App() {
                 </>
               ) : (
                 <article className="md">
-                  <ReactMarkdown remarkPlugins={[remarkGfm]} components={MD_COMPONENTS}>{active.md}</ReactMarkdown>
+                  <ReactMarkdown remarkPlugins={[remarkGfm, remarkMath]} rehypePlugins={[rehypeKatex]} components={MD_COMPONENTS}>{active.md}</ReactMarkdown>
                 </article>
               )}
             </>
