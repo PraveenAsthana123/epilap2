@@ -83,12 +83,15 @@ flowchart TD
 (previous Problems 2–4, ranks 12/14/20) are **lower EEG-dependency** and become *supporting modules /
 future scope*, not flagship studies. Problems 1 and 5 are retained and elevated.
 
-## Critical enabling step (honest)
+## Critical enabling step (partly done, honest)
 
-Every flagship currently runs on a **seeded synthetic EEG cohort** — a methodology demonstration.
-The single highest-leverage next step is to substitute a **real retrospective EEG dataset**
-(**Siena Scalp EEG** or **TUH EEG Corpus**) into the shared engine; the six problem heads then
-produce defensible results. Until then, results must be framed as *simulated, pending clinical validation*.
+The flagship *clinical* models run on a seeded synthetic cohort (methodology demonstration), **but the
+EEG pipeline is now validated on REAL epilepsy data**: CHB-MIT chb01_03 (ictal-vs-interictal CV AUC
+**0.970**, [chbmit-real-analysis](analysis/chbmit-real-analysis.md)) and EEG-Eye-State (external AUC
+0.979). The remaining step is to scale to the **full CHB-MIT / Siena / TUH** corpora with subject-level
+splits so every flagship head reports corpus-level, clinician-validated results — the code is ready
+(`analysis/fetch_chbmit.py`, `fetch_siena.py`, `eeg_signal_pipeline.py`). Synthetic clinical results
+stay framed as *simulated, pending clinical validation*.
 
 ## Professor Readiness (Defense Q&A)
 

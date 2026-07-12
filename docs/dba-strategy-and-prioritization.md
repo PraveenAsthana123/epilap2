@@ -38,8 +38,10 @@
 | C6 | **Clinical Evidence Concordance Engine** (agreement/conflict) | Trust across sources | 🟢 built — `governance.py` concordance engine (flags discordant patients for review; EP001 Concordant) |
 
 **Built (2026-07-11):** C5 (confidence/uncertainty → abstention) and C6 (concordance engine) are now
-runnable code with tests, extending the fusion engine. **Remaining key gap:** integrate a **real EEG
-corpus** (Siena/TUH) so the scenarios report defensible (non-synthetic) results.
+runnable code with tests, extending the fusion engine. **Real EEG integrated (2026-07-12):** the
+pipeline now runs on **real epilepsy EEG** — CHB-MIT chb01_03 (ictal-vs-interictal CV AUC **0.970**;
+see [chbmit-real-analysis](analysis/chbmit-real-analysis.md)) and EEG-Eye-State (external AUC 0.979).
+**Remaining gap:** scale to the full CHB-MIT/Siena corpus with subject-level splits + clinician validation.
 
 ## 3. Validation scenarios (the framework proves itself on these)
 

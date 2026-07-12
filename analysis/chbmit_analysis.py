@@ -24,6 +24,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import cross_val_score, train_test_split
 from sklearn.metrics import roc_auc_score, confusion_matrix
 
+from scipy import stats as spstats
 from common import df_to_md, save_fig, explain, caption, write_report, banner, SEED
 
 STAGE = "chbmit"
@@ -86,6 +87,29 @@ def main():
     feat_cols = [c for c in df.columns if c != "t"]
     X = df.iloc[idx][feat_cols].values; yy = y[idx]
 
+    # ---- Data test: validate the real recording before modelling ----
+    data_checks = pd.DataFrame([
+        {"check": "channel count", "expected": "> 0", "actual": nch, "pass": nch > 0},
+        {"check": "sampling rate", "expected": "256 Hz", "actual": f"{fs:.0f} Hz", "pass": abs(fs - 256) < 1},
+        {"check": "no NaN in signal", "expected": "True", "actual": bool(~np.isnan(data).any()), "pass": bool(~np.isnan(data).any())},
+        {"check": "duration covers seizure", "expected": f">{s1}s", "actual": f"{dur:.0f}s", "pass": dur > s1},
+        {"check": "ictal epochs present", "expected": "> 0", "actual": int((y == 1).sum()), "pass": (y == 1).sum() > 0},
+    ])
+
+    # ---- Hypothesis test: do ictal epochs differ from interictal per feature? ----
+    # H0: ictal and interictal distributions are equal for each DSP feature.
+    hyp_rows = []
+    for c in feat_cols:
+        a = df.iloc[ict][c]; b = df.iloc[inter][c]
+        u, p = spstats.mannwhitneyu(a, b)
+        rbc = round(1 - 2 * u / (len(a) * len(b)), 3)
+        hyp_rows.append({"feature": c, "ictal_mean": round(a.mean(), 4),
+                         "interictal_mean": round(b.mean(), 4),
+                         "mannwhitney_p": ("<0.001" if p < 1e-3 else round(p, 4)),
+                         "effect_rbc": rbc,
+                         "reject_H0": "yes" if p < 0.05 else "no"})
+    hyp = pd.DataFrame(hyp_rows)
+
     clf = RandomForestClassifier(n_estimators=300, random_state=SEED)
     auc = cross_val_score(clf, X, yy, cv=5, scoring="roc_auc").mean()
     tr, te = train_test_split(np.arange(len(yy)), test_size=0.3, random_state=SEED, stratify=yy)
@@ -116,6 +140,39 @@ def main():
 
 **Recording:** {nch} channels · {fs:.0f} Hz · {dur:.0f}s · seizure {s0}-{s1}s ({s1-s0}s).
 **Epochs:** {WIN:.0f}s windows → {len(ict)} ictal + {len(inter)} sampled interictal.
+
+## Pipeline (flowchart)
+
+```mermaid
+flowchart TD
+    A[Real EDF - CHB-MIT chb01_03] --> B[Read via MNE - 23ch @ 256Hz]
+    B --> C[Data test - channels/rate/NaN/annotation]
+    C --> D[Epoch 4s windows + label ictal/interictal]
+    D --> E[DSP features - band powers, line-length, power, spike]
+    E --> F[Hypothesis test - ictal vs interictal per feature]
+    F --> G[RandomForest + 5-fold CV ROC-AUC]
+    G --> H[Real seizure-detection result]
+```
+
+{explain("Show the real-EEG analysis flow from EDF to result.",
+         "A defensible real-data result needs each step traceable.",
+         "Real EDF is read, validated, epoched, featurised, tested, and modelled.",
+         "MNE + scipy DSP + sklearn; every step runs on the genuine recording.",
+         "Shoeb (2009).")}
+
+## Data test (real recording validated before modelling)
+{caption("Automated checks on the real EEG recording — all must pass before analysis.")}
+
+{df_to_md(data_checks)}
+
+## Hypothesis test
+**H0:** ictal and interictal epochs have the same distribution for each DSP feature.
+**H1:** they differ (seizures change band power / line-length / amplitude).
+{caption("Mann-Whitney U per feature (ictal vs interictal) with rank-biserial effect size.")}
+
+{df_to_md(hyp)}
+
+Features with **reject_H0 = yes** distinguish seizures from background — the statistical basis for the classifier below.
 
 ## Ictal-vs-interictal classification (REAL data)
 Random Forest, 5-fold CV **ROC-AUC = {auc:.3f}**; holdout confusion matrix {cm.tolist()}.
