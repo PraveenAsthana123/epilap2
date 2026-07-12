@@ -41,6 +41,7 @@ jobs:
           python preprocessing.py
           python timeseries.py
           python eda.py
+          python generate_qbank_dataset.py
           python evaluation.py
           python fetch_real_eeg.py || true
           python real_eeg_analysis.py || true
