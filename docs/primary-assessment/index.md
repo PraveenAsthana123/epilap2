@@ -116,6 +116,17 @@ answered across four epilepsy severity levels from that role's perspective:
 | 5 | [05-records-data-governance.md](administrator/05-records-data-governance.md) | Records & Data Governance |
 | 6 | [06-referral-management.md](administrator/06-referral-management.md) | Referral Management |
 
+## Occupational Therapist Assessment (Functional / Rehabilitation)
+| # | File | Section |
+|---|---|---|
+| 1 | [01-referral-information.md](occupational-therapist/01-referral-information.md) | Referral Information (OT001–010) |
+| 2 | [02-occupational-profile.md](occupational-therapist/02-occupational-profile.md) | Occupational Profile (OT011–020) |
+| 3 | [03-patient-priorities.md](occupational-therapist/03-patient-priorities.md) | Patient Priorities (OT021–030) |
+| 4 | [04-functional-concerns.md](occupational-therapist/04-functional-concerns.md) | Functional Concerns (OT031–040) |
+| 5 | [05-seizure-impact.md](occupational-therapist/05-seizure-impact.md) | Seizure Impact on Daily Life (OT041–050) |
+| 6 | [06-safety-screening.md](occupational-therapist/06-safety-screening.md) | Initial Safety Screening (OT051–060) |
+| 7 | [07-clinical-impression.md](occupational-therapist/07-clinical-impression.md) | Initial Clinical Impression (OT061–070) |
+
 ## Derived / Roles
 | File | Contents |
 |---|---|
@@ -128,3 +139,4 @@ answered across four epilepsy severity levels from that role's perspective:
 | [roles-caregiver.md](roles-caregiver.md) | Caregiver: observations, concerns, tasks |
 | [roles-patient.md](roles-patient.md) | Patient: self-reports, concerns, tasks |
 | [roles-administrator.md](roles-administrator.md) | Administrator: tasks, concerns, workflow |
+| [roles-occupational-therapist.md](roles-occupational-therapist.md) | Occupational Therapist: assessments, participation map, tasks |

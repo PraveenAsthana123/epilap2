@@ -35,6 +35,7 @@ const ROLES = [
   { key: 'caregiver',        label: 'Caregiver',        icon: '🤝', dir: 'primary-assessment/caregiver/',        overview: 'primary-assessment/roles-caregiver.md',        blurb: 'Witnessed seizures, home support & caregiver burden' },
   { key: 'patient',          label: 'Patient',          icon: '🧍', dir: 'primary-assessment/patient/',          overview: 'primary-assessment/roles-patient.md',          blurb: 'Self-reported symptoms, seizure diary & outcomes' },
   { key: 'administrator',    label: 'Administrator',    icon: '🗂️', dir: 'primary-assessment/administrator/',    overview: 'primary-assessment/roles-administrator.md',    blurb: 'Registration, coding, scheduling & governance' },
+  { key: 'occupational-therapist', label: 'Occupational Therapist', icon: '🧰', dir: 'primary-assessment/occupational-therapist/', overview: 'primary-assessment/roles-occupational-therapist.md', blurb: 'Function, ADL/IADL, participation, home safety & return-to-work' },
 ]
 const ROLE_OVERVIEWS = new Set(ROLES.map((r) => r.overview))
 
@@ -48,9 +49,9 @@ const SEVERITY = [
 
 // Human-friendly ordering for the "All Docs" nav sections (the rest of the blueprint).
 const GROUP_ORDER = [
-  'Start', 'Vision', 'Analytics', 'Part I–III', 'Pipelines', 'Part IV–VIII',
-  'Primary Assessment', 'Roles & Stakeholders', 'HEP Dataset', 'Source Datasets',
-  'Dataset Dossiers', 'Reference',
+  'Start', 'Vision', 'Analytics', 'Responsible AI', 'Part I–III', 'Pipelines',
+  'Part IV–VIII', 'Primary Assessment', 'Roles & Stakeholders', 'HEP Dataset',
+  'Source Datasets', 'Dataset Dossiers', 'Reference',
 ]
 
 // Extract the first H1 as the doc title; fall back to the path.
@@ -63,6 +64,7 @@ function titleFromMarkdown(md, fallback) {
 function classify(rel) {
   const parts = rel.split('/')
   if (rel.startsWith('analysis/')) return 'Analytics'
+  if (rel.startsWith('responsible-ai/')) return 'Responsible AI'
   if (rel === 'research-vision.md') return 'Vision'
   if (rel === 'patient-onboarding.md') return 'Vision'
   if (rel.startsWith('primary-assessment/')) return 'Primary Assessment'
