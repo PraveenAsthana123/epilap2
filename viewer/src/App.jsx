@@ -8,6 +8,12 @@ import Simulation from './Simulation.jsx'
 import Scenarios from './Scenarios.jsx'
 import PhaseDashboard from './PhaseDashboard.jsx'
 import EEGWaveform from './EEGWaveform.jsx'
+import DataViz from './DataViz.jsx'
+import Survey from './Survey.jsx'
+import Reports from './Reports.jsx'
+import Dashboards from './Dashboards.jsx'
+import AIForms from './AIForms.jsx'
+import Monitoring from './Monitoring.jsx'
 
 // Load every generated dataset (data/analysis/*.csv) as raw text for the Data tab.
 const CSV_MODULES = import.meta.glob('../../data/analysis/*.csv', {
@@ -205,7 +211,8 @@ export default function App() {
   function enter(v) {
     setView(v); setNavOpen(false); setQuery(''); setScoreMode(false)
     if (v === 'home') { setActiveId(null); return }
-    if (['data', 'sim', 'scenarios', 'phases', 'eeg'].includes(v)) { setActiveId(null); return }
+    if (['data', 'sim', 'scenarios', 'phases', 'eeg', 'dataviz', 'survey', 'reports',
+         'dashboards', 'forms', 'monitoring'].includes(v)) { setActiveId(null); return }
     if (v === 'all') { setActiveId(ALL_DOCS[0]?.id ?? null); return }
     const rd = ROLE_DOCS[v]
     setActiveId((rd.overview || rd.sections[0])?.id ?? null)
@@ -267,8 +274,9 @@ export default function App() {
         <button className={'tab tab-all' + (view === 'all' ? ' active' : '')} onClick={() => enter('all')}>
           All Docs
         </button>
-        {DATASETS.length > 0 && ['data:📊 Data', 'sim:🧪 Simulation', 'scenarios:📚 Scenarios',
-          'phases:✅ Phases', 'eeg:〰️ EEG'].map((t) => {
+        {['dataviz:📊 Data Viz', 'survey:🗣️ Survey', 'forms:📝 AI Forms', 'dashboards:🧭 Dashboards',
+          'reports:📄 Reports', 'monitoring:📡 Monitoring', 'sim:🧪 Simulation', 'scenarios:📚 Scenarios',
+          'phases:✅ Phases', 'eeg:〰️ EEG'].concat(DATASETS.length > 0 ? ['data:🗃️ Data'] : []).map((t) => {
           const [k, label] = t.split(':')
           return (
             <button key={k} className={'tab tab-all' + (view === k ? ' active' : '')} onClick={() => enter(k)}>
@@ -281,7 +289,8 @@ export default function App() {
   )
 
   // ---- Data-driven tabs ---------------------------------------------------
-  const EXTRA = { data: DataView, sim: Simulation, scenarios: Scenarios, phases: PhaseDashboard, eeg: EEGWaveform }
+  const EXTRA = { data: DataView, sim: Simulation, scenarios: Scenarios, phases: PhaseDashboard, eeg: EEGWaveform,
+    dataviz: DataViz, survey: Survey, reports: Reports, dashboards: Dashboards, forms: AIForms, monitoring: Monitoring }
   if (EXTRA[view]) {
     const Comp = EXTRA[view]
     return (
