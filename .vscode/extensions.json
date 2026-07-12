@@ -1,0 +1,13 @@
+{
+  // Workspace-recommended extensions. VSCode shows a prompt to install/enable these
+  // ("Do you want to install the recommended extensions for this repository?").
+  // Open the Extensions panel (Ctrl+Shift+X) -> "Recommended" to enable them.
+  "recommendations": [
+    "tomoki1207.pdf",              // View the compiled PDFs (thesis + deliverable) inside the editor
+    "bierner.markdown-mermaid",    // Render Mermaid diagrams in the Markdown preview (Ctrl+Shift+V)
+    "yzhang.markdown-all-in-one",  // Markdown TOC, shortcuts, preview enhancements
+    "ms-python.python",            // Python (analysis/ + mlops/ + api/ pipelines)
+    "dbaeumer.vscode-eslint",      // Lint the React viewer
+    "dsznajder.es7-react-js-snippets" // React snippets for viewer/src
+  ]
+}
