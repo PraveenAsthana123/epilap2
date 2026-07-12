@@ -5,6 +5,27 @@
 
 Legend: ✅ reflected · 🟡 partial (needs full-standard upgrade) · ⬜ not yet created
 
+## Build status — 2026-07-11 (checked & verified)
+
+*Caption — component-level completion across the whole deliverable.*
+
+| Component | Artefact | Status |
+|---|---|---|
+| Assessment roles | 9 roles, 71 sections, **782 questionnaire items** (all validated) | ✅ |
+| Enterprise questionnaire | `## Questionnaire (Enterprise Form)` in every section | ✅ |
+| Severity model + scoring | 4-level model per section; viewer Fill & Score | ✅ |
+| Consolidated questionnaires | `primary-assessment/questionnaires/` + validation report | ✅ |
+| Analytics (runnable) | primary/secondary/fusion + `run_all` (AUC 0.969/0.93/0.976) | ✅ |
+| Responsible AI (design) | 16 pillars + 6 implementation docs | ✅ |
+| Responsible AI (runtime code) | `responsible_ai_runtime.py` — SHAP/LIME/fairness/guardrails | ✅ |
+| Scenario database | 57 scenarios + weighted scoring model | ✅ |
+| Tests | pytest 19 (analysis) + 7 (API) + Vitest 10 (viewer) = **36 passing** | ✅ |
+| Database | `db/schema.sql` + runnable SQLite build | ✅ |
+| API | FastAPI (roles/scenarios/score/patient) + tests | ✅ |
+| README + internals | top-level README + `ARCHITECTURE-INTERNALS.md` | ✅ |
+| Viewer scenario tab + weighted scoring in UI | (uses plain mean; weighted model lives in API/docs) | 🟡 |
+| Neurologist 220-question expansion | current: 15 sections | ⬜ optional |
+
 ## A. EP001 — Neurologist Primary Assessment (given data)
 
 *Caption — every neurologist section the user supplied, mapped to its MD file.*
