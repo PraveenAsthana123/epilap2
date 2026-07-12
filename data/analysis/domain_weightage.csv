@@ -1,0 +1,10 @@
+domain,weight,rationale
+Neurologist,0.22,"Seizure classification, burden, diagnosis — primary driver"
+EEG Technician,0.1,Objective electrophysiology / focus evidence
+Neuropsychologist,0.12,Cognitive & mood comorbidity load
+Pharmacist,0.12,"Regimen complexity, drug resistance, levels"
+Nurse,0.1,"Observed events, vitals, acute safety"
+Caregiver,0.1,"Witnessed burden, home management"
+Patient,0.12,"Patient-reported outcomes, QoL, adherence"
+Occupational Therapist,0.08,"Functional independence, participation, safety"
+Administrator,0.04,Encounter acuity / utilisation signal

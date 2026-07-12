@@ -1,0 +1,58 @@
+id,category,scenario,onset,awareness,ilae_class,severity_level,clinical_weight,key_features
+SZ-F01,Seizure Type,Focal aware seizure,Focal,Aware,Focal aware (simple partial),2,0.6,Preserved awareness; motor/sensory/autonomic aura
+SZ-F02,Seizure Type,Focal impaired awareness seizure,Focal,Impaired,Focal impaired awareness (complex partial),3,1.0,"Behavioural arrest, automatisms, amnesia — EP001 type"
+SZ-F03,Seizure Type,Focal motor — automatisms,Focal,Variable,Focal motor onset,2,0.7,"Lip-smacking, fumbling"
+SZ-F04,Seizure Type,Focal motor — clonic,Focal,Variable,Focal motor onset,2,0.7,Rhythmic jerking of one limb
+SZ-F05,Seizure Type,Focal motor — tonic,Focal,Variable,Focal motor onset,2,0.7,Sustained stiffening
+SZ-F06,Seizure Type,Focal motor — hyperkinetic,Focal,Variable,Focal motor onset,3,0.8,Vigorous limb/trunk movements (frontal)
+SZ-F07,Seizure Type,Focal motor — epileptic spasms,Focal,Variable,Focal motor onset,3,0.9,Brief axial flexion/extension
+SZ-F08,Seizure Type,Focal non-motor — autonomic,Focal,Variable,Focal non-motor onset,2,0.7,"Epigastric rising, pallor, flushing"
+SZ-F09,Seizure Type,Focal non-motor — behaviour arrest,Focal,Variable,Focal non-motor onset,2,0.6,Sudden cessation of activity
+SZ-F10,Seizure Type,Focal non-motor — cognitive,Focal,Variable,Focal non-motor onset,2,0.7,"Deja vu, dysphasia, forced thinking"
+SZ-F11,Seizure Type,Focal non-motor — emotional,Focal,Variable,Focal non-motor onset,2,0.7,"Fear, anxiety, ictal laughter"
+SZ-F12,Seizure Type,Focal non-motor — sensory,Focal,Variable,Focal non-motor onset,2,0.7,"Somatosensory, visual, auditory, olfactory"
+SZ-F13,Seizure Type,Focal to bilateral tonic-clonic,Focal,Lost,Focal to bilateral tonic-clonic,4,1.2,Secondary generalisation; injury/SUDEP risk
+SZ-G01,Seizure Type,Generalized tonic-clonic,Generalized,Lost,Generalized motor,4,1.2,"Bilateral stiffening then jerking; tongue-bite, incontinence"
+SZ-G02,Seizure Type,Generalized clonic,Generalized,Lost,Generalized motor,3,0.9,Rhythmic bilateral jerking
+SZ-G03,Seizure Type,Generalized tonic,Generalized,Lost,Generalized motor,3,0.9,Bilateral stiffening
+SZ-G04,Seizure Type,Generalized myoclonic,Generalized,Aware,Generalized motor,2,0.7,Brief shock-like jerks
+SZ-G05,Seizure Type,Myoclonic-tonic-clonic,Generalized,Lost,Generalized motor,3,0.9,Jerks preceding GTC (JME)
+SZ-G06,Seizure Type,Myoclonic-atonic,Generalized,Lost,Generalized motor,3,0.9,Jerk then drop (Doose)
+SZ-G07,Seizure Type,Atonic (drop attack),Generalized,Lost,Generalized motor,3,1.0,Sudden loss of tone; fall/injury
+SZ-G08,Seizure Type,Epileptic spasms,Generalized,Variable,Generalized motor,4,1.0,Clusters of axial spasms (West)
+SZ-G09,Seizure Type,Typical absence,Generalized,Impaired,Generalized non-motor (absence),2,0.6,"Brief blank stare, 3 Hz spike-wave"
+SZ-G10,Seizure Type,Atypical absence,Generalized,Impaired,Generalized non-motor (absence),3,0.8,"Slower onset/offset, tone change (LGS)"
+SZ-G11,Seizure Type,Myoclonic absence,Generalized,Impaired,Generalized non-motor (absence),3,0.8,Absence with rhythmic myoclonia
+SZ-G12,Seizure Type,Eyelid myoclonia,Generalized,Variable,Generalized non-motor (absence),2,0.7,Eyelid jerks + upward eye deviation
+SZ-U01,Seizure Type,Unknown-onset tonic-clonic,Unknown,Lost,Unknown motor,4,1.1,"GTC, onset unwitnessed"
+SZ-U02,Seizure Type,Unknown-onset behaviour arrest,Unknown,Variable,Unknown non-motor,2,0.6,"Arrest, onset unclear"
+SZ-U03,Seizure Type,Unclassified seizure,Unknown,Variable,Unclassified,2,0.6,Insufficient information
+EP-S01,Epilepsy Syndrome,Mesial temporal lobe epilepsy (MTS),Focal,Impaired,"Focal, structural",3,1.0,Hippocampal sclerosis; drug-resistant tendency — EP001
+EP-S02,Epilepsy Syndrome,Frontal lobe epilepsy,Focal,Variable,"Focal, structural/unknown",3,0.9,"Nocturnal, hyperkinetic, brief"
+EP-S03,Epilepsy Syndrome,Juvenile myoclonic epilepsy,Generalized,Aware,Idiopathic generalized,2,0.7,"Morning myoclonus, photosensitive"
+EP-S04,Epilepsy Syndrome,Childhood absence epilepsy,Generalized,Impaired,Idiopathic generalized,2,0.6,"Frequent absences, 3 Hz"
+EP-S05,Epilepsy Syndrome,Lennox-Gastaut syndrome,Generalized,Variable,Developmental/epileptic encephalopathy,4,1.3,"Multiple seizure types, cognitive impairment"
+EP-S06,Epilepsy Syndrome,Dravet syndrome,Generalized,Variable,Developmental/epileptic encephalopathy,4,1.3,"SCN1A, febrile-triggered, refractory"
+EP-S07,Epilepsy Syndrome,West syndrome (infantile spasms),Generalized,Variable,Developmental/epileptic encephalopathy,4,1.2,"Spasms, hypsarrhythmia, regression"
+EP-S08,Epilepsy Syndrome,Self-limited epilepsy w/ centrotemporal spikes,Focal,Aware,Self-limited focal,1,0.4,"Benign rolandic; nocturnal, remits"
+EP-S09,Epilepsy Syndrome,Post-traumatic epilepsy,Focal,Variable,"Focal, structural",3,0.9,After TBI; latency months-years
+EP-S10,Epilepsy Syndrome,Post-stroke epilepsy,Focal,Variable,"Focal, structural",3,0.9,Cortical infarct; older patients
+CL-01,Clinical Scenario,First unprovoked seizure,Any,Variable,Any,2,0.6,Single event; recurrence-risk stratification
+CL-02,Clinical Scenario,Breakthrough seizure despite adherence,Focal,Impaired,Focal,3,1.0,Recurrence on adequate ASM — EP001
+CL-03,Clinical Scenario,Drug-resistant (refractory) epilepsy,Any,Variable,Any,4,1.3,Failed >=2 appropriate ASMs; surgery work-up
+CL-04,Clinical Scenario,Seizure cluster (acute repetitive),Any,Variable,Any,4,1.1,Multiple seizures/day; rescue meds
+CL-05,Clinical Scenario,Convulsive status epilepticus,Generalized,Lost,Generalized motor,4,1.5,Seizure >5 min / recurring ~every 5 min — emergency
+CL-06,Clinical Scenario,Non-convulsive status epilepticus,Any,Impaired,Any,4,1.4,"Altered awareness, EEG-confirmed; ICU cEEG"
+CL-07,Clinical Scenario,Nocturnal seizures,Focal,Variable,Focal,3,0.9,Sleep-related; SUDEP relevance — EP001 has these
+CL-08,Clinical Scenario,Catamenial epilepsy,Focal,Variable,Any,3,0.8,Perimenstrual exacerbation
+CL-09,Clinical Scenario,Febrile seizure,Generalized,Lost,Provoked,1,0.4,Child + fever; usually benign
+CL-10,Clinical Scenario,Acute symptomatic / provoked seizure,Any,Variable,Provoked,2,0.6,"Metabolic, alcohol withdrawal, toxic"
+CL-11,Clinical Scenario,SUDEP risk scenario,Any,Variable,Any,4,1.2,GTC + nocturnal + poor control; counselling
+CL-12,Clinical Scenario,Psychogenic non-epileptic seizure (differential),N/A,Variable,Non-epileptic (differential),2,0.5,vEEG normal; not epilepsy — rule out
+CL-13,Clinical Scenario,Epilepsy in pregnancy,Any,Variable,Any,3,0.9,"ASM teratogenicity, level changes, folate"
+CL-14,Clinical Scenario,Epilepsy surgery candidate,Focal,Impaired,"Focal, structural",3,1.0,Drug-resistant focal + concordant work-up
+CL-15,Clinical Scenario,Well-controlled epilepsy (seizure-free),Any,Variable,Any,1,0.3,Seizure-free >=1 yr on ASM; driving eligible
+SEV-1,Severity Level,Mild (well-controlled),-,-,-,1,0.3,"Rare/absent seizures, monotherapy, no restriction"
+SEV-2,Severity Level,Moderate (intermediate),-,-,-,2,0.6,"~Monthly seizures, minor impact, mild QoL reduction"
+SEV-3,Severity Level,Severe (poorly controlled),-,-,-,3,1.0,"Several/month, breakthrough, restrictions — EP001"
+SEV-4,Severity Level,Refractory / Status (operational emergency),-,-,-,4,1.5,Seizures ~every 5 min / drug-resistant; emergency
