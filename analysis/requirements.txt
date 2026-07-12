@@ -9,3 +9,4 @@ scikit-learn>=1.5
 lifelines>=0.27
 psutil>=5.9
 mne>=1.6   # EDF reading for real EEG (CHB-MIT)
+reportlab>=4.0
