@@ -1,0 +1,13 @@
+feature,mutual_info
+line_length,0.1685
+hjorth_activity,0.1464
+bp_alpha,0.0907
+higuchi_fd,0.0833
+plv,0.0381
+bp_delta,0.0304
+hjorth_mobility,0.0235
+bp_beta,0.0139
+hjorth_complexity,0.0047
+bp_gamma,0.0023
+bp_theta,0.0
+spectral_entropy,0.0

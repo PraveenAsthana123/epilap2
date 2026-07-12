@@ -1,0 +1,3 @@
+stage,ictal,interictal,ratio,method
+before,10,150,0.067,raw epochs
+after,150,150,1.0,SMOTE

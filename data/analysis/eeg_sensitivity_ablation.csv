@@ -1,0 +1,7 @@
+dropped_feature,cv_auc,delta_vs_full
+none,0.928,0.0
+bp_delta,0.933,0.005
+bp_theta,0.933,0.005
+bp_alpha,0.932,0.003
+bp_beta,0.932,0.003
+bp_gamma,0.928,0.0

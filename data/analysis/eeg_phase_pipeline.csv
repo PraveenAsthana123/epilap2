@@ -1,0 +1,22 @@
+phase,pipeline,analysis,monitoring,report
+1 Objective,epilepsy screening / seizure detection,objective analysis,scope log,charter
+2 Collect,real CHB-MIT EEG (+ metadata),descriptive EDA,record count,data sheet
+3 Standardise,EDF via MNE (BIDS/FIF documented),schema check,schema drift,contract
+4 QC,rate/channel/noise checks,quality analysis,quality score,QC report
+5 Preprocess,band-pass 0.5-45 + notch + re-ref,before/after viz,artefact rate,SOP
+6 Epoch,"4s windows, subject-level split",leakage analysis,leakage flag,split log
+7 1D matrix,channel x time tensor,shape check,shape guard,tensor spec
+8 Time-frequency,STFT spectrogram + CWT scalogram,spectral analysis,band drift,TF figure
+9 2D images,spectrogram/scalogram/heatmap/connectivity,image EDA,image QC,figure set
+10 Normalise,z-score standardisation,distribution analysis,scaler drift,norm log
+11 Features,band power/Hjorth/FD/entropy/PLV/line-length,statistical (Mann-Whitney),feature drift,feature table
+12 Evaluate feat,mutual information ranking,feature analysis,MI drift,ranking
+13 Select,top-MI + RF importance,selection analysis,stability,selection log
+14 Train,GridSearchCV HPO; RF + MLP (deep stand-in),ML analysis + loss curve,train metric,model card
+15 Validate,5-fold CV + holdout (subject-level),validation analysis,cv variance,cv report
+16 Evaluate,acc/prec/recall/spec/F1/AUC/AP/log-loss,accuracy matrix,performance,scorecard
+17 XAI,permutation + spectrogram saliency,explainability + subjective,attribution drift,XAI report
+18-20 RAG,index SOPs + retrieve + report,retrieval analysis,grounding rate,RAG report
+21 Human review,neurophysiologist approve/reject,inter-rater,override rate,sign-off
+22 Reports,doctor + patient report,narrative,delivery log,reports
+23 Governance,audit/PII/bias/model-drift/concept-drift/versioning,monitoring analysis,continuous monitoring,audit trail
