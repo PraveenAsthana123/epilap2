@@ -44,7 +44,7 @@ PHASES = [
     ("2. Data ingestion", "freshness / record count", [
         ("cohort materialised", _exists("data", "analysis", "cohort_primary.csv")),
         ("data contract defined", _exists("mlops", "data_contract.py")),
-        ("real-data fetch path (Siena)", _exists("analysis", "fetch_siena.py")),
+        ("REAL EEG dataset fetched", _exists("data", "real", "EEG-Eye-State.csv")),
     ]),
     ("3. Data validation", "contract violations", [
         ("data-quality catalogue", _exists("data", "analysis", "data_quality_report.csv")),
@@ -77,8 +77,9 @@ PHASES = [
         ("AUC / discrimination", _contains("docs/analysis/primary-analysis.md", "auc")),
         ("calibration (Brier)", _contains("docs/analysis/governance-confidence-concordance.md", "brier")),
         ("survival C-index", _contains("docs/analysis/recurrence-risk.md", "concordance")),
-        ("decision curve analysis", _exists("docs", "analysis", "decision-curve.md")),  # gap
-        ("external validation", _exists("data", "analysis", "external_validation.csv")),  # gap (needs real data)
+        ("decision curve analysis", _contains("docs/analysis/evaluation-rigor.md", "decision curve")),
+        ("bootstrap CIs + DeLong + nested CV", _contains("docs/analysis/evaluation-rigor.md", "delong")),
+        ("external validation (REAL data)", _exists("data", "analysis", "external_validation.csv")),
     ]),
     ("9. Explainability / fairness", "fairness gap", [
         ("SHAP + LIME", _contains("docs/analysis/responsible-ai-runtime.md", "shap")),

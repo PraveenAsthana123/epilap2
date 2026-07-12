@@ -50,3 +50,10 @@ def log_audit(actor: str, action: str, entity: str, detail: dict | None = None):
 
 def log_app(message: str, level: str = "INFO"):
     getattr(get_logger("application"), level.lower(), get_logger("application").info)(message)
+
+
+def log_feedback(source: str, detail: dict):
+    """Capture feedback signals (clinician corrections, retrain outcomes) for the
+    continuous-learning loop."""
+    get_logger("audit").info({"event": "feedback", "source": source, "detail": detail,
+                              "t": time.time()})

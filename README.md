@@ -63,6 +63,32 @@ Neurologist · EEG Technician · Nurse · Neuropsychologist · Pharmacist · Car
 Administrator · Occupational Therapist — each a self-contained questionnaire + severity model,
 scorable in the viewer and via the API.
 
+## Model lifecycle — 13 phases (phase gates: 100/100)
+
+Each phase has a pipeline, monitoring signal, quality checks, a score, and a visualization.
+Scored by `mlops/phase_gates.py` → `docs/phase-gates-scorecard.md` (renders in the viewer **Data** tab).
+
+| # | Phase | Pipeline | Report |
+|---|---|---|---|
+| 1 | Problem definition | research-problems | [research-framework](docs/research-framework.md) |
+| 2 | Data ingestion | make_cohort · **fetch_real_eeg** | [data-quality](docs/analysis/data-quality-report.md) |
+| 3 | Data validation | data_contract · data_quality | [data-quality](docs/analysis/data-quality-report.md) |
+| 4 | Data preparation | preprocessing · **train_pipeline (persisted)** | [preprocessing](docs/analysis/preprocessing-report.md) |
+| 5 | Feature engineering / store | feature_store | [variable-dictionary](docs/analysis/variable-dictionary.md) |
+| 6 | Model development | primary/secondary/fusion · **HPO** | [primary](docs/analysis/primary-analysis.md) |
+| 7 | Training | run_all · experiment_tracker | [fusion](docs/analysis/fusion-analysis.md) |
+| 8 | Evaluation | **evaluation (DCA/CI/DeLong/nested)** · **real-EEG external** | [evaluation-rigor](docs/analysis/evaluation-rigor.md) · [real-eeg](docs/analysis/real-eeg-analysis.md) |
+| 9 | Explainability / fairness | responsible_ai_runtime | [rai-runtime](docs/analysis/responsible-ai-runtime.md) |
+| 10 | Deployment / serving | api (**/predict**) · registry+rollback | [monitoring](docs/monitoring-observability.md) |
+| 11 | Monitoring | observability · system_monitor · /metrics | [observability](docs/analysis/observability-report.md) |
+| 12 | Governance | responsible-ai · **model card** · audit log | [responsible-ai](docs/responsible-ai/index.md) |
+| 13 | Retraining | **retrain (champion-challenger)** | [phase-gates](docs/phase-gates-scorecard.md) |
+
+**Real data:** `analysis/real_eeg_analysis.py` runs the pipeline end-to-end on **real EEG**
+(EEG-Eye-State, 14,976×14) with **external validation AUC 0.979** — the rest of the analytics use a
+synthetic cohort (methodology demonstration); epilepsy-labelled real corpora (Siena/TUH) plug in via
+`fetch_siena.py`.
+
 ## How it all works
 
 See **[docs/ARCHITECTURE-INTERNALS.md](docs/ARCHITECTURE-INTERNALS.md)** for each component's

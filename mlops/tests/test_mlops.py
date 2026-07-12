@@ -121,3 +121,20 @@ def test_logging_and_llm_monitor():
     s = mon.summary()
     assert s["calls"] == 2 and s["total_tokens"] == 180
     assert s["hallucination_rate"] == 0.5                                    # 1 of 2 flagged
+
+
+# ---- trained pipeline + champion-challenger ----
+def test_pipeline_and_retrain_artifacts():
+    import os, json
+    store = os.path.join(ROOT, "mlops", "store")
+    if not os.path.exists(os.path.join(store, "pipeline.joblib")):
+        pytest.skip("run mlops/train_pipeline.py first")
+    import joblib
+    bundle = joblib.load(os.path.join(store, "pipeline.joblib"))
+    assert "pipeline" in bundle and "features" in bundle                     # positive: persisted
+    assert os.path.exists(os.path.join(store, "model_card.md"))              # model card generated
+    hpo = json.load(open(os.path.join(store, "hpo_results.json")))
+    assert "best_params" in hpo                                             # HPO recorded
+    if os.path.exists(os.path.join(store, "challenger.json")):
+        d = json.load(open(os.path.join(store, "challenger.json")))
+        assert set(["champion_auc", "challenger_auc", "promoted"]) <= set(d)  # retrain decision

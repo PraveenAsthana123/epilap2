@@ -177,6 +177,27 @@ def score(req: ScoreRequest, _auth: bool = Depends(require_key)):
             "role_score": role_mean, "role_band": _band(role_mean)}
 
 
+_PIPELINE = os.path.join(ROOT, "mlops", "store", "pipeline.joblib")
+
+
+@app.post("/predict")
+def predict(features: dict, _auth: bool = Depends(require_key)):
+    """Serve the registered, persisted preprocessing+model pipeline (no train/serve skew)."""
+    if not os.path.exists(_PIPELINE):
+        raise HTTPException(503, "model not trained — run mlops/train_pipeline.py")
+    import joblib
+    bundle = joblib.load(_PIPELINE)
+    pipe, feats = bundle["pipeline"], bundle["features"]
+    missing = [f for f in feats if f not in features]
+    if missing:
+        raise HTTPException(422, f"missing features: {missing}")
+    import numpy as np
+    x = np.array([[float(features[f]) for f in feats]])
+    proba = float(pipe.predict_proba(x)[0, 1])
+    return {"drug_resistant_probability": round(proba, 3),
+            "prediction": int(proba >= 0.5), "model": "drug_resistance_pipeline (production)"}
+
+
 @app.get("/patient/{patient_id}")
 def patient(patient_id: str, _auth: bool = Depends(require_key)):
     """Patient record + stored composite severity (from the SQLite DB)."""

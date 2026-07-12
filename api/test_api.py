@@ -48,6 +48,18 @@ def test_metrics_endpoint():
     assert 0 <= m["error_rate"] <= 1                 # error rate in range
 
 
+def test_predict_endpoint():
+    body = {"neuro_seizure_freq_pm": 5, "npsy_gad7": 9, "pt_qolie31": 55,
+            "pharm_adherence_pct": 88, "npsy_moca": 26, "care_zbi_burden": 34,
+            "neuro_trigger_burden": 4}
+    r = c.post("/predict", json=body)
+    if r.status_code == 503:
+        import pytest; pytest.skip("model not trained — run mlops/train_pipeline.py")
+    assert r.status_code == 200
+    assert 0 <= r.json()["drug_resistant_probability"] <= 1        # positive
+    assert c.post("/predict", json={"neuro_seizure_freq_pm": 5}).status_code == 422  # negative: missing
+
+
 def test_patient_ep001_and_missing():
     assert c.get("/patient/EP001").json()["band"]["label"] == "Severe"   # positive
     assert c.get("/patient/NOPE").status_code == 404                     # negative
