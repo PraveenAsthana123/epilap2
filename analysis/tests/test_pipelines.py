@@ -215,3 +215,22 @@ def test_integrated_decisions():
     assert (deferred["recommendation"].str.contains("REVIEW", case=False)).all()
     # EP001 passes both gates.
     assert bool(df.loc[df.patient_id == "EP001", "auto_recommendable"].iloc[0]) is True
+
+
+# ---------------------------------------------------------------------------
+# Advanced preprocessing library
+# ---------------------------------------------------------------------------
+def test_preprocessing_techniques():
+    import preprocessing as pp
+    import numpy as np
+    d = pd.DataFrame({"a": [1.0, 2.0, np.nan, 4.0], "b": [10, 20, 30, 40]})
+    imp = pp.impute(d, ["a", "b"], "knn")
+    assert imp.isna().sum().sum() == 0                          # positive: imputed
+    # class balancing equalises classes.
+    X = np.random.RandomState(0).rand(100, 3)
+    y = np.array([0] * 80 + [1] * 20)
+    Xb, yb = pp.balance(X, y, "smote")
+    assert np.bincount(yb)[0] == np.bincount(yb)[1]             # positive: balanced
+    # IQR flags an obvious outlier (negative-path).
+    s = pd.Series([1, 1, 1, 1, 100])
+    assert bool(pp.outliers(s, "iqr").iloc[-1]) is True

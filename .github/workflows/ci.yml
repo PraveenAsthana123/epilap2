@@ -37,6 +37,8 @@ jobs:
           python governance.py
           python recurrence.py
           python decision_support.py
+          python mlops/data_quality.py
+          python preprocessing.py
           cd .. && python db/build_sqlite.py
       - name: MLOps demo + tests (contract/feature-store/tracking/rollback)
         run: |

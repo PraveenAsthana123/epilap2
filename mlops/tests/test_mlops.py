@@ -60,3 +60,27 @@ def test_registry_register_promote_rollback():
     assert prev == v1                                            # negative-path: rolled back
     assert mr.production_version(name) == v1
     assert type(mr.load(name)).__name__ == "LogisticRegression"  # loads the rolled-back model
+
+
+# ---- LLM / agent ops ----
+def test_llm_ops():
+    import llm_ops as lo
+    reg = lo.PromptRegistry()
+    reg.register("p", "v1"); assert reg.register("p", "v2") == 2          # versioning
+    cache = lo.SemanticCache(); cache.put("Hello World", "hi")
+    assert cache.get("hello   world") == "hi"                            # semantic-ish hit
+    assert cache.get("different") is None                               # negative: miss
+    r = lo.ModelRouter()
+    assert r.route(50) == "small" and r.route(50, True) == "large"      # routing
+    ev = lo.ResponseEvaluator()
+    assert ev.evaluate("clean text", grounding_sources=["src"])["ok"] is True
+    assert "pii_leak" in ev.evaluate("EP-2026-001", grounding_sources=["s"])["issues"]  # negative
+
+
+# ---- data quality catalogue ----
+def test_data_quality_profile():
+    import data_quality as dq
+    df = pd.DataFrame({"patient_id": ["EP001", "EP002"], "age": [29, 40], "sex": ["M", "F"]})
+    prof = dq.profile_dataset("t", df)
+    assert {"null_pct", "uniqueness_score", "consistency_score", "sensitive_classification"} <= set(prof.columns)
+    assert prof.loc[prof.column == "patient_id", "sensitive_classification"].iloc[0] == "direct-identifier"
